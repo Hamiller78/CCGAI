@@ -15,13 +15,17 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "board.h"
+#ifndef GAMEPIECE_H
+#define GAMEPIECE_H
 
 namespace game {
 
-Board::Board()
+class Gamepiece
 {
-
-}
+public:
+    Gamepiece();
+};
 
 } // namespace game
+
+#endif // GAMEPIECE_H

@@ -18,9 +18,17 @@
 #include <QString>
 #include <QtTest>
 
+#include "../../Prototype/board.h"
+
+#include "memory"
+
 class BoardTest : public QObject
 {
     Q_OBJECT
+
+private:
+    game::Board *testBoard;
+    std::shared_ptr<game::Gamepiece> testPiece1;
 
 public:
     BoardTest();
@@ -37,15 +45,23 @@ BoardTest::BoardTest()
 
 void BoardTest::initTestCase()
 {
+    testBoard = new game::Board;
+    testPiece1 = std::shared_ptr<game::Gamepiece>(new game::Gamepiece);
 }
 
 void BoardTest::cleanupTestCase()
 {
+    testPiece1.reset();
+    delete testBoard;
 }
 
 void BoardTest::testCase1()
 {
-    QVERIFY2(true, "Failure");
+    testBoard->addGamepiece(testPiece1, 0, 0);
+    testBoard->moveGamepiece(testPiece1, 1, 1);
+    std::shared_ptr<game::Gamepiece> verifyPiece = testBoard->getTopPiece(1, 1);
+    QVERIFY(verifyPiece == testPiece1);
+    testBoard->removeGamepiece(testPiece1);
 }
 
 QTEST_APPLESS_MAIN(BoardTest)

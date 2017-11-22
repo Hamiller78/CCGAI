@@ -18,11 +18,25 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include "memory"
+#include "tuple"
+#include "vector"
+
+#include "gamemove.h"
+#include "gamepiece.h"
+
+namespace game {
 
 class Board
 {
 public:
     Board();
+    void addGamepiece(std::shared_ptr<Gamepiece> newPiece, int x, int y);
+    void moveGamepiece(std::shared_ptr<Gamepiece> movePiece, int x, int y);
+    void removeGamepiece(std::shared_ptr<Gamepiece> removePiece);
+    std::shared_ptr<Gamepiece> getTopPiece(int x, int y);
 };
+
+} // namespace game
 
 #endif // BOARD_H
