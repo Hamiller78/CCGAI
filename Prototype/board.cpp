@@ -24,4 +24,26 @@ Board::Board()
 
 }
 
+void Board::addGamepiece(std::shared_ptr<Gamepiece> newPiece, int x, int y)
+{
+    gamepiecesOnBoard[newPiece] = std::pair<int, int>(x, y);
+}
+
+std::shared_ptr<Gamepiece> Board::getTopPiece(int x, int y)
+{
+
+}
+
+void Board::moveGamepiece(std::shared_ptr<Gamepiece> movePiece, int x, int y)
+{
+    gamepiecesOnBoard[movePiece] = std::pair<int, int>(x, y);
+    // TO DO exception handling
+}
+
+void Board::removeGamepiece(std::shared_ptr<Gamepiece> removePiece)
+{
+    gamepiecesOnBoard.erase(removePiece);
+    // TO DO exception handling
+}
+
 } // namespace game

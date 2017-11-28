@@ -15,31 +15,14 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef BOARD_H
-#define BOARD_H
+#ifndef PILE_H
+#define PILE_H
 
-#include <algorithm>
-#include <map>
-#include <memory>
-#include <utility>
 
-#include "gamemove.h"
-#include "gamepiece.h"
-
-namespace game {
-
-class Board
+class Pile
 {
 public:
-    Board();
-    void addGamepiece(std::shared_ptr<Gamepiece> newPiece, int x, int y);
-    std::shared_ptr<game::Gamepiece> getTopPiece(int x, int y);
-    void moveGamepiece(std::shared_ptr<Gamepiece> movePiece, int x, int y);
-    void removeGamepiece(std::shared_ptr<Gamepiece> removePiece);
-private:
-    std::map<std::shared_ptr<Gamepiece>, std::pair<int, int>> gamepiecesOnBoard;
+    Pile();
 };
 
-} // namespace game
-
-#endif // BOARD_H
+#endif // PILE_H
