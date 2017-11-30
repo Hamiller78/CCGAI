@@ -18,11 +18,14 @@
 #ifndef PILE_H
 #define PILE_H
 
+namespace game {
 
 class Pile
 {
 public:
     Pile();
 };
+
+} // namespace game
 
 #endif // PILE_H

@@ -23,21 +23,27 @@
 #include <memory>
 #include <utility>
 
-#include "gamemove.h"
 #include "gamepiece.h"
+#include "pile.h"
 
 namespace game {
+
+// Represents the state of a game board.
+// Should be light-weight and allow quick creation of boards after applying moves
+// objects of this class will be created a lot by AI calculation
+
+using Position = std::pair<int, int>;
 
 class Board
 {
 public:
     Board();
-    void addGamepiece(std::shared_ptr<Gamepiece> newPiece, int x, int y);
-    std::shared_ptr<game::Gamepiece> getTopPiece(int x, int y);
-    void moveGamepiece(std::shared_ptr<Gamepiece> movePiece, int x, int y);
-    void removeGamepiece(std::shared_ptr<Gamepiece> removePiece);
+    ~Board();
+    void addGamepiece(std::shared_ptr<Gamepiece> newPiece, Position spawnPosition);
+    void movePile(Position startPosition, Position destinationPosition);
+    void removePile(Position clearPosition);
 private:
-    std::map<std::shared_ptr<Gamepiece>, std::pair<int, int>> gamepiecesOnBoard;
+    std::map<Position, Pile*> pilesOnBoard;
 };
 
 } // namespace game

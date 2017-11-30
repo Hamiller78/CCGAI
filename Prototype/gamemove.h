@@ -18,12 +18,24 @@
 #ifndef GAMEMOVE_H
 #define GAMEMOVE_H
 
+#include "board.h"
+
 namespace game {
+
+enum MoveTypes
+{
+    PASS,
+    SPAWN_GAMEPIECE,
+    MOVE_PILE,
+    MOVE_TOPPIECE,
+    REMOVE_TOPPIECE
+};
 
 class Gamemove
 {
 public:
     Gamemove();
+    Board applyOnBoard(Board oldBoard);
 };
 
 } // namespace game

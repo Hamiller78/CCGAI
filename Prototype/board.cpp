@@ -24,26 +24,39 @@ Board::Board()
 
 }
 
-void Board::addGamepiece(std::shared_ptr<Gamepiece> newPiece, int x, int y)
+Board::~Board()
 {
-    gamepiecesOnBoard[newPiece] = std::pair<int, int>(x, y);
+    for (auto pileIterator : pilesOnBoard)
+    {
+        delete pileIterator.second;
+    }
 }
 
-std::shared_ptr<Gamepiece> Board::getTopPiece(int x, int y)
+void Board::addGamepiece(std::shared_ptr<Gamepiece> newPiece, Position spawnPosition)
 {
-
+    Pile* newPile = new Pile;
+    pilesOnBoard[spawnPosition] = newPile;
 }
 
-void Board::moveGamepiece(std::shared_ptr<Gamepiece> movePiece, int x, int y)
+void Board::movePile(Position startPosition, Position destinationPosition)
 {
-    gamepiecesOnBoard[movePiece] = std::pair<int, int>(x, y);
-    // TO DO exception handling
+    auto pileIterator = pilesOnBoard.find(startPosition);
+    if (pileIterator != pilesOnBoard.end())
+    {
+        Pile *movePile = pileIterator->second;
+        pilesOnBoard.erase(pileIterator);
+        pilesOnBoard[destinationPosition] = movePile;
+    }
 }
 
-void Board::removeGamepiece(std::shared_ptr<Gamepiece> removePiece)
+void Board::removePile(Position clearPosition)
 {
-    gamepiecesOnBoard.erase(removePiece);
-    // TO DO exception handling
+    auto pileIterator = pilesOnBoard.find(clearPosition);
+    if (pileIterator != pilesOnBoard.end())
+    {
+        delete pileIterator->second;
+        pilesOnBoard.erase(pileIterator);
+    }
 }
 
 } // namespace game

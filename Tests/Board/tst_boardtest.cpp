@@ -22,13 +22,15 @@
 
 #include "memory"
 
+using namespace game;
+
 class BoardTest : public QObject
 {
     Q_OBJECT
 
 private:
-    game::Board *testBoard;
-    std::shared_ptr<game::Gamepiece> testPiece1;
+    Board *testBoard;
+    std::shared_ptr<Gamepiece> testPiece1;
 
 public:
     BoardTest();
@@ -45,8 +47,8 @@ BoardTest::BoardTest()
 
 void BoardTest::initTestCase()
 {
-    testBoard = new game::Board;
-    testPiece1 = std::shared_ptr<game::Gamepiece>(new game::Gamepiece);
+    testBoard = new Board;
+    testPiece1 = std::shared_ptr<Gamepiece>(new Gamepiece);
 }
 
 void BoardTest::cleanupTestCase()
@@ -57,11 +59,9 @@ void BoardTest::cleanupTestCase()
 
 void BoardTest::testCase1()
 {
-    testBoard->addGamepiece(testPiece1, 0, 0);
-    testBoard->moveGamepiece(testPiece1, 1, 1);
-    std::shared_ptr<game::Gamepiece> verifyPiece = testBoard->getTopPiece(1, 1);
-    QVERIFY(verifyPiece == testPiece1);
-    testBoard->removeGamepiece(testPiece1);
+    testBoard->addGamepiece(testPiece1, Position (0, 0));
+    testBoard->movePile(Position (0, 0), Position(1, 1));
+    testBoard->removePile(Position(1, 1));
 }
 
 QTEST_APPLESS_MAIN(BoardTest)

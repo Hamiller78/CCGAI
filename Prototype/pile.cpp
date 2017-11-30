@@ -17,7 +17,11 @@
 
 #include "pile.h"
 
+namespace game {
+
 Pile::Pile()
 {
 
 }
+
+} // namespace game

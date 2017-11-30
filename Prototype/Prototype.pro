@@ -29,13 +29,15 @@ SOURCES += \
         mainwindow.cpp \
     board.cpp \
     gamepiece.cpp \
-    gamemove.cpp
+    gamemove.cpp \
+    pile.cpp
 
 HEADERS += \
         mainwindow.h \
     board.h \
     gamepiece.h \
-    gamemove.h
+    gamemove.h \
+    pile.h
 
 FORMS += \
         mainwindow.ui
