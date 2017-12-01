@@ -27,6 +27,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        tst_boardtest.cpp 
+        tst_boardtest.cpp \
+    ../../Prototype/board.cpp \
+    ../../Prototype/gamepiece.cpp \
+    ../../Prototype/gamemove.cpp \
+    ../../Prototype/pile.cpp
+
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"

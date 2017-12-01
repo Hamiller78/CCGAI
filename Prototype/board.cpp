@@ -17,7 +17,46 @@
 
 #include "board.h"
 
+namespace game {
+
 Board::Board()
 {
 
 }
+
+Board::~Board()
+{
+    for (auto pileIterator : pilesOnBoard)
+    {
+        delete pileIterator.second;
+    }
+}
+
+void Board::addGamepiece(std::shared_ptr<Gamepiece> newPiece, Position spawnPosition)
+{
+    Pile* newPile = new Pile;
+    pilesOnBoard[spawnPosition] = newPile;
+}
+
+void Board::movePile(Position startPosition, Position destinationPosition)
+{
+    auto pileIterator = pilesOnBoard.find(startPosition);
+    if (pileIterator != pilesOnBoard.end())
+    {
+        Pile *movePile = pileIterator->second;
+        pilesOnBoard.erase(pileIterator);
+        pilesOnBoard[destinationPosition] = movePile;
+    }
+}
+
+void Board::removePile(Position clearPosition)
+{
+    auto pileIterator = pilesOnBoard.find(clearPosition);
+    if (pileIterator != pilesOnBoard.end())
+    {
+        delete pileIterator->second;
+        pilesOnBoard.erase(pileIterator);
+    }
+}
+
+} // namespace game

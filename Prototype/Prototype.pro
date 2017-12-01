@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+CONFIG += c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,11 +27,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    board.cpp
+    board.cpp \
+    gamepiece.cpp \
+    gamemove.cpp \
+    pile.cpp
 
 HEADERS += \
         mainwindow.h \
-    board.h
+    board.h \
+    gamepiece.h \
+    gamemove.h \
+    pile.h
 
 FORMS += \
         mainwindow.ui

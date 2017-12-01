@@ -18,11 +18,34 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <algorithm>
+#include <map>
+#include <memory>
+#include <utility>
+
+#include "gamepiece.h"
+#include "pile.h"
+
+namespace game {
+
+// Represents the state of a game board.
+// Should be light-weight and allow quick creation of boards after applying moves
+// objects of this class will be created a lot by AI calculation
+
+using Position = std::pair<int, int>;
 
 class Board
 {
 public:
     Board();
+    ~Board();
+    void addGamepiece(std::shared_ptr<Gamepiece> newPiece, Position spawnPosition);
+    void movePile(Position startPosition, Position destinationPosition);
+    void removePile(Position clearPosition);
+private:
+    std::map<Position, Pile*> pilesOnBoard;
 };
+
+} // namespace game
 
 #endif // BOARD_H
