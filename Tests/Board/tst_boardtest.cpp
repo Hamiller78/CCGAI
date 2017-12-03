@@ -39,6 +39,7 @@ private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void testCase1();
+    void testCase2();
 };
 
 BoardTest::BoardTest()
@@ -62,6 +63,12 @@ void BoardTest::testCase1()
     testBoard->addGamepiece(testPiece1, Position (0, 0));
     testBoard->movePile(Position (0, 0), Position(1, 1));
     testBoard->removePile(Position(1, 1));
+}
+
+void BoardTest::testCase2()
+{
+    QVERIFY_EXCEPTION_THROWN(testBoard->movePile(Position (0, 0), Position(1, 1)), std::logic_error);
+    QVERIFY_EXCEPTION_THROWN(testBoard->removePile(Position(2, 2));, std::logic_error);
 }
 
 QTEST_APPLESS_MAIN(BoardTest)

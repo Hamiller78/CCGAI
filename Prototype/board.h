@@ -19,6 +19,7 @@
 #define BOARD_H
 
 #include <algorithm>
+#include <stdexcept>
 #include <map>
 #include <memory>
 #include <utility>

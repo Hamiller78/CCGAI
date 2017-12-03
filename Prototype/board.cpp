@@ -47,6 +47,10 @@ void Board::movePile(Position startPosition, Position destinationPosition)
         pilesOnBoard.erase(pileIterator);
         pilesOnBoard[destinationPosition] = movePile;
     }
+    else
+    {
+        throw std::logic_error("Attempted to move a pile from an empty board tile!");
+    }
 }
 
 void Board::removePile(Position clearPosition)
@@ -56,6 +60,10 @@ void Board::removePile(Position clearPosition)
     {
         delete pileIterator->second;
         pilesOnBoard.erase(pileIterator);
+    }
+    else
+    {
+        throw std::logic_error("Attempted to remove a pile from an empty board tile!");
     }
 }
 
