@@ -15,25 +15,14 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef GAMEMOVE_H
-#define GAMEMOVE_H
+#include "gamemovemovepile.h"
 
-#include "board.h"
-
-namespace game {
-
-// Base class for gamemoves. The possible moves are inheriting classes,
-// whose function is to apply the move on a board.
-
-using Position = std::pair<int, int>;
-
-class Gamemove
+game::GamemoveMovePile::GamemoveMovePile(game::Position startPosition, game::Position targetPosition)
 {
-public:
-    Gamemove();
-    virtual Board applyOnBoard(Board oldBoard) = 0;
-};
 
-} // namespace game
+}
 
-#endif // GAMEMOVE_H
+game::Board game::GamemoveMovePile::applyOnBoard(game::Board oldBoard)
+{
+    return Board();
+}

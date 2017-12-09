@@ -31,6 +31,7 @@ SOURCES += \
     ../../Prototype/board.cpp \
     ../../Prototype/gamepiece.cpp \
     ../../Prototype/gamemove.cpp \
+    ../../Prototype/gamemovemovepile.cpp \
     ../../Prototype/pile.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"

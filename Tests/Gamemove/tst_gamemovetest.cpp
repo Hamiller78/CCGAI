@@ -18,9 +18,20 @@
 #include <QString>
 #include <QtTest>
 
+#include "../../Prototype/board.h"
+#include "../../Prototype/gamemove.h"
+#include "../../Prototype/gamemovemovepile.h"
+
+using namespace game;
+
 class GamemoveTest : public QObject
 {
     Q_OBJECT
+
+private:
+    GamemoveMovePile *moveMove;
+    Board *testBoard;
+    std::shared_ptr<Gamepiece> testPiece1;
 
 public:
     GamemoveTest();
@@ -37,15 +48,23 @@ GamemoveTest::GamemoveTest()
 
 void GamemoveTest::initTestCase()
 {
+    moveMove = new GamemoveMovePile(Position (0, 0), Position(1, 1));
+    testBoard = new Board;
+    testPiece1 = std::shared_ptr<Gamepiece>(new Gamepiece);
 }
 
 void GamemoveTest::cleanupTestCase()
 {
+    testPiece1.reset();
+    delete testBoard;
+    delete moveMove;
 }
 
 void GamemoveTest::testCase1()
 {
-    QVERIFY2(true, "Failure");
+    testBoard->addGamepiece(testPiece1, Position (0, 0));
+    Board resultBoard = moveMove->applyOnBoard(*testBoard);
+    resultBoard.removePile(Position(1, 1));
 }
 
 QTEST_APPLESS_MAIN(GamemoveTest)
