@@ -26,7 +26,7 @@ Board::Board()
 
 Board::~Board()
 {
-    for (auto pileIterator : pilesOnBoard)
+    for (auto pileIterator : pilesOnBoard_)
     {
         delete pileIterator.second;
     }
@@ -35,17 +35,17 @@ Board::~Board()
 void Board::addGamepiece(std::shared_ptr<Gamepiece> newPiece, Position spawnPosition)
 {
     Pile* newPile = new Pile;
-    pilesOnBoard[spawnPosition] = newPile;
+    pilesOnBoard_[spawnPosition] = newPile;
 }
 
 void Board::movePile(Position startPosition, Position destinationPosition)
 {
-    auto pileIterator = pilesOnBoard.find(startPosition);
-    if (pileIterator != pilesOnBoard.end())
+    auto pileIterator = pilesOnBoard_.find(startPosition);
+    if (pileIterator != pilesOnBoard_.end())
     {
         Pile *movePile = pileIterator->second;
-        pilesOnBoard.erase(pileIterator);
-        pilesOnBoard[destinationPosition] = movePile;
+        pilesOnBoard_.erase(pileIterator);
+        pilesOnBoard_[destinationPosition] = movePile;
     }
     else
     {
@@ -55,11 +55,11 @@ void Board::movePile(Position startPosition, Position destinationPosition)
 
 void Board::removePile(Position clearPosition)
 {
-    auto pileIterator = pilesOnBoard.find(clearPosition);
-    if (pileIterator != pilesOnBoard.end())
+    auto pileIterator = pilesOnBoard_.find(clearPosition);
+    if (pileIterator != pilesOnBoard_.end())
     {
         delete pileIterator->second;
-        pilesOnBoard.erase(pileIterator);
+        pilesOnBoard_.erase(pileIterator);
     }
     else
     {

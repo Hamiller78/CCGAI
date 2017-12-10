@@ -44,7 +44,7 @@ public:
     void movePile(Position startPosition, Position destinationPosition);
     void removePile(Position clearPosition);
 private:
-    std::map<Position, Pile*> pilesOnBoard;
+    std::map<Position, Pile*> pilesOnBoard_;
 };
 
 } // namespace game

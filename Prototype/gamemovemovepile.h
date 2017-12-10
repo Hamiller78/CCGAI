@@ -27,6 +27,9 @@ class GamemoveMovePile : public Gamemove
 public:
     GamemoveMovePile(Position startPosition, Position targetPosition);
     Board applyOnBoard(Board oldBoard) override;
+private:
+    Position startPosition_;
+    Position targetPosition_;
 };
 
 } // namespace game

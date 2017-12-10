@@ -19,10 +19,13 @@
 
 game::GamemoveMovePile::GamemoveMovePile(game::Position startPosition, game::Position targetPosition)
 {
-
+    startPosition_ = startPosition;
+    targetPosition_ = targetPosition;
 }
 
 game::Board game::GamemoveMovePile::applyOnBoard(game::Board oldBoard)
 {
-    return Board();
+    Board newBoard = oldBoard;
+    newBoard.movePile(startPosition_, targetPosition_);
+    return newBoard;
 }
