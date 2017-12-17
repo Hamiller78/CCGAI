@@ -21,6 +21,7 @@
 #include "../../Prototype/board.h"
 #include "../../Prototype/gamemove.h"
 #include "../../Prototype/gamemovemovepile.h"
+#include "../../Prototype/gamemovespawnpiece.h"
 
 using namespace game;
 
@@ -30,6 +31,7 @@ class GamemoveTest : public QObject
 
 private:
     GamemoveMovePile *moveMove;
+    GamemoveSpawnPiece *spawnMove;
     Board *testBoard;
     std::shared_ptr<Gamepiece> testPiece1;
 
@@ -40,6 +42,7 @@ private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void testCase1();
+    void testCase2();
 };
 
 GamemoveTest::GamemoveTest()
@@ -49,6 +52,7 @@ GamemoveTest::GamemoveTest()
 void GamemoveTest::initTestCase()
 {
     moveMove = new GamemoveMovePile(Position (0, 0), Position(1, 1));
+    spawnMove = new GamemoveSpawnPiece(1, Position(2,-1));
     testBoard = new Board;
     testPiece1 = std::shared_ptr<Gamepiece>(new Gamepiece);
 }
@@ -57,10 +61,17 @@ void GamemoveTest::cleanupTestCase()
 {
     testPiece1.reset();
     delete testBoard;
+    delete spawnMove;
     delete moveMove;
 }
 
 void GamemoveTest::testCase1()
+{
+    Board resultBoard = spawnMove->applyOnBoard(*testBoard);
+    resultBoard.removePile(Position(2, -1));
+}
+
+void GamemoveTest::testCase2()
 {
     testBoard->addGamepiece(testPiece1, Position (0, 0));
     Board resultBoard = moveMove->applyOnBoard(*testBoard);

@@ -31,7 +31,8 @@ SOURCES += \
     gamepiece.cpp \
     gamemove.cpp \
     pile.cpp \
-    gamemovemovepile.cpp
+    gamemovemovepile.cpp \
+    gamemovespawnpiece.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,7 +40,8 @@ HEADERS += \
     gamepiece.h \
     gamemove.h \
     pile.h \
-    gamemovemovepile.h
+    gamemovemovepile.h \
+    gamemovespawnpiece.h
 
 FORMS += \
         mainwindow.ui
