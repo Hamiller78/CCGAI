@@ -21,7 +21,57 @@ namespace game {
 
 Pile::Pile()
 {
+}
 
+void Pile::addOnTop(std::shared_ptr<Gamepiece> newPiece)
+{
+    pileElements_.push_back(newPiece);
+}
+
+void Pile::addPile(Pile *extraPile)
+{
+    for (auto loopPiece : extraPile->getPieceVector())
+    {
+        addOnTop(loopPiece);
+    }
+    delete extraPile;
+}
+
+void Pile::addToBottom(std::shared_ptr<Gamepiece> newPiece)
+{
+    std::vector<std::shared_ptr<Gamepiece>>::iterator it;
+    it = pileElements_.begin();
+    pileElements_.insert(it, newPiece);
+}
+
+std::vector<std::shared_ptr<Gamepiece> > Pile::getPieceVector()
+{
+    return pileElements_;
+}
+
+int Pile::getPilesize()
+{
+    return pileElements_.size();
+}
+
+std::shared_ptr<Gamepiece> Pile::getTopPiece()
+{
+    if (pileElements_.size() == 0)
+    {
+        throw std::logic_error("Attempted to access the top piece of an empty pile!");
+    }
+    return pileElements_.back();
+}
+
+std::shared_ptr<Gamepiece> Pile::pickupTopPiece()
+{
+    if (pileElements_.size() == 0)
+    {
+        throw std::logic_error("Attempted to access the top piece of an empty pile!");
+    }
+    std::shared_ptr<Gamepiece> topPiece = pileElements_.back();
+    pileElements_.pop_back();
+    return topPiece;
 }
 
 } // namespace game

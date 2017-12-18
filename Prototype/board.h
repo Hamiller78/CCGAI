@@ -41,7 +41,9 @@ public:
     Board();
     ~Board();
     void addGamepiece(std::shared_ptr<Gamepiece> newPiece, Position spawnPosition);
+    std::shared_ptr<Gamepiece> getTopPiece(Position pilePosition);
     void movePile(Position startPosition, Position destinationPosition);
+    void moveTopPiece(Position startPosition, Position destinationPosition);
     void removePile(Position clearPosition);
 private:
     std::map<Position, Pile*> pilesOnBoard_;

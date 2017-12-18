@@ -19,9 +19,4 @@
 
 namespace game {
 
-Gamemove::Gamemove()
-{
-
-}
-
 } // namespace game

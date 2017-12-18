@@ -30,7 +30,8 @@ using Position = std::pair<int, int>;
 class Gamemove
 {
 public:
-    Gamemove();
+    Gamemove(){}
+    virtual ~Gamemove(){}
     virtual Board applyOnBoard(Board oldBoard) = 0;
 };
 

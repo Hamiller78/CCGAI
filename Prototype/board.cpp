@@ -34,22 +34,51 @@ Board::~Board()
 
 void Board::addGamepiece(std::shared_ptr<Gamepiece> newPiece, Position spawnPosition)
 {
-    Pile* newPile = new Pile;
-    pilesOnBoard_[spawnPosition] = newPile;
+    Pile* addPile = pilesOnBoard_[spawnPosition];
+    if (addPile == nullptr)
+    {
+        addPile = new Pile;
+        pilesOnBoard_[spawnPosition] = addPile;
+    }
+    addPile->addOnTop(newPiece);
+}
+
+std::shared_ptr<Gamepiece> Board::getTopPiece(Position pilePosition)
+{
+    Pile* readPile = pilesOnBoard_.at(pilePosition);
+    return readPile->getTopPiece();
 }
 
 void Board::movePile(Position startPosition, Position destinationPosition)
 {
     auto pileIterator = pilesOnBoard_.find(startPosition);
-    if (pileIterator != pilesOnBoard_.end())
+    if (pileIterator == pilesOnBoard_.end())
     {
-        Pile *movePile = pileIterator->second;
-        pilesOnBoard_.erase(pileIterator);
+        throw std::logic_error("Attempted to move a pile from an empty board tile!");
+    }
+    Pile *movePile = pileIterator->second;
+    pilesOnBoard_.erase(pileIterator);
+
+    Pile *targetPile = pilesOnBoard_[destinationPosition];
+    if (targetPile == nullptr)
+    {
         pilesOnBoard_[destinationPosition] = movePile;
     }
     else
     {
-        throw std::logic_error("Attempted to move a pile from an empty board tile!");
+        targetPile->addPile(movePile);
+    }
+}
+
+void Board::moveTopPiece(Position startPosition, Position destinationPosition)
+{
+    Pile* readPile = pilesOnBoard_.at(startPosition);
+    std::shared_ptr<Gamepiece> pickedPiece = readPile->pickupTopPiece();
+    addGamepiece(pickedPiece, destinationPosition);
+    if (readPile->getPilesize() == 0)
+    {
+        pilesOnBoard_[startPosition] = nullptr;
+        delete readPile;
     }
 }
 

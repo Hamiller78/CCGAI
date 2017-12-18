@@ -18,12 +18,30 @@
 #ifndef PILE_H
 #define PILE_H
 
+#include "gamepiece.h"
+
+#include <memory>
+#include <stdexcept>
+#include <utility>
+#include <vector>
+
 namespace game {
 
 class Pile
 {
 public:
     Pile();
+    void addOnTop(std::shared_ptr<Gamepiece> newPiece);
+    void addPile(Pile *extraPile);
+    void addToBottom(std::shared_ptr<Gamepiece> newPiece);
+    std::vector<std::shared_ptr<Gamepiece>> getPieceVector();
+    int getPilesize();
+    std::shared_ptr<Gamepiece> getTopPiece();
+    std::shared_ptr<Gamepiece> pickupTopPiece();
+private:
+    // vector containing the gamepieces in the pile
+    // for efficiency the top piece is at the end of the vector
+    std::vector<std::shared_ptr<Gamepiece>> pileElements_;
 };
 
 } // namespace game
