@@ -2,4 +2,5 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     Board \
-    Gamemove
+    Gamemove \
+    Pile
