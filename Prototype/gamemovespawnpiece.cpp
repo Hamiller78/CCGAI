@@ -17,16 +17,20 @@
 
 #include "gamemovespawnpiece.h"
 
-game::GamemoveSpawnPiece::GamemoveSpawnPiece(int cardNumber, Position spawnPosition)
+namespace game {
+
+GamemoveSpawnPiece::GamemoveSpawnPiece(int cardNumber, Position spawnPosition)
 {
     cardNumber_ = cardNumber;
     spawnPosition_ = spawnPosition;
 }
 
-game::Board game::GamemoveSpawnPiece::applyOnBoard(game::Board oldBoard)
+Board GamemoveSpawnPiece::applyOnBoard(Board oldBoard)
 {
     Board newBoard = oldBoard;
     std::shared_ptr<Gamepiece> spawnGamepiece(new Gamepiece, std::default_delete<Gamepiece>());
     newBoard.addGamepiece(spawnGamepiece, spawnPosition_);
     return newBoard;
 }
+
+} // namespace game

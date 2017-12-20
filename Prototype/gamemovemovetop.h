@@ -15,21 +15,23 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "gamemovemovepile.h"
+#ifndef GAMEMOVEMOVETOP_H
+#define GAMEMOVEMOVETOP_H
+
+#include "gamemove.h"
 
 namespace game {
 
-GamemoveMovePile::GamemoveMovePile(Position startPosition, Position targetPosition)
+class GamemoveMoveTop : public Gamemove
 {
-    startPosition_ = startPosition;
-    targetPosition_ = targetPosition;
-}
-
-Board GamemoveMovePile::applyOnBoard(Board oldBoard)
-{
-    Board newBoard = oldBoard;
-    newBoard.movePile(startPosition_, targetPosition_);
-    return newBoard;
-}
+public:
+    GamemoveMoveTop(Position startPosition, Position targetPosition);
+    Board applyOnBoard(Board oldBoard) override;
+private:
+    Position startPosition_;
+    Position targetPosition_;
+};
 
 } // namespace game
+
+#endif // GAMEMOVEMOVETOP_H
