@@ -27,7 +27,7 @@ GamemoveSpawnPiece::GamemoveSpawnPiece(int cardNumber, Position spawnPosition)
 
 Board GamemoveSpawnPiece::applyOnBoard(Board oldBoard)
 {
-    Board newBoard = oldBoard;
+    Board newBoard(oldBoard);
     std::shared_ptr<Gamepiece> spawnGamepiece(new Gamepiece, std::default_delete<Gamepiece>());
     newBoard.addGamepiece(spawnGamepiece, spawnPosition_);
     return newBoard;

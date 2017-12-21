@@ -21,6 +21,12 @@ namespace game {
 
 Pile::Pile()
 {
+
+}
+
+Pile::Pile(const Pile &sourcePile)
+{
+    pileElements_ = sourcePile.pileElements_;
 }
 
 void Pile::addOnTop(std::shared_ptr<Gamepiece> newPiece)

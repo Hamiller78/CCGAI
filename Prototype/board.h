@@ -39,6 +39,7 @@ class Board
 {
 public:
     Board();
+    Board(const Board& sourceBoard);
     ~Board();
     void addGamepiece(std::shared_ptr<Gamepiece> newPiece, Position spawnPosition);
     std::shared_ptr<Gamepiece> getTopPiece(Position pilePosition);

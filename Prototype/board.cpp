@@ -24,6 +24,15 @@ Board::Board()
 
 }
 
+Board::Board(const Board &sourceBoard)
+{
+    for (auto loopPile : sourceBoard.pilesOnBoard_)
+    {
+        Pile* pileCopy = new Pile(*loopPile.second);
+        pilesOnBoard_[loopPile.first] = pileCopy;
+    }
+}
+
 Board::~Board()
 {
     for (auto pileIterator : pilesOnBoard_)

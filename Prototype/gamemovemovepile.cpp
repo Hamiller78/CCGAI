@@ -27,7 +27,7 @@ GamemoveMovePile::GamemoveMovePile(Position startPosition, Position targetPositi
 
 Board GamemoveMovePile::applyOnBoard(Board oldBoard)
 {
-    Board newBoard = oldBoard;
+    Board newBoard(oldBoard);
     newBoard.movePile(startPosition_, targetPosition_);
     return newBoard;
 }

@@ -27,7 +27,7 @@ GamemoveMoveTop::GamemoveMoveTop(Position startPosition, Position targetPosition
 
 Board GamemoveMoveTop::applyOnBoard(Board oldBoard)
 {
-    Board newBoard = oldBoard;
+    Board newBoard(oldBoard);
     newBoard.moveTopPiece(startPosition_, targetPosition_);
     return newBoard;
 }

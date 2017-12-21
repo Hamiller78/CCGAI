@@ -21,6 +21,7 @@
 #include "../../Prototype/board.h"
 #include "../../Prototype/gamemove.h"
 #include "../../Prototype/gamemovemovepile.h"
+#include "../../Prototype/gamemovemovetop.h"
 #include "../../Prototype/gamemovespawnpiece.h"
 
 using namespace game;
@@ -31,9 +32,11 @@ class GamemoveTest : public QObject
 
 private:
     GamemoveMovePile *moveMove;
-    GamemoveSpawnPiece *spawnMove;
+    GamemoveMoveTop *moveTopMove;
+    GamemoveSpawnPiece *moveSpawnMove;
     Board *testBoard;
     std::shared_ptr<Gamepiece> testPiece1;
+    std::shared_ptr<Gamepiece> testPiece2;
 
 public:
     GamemoveTest();
@@ -43,6 +46,7 @@ private Q_SLOTS:
     void cleanupTestCase();
     void testCase1();
     void testCase2();
+    void testCase3();
 };
 
 GamemoveTest::GamemoveTest()
@@ -52,30 +56,44 @@ GamemoveTest::GamemoveTest()
 void GamemoveTest::initTestCase()
 {
     moveMove = new GamemoveMovePile(Position (0, 0), Position(1, 1));
-    spawnMove = new GamemoveSpawnPiece(1, Position(2,-1));
+    moveTopMove = new GamemoveMoveTop(Position (1, 1), Position(-1, -1));
+    moveSpawnMove = new GamemoveSpawnPiece(1, Position(2,-1));
     testBoard = new Board;
     testPiece1 = std::shared_ptr<Gamepiece>(new Gamepiece);
+    testPiece2 = std::shared_ptr<Gamepiece>(new Gamepiece);
 }
 
 void GamemoveTest::cleanupTestCase()
 {
     testPiece1.reset();
+    testPiece2.reset();
     delete testBoard;
-    delete spawnMove;
+    delete moveSpawnMove;
     delete moveMove;
 }
 
 void GamemoveTest::testCase1()
 {
-    Board resultBoard = spawnMove->applyOnBoard(*testBoard);
+    Board resultBoard = moveSpawnMove->applyOnBoard(*testBoard);
     resultBoard.removePile(Position(2, -1));
 }
 
 void GamemoveTest::testCase2()
 {
     testBoard->addGamepiece(testPiece1, Position (0, 0));
+    testBoard->addGamepiece(testPiece2, Position (1, 1));
     Board resultBoard = moveMove->applyOnBoard(*testBoard);
     resultBoard.removePile(Position(1, 1));
+}
+
+void GamemoveTest::testCase3()
+{
+    testBoard->addGamepiece(testPiece1, Position (0, 0));
+    testBoard->addGamepiece(testPiece2, Position (1, 1));
+    Board resultBoard1 = moveMove->applyOnBoard(*testBoard);
+    Board resultBoard2 = moveTopMove->applyOnBoard(resultBoard1);
+    resultBoard2.removePile(Position(1, 1));
+    resultBoard2.removePile(Position(-1, -1));
 }
 
 QTEST_APPLESS_MAIN(GamemoveTest)

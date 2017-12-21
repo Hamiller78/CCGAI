@@ -31,6 +31,7 @@ class Pile
 {
 public:
     Pile();
+    Pile(const Pile& sourcePile);
     void addOnTop(std::shared_ptr<Gamepiece> newPiece);
     void addPile(Pile *extraPile);
     void addToBottom(std::shared_ptr<Gamepiece> newPiece);
