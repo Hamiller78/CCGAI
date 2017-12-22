@@ -35,6 +35,7 @@ public:
     void addOnTop(std::shared_ptr<Gamepiece> newPiece);
     void addPile(Pile *extraPile);
     void addToBottom(std::shared_ptr<Gamepiece> newPiece);
+    void emptyPile();
     std::vector<std::shared_ptr<Gamepiece>> getPieceVector();
     int getPilesize();
     std::shared_ptr<Gamepiece> getTopPiece();

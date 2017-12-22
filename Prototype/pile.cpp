@@ -38,9 +38,9 @@ void Pile::addPile(Pile *extraPile)
 {
     for (auto loopPiece : extraPile->getPieceVector())
     {
-        addOnTop(loopPiece);
+        pileElements_.push_back(loopPiece);
     }
-    delete extraPile;
+    extraPile->emptyPile();
 }
 
 void Pile::addToBottom(std::shared_ptr<Gamepiece> newPiece)
@@ -78,6 +78,11 @@ std::shared_ptr<Gamepiece> Pile::pickupTopPiece()
     std::shared_ptr<Gamepiece> topPiece = pileElements_.back();
     pileElements_.pop_back();
     return topPiece;
+}
+
+void Pile::emptyPile()
+{
+    pileElements_.clear();
 }
 
 } // namespace game
