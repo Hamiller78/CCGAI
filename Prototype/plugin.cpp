@@ -40,12 +40,12 @@ void Plugin::loadPlugin(const QString &pluginDirName)
     }
 }
 
-void Plugin::checkDirExists(const QString &pluginDirName) const
+void Plugin::checkDirExists(const QString &dirName) const
 {
-    QDir pluginDir(pluginDirName);
+    QDir pluginDir(dirName);
     if (!pluginDir.exists())
     {
-        throw ExceptionPlugin("Plugin directory doesn't exist!");
+        throw ExceptionPlugin("Plugin directory doesn't exist: " + dirName.toStdString());
     }
 }
 

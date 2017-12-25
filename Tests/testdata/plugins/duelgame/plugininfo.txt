@@ -1,0 +1,47 @@
+<plugin>
+
+<playerstat>
+	<label>Life</label>
+</playerstat>
+
+
+<gamezone>
+	<label>Hand</label>
+	<visibletoowner>yes</visibletoowner>
+</gamezone>
+
+<gamezone>
+	<label>Deck</label>
+</gamezone>
+
+<gamezone>
+	<label>Discard Pile</label>
+	<visibletoowner>yes</visibletoowner>
+	<visibletoother>yes</visibletoother>
+</gamezone>
+
+<deckzone>
+	<label>Deck</label>
+	<shuffle>yes</shuffle>
+</deckzone>
+
+<phase><label>Ready</label></phase>
+<phase><label>Play</label></phase>
+<phase><label>Attack</label></phase>
+<phase><label>Draw</label></phase>
+
+<generalfunction><label>Draw</label><kind>DRAWCARD</kind></generalfunction>
+<generalfunction><label>Ready All</label><kind>ALLYOURCARDSMAKERIGHT0DEGREES</kind></generalfunction>
+<generalfunction><label>Next Phase</label><kind>NEXTPHASE</kind></generalfunction>
+<generalfunction><label>Next Turn</label><kind>NEXTTURN</kind></generalfunction>
+
+<cardfunction><label>Turn Over</label><kind>TURNOVER</kind></cardfunction>
+<cardfunction><label>Take Control</label><kind>CHANGEOWNER</kind></cardfunction>
+<cardfunction><label>Ready</label><kind>MAKERIGHT0DEGREES</kind></cardfunction>
+<cardfunction><label>Tap</label><kind>MAKERIGHT90DEGREES</kind></cardfunction>
+<cardfunction><label>Green+1</label><kind>ADDCOUNTER</kind><color>green</color>
+<textoverimagecolor>00FF00</textoverimagecolor>
+<PositionX>.75</PositionX><PositionY>.04</PositionY></cardfunction>
+<cardfunction> 	<label>Green-1</label><kind>REMOVECOUNTER</kind><color>green</color></cardfunction>
+
+</plugin>

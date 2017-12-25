@@ -3,4 +3,5 @@ TEMPLATE = subdirs
 SUBDIRS += \
     Board \
     Gamemove \
-    Pile
+    Pile \
+    Plugin

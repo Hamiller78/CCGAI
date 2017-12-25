@@ -15,38 +15,48 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef PLUGIN_H
-#define PLUGIN_H
+#include "../../Prototype/plugin.h"
 
-#include <stdexcept>
-
-#include <QDir>
-#include <QFile>
 #include <QString>
-#include <QTextStream>
+#include <QtTest>
 
-#include "cardpool.h"
-#include "exceptionplugin.h"
+using namespace plugin;
 
-namespace plugin {
-
-// class to load information from a LackeyCCG plugin
-
-class Plugin
+class PluginTest : public QObject
 {
+    Q_OBJECT
+
 private:
-    QString pluginDirPath_;
+    Plugin *testPlugin;
+
 public:
-    Plugin();
-    void loadPlugin(const QString& pluginDirName);
-private:
-    void checkDirExists(const QString& pluginDirName) const;
-    void checkFileExists(const QString& fileName) const;
-    QStringList getSetListFilenames(const QString& dirName) const;
-    void loadCardBack(const QString& pluginDirName);
-    QStringList loadCardData(const QString& pluginDirName, const QStringList& setListFilenames);
+    PluginTest();
+
+private Q_SLOTS:
+    void initTestCase();
+    void cleanupTestCase();
+    void testCase1();
 };
 
-} // namespace plugin
+PluginTest::PluginTest()
+{
+}
 
-#endif // PLUGIN_H
+void PluginTest::initTestCase()
+{
+    testPlugin = new Plugin;
+}
+
+void PluginTest::cleanupTestCase()
+{
+    delete testPlugin;
+}
+
+void PluginTest::testCase1()
+{
+    testPlugin->loadPlugin("../../../CCGAI/Tests/testdata/plugins/duelgame");
+}
+
+QTEST_APPLESS_MAIN(PluginTest)
+
+#include "tst_plugintest.moc"
