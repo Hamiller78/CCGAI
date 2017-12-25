@@ -41,7 +41,7 @@ Board::~Board()
     }
 }
 
-void Board::addGamepiece(std::shared_ptr<Gamepiece> newPiece, Position spawnPosition)
+void Board::addGamepiece(const std::shared_ptr<Gamepiece> newPiece, Position spawnPosition)
 {
     Pile* addPile = pilesOnBoard_[spawnPosition];
     if (addPile == nullptr)

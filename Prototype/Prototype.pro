@@ -33,7 +33,10 @@ SOURCES += \
     pile.cpp \
     gamemovemovepile.cpp \
     gamemovespawnpiece.cpp \
-    gamemovemovetop.cpp
+    gamemovemovetop.cpp \
+    plugin.cpp \
+    cardpool.cpp \
+    exceptionplugin.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,7 +46,10 @@ HEADERS += \
     pile.h \
     gamemovemovepile.h \
     gamemovespawnpiece.h \
-    gamemovemovetop.h
+    gamemovemovetop.h \
+    plugin.h \
+    cardpool.h \
+    exceptionplugin.h
 
 FORMS += \
         mainwindow.ui

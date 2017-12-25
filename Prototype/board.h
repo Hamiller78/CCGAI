@@ -41,7 +41,7 @@ public:
     Board();
     Board(const Board& sourceBoard);
     ~Board();
-    void addGamepiece(std::shared_ptr<Gamepiece> newPiece, Position spawnPosition);
+    void addGamepiece(const std::shared_ptr<Gamepiece> newPiece, Position spawnPosition);
     std::shared_ptr<Gamepiece> getTopPiece(Position pilePosition);
     void movePile(Position startPosition, Position destinationPosition);
     void moveTopPiece(Position startPosition, Position destinationPosition);
