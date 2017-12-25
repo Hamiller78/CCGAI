@@ -41,7 +41,7 @@ Board::~Board()
     }
 }
 
-void Board::addGamepiece(const std::shared_ptr<Gamepiece> newPiece, Position spawnPosition)
+void Board::addGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition)
 {
     Pile* addPile = pilesOnBoard_[spawnPosition];
     if (addPile == nullptr)
@@ -52,13 +52,13 @@ void Board::addGamepiece(const std::shared_ptr<Gamepiece> newPiece, Position spa
     addPile->addOnTop(newPiece);
 }
 
-std::shared_ptr<Gamepiece> Board::getTopPiece(Position pilePosition)
+std::shared_ptr<Gamepiece> Board::getTopPiece(const Position &pilePosition) const
 {
     Pile* readPile = pilesOnBoard_.at(pilePosition);
     return readPile->getTopPiece();
 }
 
-void Board::movePile(Position startPosition, Position destinationPosition)
+void Board::movePile(const Position &startPosition, const Position &destinationPosition)
 {
     auto pileIterator = pilesOnBoard_.find(startPosition);
     if (pileIterator == pilesOnBoard_.end())
@@ -75,11 +75,11 @@ void Board::movePile(Position startPosition, Position destinationPosition)
     }
     else
     {
-        targetPile->addPile(movePile);
+        targetPile->addPile(*movePile);
     }
 }
 
-void Board::moveTopPiece(Position startPosition, Position destinationPosition)
+void Board::moveTopPiece(const Position &startPosition, const Position &destinationPosition)
 {
     Pile* readPile = pilesOnBoard_.at(startPosition);
     std::shared_ptr<Gamepiece> pickedPiece = readPile->pickupTopPiece();
@@ -91,7 +91,7 @@ void Board::moveTopPiece(Position startPosition, Position destinationPosition)
     }
 }
 
-void Board::removePile(Position clearPosition)
+void Board::removePile(const Position &clearPosition)
 {
     auto pileIterator = pilesOnBoard_.find(clearPosition);
     if (pileIterator != pilesOnBoard_.end())

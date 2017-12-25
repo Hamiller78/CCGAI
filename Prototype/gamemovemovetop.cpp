@@ -19,13 +19,13 @@
 
 namespace game {
 
-GamemoveMoveTop::GamemoveMoveTop(Position startPosition, Position targetPosition)
+GamemoveMoveTop::GamemoveMoveTop(const Position &startPosition, const Position &targetPosition)
 {
     startPosition_ = startPosition;
     targetPosition_ = targetPosition;
 }
 
-Board GamemoveMoveTop::applyOnBoard(Board oldBoard)
+Board GamemoveMoveTop::applyOnBoard(const Board &oldBoard) const
 {
     Board newBoard(oldBoard);
     newBoard.moveTopPiece(startPosition_, targetPosition_);

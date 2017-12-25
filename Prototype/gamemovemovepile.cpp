@@ -19,13 +19,13 @@
 
 namespace game {
 
-GamemoveMovePile::GamemoveMovePile(Position startPosition, Position targetPosition)
+GamemoveMovePile::GamemoveMovePile(const Position &startPosition, const Position &targetPosition)
 {
     startPosition_ = startPosition;
     targetPosition_ = targetPosition;
 }
 
-Board GamemoveMovePile::applyOnBoard(Board oldBoard)
+Board GamemoveMovePile::applyOnBoard(const Board &oldBoard) const
 {
     Board newBoard(oldBoard);
     newBoard.movePile(startPosition_, targetPosition_);

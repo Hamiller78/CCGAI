@@ -25,8 +25,8 @@ namespace game {
 class GamemoveMovePile : public Gamemove
 {
 public:
-    GamemoveMovePile(Position startPosition, Position targetPosition);
-    Board applyOnBoard(Board oldBoard) override;
+    GamemoveMovePile(const Position& startPosition, const Position& targetPosition);
+    Board applyOnBoard(const Board& oldBoard) const override;
 private:
     Position startPosition_;
     Position targetPosition_;

@@ -41,11 +41,11 @@ public:
     Board();
     Board(const Board& sourceBoard);
     ~Board();
-    void addGamepiece(const std::shared_ptr<Gamepiece> newPiece, Position spawnPosition);
-    std::shared_ptr<Gamepiece> getTopPiece(Position pilePosition);
-    void movePile(Position startPosition, Position destinationPosition);
-    void moveTopPiece(Position startPosition, Position destinationPosition);
-    void removePile(Position clearPosition);
+    void addGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition);
+    std::shared_ptr<Gamepiece> getTopPiece(const Position& pilePosition) const;
+    void movePile(const Position& startPosition, const Position& destinationPosition);
+    void moveTopPiece(const Position& startPosition, const Position& destinationPosition);
+    void removePile(const Position& clearPosition);
 private:
     std::map<Position, Pile*> pilesOnBoard_;
 };

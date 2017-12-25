@@ -32,7 +32,7 @@ class Gamemove
 public:
     Gamemove(){}
     virtual ~Gamemove(){}
-    virtual Board applyOnBoard(Board oldBoard) = 0;
+    virtual Board applyOnBoard(const Board& oldBoard) const = 0;
 };
 
 } // namespace game

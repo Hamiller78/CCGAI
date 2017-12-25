@@ -19,13 +19,13 @@
 
 namespace game {
 
-GamemoveSpawnPiece::GamemoveSpawnPiece(int cardNumber, Position spawnPosition)
+GamemoveSpawnPiece::GamemoveSpawnPiece(int cardNumber, const Position &spawnPosition)
 {
     cardNumber_ = cardNumber;
     spawnPosition_ = spawnPosition;
 }
 
-Board GamemoveSpawnPiece::applyOnBoard(Board oldBoard)
+Board GamemoveSpawnPiece::applyOnBoard(const Board &oldBoard) const
 {
     Board newBoard(oldBoard);
     std::shared_ptr<Gamepiece> spawnGamepiece(new Gamepiece, std::default_delete<Gamepiece>());

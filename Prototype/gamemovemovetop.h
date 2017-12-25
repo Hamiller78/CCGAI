@@ -25,8 +25,8 @@ namespace game {
 class GamemoveMoveTop : public Gamemove
 {
 public:
-    GamemoveMoveTop(Position startPosition, Position targetPosition);
-    Board applyOnBoard(Board oldBoard) override;
+    GamemoveMoveTop(const Position& startPosition, const Position& targetPosition);
+    Board applyOnBoard(const Board& oldBoard) const override;
 private:
     Position startPosition_;
     Position targetPosition_;

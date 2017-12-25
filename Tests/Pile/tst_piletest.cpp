@@ -76,7 +76,7 @@ void PileTest::testCase1()
     QVERIFY2(testPile1->getTopPiece() == testPiece2, "Incorrect gamepiece on top of pile!");
     testPile2->addOnTop(testPiece3);
     testPile2->addOnTop(testPiece4);
-    testPile2->addPile(testPile1);
+    testPile2->addPile(*testPile1);
     QVERIFY2(testPile2->getPilesize() == 4, "Combined pile has not correct size!");
     QVERIFY2(testPile2->getTopPiece() == testPiece2, "Combined pile has not correct top piece!");
     std::shared_ptr<Gamepiece> checkPiece = testPile2->pickupTopPiece();

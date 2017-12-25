@@ -24,7 +24,7 @@ Plugin::Plugin()
 
 }
 
-void Plugin::loadPlugin(QString pluginDirName)
+void Plugin::loadPlugin(const QString &pluginDirName)
 {
     try
     {
@@ -40,7 +40,7 @@ void Plugin::loadPlugin(QString pluginDirName)
     }
 }
 
-void Plugin::checkDirExists(QString pluginDirName)
+void Plugin::checkDirExists(const QString &pluginDirName) const
 {
     QDir pluginDir(pluginDirName);
     if (!pluginDir.exists())
@@ -49,7 +49,7 @@ void Plugin::checkDirExists(QString pluginDirName)
     }
 }
 
-void Plugin::checkFileExists(const QString &fileName)
+void Plugin::checkFileExists(const QString &fileName) const
 {
     if (!QFile::exists(fileName))
     {
@@ -57,7 +57,7 @@ void Plugin::checkFileExists(const QString &fileName)
     }
 }
 
-QStringList Plugin::getSetListFilenames(QString pluginDirName)
+QStringList Plugin::getSetListFilenames(const QString &pluginDirName) const
 {
     QString fileName = QDir::cleanPath(pluginDirName + "/" + "setlist.txt");
     checkFileExists(fileName);
@@ -91,7 +91,7 @@ void Plugin::loadCardBack(const QString &pluginDirName)
 
 }
 
-QStringList Plugin::loadCardData(QString pluginDirName, QStringList setListFilenames)
+QStringList Plugin::loadCardData(const QString &pluginDirName, const QStringList &setListFilenames)
 {
     QStringList dataLines;
     for (int i = 0; i < setListFilenames.size(); i++)
