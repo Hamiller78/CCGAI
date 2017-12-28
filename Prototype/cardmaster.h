@@ -15,39 +15,25 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "cardpool.h"
+#ifndef CARDMASTER_H
+#define CARDMASTER_H
+
+#include <algorithm>
+#include <map>
+
+#include <QString>
 
 namespace plugin {
 
-Cardpool::Cardpool()
+class Cardmaster
 {
-
-}
-
-void Cardpool::setPool(const QStringList &lackeyCardData)
-{
-    if (lackeyCardData.size() >= 2)
-    {
-        throw ExceptionPlugin("No card data found!");
-    }
-    parseHeader(lackeyCardData[0]);
-    makeCardmasters(lackeyCardData);
-}
-
-void Cardpool::parseHeader(const QString &headerLine)
-{
-    namesOfColumns_.clear();
-    namesOfColumns_ = headerLine.split("\t");
-}
-
-void Cardpool::makeCardmasters(const QStringList &lackeyCardData)
-{
-    listOfCards_.clear();
-    for (int i = 1; i < lackeyCardData.size(); i++)
-    {
-        Cardmaster *newCardmaster = new Cardmaster(lackeyCardData[i], namesOfColumns_);
-        listOfCards_.push_back(newCardmaster);
-    }
-}
+private:
+    std::multimap<std::string, std::string> keywordMap_;
+public:
+    Cardmaster();
+    Cardmaster(const QString& cardData, const QStringList& columnHeaders);
+};
 
 } // namespace plugin
+
+#endif // CARDMASTER_H

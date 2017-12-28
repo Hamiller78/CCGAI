@@ -36,6 +36,7 @@ private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void testCase1();
+    void testCase2();
 };
 
 PluginTest::PluginTest()
@@ -55,6 +56,12 @@ void PluginTest::cleanupTestCase()
 void PluginTest::testCase1()
 {
     testPlugin->loadPlugin("../../../CCGAI/Tests/testdata/plugins/duelgame");
+}
+
+void PluginTest::testCase2()
+{
+    QVERIFY_EXCEPTION_THROWN(testPlugin->loadPlugin("../../../CCGAI/Tests/testdata/not_existing"),
+                             ExceptionPlugin);
 }
 
 QTEST_APPLESS_MAIN(PluginTest)

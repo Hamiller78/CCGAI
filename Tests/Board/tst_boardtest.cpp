@@ -75,7 +75,7 @@ void BoardTest::testCase2()
     // move non-existing pile to test exceptions
     QVERIFY_EXCEPTION_THROWN(testBoard->movePile(Position (0, 0),
                                                  Position(1, 1)), std::logic_error);
-    QVERIFY_EXCEPTION_THROWN(testBoard->removePile(Position(2, 2));, std::logic_error);
+    QVERIFY_EXCEPTION_THROWN(testBoard->removePile(Position(2, 2)), std::logic_error);
 }
 
 void BoardTest::testCase3()

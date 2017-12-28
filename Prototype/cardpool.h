@@ -20,13 +20,22 @@
 
 #include <QStringList>
 
+#include "cardmaster.h"
+#include "exceptionplugin.h"
+
 namespace plugin {
 
 class Cardpool
 {
+private:
+    std::vector<Cardmaster*> listOfCards_;
+    QStringList namesOfColumns_;
 public:
     Cardpool();
-    static void setPool(const QStringList& lackeyCardData);
+    void setPool(const QStringList& lackeyCardData);
+private:
+    void parseHeader(const QString& headerLine);
+    void makeCardmasters(const QStringList& lackeyCardData);
 };
 
 } // namespace plugin

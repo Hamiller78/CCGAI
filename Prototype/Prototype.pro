@@ -36,7 +36,8 @@ SOURCES += \
     gamemovemovetop.cpp \
     plugin.cpp \
     cardpool.cpp \
-    exceptionplugin.cpp
+    exceptionplugin.cpp \
+    cardmaster.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -49,7 +50,8 @@ HEADERS += \
     gamemovemovetop.h \
     plugin.h \
     cardpool.h \
-    exceptionplugin.h
+    exceptionplugin.h \
+    cardmaster.h
 
 FORMS += \
         mainwindow.ui

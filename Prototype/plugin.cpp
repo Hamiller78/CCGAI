@@ -32,7 +32,7 @@ void Plugin::loadPlugin(const QString &pluginDirName)
         QStringList setListFilenames = getSetListFilenames(pluginDirName);
         QStringList cardData = loadCardData(pluginDirName, setListFilenames);
         loadCardBack(pluginDirName);
-        Cardpool::setPool(cardData);
+        pluginCardPool.setPool(cardData);
     }
     catch (ExceptionPlugin &e)
     {

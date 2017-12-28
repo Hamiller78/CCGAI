@@ -35,6 +35,7 @@ namespace plugin {
 class Plugin
 {
 private:
+    Cardpool pluginCardPool;
     QString pluginDirPath_;
 public:
     Plugin();
