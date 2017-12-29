@@ -29,38 +29,38 @@ Pile::Pile(const Pile &sourcePile)
     pileElements_ = sourcePile.pileElements_;
 }
 
-void Pile::addOnTop(const std::shared_ptr<Gamepiece> newPiece)
+void Pile::AddOnTop(const std::shared_ptr<Gamepiece> newPiece)
 {
     pileElements_.push_back(newPiece);
 }
 
-void Pile::addPile(Pile &extraPile)
+void Pile::AddPile(Pile &extraPile)
 {
-    for (auto loopPiece : extraPile.getPieceVector())
+    for (auto loopPiece : extraPile.GetPieceVector())
     {
         pileElements_.push_back(loopPiece);
     }
-    extraPile.emptyPile();
+    extraPile.EmptyPile();
 }
 
-void Pile::addToBottom(const std::shared_ptr<Gamepiece> newPiece)
+void Pile::AddToBottom(const std::shared_ptr<Gamepiece> newPiece)
 {
     std::vector<std::shared_ptr<Gamepiece>>::iterator it;
     it = pileElements_.begin();
     pileElements_.insert(it, newPiece);
 }
 
-std::vector<std::shared_ptr<Gamepiece> > Pile::getPieceVector()
+std::vector<std::shared_ptr<Gamepiece> > Pile::GetPieceVector()
 {
     return pileElements_;
 }
 
-int Pile::getPilesize() const
+int Pile::GetPilesize() const
 {
     return pileElements_.size();
 }
 
-std::shared_ptr<Gamepiece> Pile::getTopPiece() const
+std::shared_ptr<Gamepiece> Pile::GetTopPiece() const
 {
     if (pileElements_.size() == 0)
     {
@@ -69,7 +69,7 @@ std::shared_ptr<Gamepiece> Pile::getTopPiece() const
     return pileElements_.back();
 }
 
-std::shared_ptr<Gamepiece> Pile::pickupTopPiece()
+std::shared_ptr<Gamepiece> Pile::PickupTopPiece()
 {
     if (pileElements_.size() == 0)
     {
@@ -80,7 +80,7 @@ std::shared_ptr<Gamepiece> Pile::pickupTopPiece()
     return topPiece;
 }
 
-void Pile::emptyPile()
+void Pile::EmptyPile()
 {
     pileElements_.clear();
 }

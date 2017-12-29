@@ -74,26 +74,26 @@ void GamemoveTest::cleanupTestCase()
 
 void GamemoveTest::testCase1()
 {
-    Board resultBoard = moveSpawnMove->applyOnBoard(*testBoard);
-    resultBoard.removePile(Position(2, -1));
+    Board resultBoard = moveSpawnMove->ApplyOnBoard(*testBoard);
+    resultBoard.RemovePile(Position(2, -1));
 }
 
 void GamemoveTest::testCase2()
 {
-    testBoard->addGamepiece(testPiece1, Position (0, 0));
-    testBoard->addGamepiece(testPiece2, Position (1, 1));
-    Board resultBoard = moveMove->applyOnBoard(*testBoard);
-    resultBoard.removePile(Position(1, 1));
+    testBoard->AddGamepiece(testPiece1, Position (0, 0));
+    testBoard->AddGamepiece(testPiece2, Position (1, 1));
+    Board resultBoard = moveMove->ApplyOnBoard(*testBoard);
+    resultBoard.RemovePile(Position(1, 1));
 }
 
 void GamemoveTest::testCase3()
 {
-    testBoard->addGamepiece(testPiece1, Position (0, 0));
-    testBoard->addGamepiece(testPiece2, Position (1, 1));
-    Board resultBoard1 = moveMove->applyOnBoard(*testBoard);
-    Board resultBoard2 = moveTopMove->applyOnBoard(resultBoard1);
-    resultBoard2.removePile(Position(1, 1));
-    resultBoard2.removePile(Position(-1, -1));
+    testBoard->AddGamepiece(testPiece1, Position (0, 0));
+    testBoard->AddGamepiece(testPiece2, Position (1, 1));
+    Board resultBoard1 = moveMove->ApplyOnBoard(*testBoard);
+    Board resultBoard2 = moveTopMove->ApplyOnBoard(resultBoard1);
+    resultBoard2.RemovePile(Position(1, 1));
+    resultBoard2.RemovePile(Position(-1, -1));
 }
 
 QTEST_APPLESS_MAIN(GamemoveTest)

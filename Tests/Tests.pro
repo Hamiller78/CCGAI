@@ -4,4 +4,5 @@ SUBDIRS += \
     Board \
     Gamemove \
     Pile \
-    Plugin
+    Plugin \
+    Cardpool

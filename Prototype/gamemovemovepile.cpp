@@ -25,10 +25,10 @@ GamemoveMovePile::GamemoveMovePile(const Position &startPosition, const Position
     targetPosition_ = targetPosition;
 }
 
-Board GamemoveMovePile::applyOnBoard(const Board &oldBoard) const
+Board GamemoveMovePile::ApplyOnBoard(const Board &oldBoard) const
 {
     Board newBoard(oldBoard);
-    newBoard.movePile(startPosition_, targetPosition_);
+    newBoard.MovePile(startPosition_, targetPosition_);
     return newBoard;
 }
 

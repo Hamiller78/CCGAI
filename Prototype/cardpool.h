@@ -18,8 +18,11 @@
 #ifndef CARDPOOL_H
 #define CARDPOOL_H
 
+#include <memory>
+
 #include <QStringList>
 
+#include "card.h"
 #include "cardmaster.h"
 #include "exceptionplugin.h"
 
@@ -28,14 +31,16 @@ namespace plugin {
 class Cardpool
 {
 private:
-    std::vector<Cardmaster*> listOfCards_;
+    std::vector<std::shared_ptr<Cardmaster>> listOfCards_;
     QStringList namesOfColumns_;
 public:
     Cardpool();
-    void setPool(const QStringList& lackeyCardData);
+    std::shared_ptr<game::Card> MakeCard(int cardIndex);
+    std::shared_ptr<game::Card> MakeCard(QString cardTitle);
+    void SetPool(const QStringList& lackeyCardData);
 private:
-    void parseHeader(const QString& headerLine);
-    void makeCardmasters(const QStringList& lackeyCardData);
+    void ParseHeader(const QString& headerLine);
+    void MakeCardmasters(const QStringList& lackeyCardData);
 };
 
 } // namespace plugin

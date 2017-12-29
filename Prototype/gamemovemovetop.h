@@ -26,7 +26,7 @@ class GamemoveMoveTop : public Gamemove
 {
 public:
     GamemoveMoveTop(const Position& startPosition, const Position& targetPosition);
-    Board applyOnBoard(const Board& oldBoard) const override;
+    Board ApplyOnBoard(const Board& oldBoard) const override;
 private:
     Position startPosition_;
     Position targetPosition_;

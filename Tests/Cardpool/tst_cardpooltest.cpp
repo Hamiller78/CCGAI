@@ -15,55 +15,41 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "../../Prototype/plugin.h"
-
 #include <QString>
 #include <QtTest>
 
-using namespace plugin;
+#include "../../Prototype/cardpool.h"
 
-class PluginTest : public QObject
+class CardpoolTest : public QObject
 {
     Q_OBJECT
 
-private:
-    Plugin *testPlugin;
-
 public:
-    PluginTest();
+    CardpoolTest();
 
 private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void testCase1();
-    void testCase2();
 };
 
-PluginTest::PluginTest()
+CardpoolTest::CardpoolTest()
 {
 }
 
-void PluginTest::initTestCase()
+void CardpoolTest::initTestCase()
 {
-    testPlugin = new Plugin;
 }
 
-void PluginTest::cleanupTestCase()
+void CardpoolTest::cleanupTestCase()
 {
-    delete testPlugin;
 }
 
-void PluginTest::testCase1()
+void CardpoolTest::testCase1()
 {
-    testPlugin->LoadPlugin("../../../CCGAI/Tests/testdata/plugins/duelgame");
+    QVERIFY2(true, "Failure");
 }
 
-void PluginTest::testCase2()
-{
-    QVERIFY_EXCEPTION_THROWN(testPlugin->LoadPlugin("../../../CCGAI/Tests/testdata/not_existing"),
-                             ExceptionPlugin);
-}
+QTEST_APPLESS_MAIN(CardpoolTest)
 
-QTEST_APPLESS_MAIN(PluginTest)
-
-#include "tst_plugintest.moc"
+#include "tst_cardpooltest.moc"

@@ -65,33 +65,33 @@ void BoardTest::cleanupTestCase()
 void BoardTest::testCase1()
 {
     // add a gamepiece, move it and remove it
-    testBoard->addGamepiece(testPiece1, Position (0, 0));
-    testBoard->movePile(Position (0, 0), Position(1, 1));
-    testBoard->removePile(Position(1, 1));
+    testBoard->AddGamepiece(testPiece1, Position (0, 0));
+    testBoard->MovePile(Position (0, 0), Position(1, 1));
+    testBoard->RemovePile(Position(1, 1));
 }
 
 void BoardTest::testCase2()
 {
     // move non-existing pile to test exceptions
-    QVERIFY_EXCEPTION_THROWN(testBoard->movePile(Position (0, 0),
+    QVERIFY_EXCEPTION_THROWN(testBoard->MovePile(Position (0, 0),
                                                  Position(1, 1)), std::logic_error);
-    QVERIFY_EXCEPTION_THROWN(testBoard->removePile(Position(2, 2)), std::logic_error);
+    QVERIFY_EXCEPTION_THROWN(testBoard->RemovePile(Position(2, 2)), std::logic_error);
 }
 
 void BoardTest::testCase3()
 {
     // test pile handling
-    testBoard->addGamepiece(testPiece1, Position (0, 0));
-    testBoard->addGamepiece(testPiece2, Position (1, 0));
-    testBoard->movePile(Position (0, 0), Position(1, 0));
-    testBoard->movePile(Position (1, 0), Position(0, 0));
-    QVERIFY2(testPiece1 == testBoard->getTopPiece(Position(0, 0)),
+    testBoard->AddGamepiece(testPiece1, Position (0, 0));
+    testBoard->AddGamepiece(testPiece2, Position (1, 0));
+    testBoard->MovePile(Position (0, 0), Position(1, 0));
+    testBoard->MovePile(Position (1, 0), Position(0, 0));
+    QVERIFY2(testPiece1 == testBoard->GetTopPiece(Position(0, 0)),
       "Testpiece 1 not found on top at (0,0).");
-    testBoard->moveTopPiece(Position (0, 0), Position(2, 0));
-    QVERIFY2(testPiece2 == testBoard->getTopPiece(Position(0, 0)),
+    testBoard->MoveTopPiece(Position (0, 0), Position(2, 0));
+    QVERIFY2(testPiece2 == testBoard->GetTopPiece(Position(0, 0)),
       "Testpiece 2 not found on top at (0,0).");
-    testBoard->removePile(Position(0, 0));
-    QVERIFY_EXCEPTION_THROWN(testBoard->removePile(Position(1, 0));, std::logic_error);
+    testBoard->RemovePile(Position(0, 0));
+    QVERIFY_EXCEPTION_THROWN(testBoard->RemovePile(Position(1, 0));, std::logic_error);
 }
 
 QTEST_APPLESS_MAIN(BoardTest)

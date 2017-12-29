@@ -15,21 +15,13 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "gamemovemovetop.h"
+#include "card.h"
 
 namespace game {
 
-GamemoveMoveTop::GamemoveMoveTop(const Position &startPosition, const Position &targetPosition)
+Card::Card()
 {
-    startPosition_ = startPosition;
-    targetPosition_ = targetPosition;
-}
 
-Board GamemoveMoveTop::ApplyOnBoard(const Board &oldBoard) const
-{
-    Board newBoard(oldBoard);
-    newBoard.MoveTopPiece(startPosition_, targetPosition_);
-    return newBoard;
 }
 
 } // namespace game

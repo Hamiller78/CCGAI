@@ -24,15 +24,15 @@ Plugin::Plugin()
 
 }
 
-void Plugin::loadPlugin(const QString &pluginDirName)
+void Plugin::LoadPlugin(const QString &pluginDirName)
 {
     try
     {
-        checkDirExists(pluginDirName);
-        QStringList setListFilenames = getSetListFilenames(pluginDirName);
-        QStringList cardData = loadCardData(pluginDirName, setListFilenames);
-        loadCardBack(pluginDirName);
-        pluginCardPool.setPool(cardData);
+        CheckDirExists(pluginDirName);
+        QStringList setListFilenames = GetSetListFilenames(pluginDirName);
+        QStringList cardData = LoadCardData(pluginDirName, setListFilenames);
+        LoadCardBack(pluginDirName);
+        pluginCardPool.SetPool(cardData);
     }
     catch (ExceptionPlugin &e)
     {
@@ -40,7 +40,7 @@ void Plugin::loadPlugin(const QString &pluginDirName)
     }
 }
 
-void Plugin::checkDirExists(const QString &dirName) const
+void Plugin::CheckDirExists(const QString &dirName) const
 {
     QDir pluginDir(dirName);
     if (!pluginDir.exists())
@@ -49,7 +49,7 @@ void Plugin::checkDirExists(const QString &dirName) const
     }
 }
 
-void Plugin::checkFileExists(const QString &fileName) const
+void Plugin::CheckFileExists(const QString &fileName) const
 {
     if (!QFile::exists(fileName))
     {
@@ -57,10 +57,10 @@ void Plugin::checkFileExists(const QString &fileName) const
     }
 }
 
-QStringList Plugin::getSetListFilenames(const QString &pluginDirName) const
+QStringList Plugin::GetSetListFilenames(const QString &pluginDirName) const
 {
     QString fileName = QDir::cleanPath(pluginDirName + "/" + "setlist.txt");
-    checkFileExists(fileName);
+    CheckFileExists(fileName);
     QFile setListFile(fileName);
 
     QStringList setNames;
@@ -86,19 +86,19 @@ QStringList Plugin::getSetListFilenames(const QString &pluginDirName) const
     return setNames;
 }
 
-void Plugin::loadCardBack(const QString &pluginDirName)
+void Plugin::LoadCardBack(const QString &pluginDirName)
 {
 
 }
 
-QStringList Plugin::loadCardData(const QString &pluginDirName, const QStringList &setListFilenames)
+QStringList Plugin::LoadCardData(const QString &pluginDirName, const QStringList &setListFilenames)
 {
     QStringList dataLines;
     for (int i = 0; i < setListFilenames.size(); i++)
     {
         QString fileName
           = QDir::cleanPath(pluginDirName + "/" + QString("sets") + "/" + setListFilenames[i]);
-        checkFileExists(fileName);
+        CheckFileExists(fileName);
         QFile cardListFile(fileName);
         if (!cardListFile.open(QIODevice::ReadOnly))
         {

@@ -39,13 +39,13 @@ private:
     QString pluginDirPath_;
 public:
     Plugin();
-    void loadPlugin(const QString& pluginDirName);
+    void LoadPlugin(const QString& pluginDirName);
 private:
-    void checkDirExists(const QString& pluginDirName) const;
-    void checkFileExists(const QString& fileName) const;
-    QStringList getSetListFilenames(const QString& dirName) const;
-    void loadCardBack(const QString& pluginDirName);
-    QStringList loadCardData(const QString& pluginDirName, const QStringList& setListFilenames);
+    void CheckDirExists(const QString& pluginDirName) const;
+    void CheckFileExists(const QString& fileName) const;
+    QStringList GetSetListFilenames(const QString& dirName) const;
+    void LoadCardBack(const QString& pluginDirName);
+    QStringList LoadCardData(const QString& pluginDirName, const QStringList& setListFilenames);
 };
 
 } // namespace plugin

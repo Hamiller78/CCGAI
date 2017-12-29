@@ -29,7 +29,10 @@ Cardmaster::Cardmaster(const QString &cardData, const QStringList &columnHeaders
     QStringList cardTraits = cardData.split("\t");
     for (int i = 0; i < std::min(cardTraits.size(), columnHeaders.size()); i++)
     {
-        keywordMap_.emplace(columnHeaders[i], cardTraits[i]);
+        if (cardTraits[i] != "")
+        {
+            keywordMap_.insert(columnHeaders[i], cardTraits[i]);
+        }
     }
 }
 

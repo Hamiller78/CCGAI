@@ -28,7 +28,7 @@ namespace plugin {
 class Cardmaster
 {
 private:
-    std::multimap<std::string, std::string> keywordMap_;
+    std::multimap<QString, QString> keywordMap_;
 public:
     Cardmaster();
     Cardmaster(const QString& cardData, const QStringList& columnHeaders);

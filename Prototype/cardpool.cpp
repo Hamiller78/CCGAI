@@ -24,23 +24,33 @@ Cardpool::Cardpool()
 
 }
 
-void Cardpool::setPool(const QStringList &lackeyCardData)
+std::shared_ptr<game::Card> Cardpool::MakeCard(int cardIndex)
+{
+
+}
+
+std::shared_ptr<game::Card> Cardpool::MakeCard(QString cardTitle)
+{
+
+}
+
+void Cardpool::SetPool(const QStringList &lackeyCardData)
 {
     if (lackeyCardData.size() >= 2)
     {
         throw ExceptionPlugin("No card data found!");
     }
-    parseHeader(lackeyCardData[0]);
-    makeCardmasters(lackeyCardData);
+    ParseHeader(lackeyCardData[0]);
+    MakeCardmasters(lackeyCardData);
 }
 
-void Cardpool::parseHeader(const QString &headerLine)
+void Cardpool::ParseHeader(const QString &headerLine)
 {
     namesOfColumns_.clear();
     namesOfColumns_ = headerLine.split("\t");
 }
 
-void Cardpool::makeCardmasters(const QStringList &lackeyCardData)
+void Cardpool::MakeCardmasters(const QStringList &lackeyCardData)
 {
     listOfCards_.clear();
     for (int i = 1; i < lackeyCardData.size(); i++)

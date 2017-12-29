@@ -41,7 +41,7 @@ Board::~Board()
     }
 }
 
-void Board::addGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition)
+void Board::AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition)
 {
     Pile* addPile = pilesOnBoard_[spawnPosition];
     if (addPile == nullptr)
@@ -49,16 +49,16 @@ void Board::addGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Positi
         addPile = new Pile;
         pilesOnBoard_[spawnPosition] = addPile;
     }
-    addPile->addOnTop(newPiece);
+    addPile->AddOnTop(newPiece);
 }
 
-std::shared_ptr<Gamepiece> Board::getTopPiece(const Position &pilePosition) const
+std::shared_ptr<Gamepiece> Board::GetTopPiece(const Position &pilePosition) const
 {
     Pile* readPile = pilesOnBoard_.at(pilePosition);
-    return readPile->getTopPiece();
+    return readPile->GetTopPiece();
 }
 
-void Board::movePile(const Position &startPosition, const Position &destinationPosition)
+void Board::MovePile(const Position &startPosition, const Position &destinationPosition)
 {
     auto pileIterator = pilesOnBoard_.find(startPosition);
     if (pileIterator == pilesOnBoard_.end())
@@ -75,23 +75,23 @@ void Board::movePile(const Position &startPosition, const Position &destinationP
     }
     else
     {
-        targetPile->addPile(*movePile);
+        targetPile->AddPile(*movePile);
     }
 }
 
-void Board::moveTopPiece(const Position &startPosition, const Position &destinationPosition)
+void Board::MoveTopPiece(const Position &startPosition, const Position &destinationPosition)
 {
     Pile* readPile = pilesOnBoard_.at(startPosition);
-    std::shared_ptr<Gamepiece> pickedPiece = readPile->pickupTopPiece();
-    addGamepiece(pickedPiece, destinationPosition);
-    if (readPile->getPilesize() == 0)
+    std::shared_ptr<Gamepiece> pickedPiece = readPile->PickupTopPiece();
+    AddGamepiece(pickedPiece, destinationPosition);
+    if (readPile->GetPilesize() == 0)
     {
         pilesOnBoard_[startPosition] = nullptr;
         delete readPile;
     }
 }
 
-void Board::removePile(const Position &clearPosition)
+void Board::RemovePile(const Position &clearPosition)
 {
     auto pileIterator = pilesOnBoard_.find(clearPosition);
     if (pileIterator != pilesOnBoard_.end())
