@@ -37,4 +37,17 @@ Cardmaster::Cardmaster(const QString &cardData, const QStringList &columnHeaders
     }
 }
 
+QString Cardmaster::GetTraitText(QString trait)
+{
+    auto it = keywordMap_.find(trait);
+    if (it != keywordMap_.end())
+    {
+        return it->second;
+    }
+    else
+    {
+        return QString("");
+    }
+}
+
 } // namespace plugin

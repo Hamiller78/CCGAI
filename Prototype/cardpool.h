@@ -31,6 +31,8 @@ namespace plugin {
 class Cardpool
 {
 private:
+    int indexOfTitle_{-1};
+    int indexOfImage_{-1};
     std::vector<std::shared_ptr<Cardmaster>> listOfCards_;
     QStringList namesOfColumns_;
 public:
@@ -39,8 +41,9 @@ public:
     std::shared_ptr<game::Card> MakeCard(QString cardTitle);
     void SetPool(const QStringList& lackeyCardData);
 private:
-    void ParseHeader(const QString& headerLine);
+    void IdentifyKeyColumns();
     void MakeCardmasters(const QStringList& lackeyCardData);
+    void ParseHeader(const QString& headerLine);
 };
 
 } // namespace plugin

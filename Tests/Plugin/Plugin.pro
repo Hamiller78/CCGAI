@@ -27,10 +27,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    ../../Prototype/plugin.cpp \
+    ../../Prototype/card.cpp \
     ../../Prototype/cardmaster.cpp \
     ../../Prototype/cardpool.cpp \
     ../../Prototype/exceptionplugin.cpp \
+    ../../Prototype/gamepiece.cpp \
+    ../../Prototype/plugin.cpp \
         tst_plugintest.cpp 
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"

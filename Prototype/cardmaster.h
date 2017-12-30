@@ -20,6 +20,7 @@
 
 #include <algorithm>
 #include <map>
+#include <stdexcept>
 
 #include <QString>
 #include <QStringList>
@@ -33,6 +34,7 @@ private:
 public:
     Cardmaster();
     Cardmaster(const QString& cardData, const QStringList& columnHeaders);
+    QString GetTraitText(QString trait);
 };
 
 } // namespace plugin

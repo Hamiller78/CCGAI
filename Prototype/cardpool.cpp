@@ -26,12 +26,27 @@ Cardpool::Cardpool()
 
 std::shared_ptr<game::Card> Cardpool::MakeCard(int cardIndex)
 {
-
+    std::shared_ptr<game::Card> newCard (new game::Card(listOfCards_[cardIndex]));
+    return newCard;
 }
 
 std::shared_ptr<game::Card> Cardpool::MakeCard(QString cardTitle)
 {
-
+    uint cardIndex;
+    for (cardIndex = 1; cardIndex < listOfCards_.size(); cardIndex++)
+    {
+        QString loopCardName = listOfCards_[cardIndex].get()->GetTraitText("Name");
+        if (cardTitle == loopCardName)
+        {
+            break;
+        }
+    }
+    if (cardIndex >= listOfCards_.size())
+    {
+        throw ExceptionPlugin("Requested card to make not found in list: "
+                              + cardTitle.toStdString());
+    }
+    return MakeCard(cardIndex);
 }
 
 void Cardpool::SetPool(const QStringList &lackeyCardData)
@@ -42,12 +57,21 @@ void Cardpool::SetPool(const QStringList &lackeyCardData)
     }
     ParseHeader(lackeyCardData[0]);
     MakeCardmasters(lackeyCardData);
+    IdentifyKeyColumns();
 }
 
-void Cardpool::ParseHeader(const QString &headerLine)
+void Cardpool::IdentifyKeyColumns()
 {
-    namesOfColumns_.clear();
-    namesOfColumns_ = headerLine.split("\t");
+    indexOfImage_ = namesOfColumns_.indexOf(QRegExp("Name", Qt::CaseInsensitive));
+    indexOfTitle_ = namesOfColumns_.indexOf(QRegExp("ImageFile", Qt::CaseInsensitive));
+    if (indexOfImage_ == -1)
+    {
+        throw ExceptionPlugin("ImageFile column in carddata.txt not found!");
+    }
+    if (indexOfTitle_ == -1)
+    {
+        throw ExceptionPlugin("Name column in carddata.txt not found!");
+    }
 }
 
 void Cardpool::MakeCardmasters(const QStringList &lackeyCardData)
@@ -58,6 +82,12 @@ void Cardpool::MakeCardmasters(const QStringList &lackeyCardData)
         std::shared_ptr<Cardmaster> newCardmaster(new Cardmaster(lackeyCardData[i], namesOfColumns_));
         listOfCards_.push_back(newCardmaster);
     }
+}
+
+void Cardpool::ParseHeader(const QString &headerLine)
+{
+    namesOfColumns_.clear();
+    namesOfColumns_ = headerLine.split("\t");
 }
 
 } // namespace plugin

@@ -24,4 +24,9 @@ Card::Card()
 
 }
 
+Card::Card(const CardmasterPointer &myMaster)
+{
+    myMaster_ = myMaster;
+}
+
 } // namespace game

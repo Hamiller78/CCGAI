@@ -25,12 +25,15 @@
 
 namespace game {
 
+using CardmasterPointer = std::shared_ptr<plugin::Cardmaster>;
+
 class Card : public Gamepiece
 {
 private:
-    std::shared_ptr<plugin::Cardmaster> myMaster_;
+    CardmasterPointer myMaster_;
 public:
     Card();
+    Card(const CardmasterPointer &myMaster);
 };
 
 } // namespace game
