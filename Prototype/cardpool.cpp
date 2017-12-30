@@ -36,7 +36,7 @@ std::shared_ptr<game::Card> Cardpool::MakeCard(QString cardTitle)
 
 void Cardpool::SetPool(const QStringList &lackeyCardData)
 {
-    if (lackeyCardData.size() >= 2)
+    if (lackeyCardData.size() < 2)
     {
         throw ExceptionPlugin("No card data found!");
     }
@@ -55,7 +55,7 @@ void Cardpool::MakeCardmasters(const QStringList &lackeyCardData)
     listOfCards_.clear();
     for (int i = 1; i < lackeyCardData.size(); i++)
     {
-        Cardmaster *newCardmaster = new Cardmaster(lackeyCardData[i], namesOfColumns_);
+        std::shared_ptr<Cardmaster> newCardmaster(new Cardmaster(lackeyCardData[i], namesOfColumns_));
         listOfCards_.push_back(newCardmaster);
     }
 }

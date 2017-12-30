@@ -22,6 +22,7 @@
 #include <map>
 
 #include <QString>
+#include <QStringList>
 
 namespace plugin {
 

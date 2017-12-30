@@ -20,6 +20,8 @@
 
 #include "../../Prototype/cardpool.h"
 
+using namespace plugin;
+
 class CardpoolTest : public QObject
 {
     Q_OBJECT

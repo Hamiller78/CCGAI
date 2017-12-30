@@ -28,7 +28,7 @@ namespace game {
 class Card : public Gamepiece
 {
 private:
-    std::shared_ptr<Cardmaster> myMaster_;
+    std::shared_ptr<plugin::Cardmaster> myMaster_;
 public:
     Card();
 };

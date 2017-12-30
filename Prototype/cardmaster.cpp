@@ -26,12 +26,13 @@ Cardmaster::Cardmaster()
 
 Cardmaster::Cardmaster(const QString &cardData, const QStringList &columnHeaders)
 {
-    QStringList cardTraits = cardData.split("\t");
+    QStringList cardTraits;
+    cardTraits = cardData.split("\t");
     for (int i = 0; i < std::min(cardTraits.size(), columnHeaders.size()); i++)
     {
         if (cardTraits[i] != "")
         {
-            keywordMap_.insert(columnHeaders[i], cardTraits[i]);
+            keywordMap_.insert(std::pair<QString, QString>(columnHeaders[i], cardTraits[i]));
         }
     }
 }
