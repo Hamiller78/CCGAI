@@ -33,7 +33,7 @@ std::shared_ptr<game::Card> Cardpool::MakeCard(int cardIndex)
 std::shared_ptr<game::Card> Cardpool::MakeCard(QString cardTitle)
 {
     uint cardIndex;
-    for (cardIndex = 1; cardIndex < listOfCards_.size(); cardIndex++)
+    for (cardIndex = 0; cardIndex < listOfCards_.size(); cardIndex++)
     {
         QString loopCardName = listOfCards_[cardIndex].get()->GetTraitText("Name");
         if (cardTitle == loopCardName)

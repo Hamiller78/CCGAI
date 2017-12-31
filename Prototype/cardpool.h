@@ -20,6 +20,7 @@
 
 #include <memory>
 
+#include <QString>
 #include <QStringList>
 
 #include "card.h"

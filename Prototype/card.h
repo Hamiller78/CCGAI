@@ -34,6 +34,7 @@ private:
 public:
     Card();
     Card(const CardmasterPointer &myMaster);
+    QString GetTraitText(QString trait){return myMaster_->GetTraitText((trait));}
 };
 
 } // namespace game

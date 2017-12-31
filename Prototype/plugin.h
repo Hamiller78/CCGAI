@@ -40,6 +40,7 @@ private:
 public:
     Plugin();
     void LoadPlugin(const QString& pluginDirName);
+    Cardpool& GetCardpool(){return pluginCardPool;}
 private:
     void CheckDirExists(const QString& pluginDirName) const;
     void CheckFileExists(const QString& fileName) const;

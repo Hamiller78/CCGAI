@@ -56,6 +56,30 @@ void PluginTest::cleanupTestCase()
 void PluginTest::testCase1()
 {
     testPlugin->LoadPlugin("../../../CCGAI/Tests/testdata/plugins/duelgame");
+    Cardpool testPool = testPlugin->GetCardpool();
+    std::shared_ptr<game::Card> testCard = testPool.MakeCard(0);
+    QString cardName = testCard->GetTraitText("Name");
+    QVERIFY2(cardName == QString("Rookie"), "Name of card with index 0 is wrong!");
+    QString cardImage = testCard->GetTraitText("Imagefile");
+    QVERIFY2(cardImage == QString("Rookie.jpeg"), "Imagefile of card with index 0 is wrong!");
+    QString cardAttack = testCard->GetTraitText("Attack");
+    QVERIFY2(cardAttack == QString("1"), "Attack of card with index 0 is wrong!");
+    QString cardDefense = testCard->GetTraitText("Defense");
+    QVERIFY2(cardDefense == QString("1"), "Defense of card with index 0 is wrong!");
+
+    testCard = testPool.MakeCard(1);
+    cardName = testCard->GetTraitText("Name");
+    QVERIFY2(cardName == QString("Veteran"), "Name of card with index 1 is wrong!");
+    cardImage = testCard->GetTraitText("Imagefile");
+    QVERIFY2(cardImage == QString("Veteran.jpeg"), "Imagefile of card with index 1 is wrong!");
+    cardAttack = testCard->GetTraitText("Attack");
+    QVERIFY2(cardAttack == QString("2"), "Attack of card with index 1 is wrong!");
+    cardDefense = testCard->GetTraitText("Defense");
+    QVERIFY2(cardDefense == QString("2"), "Defense of card with index 1 is wrong!");
+
+    testCard = testPool.MakeCard("Rookie");
+    cardName = testCard->GetTraitText("Name");
+    QVERIFY2(cardName == QString("Rookie"), "Name of card with title Rookie is wrong!");
 }
 
 void PluginTest::testCase2()
