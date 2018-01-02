@@ -19,9 +19,10 @@
 
 namespace plugin {
 
-Cardpool::Cardpool()
+Cardpool &Cardpool::GetInstance()
 {
-
+    static Cardpool instance;
+    return instance;
 }
 
 std::shared_ptr<game::Card> Cardpool::MakeCard(int cardIndex)

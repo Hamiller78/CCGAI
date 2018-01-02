@@ -27,6 +27,9 @@
 #include "cardmaster.h"
 #include "exceptionplugin.h"
 
+// Class to manage and spawn all possible cards.
+// Implemented as singleton class.
+
 namespace plugin {
 
 class Cardpool
@@ -37,11 +40,14 @@ private:
     std::vector<std::shared_ptr<Cardmaster>> listOfCards_;
     QStringList namesOfColumns_;
 public:
-    Cardpool();
+    Cardpool (Cardpool const&) = delete;
+    void operator=(Cardpool const&) = delete;
+    static Cardpool& GetInstance();
     std::shared_ptr<game::Card> MakeCard(int cardIndex);
     std::shared_ptr<game::Card> MakeCard(QString cardTitle);
     void SetPool(const QStringList& lackeyCardData);
 private:
+    Cardpool(){}
     void IdentifyKeyColumns();
     void MakeCardmasters(const QStringList& lackeyCardData);
     void ParseHeader(const QString& headerLine);
