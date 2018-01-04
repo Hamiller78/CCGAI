@@ -27,7 +27,7 @@ class PluginTest : public QObject
     Q_OBJECT
 
 private:
-    Plugin *testPlugin;
+    Plugin *testPlugin_;
 
 public:
     PluginTest();
@@ -45,17 +45,17 @@ PluginTest::PluginTest()
 
 void PluginTest::initTestCase()
 {
-    testPlugin = new Plugin;
+    testPlugin_ = new Plugin;
 }
 
 void PluginTest::cleanupTestCase()
 {
-    delete testPlugin;
+    delete testPlugin_;
 }
 
 void PluginTest::testCase1()
 {
-    testPlugin->LoadPlugin("../../../CCGAI/Tests/testdata/plugins/duelgame");
+    testPlugin_->LoadPlugin("../../../CCGAI/Tests/testdata/plugins/duelgame");
     Cardpool &testPool = Cardpool::GetInstance();
     std::shared_ptr<game::Card> testCard = testPool.MakeCard(0);
     QString cardName = testCard->GetTraitText("Name");
@@ -84,7 +84,7 @@ void PluginTest::testCase1()
 
 void PluginTest::testCase2()
 {
-    QVERIFY_EXCEPTION_THROWN(testPlugin->LoadPlugin("../../../CCGAI/Tests/testdata/not_existing"),
+    QVERIFY_EXCEPTION_THROWN(testPlugin_->LoadPlugin("../../../CCGAI/Tests/testdata/not_existing"),
                              ExceptionPlugin);
 }
 

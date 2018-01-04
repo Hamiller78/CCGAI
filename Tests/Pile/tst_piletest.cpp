@@ -28,12 +28,12 @@ class PileTest : public QObject
     Q_OBJECT
 
 private:
-    std::shared_ptr<Gamepiece> testPiece1;
-    std::shared_ptr<Gamepiece> testPiece2;
-    std::shared_ptr<Gamepiece> testPiece3;
-    std::shared_ptr<Gamepiece> testPiece4;
-    Pile *testPile1;
-    Pile *testPile2;
+    std::shared_ptr<Gamepiece> testPiece1_;
+    std::shared_ptr<Gamepiece> testPiece2_;
+    std::shared_ptr<Gamepiece> testPiece3_;
+    std::shared_ptr<Gamepiece> testPiece4_;
+    Pile *testPile1_;
+    Pile *testPile2_;
 
 public:
     PileTest();
@@ -50,44 +50,44 @@ PileTest::PileTest()
 
 void PileTest::initTestCase()
 {
-    testPiece1 = std::shared_ptr<Gamepiece>(new Gamepiece);
-    testPiece2 = std::shared_ptr<Gamepiece>(new Gamepiece);
-    testPiece3 = std::shared_ptr<Gamepiece>(new Gamepiece);
-    testPiece4 = std::shared_ptr<Gamepiece>(new Gamepiece);
-    testPile1 = new Pile;
-    testPile2 = new Pile;
+    testPiece1_ = std::shared_ptr<Gamepiece>(new Gamepiece);
+    testPiece2_ = std::shared_ptr<Gamepiece>(new Gamepiece);
+    testPiece3_ = std::shared_ptr<Gamepiece>(new Gamepiece);
+    testPiece4_ = std::shared_ptr<Gamepiece>(new Gamepiece);
+    testPile1_ = new Pile;
+    testPile2_ = new Pile;
 }
 
 void PileTest::cleanupTestCase()
 {
-    testPiece1.reset();
-    testPiece2.reset();
-    testPiece3.reset();
-    testPiece4.reset();
-    delete testPile1;
-    delete testPile2;
+    testPiece1_.reset();
+    testPiece2_.reset();
+    testPiece3_.reset();
+    testPiece4_.reset();
+    delete testPile1_;
+    delete testPile2_;
 }
 
 void PileTest::testCase1()
 {
-    testPile1->AddOnTop(testPiece1);
-    QVERIFY2(testPile1->GetTopPiece() == testPiece1, "Incorrect gamepiece on top of pile!");
-    testPile1->AddOnTop(testPiece2);
-    QVERIFY2(testPile1->GetTopPiece() == testPiece2, "Incorrect gamepiece on top of pile!");
-    testPile2->AddOnTop(testPiece3);
-    testPile2->AddOnTop(testPiece4);
-    testPile2->AddPile(*testPile1);
-    QVERIFY2(testPile2->GetPilesize() == 4, "Combined pile has not correct size!");
-    QVERIFY2(testPile2->GetTopPiece() == testPiece2, "Combined pile has not correct top piece!");
-    std::shared_ptr<Gamepiece> checkPiece = testPile2->PickupTopPiece();
-    QVERIFY2(testPile2->GetTopPiece() == testPiece1, "Combined pile has not correct top piece after pickup!");
-    QVERIFY2(checkPiece == testPiece2, "Incorrect piece picked up!");
-    testPile2->AddToBottom(checkPiece);
-    std::vector<std::shared_ptr<Gamepiece>> pieceList = testPile2->GetPieceVector();
-    QVERIFY2(pieceList[0] == testPiece2, "Error in piece order in vector, index 0!");
-    QVERIFY2(pieceList[1] == testPiece3, "Error in piece order in vector, index 1!");
-    QVERIFY2(pieceList[2] == testPiece4, "Error in piece order in vector, index 2!");
-    QVERIFY2(pieceList[3] == testPiece1, "Error in piece order in vector, index 3!");
+    testPile1_->AddOnTop(testPiece1_);
+    QVERIFY2(testPile1_->GetTopPiece() == testPiece1_, "Incorrect gamepiece on top of pile!");
+    testPile1_->AddOnTop(testPiece2_);
+    QVERIFY2(testPile1_->GetTopPiece() == testPiece2_, "Incorrect gamepiece on top of pile!");
+    testPile2_->AddOnTop(testPiece3_);
+    testPile2_->AddOnTop(testPiece4_);
+    testPile2_->AddPile(*testPile1_);
+    QVERIFY2(testPile2_->GetPilesize() == 4, "Combined pile has not correct size!");
+    QVERIFY2(testPile2_->GetTopPiece() == testPiece2_, "Combined pile has not correct top piece!");
+    std::shared_ptr<Gamepiece> checkPiece = testPile2_->PickupTopPiece();
+    QVERIFY2(testPile2_->GetTopPiece() == testPiece1_, "Combined pile has not correct top piece after pickup!");
+    QVERIFY2(checkPiece == testPiece2_, "Incorrect piece picked up!");
+    testPile2_->AddToBottom(checkPiece);
+    std::vector<std::shared_ptr<Gamepiece>> pieceList = testPile2_->GetPieceVector();
+    QVERIFY2(pieceList[0] == testPiece2_, "Error in piece order in vector, index 0!");
+    QVERIFY2(pieceList[1] == testPiece3_, "Error in piece order in vector, index 1!");
+    QVERIFY2(pieceList[2] == testPiece4_, "Error in piece order in vector, index 2!");
+    QVERIFY2(pieceList[3] == testPiece1_, "Error in piece order in vector, index 3!");
 }
 
 QTEST_APPLESS_MAIN(PileTest)

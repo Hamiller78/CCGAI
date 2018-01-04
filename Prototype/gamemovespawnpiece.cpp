@@ -28,8 +28,8 @@ GamemoveSpawnPiece::GamemoveSpawnPiece(int cardNumber, const Position &spawnPosi
 Board GamemoveSpawnPiece::ApplyOnBoard(const Board &oldBoard) const
 {
     Board newBoard(oldBoard);
-    std::shared_ptr<Gamepiece> spawnGamepiece(new Gamepiece, std::default_delete<Gamepiece>());
-    newBoard.AddGamepiece(spawnGamepiece, spawnPosition_);
+    std::shared_ptr<Gamepiece> spawnPiece = plugin::Cardpool::GetInstance().MakeCard(cardNumber_);
+    newBoard.AddGamepiece(spawnPiece, spawnPosition_);
     return newBoard;
 }
 

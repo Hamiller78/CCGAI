@@ -20,6 +20,8 @@
 
 #include <utility>
 
+#include "card.h"
+#include "cardpool.h"
 #include "gamepiece.h"
 #include "gamemove.h"
 
