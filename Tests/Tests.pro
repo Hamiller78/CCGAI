@@ -5,4 +5,5 @@ SUBDIRS += \
     Gamemove \
     Pile \
     Plugin \
-    Cardpool
+    Cardpool \
+    Deck

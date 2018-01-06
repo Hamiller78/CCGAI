@@ -38,7 +38,8 @@ SOURCES += \
     cardpool.cpp \
     exceptionplugin.cpp \
     cardmaster.cpp \
-    card.cpp
+    card.cpp \
+    deck.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -53,7 +54,8 @@ HEADERS += \
     cardpool.h \
     exceptionplugin.h \
     cardmaster.h \
-    card.h
+    card.h \
+    deck.h
 
 FORMS += \
         mainwindow.ui

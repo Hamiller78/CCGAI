@@ -1,0 +1,2 @@
+10	Rookie
+10	Veteran
