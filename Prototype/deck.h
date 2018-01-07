@@ -28,10 +28,12 @@ namespace plugin {
 class Deck
 {
 private:
-    QStringList deckNames_;
     std::vector<QStringList> deckLists_;
+    QStringList deckNames_;
 public:
     Deck();
+    const std::vector<QStringList>& GetDeckLists(){return deckLists_;}
+    const QStringList& GetDeckNames(){return deckNames_;}
     void LoadDecklistFromTxt(const QString& deckFileName);
 private:
     void AddCards(const QString& txtLine);

@@ -56,6 +56,16 @@ void DeckTest::cleanupTestCase()
 void DeckTest::testCase1()
 {
     testDeck_->LoadDecklistFromTxt("../../../CCGAI/Tests/testdata/plugins/duelgame/decks/deck1.txt");
+    QStringList deckNames = testDeck_->GetDeckNames();
+    std::vector<QStringList> testDecks = testDeck_->GetDeckLists();
+    QStringList drawDeckList = testDecks[0];
+    QVERIFY2(deckNames[0] == "Draw Deck", "Deck name of draw deck wrong!");
+    QVERIFY2(drawDeckList.size() == 20, "Size of deck is not equal 20!");
+    QVERIFY2(drawDeckList[0] == "Rookie", "Slot 0 of deck does not contain Rookie.");
+    QVERIFY2(drawDeckList[5] == "Rookie", "Slot 5 of deck does not contain Rookie.");
+    QVERIFY2(drawDeckList[9] == "Rookie", "Slot 0 of deck does not contain Rookie.");
+    QVERIFY2(drawDeckList[10] == "Veteran", "Slot 10 of deck does not contain Veteran.");
+    QVERIFY2(drawDeckList[19] == "Veteran", "Slot 19 of deck does not contain Veteran.");
 }
 
 QTEST_APPLESS_MAIN(DeckTest)
