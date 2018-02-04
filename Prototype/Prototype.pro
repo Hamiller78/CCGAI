@@ -39,7 +39,11 @@ SOURCES += \
     exceptionplugin.cpp \
     cardmaster.cpp \
     card.cpp \
-    deck.cpp
+    deck.cpp \
+    rulebook.cpp \
+    gameloop.cpp \
+    scriptwrapper.cpp \
+    pythonsetup.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -55,7 +59,17 @@ HEADERS += \
     exceptionplugin.h \
     cardmaster.h \
     card.h \
-    deck.h
+    deck.h \
+    rulebook.h \
+    gameloop.h \
+    scriptwrapper.h \
+    pythonsetup.h
 
 FORMS += \
         mainwindow.ui
+
+win32:CONFIG(release, debug|release): LIBS += -L$$(PYTHONLIBS) -lpython36
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$(PYTHONLIBS) -lpython36_d
+
+INCLUDEPATH += $$(PYTHONINCLUDE)
+DEPENDPATH += $$(PYTHONINCLUDE)

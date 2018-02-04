@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-01-14T18:14:14
+# Project created by QtCreator 2018-02-04T20:23:04
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += testlib
 
 QT       -= gui
 
-TARGET = tst_scriptwrappertest
+TARGET = tst_pythonsetuptest
 CONFIG   += console
 CONFIG   -= app_bundle
 
@@ -27,12 +27,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        tst_scriptwrappertest.cpp 
+        tst_pythonsetuptest.cpp 
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
-
-win32:CONFIG(release, debug|release): LIBS += -L$$(PYTHONLIBS) -lpython36
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$(PYTHONLIBS) -lpython36_d
-
-INCLUDEPATH += $$(PYTHONINCLUDE)
-DEPENDPATH += $$(PYTHONINCLUDE)

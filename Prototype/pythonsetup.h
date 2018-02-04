@@ -15,17 +15,31 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef SCRIPTWRAPPER_H
-#define SCRIPTWRAPPER_H
+#ifndef PYTHONSETUP_H
+#define PYTHONSETUP_H
+
+#include "Python.h"
+
+#include <QString>
+
+#include "exceptionplugin.h"
 
 namespace ai {
 
-class ScriptWrapper
+class PythonSetup
 {
+private:
+    QString pluginPath_{""};
+    bool pythonInitialized_{false};
 public:
-    ScriptWrapper();
+    PythonSetup (PythonSetup const&) = delete;
+    void operator=(PythonSetup const&) = delete;
+    static PythonSetup& GetInstance();
+    void SetPluginPath(QString newPluginPath);
+private:
+    PythonSetup(){}
 };
 
 } // namespace ai
 
-#endif // SCRIPTWRAPPER_H
+#endif // PYTHONSETUP_H

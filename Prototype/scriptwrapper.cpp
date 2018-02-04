@@ -17,7 +17,11 @@
 
 #include "scriptwrapper.h"
 
+namespace ai {
+
 ScriptWrapper::ScriptWrapper()
 {
 
 }
+
+} // namespace ai

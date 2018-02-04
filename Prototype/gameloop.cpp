@@ -15,17 +15,13 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef SCRIPTWRAPPER_H
-#define SCRIPTWRAPPER_H
+#include "gameloop.h"
 
-namespace ai {
+namespace game {
 
-class ScriptWrapper
+Gameloop::Gameloop()
 {
-public:
-    ScriptWrapper();
-};
 
-} // namespace ai
+}
 
-#endif // SCRIPTWRAPPER_H
+} // namespace game

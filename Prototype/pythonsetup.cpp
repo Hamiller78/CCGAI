@@ -15,17 +15,36 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef SCRIPTWRAPPER_H
-#define SCRIPTWRAPPER_H
+#include "pythonsetup.h"
 
 namespace ai {
 
-class ScriptWrapper
+PythonSetup::PythonSetup()
 {
-public:
-    ScriptWrapper();
-};
+
+}
+
+PythonSetup &PythonSetup::GetInstance()
+{
+    static PythonSetup instance;
+    return instance;
+}
+
+void PythonSetup::SetPluginPath(QString newPluginPath)
+{
+    if (newPluginPath != pluginPath_ && !newPluginPath.isEmpty())
+    {
+        pluginPath_ = newPluginPath;
+        int errorCode = Py_FinalizeEx();
+        if (errorCode != 0)
+        {
+            throw plugin::ExceptionPlugin("Pyhton shutdown failed!");
+        }
+        QString pluginAiPath = newPluginPath + "/ai";
+        Py_SetPath(L"../../../CCGAI/Tests/testdata/PythonLib;"
+                   + pluginAiPath.toStdWString().c_str());
+        Py_Initialize();
+    }
+}
 
 } // namespace ai
-
-#endif // SCRIPTWRAPPER_H

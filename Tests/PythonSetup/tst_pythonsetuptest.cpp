@@ -15,17 +15,39 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef SCRIPTWRAPPER_H
-#define SCRIPTWRAPPER_H
+#include <QString>
+#include <QtTest>
 
-namespace ai {
-
-class ScriptWrapper
+class PythonSetupTest : public QObject
 {
+    Q_OBJECT
+
 public:
-    ScriptWrapper();
+    PythonSetupTest();
+
+private Q_SLOTS:
+    void initTestCase();
+    void cleanupTestCase();
+    void testCase1();
 };
 
-} // namespace ai
+PythonSetupTest::PythonSetupTest()
+{
+}
 
-#endif // SCRIPTWRAPPER_H
+void PythonSetupTest::initTestCase()
+{
+}
+
+void PythonSetupTest::cleanupTestCase()
+{
+}
+
+void PythonSetupTest::testCase1()
+{
+    QVERIFY2(true, "Failure");
+}
+
+QTEST_APPLESS_MAIN(PythonSetupTest)
+
+#include "tst_pythonsetuptest.moc"

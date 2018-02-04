@@ -18,6 +18,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+// we get a conflict if we don't include cmath before python.h
+#include <cmath>
+#include "Python.h"
+
 #include <QMainWindow>
 
 namespace Ui {

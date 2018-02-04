@@ -6,4 +6,6 @@ SUBDIRS += \
     Pile \
     Plugin \
     Cardpool \
-    Deck
+    Deck \
+    ScriptWrapper \
+    PythonSetup

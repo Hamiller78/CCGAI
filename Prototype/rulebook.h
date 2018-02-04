@@ -15,17 +15,21 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef SCRIPTWRAPPER_H
-#define SCRIPTWRAPPER_H
+#ifndef RULEBOOK_H
+#define RULEBOOK_H
 
-namespace ai {
+#include "board.h"
+#include "deck.h"
 
-class ScriptWrapper
+namespace game {
+
+class Rulebook
 {
 public:
-    ScriptWrapper();
+    Rulebook();
+    Board SetupBoard(const plugin::Deck& Deck1, const plugin::Deck& Deck2);
 };
 
-} // namespace ai
+} // namespace game
 
-#endif // SCRIPTWRAPPER_H
+#endif // RULEBOOK_H
