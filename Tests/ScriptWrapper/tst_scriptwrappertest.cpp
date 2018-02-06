@@ -45,7 +45,7 @@ void ScriptWrapperTest::initTestCase()
 {
     std::cout << "Setting path for Python.\n";
     Py_SetPath(L"../../../CCGAI/Tests/testdata/PythonLib;"
-               + L"../../../CCGAI/Tests/testdata/plugins/duelgame/ai");
+               L"../../../CCGAI/Tests/testdata/plugins/duelgame/ai");
     std::cout << "Path is set!\n";
     Py_Initialize();
 }

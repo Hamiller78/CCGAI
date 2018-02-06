@@ -19,11 +19,6 @@
 
 namespace ai {
 
-PythonSetup::PythonSetup()
-{
-
-}
-
 PythonSetup &PythonSetup::GetInstance()
 {
     static PythonSetup instance;
@@ -40,9 +35,8 @@ void PythonSetup::SetPluginPath(QString newPluginPath)
         {
             throw plugin::ExceptionPlugin("Pyhton shutdown failed!");
         }
-        QString pluginAiPath = newPluginPath + "/ai";
-        Py_SetPath(L"../../../CCGAI/Tests/testdata/PythonLib;"
-                   + pluginAiPath.toStdWString().c_str());
+        QString pluginAiPath = "../../../CCGAI/Tests/testdata/PythonLib;" + newPluginPath + "/ai";
+        Py_SetPath(pluginAiPath.toStdWString().c_str());
         Py_Initialize();
     }
 }

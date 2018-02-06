@@ -30,3 +30,9 @@ SOURCES += \
         tst_pythonsetuptest.cpp 
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
+
+win32:CONFIG(release, debug|release): LIBS += -L$$(PYTHONLIBS) -lpython36
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$(PYTHONLIBS) -lpython36_d
+
+INCLUDEPATH += $$(PYTHONINCLUDE)
+DEPENDPATH += $$(PYTHONINCLUDE)

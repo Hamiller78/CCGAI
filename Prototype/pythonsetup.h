@@ -18,6 +18,7 @@
 #ifndef PYTHONSETUP_H
 #define PYTHONSETUP_H
 
+#include <cmath>
 #include "Python.h"
 
 #include <QString>
