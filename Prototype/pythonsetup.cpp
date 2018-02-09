@@ -25,16 +25,21 @@ PythonSetup &PythonSetup::GetInstance()
     return instance;
 }
 
-void PythonSetup::SetPluginPath(QString newPluginPath)
+void PythonSetup::ClosePython()
+{
+    int errorCode = Py_FinalizeEx();
+    if (errorCode != 0)
+    {
+        throw plugin::ExceptionPlugin("Python shutdown failed!");
+    }
+}
+
+void PythonSetup::SetPluginPathAndReopenPython(QString newPluginPath)
 {
     if (newPluginPath != pluginPath_ && !newPluginPath.isEmpty())
     {
         pluginPath_ = newPluginPath;
-        int errorCode = Py_FinalizeEx();
-        if (errorCode != 0)
-        {
-            throw plugin::ExceptionPlugin("Pyhton shutdown failed!");
-        }
+        ClosePython();
         QString pluginAiPath = "../../../CCGAI/Tests/testdata/PythonLib;" + newPluginPath + "/ai";
         Py_SetPath(pluginAiPath.toStdWString().c_str());
         Py_Initialize();

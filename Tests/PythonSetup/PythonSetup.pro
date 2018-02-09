@@ -27,7 +27,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        tst_pythonsetuptest.cpp 
+    ../../Prototype/exceptionplugin.cpp \
+    ../../Prototype/pythonsetup.cpp \
+        tst_pythonsetuptest.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 

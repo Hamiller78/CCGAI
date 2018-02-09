@@ -36,7 +36,8 @@ public:
     PythonSetup (PythonSetup const&) = delete;
     void operator=(PythonSetup const&) = delete;
     static PythonSetup& GetInstance();
-    void SetPluginPath(QString newPluginPath);
+    void ClosePython();
+    void SetPluginPathAndReopenPython(QString newPluginPath);
 private:
     PythonSetup(){}
 };

@@ -18,8 +18,12 @@
 #include <cmath>
 #include "Python.h"
 
+#include "../../Prototype/pythonsetup.h"
+
 #include <QString>
 #include <QtTest>
+
+using namespace ai;
 
 class PythonSetupTest : public QObject
 {
@@ -40,15 +44,29 @@ PythonSetupTest::PythonSetupTest()
 
 void PythonSetupTest::initTestCase()
 {
+    QString pluginPath = "../../../CCGAI/Tests/testdata/plugins/duelgame";
+    PythonSetup::GetInstance().SetPluginPathAndReopenPython(pluginPath);
 }
 
 void PythonSetupTest::cleanupTestCase()
 {
+    PythonSetup::GetInstance().ClosePython();
 }
 
 void PythonSetupTest::testCase1()
 {
-    QVERIFY2(true, "Failure");
+    PyObject *pModule = PyImport_ImportModule("Test");
+    QVERIFY2(pModule != nullptr, "Module not loaded properly!");
+    PyObject *pScript = PyObject_GetAttrString(pModule, "tripler");
+    QVERIFY2(pScript && PyCallable_Check(pScript), "Function not loaded properly!");
+
+    PyObject *pArgs = PyTuple_New(1);
+    PyObject *pParameter = PyLong_FromLong(16);
+    int errorcode = PyTuple_SetItem(pArgs, 0, pParameter);
+    QVERIFY2(errorcode == 0, "Setting argument for Python call failed!");
+    PyObject *pValue = PyObject_CallObject(pScript, pArgs);
+    long returnValue = PyLong_AsLong(pValue);
+    QVERIFY2(returnValue == 48, "Failure");
 }
 
 QTEST_APPLESS_MAIN(PythonSetupTest)

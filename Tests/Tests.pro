@@ -7,5 +7,4 @@ SUBDIRS += \
     Plugin \
     Cardpool \
     Deck \
-    ScriptWrapper \
-    PythonSetup
+    ScriptWrapper

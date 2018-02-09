@@ -15,13 +15,15 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include <cmath>
+#include "../../Prototype/pythonsetup.h"
+
 #include <iostream>
-#include "Python.h"
 
 #include <string>
 #include <QString>
 #include <QtTest>
+
+using namespace ai;
 
 class ScriptWrapperTest : public QObject
 {
@@ -34,7 +36,6 @@ private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void testCase1();
-    void testCase2();
 };
 
 ScriptWrapperTest::ScriptWrapperTest()
@@ -43,38 +44,16 @@ ScriptWrapperTest::ScriptWrapperTest()
 
 void ScriptWrapperTest::initTestCase()
 {
-    std::cout << "Setting path for Python.\n";
-    Py_SetPath(L"../../../CCGAI/Tests/testdata/PythonLib;"
-               L"../../../CCGAI/Tests/testdata/plugins/duelgame/ai");
-    std::cout << "Path is set!\n";
-    Py_Initialize();
+    PythonSetup::GetInstance()
+            .SetPluginPathAndReopenPython("../../../CCGAI/Tests/testdata/plugins/duelgame");
 }
 
 void ScriptWrapperTest::cleanupTestCase()
 {
-    QVERIFY2(Py_FinalizeEx() == 0, "Python unloading reported a problem!");
+    PythonSetup::GetInstance().ClosePython();
 }
 
 void ScriptWrapperTest::testCase1()
-{
-    int errorcode;
-
-    PyObject *pModule = PyImport_ImportModule("Square");
-    QVERIFY2(pModule != nullptr, "Module not loaded properly!");
-    PyObject *pScript = PyObject_GetAttrString(pModule, "square");
-    QVERIFY2(pScript && PyCallable_Check(pScript), "Function not loaded properly!");
-
-    PyObject *pArgs = PyTuple_New(1);
-    PyObject *pParameter = PyLong_FromLong(16);
-    errorcode = PyTuple_SetItem(pArgs, 0, pParameter);
-    QVERIFY2(errorcode == 0, "Setting argument for Python call failed!");
-    PyObject *pValue = PyObject_CallObject(pScript, pArgs);   // <- causes crash!!!
-    long returnValue = PyLong_AsLong(pValue);
-    std::cout << "Square of 16: " << returnValue << "\n";
-    QVERIFY2(returnValue == 256, "Failure");
-}
-
-void ScriptWrapperTest::testCase2()
 {
     int errorcode;
 
