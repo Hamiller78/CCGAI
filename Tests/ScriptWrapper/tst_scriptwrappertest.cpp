@@ -16,6 +16,7 @@
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "../../Prototype/pythonsetup.h"
+#include "../../Prototype/scriptwrapper.h"
 
 #include <iostream>
 
@@ -29,6 +30,9 @@ class ScriptWrapperTest : public QObject
 {
     Q_OBJECT
 
+private:
+    ScriptWrapper testWrapper;
+
 public:
     ScriptWrapperTest();
 
@@ -36,6 +40,7 @@ private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void testCase1();
+    void testCase2();
 };
 
 ScriptWrapperTest::ScriptWrapperTest()
@@ -71,7 +76,6 @@ void ScriptWrapperTest::testCase1()
     std::cout << "Triple of 16: " << returnValue << "\n";
     QVERIFY2(returnValue == 48, "Failure");
 }
-
 
 QTEST_APPLESS_MAIN(ScriptWrapperTest)
 

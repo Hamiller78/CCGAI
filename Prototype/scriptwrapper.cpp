@@ -24,4 +24,29 @@ ScriptWrapper::ScriptWrapper()
 
 }
 
+PyObject *ScriptWrapper::LoadFunction(QString functionName)
+{
+    // TODO: make exception class for script problems
+    if (pyModule_ == nullptr)
+    {
+        throw std::exception();
+    }
+    PyObject *pFunction = PyObject_GetAttrString(pModule, functionName.toStdString().c_str());
+    if (pFunction == nullptr || !PyCallableCheck(pFunction))
+    {
+        throw std::expection();
+    }
+    return pFunction;
+}
+
+ScriptWrapper::LoadModule(QString moduleName)
+{
+    pyModule_ = PyImport_ImportModule(moduleName.toStdString().c_str());
+    if (pyModule_ == nullptr)
+    {
+        // TODO: Exceptions for scripts
+        throw std::exception();
+    }
+}
+
 } // namespace ai

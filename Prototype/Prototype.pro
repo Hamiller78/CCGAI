@@ -43,7 +43,8 @@ SOURCES += \
     rulebook.cpp \
     gameloop.cpp \
     scriptwrapper.cpp \
-    pythonsetup.cpp
+    pythonsetup.cpp \
+    moveprovider.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -63,7 +64,8 @@ HEADERS += \
     rulebook.h \
     gameloop.h \
     scriptwrapper.h \
-    pythonsetup.h
+    pythonsetup.h \
+    moveprovider.h
 
 FORMS += \
         mainwindow.ui

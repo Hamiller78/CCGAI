@@ -15,26 +15,14 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef SCRIPTWRAPPER_H
-#define SCRIPTWRAPPER_H
+#include "moveprovider.h"
 
-#include <cmath>
-#include "Python.h"
-
-#include <QString>
-
-namespace ai {
-
-class ScriptWrapper
+MoveProvider::MoveProvider()
 {
-private:
-    PyObject *pyModule_;
-public:
-    ScriptWrapper();
-    PyObject *LoadFunction(QString functionName);
-    void LoadModule(QString moduleName);
-};
 
-} // namespace ai
+}
 
-#endif // SCRIPTWRAPPER_H
+void MoveProvider::GetMoves(int gameStateNumber)
+{
+
+}

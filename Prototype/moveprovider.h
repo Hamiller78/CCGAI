@@ -15,26 +15,21 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef SCRIPTWRAPPER_H
-#define SCRIPTWRAPPER_H
+#ifndef MOVEPROVIDER_H
+#define MOVEPROVIDER_H
 
-#include <cmath>
-#include "Python.h"
+#include <QObject>
 
-#include <QString>
-
-namespace ai {
-
-class ScriptWrapper
+class MoveProvider : public ScriptWrapper
 {
-private:
-    PyObject *pyModule_;
+    // TODO: methods to connect and disconnect slots
+    // TODO: automatically load GetMoves function in Python script after loading of module
+    // TODO: implement GetMoves method, parameter conversion from C++ to Python
 public:
-    ScriptWrapper();
-    PyObject *LoadFunction(QString functionName);
+    MoveProvider();
     void LoadModule(QString moduleName);
+private slots:
+    void GetMoves(int gameStateNumber);
 };
 
-} // namespace ai
-
-#endif // SCRIPTWRAPPER_H
+#endif // MOVEPROVIDER_H
