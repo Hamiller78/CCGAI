@@ -15,28 +15,23 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef SCRIPTWRAPPER_H
-#define SCRIPTWRAPPER_H
+#ifndef EXCEPTIONSCRIPTWRAPPER_H
+#define EXCEPTIONSCRIPTWRAPPER_H
 
-#include <cmath>
-#include "Python.h"
-
-#include <QString>
-
-#include "exceptionscriptwrapper.h"
+#include <exception>
+#include <string>
 
 namespace ai {
 
-class ScriptWrapper
+class ExceptionScriptWrapper : public std::exception
 {
 private:
-    PyObject *pyModule_;
+    std::string errortext_;
 public:
-    ScriptWrapper();
-    PyObject *LoadFunction(QString functionName);
-    void LoadModule(QString moduleName);
+    ExceptionPlugin(std::string errortext){errortext_ = errortext;}
+    const char* what() const noexcept override;
 };
 
 } // namespace ai
 
-#endif // SCRIPTWRAPPER_H
+#endif // EXCEPTIONSCRIPTWRAPPER_H

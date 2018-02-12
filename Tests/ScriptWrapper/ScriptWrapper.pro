@@ -27,7 +27,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    ../../Prototype/exceptionplugin.cpp \
+    ../../Prototype/exceptionscriptwrapper.cpp \
     ../../Prototype/pythonsetup.cpp \
     ../../Prototype/scriptwrapper.cpp \
         tst_scriptwrappertest.cpp 

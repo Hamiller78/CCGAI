@@ -44,7 +44,8 @@ SOURCES += \
     gameloop.cpp \
     scriptwrapper.cpp \
     pythonsetup.cpp \
-    moveprovider.cpp
+    moveprovider.cpp \
+    exceptionscriptwrapper.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -65,7 +66,8 @@ HEADERS += \
     gameloop.h \
     scriptwrapper.h \
     pythonsetup.h \
-    moveprovider.h
+    moveprovider.h \
+    exceptionscriptwrapper.h
 
 FORMS += \
         mainwindow.ui
