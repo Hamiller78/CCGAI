@@ -28,19 +28,20 @@ PyObject *ScriptWrapper::LoadFunction(QString functionName)
 {
     if (pyModule_ == nullptr)
     {
-        throw ExceptionScriptWrapper("No module loaded while attempting to load function: "
-                              + functionName.toStdString());
+//        throw ExceptionScriptWrapper(std::string("No module loaded while attempting to load function: ")
+//                              + functionName.toStdString());
+        throw ExceptionScriptWrapper(std::string("No module loaded while attempting to load function!"));
     }
-    PyObject *pFunction = PyObject_GetAttrString(pModule, functionName.toStdString().c_str());
-    if (pFunction == nullptr || !PyCallableCheck(pFunction))
+    PyObject *pFunction = PyObject_GetAttrString(pyModule_, functionName.toStdString().c_str());
+    if (pFunction == nullptr || !PyCallable_Check(pFunction))
     {
-        throw ExceptionScriptWrapper("Couldn't load a callable function named: " +
+        throw ExceptionScriptWrapper(std::string("Couldn't load a callable function named: ")
                               + functionName.toStdString());
     }
     return pFunction;
 }
 
-ScriptWrapper::LoadModule(QString moduleName)
+void ScriptWrapper::LoadModule(QString moduleName)
 {
     pyModule_ = PyImport_ImportModule(moduleName.toStdString().c_str());
     if (pyModule_ == nullptr)

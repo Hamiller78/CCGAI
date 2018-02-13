@@ -23,7 +23,7 @@
 
 #include <QString>
 
-#include "exceptionplugin.h"
+#include "exceptionscriptwrapper.h"
 
 namespace ai {
 

@@ -28,7 +28,7 @@ class ExceptionScriptWrapper : public std::exception
 private:
     std::string errortext_;
 public:
-    ExceptionPlugin(std::string errortext){errortext_ = errortext;}
+    ExceptionScriptWrapper(std::string errortext){errortext_ = errortext;}
     const char* what() const noexcept override;
 };
 

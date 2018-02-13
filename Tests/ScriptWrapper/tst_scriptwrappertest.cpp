@@ -41,6 +41,7 @@ private Q_SLOTS:
     void cleanupTestCase();
     void testCase1();
     void testCase2();
+    void testCase3();
 };
 
 ScriptWrapperTest::ScriptWrapperTest()
@@ -62,19 +63,33 @@ void ScriptWrapperTest::testCase1()
 {
     int errorcode;
 
-    PyObject *pModule = PyImport_ImportModule("Test");
+    PyObject *pModule = PyImport_ImportModule("Square");
     QVERIFY2(pModule != nullptr, "Module not loaded properly!");
-    PyObject *pScript = PyObject_GetAttrString(pModule, "tripler");
+    PyObject *pScript = PyObject_GetAttrString(pModule, "square");
     QVERIFY2(pScript && PyCallable_Check(pScript), "Function not loaded properly!");
 
     PyObject *pArgs = PyTuple_New(1);
     PyObject *pParameter = PyLong_FromLong(16);
     errorcode = PyTuple_SetItem(pArgs, 0, pParameter);
     QVERIFY2(errorcode == 0, "Setting argument for Python call failed!");
-    PyObject *pValue = PyObject_CallObject(pScript, pArgs);   // <- causes crash!!!
+    PyObject *pValue = PyObject_CallObject(pScript, pArgs);
     long returnValue = PyLong_AsLong(pValue);
-    std::cout << "Triple of 16: " << returnValue << "\n";
-    QVERIFY2(returnValue == 48, "Failure");
+    QVERIFY2(returnValue == 256, "Failure");
+}
+
+void ScriptWrapperTest::testCase2()
+{
+    ScriptWrapper failWrapper;
+    QVERIFY_EXCEPTION_THROWN(failWrapper.LoadModule("not_existing"),
+                             ExceptionScriptWrapper);
+}
+
+void ScriptWrapperTest::testCase3()
+{
+    ScriptWrapper failWrapper;
+    failWrapper.LoadModule("Test");
+    QVERIFY_EXCEPTION_THROWN(failWrapper.LoadFunction("not_existing"),
+                             ExceptionScriptWrapper);
 }
 
 QTEST_APPLESS_MAIN(ScriptWrapperTest)

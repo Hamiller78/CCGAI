@@ -19,7 +19,7 @@
 
 namespace ai {
 
-const char *plugin::ExceptionSciptWrapper::what() const noexcept
+const char *ExceptionScriptWrapper::what() const noexcept
 {
     return this->errortext_.c_str();
 }

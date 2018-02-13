@@ -19,7 +19,7 @@
 
 namespace plugin {
 
-const char *plugin::ExceptionPlugin::what() const noexcept
+const char *ExceptionPlugin::what() const noexcept
 {
     return this->errortext_.c_str();
 }

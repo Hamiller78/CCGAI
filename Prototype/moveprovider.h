@@ -19,6 +19,9 @@
 #define MOVEPROVIDER_H
 
 #include <QObject>
+#include "scriptwrapper.h"
+
+namespace ai {
 
 class MoveProvider : public ScriptWrapper
 {
@@ -28,8 +31,10 @@ class MoveProvider : public ScriptWrapper
 public:
     MoveProvider();
     void LoadModule(QString moduleName);
-private slots:
+private Q_SLOTS:
     void GetMoves(int gameStateNumber);
 };
+
+} // namespace ai
 
 #endif // MOVEPROVIDER_H

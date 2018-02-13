@@ -17,6 +17,8 @@
 
 #include "moveprovider.h"
 
+namespace ai {
+
 MoveProvider::MoveProvider()
 {
 
@@ -26,3 +28,5 @@ void MoveProvider::GetMoves(int gameStateNumber)
 {
 
 }
+
+} // namespace ai
