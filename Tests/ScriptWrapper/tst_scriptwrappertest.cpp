@@ -24,7 +24,7 @@
 #include <QString>
 #include <QtTest>
 
-using namespace ai;
+using namespace python;
 
 class ScriptWrapperTest : public QObject
 {

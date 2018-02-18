@@ -17,7 +17,7 @@
 
 #include "scriptwrapper.h"
 
-namespace ai {
+namespace python {
 
 ScriptWrapper::ScriptWrapper()
 {
@@ -28,15 +28,12 @@ PyObject *ScriptWrapper::LoadFunction(QString functionName)
 {
     if (pyModule_ == nullptr)
     {
-//        throw ExceptionScriptWrapper(std::string("No module loaded while attempting to load function: ")
-//                              + functionName.toStdString());
-        throw ExceptionScriptWrapper(std::string("No module loaded while attempting to load function!"));
+        throw ExceptionScriptWrapper();
     }
     PyObject *pFunction = PyObject_GetAttrString(pyModule_, functionName.toStdString().c_str());
     if (pFunction == nullptr || !PyCallable_Check(pFunction))
     {
-        throw ExceptionScriptWrapper(std::string("Couldn't load a callable function named: ")
-                              + functionName.toStdString());
+        throw ExceptionScriptWrapper();
     }
     return pFunction;
 }
@@ -46,9 +43,8 @@ void ScriptWrapper::LoadModule(QString moduleName)
     pyModule_ = PyImport_ImportModule(moduleName.toStdString().c_str());
     if (pyModule_ == nullptr)
     {
-        throw ExceptionScriptWrapper("Couldn't load module: "
-                              + moduleName.toStdString());
+        throw ExceptionScriptWrapper();
     }
 }
 
-} // namespace ai
+} // namespace python

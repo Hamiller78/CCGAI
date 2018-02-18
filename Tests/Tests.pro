@@ -7,4 +7,5 @@ SUBDIRS += \
     Plugin \
     Cardpool \
     Deck \
-    ScriptWrapper
+    ScriptWrapper \
+    MoveProvider

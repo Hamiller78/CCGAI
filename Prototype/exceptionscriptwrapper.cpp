@@ -17,11 +17,20 @@
 
 #include "exceptionscriptwrapper.h"
 
-namespace ai {
+namespace python {
+
+ExceptionScriptWrapper::ExceptionScriptWrapper()
+{
+    PyObject* exceptionType = PyErr_Occurred();
+    if (exceptionType != nullptr)
+    {
+        PyErr_Print();
+    }
+}
 
 const char *ExceptionScriptWrapper::what() const noexcept
 {
     return this->errortext_.c_str();
 }
 
-} // namespace ai
+} // namespace python

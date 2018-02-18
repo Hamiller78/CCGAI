@@ -21,20 +21,22 @@
 #include <QObject>
 #include "scriptwrapper.h"
 
-namespace ai {
+namespace python {
 
 class MoveProvider : public ScriptWrapper
 {
     // TODO: methods to connect and disconnect slots
     // TODO: automatically load GetMoves function in Python script after loading of module
     // TODO: implement GetMoves method, parameter conversion from C++ to Python
+private:
+    PyObject *getMoveScript_;
 public:
     MoveProvider();
-    void LoadModule(QString moduleName);
-private Q_SLOTS:
+    void LoadModule(QString moduleName) override;
+public Q_SLOTS:
     void GetMoves(int gameStateNumber);
 };
 
-} // namespace ai
+} // namespace python
 
 #endif // MOVEPROVIDER_H

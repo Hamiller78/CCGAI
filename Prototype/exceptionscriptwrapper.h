@@ -18,20 +18,24 @@
 #ifndef EXCEPTIONSCRIPTWRAPPER_H
 #define EXCEPTIONSCRIPTWRAPPER_H
 
+#include <cmath>
+#include "Python.h"
+
 #include <exception>
 #include <string>
 
-namespace ai {
+namespace python {
 
 class ExceptionScriptWrapper : public std::exception
 {
 private:
     std::string errortext_;
 public:
+    ExceptionScriptWrapper();
     ExceptionScriptWrapper(std::string errortext){errortext_ = errortext;}
     const char* what() const noexcept override;
 };
 
-} // namespace ai
+} // namespace python
 
 #endif // EXCEPTIONSCRIPTWRAPPER_H

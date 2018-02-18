@@ -17,16 +17,33 @@
 
 #include "moveprovider.h"
 
-namespace ai {
+namespace python {
 
 MoveProvider::MoveProvider()
 {
 
 }
 
-void MoveProvider::GetMoves(int gameStateNumber)
+void MoveProvider::LoadModule(QString moduleName)
 {
-
+    ScriptWrapper::LoadModule(moduleName);
+    getMoveScript_ = LoadFunction("add_moves");
 }
 
-} // namespace ai
+void MoveProvider::GetMoves(int gameStateNumber)
+{
+    int errorcode;
+    PyObject *pArgs = PyTuple_New(1);
+    PyObject *pParameter = PyLong_FromLong(gameStateNumber);
+    errorcode = PyTuple_SetItem(pArgs, 0, pParameter);
+
+    PyObject *pReturnValue = PyObject_CallObject(getMoveScript_, pArgs);
+
+    errorcode = PyLong_AsLong(pReturnValue);
+    if (errorcode != 0)
+    {
+        throw ExceptionScriptWrapper("Python script returns error code: " + std::to_string(errorcode));
+    }
+}
+
+} // namespace python

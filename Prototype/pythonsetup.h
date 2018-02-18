@@ -25,7 +25,7 @@
 
 #include "exceptionscriptwrapper.h"
 
-namespace ai {
+namespace python {
 
 class PythonSetup
 {
@@ -42,6 +42,6 @@ private:
     PythonSetup(){}
 };
 
-} // namespace ai
+} // namespace python
 
 #endif // PYTHONSETUP_H

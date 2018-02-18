@@ -26,7 +26,7 @@
 
 #include "exceptionscriptwrapper.h"
 
-namespace ai {
+namespace python {
 
 class ScriptWrapper
 {
@@ -35,9 +35,9 @@ private:
 public:
     ScriptWrapper();
     PyObject *LoadFunction(QString functionName);
-    void LoadModule(QString moduleName);
+    virtual void LoadModule(QString moduleName);
 };
 
-} // namespace ai
+} // namespace python
 
 #endif // SCRIPTWRAPPER_H

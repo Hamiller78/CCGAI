@@ -17,7 +17,7 @@
 
 #include "pythonsetup.h"
 
-namespace ai {
+namespace python {
 
 PythonSetup &PythonSetup::GetInstance()
 {
@@ -47,4 +47,4 @@ void PythonSetup::SetPluginPathAndReopenPython(QString newPluginPath)
     }
 }
 
-} // namespace ai
+} // namespace python
