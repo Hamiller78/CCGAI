@@ -19,6 +19,7 @@
 #define CARDPOOL_H
 
 #include <memory>
+#include <vector>
 
 #include <QString>
 #include <QStringList>

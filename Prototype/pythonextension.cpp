@@ -15,34 +15,28 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef PYTHONSETUP_H
-#define PYTHONSETUP_H
-
-#include <cmath>
-#include "Python.h"
-
-#include <QString>
-
-#include "exceptionscriptwrapper.h"
 #include "pythonextension.h"
 
 namespace python {
 
-class PythonSetup
+//PythonExtension::PythonExtension()
+//{
+//}
+
+PyObject *PyGetInfo(PyObject *self, PyObject *args)
 {
-private:
-    QString pluginPath_{""};
-    bool pythonInitialized_{false};
-public:
-    PythonSetup (PythonSetup const&) = delete;
-    void operator=(PythonSetup const&) = delete;
-    static PythonSetup& GetInstance();
-    void ClosePython();
-    void SetPluginPathAndReopenPython(QString newPluginPath);
-private:
-    PythonSetup(){}
-};
+    if(!PyArg_ParseTuple(args, ":GetInfo"))
+    {
+        return nullptr;
+    }
+    return Py_BuildValue("(s)", "CCGAI Python module V0.0");
+}
+
+PyMODINIT_FUNC PyInitCcgai(void)
+{
+    PyObject *module;
+    module = PyModule_Create(&ccgaiModuleDef);
+    return module;
+}
 
 } // namespace python
-
-#endif // PYTHONSETUP_H

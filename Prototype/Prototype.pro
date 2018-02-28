@@ -44,6 +44,7 @@ SOURCES += \
     rulebook.cpp \
     gameloop.cpp \
     scriptwrapper.cpp \
+    pythonextension.cpp \
     pythonsetup.cpp \
     moveprovider.cpp \
     exceptionscriptwrapper.cpp
@@ -66,6 +67,7 @@ HEADERS += \
     rulebook.h \
     gameloop.h \
     scriptwrapper.h \
+    pythonextension.h \
     pythonsetup.h \
     moveprovider.h \
     exceptionscriptwrapper.h

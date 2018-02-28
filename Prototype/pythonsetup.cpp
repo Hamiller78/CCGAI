@@ -43,6 +43,8 @@ void PythonSetup::SetPluginPathAndReopenPython(QString newPluginPath)
         QString pluginAiPath = "../../../CCGAI/Tests/testdata/PythonLib";
         pluginAiPath += ";" + newPluginPath + "/ai";
         Py_SetPath(pluginAiPath.toStdWString().c_str());
+//        PyImport_AppendInittab("ccgai", &PyInitCcgai);
+
         Py_Initialize();
     }
 }
