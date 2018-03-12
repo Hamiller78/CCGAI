@@ -21,6 +21,8 @@
 #include <cmath>
 #include "Python.h"
 
+#include <exception>
+#include <iostream>
 #include <QString>
 
 #include "exceptionscriptwrapper.h"
