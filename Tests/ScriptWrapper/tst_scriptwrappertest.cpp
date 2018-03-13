@@ -87,15 +87,12 @@ void ScriptWrapperTest::testCase2()
 void ScriptWrapperTest::testCase3()
 {
     testWrapper.LoadModule("Test");
-//    QVERIFY_EXCEPTION_THROWN(testWrapper.LoadFunction("not_existing"),
-//                             ExceptionScriptWrapper);
+    QVERIFY_EXCEPTION_THROWN(testWrapper.LoadFunction("not_existing"),
+                             ExceptionScriptWrapper);
     PyObject *extensionScript = testWrapper.LoadFunction("test_extension");
     PyObject *pValue = PyObject_CallObject(extensionScript, nullptr);
     long returnValue = PyLong_AsLong(pValue);
-    std::cout << returnValue;
-    QString output = QString::number(returnValue);
-    qDebug(qUtf8Printable(output));
-//    QVERIFY2(returnValue == 0, "Failure");
+    QVERIFY2(returnValue == 7, "Failure");
 }
 
 QTEST_APPLESS_MAIN(ScriptWrapperTest)

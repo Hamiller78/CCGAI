@@ -9,4 +9,4 @@ def add_moves(gamestate_number):
 def test_extension():
     import ccgai
     print("Info of extension: ", ccgai.getinfo())
-    return 0
+    return 7

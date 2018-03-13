@@ -43,6 +43,11 @@ void PythonSetup::SetPluginPathAndReopenPython(QString newPluginPath)
         QString pluginAiPath = "../../../CCGAI/Tests/testdata/PythonLib";
         pluginAiPath += ";" + newPluginPath + "/ai";
         Py_SetPath(pluginAiPath.toStdWString().c_str());
+        int errorcode = PyImport_AppendInittab("ccgai", &PyInitCcgai);
+        if (errorcode == -1)
+        {
+            throw ExceptionScriptWrapper("CCGAI Python extension initialization failed!");
+        }
         Py_Initialize();
     }
 }
