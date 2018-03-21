@@ -34,6 +34,7 @@ private:
     PyObject *pyModule_;
 public:
     ScriptWrapper();
+    ~ScriptWrapper();
     PyObject *LoadFunction(QString functionName);
     virtual void LoadModule(QString moduleName);
 };

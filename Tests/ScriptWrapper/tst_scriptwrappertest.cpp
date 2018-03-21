@@ -67,6 +67,7 @@ void ScriptWrapperTest::testCase1()
     QVERIFY2(pModule != nullptr, "Module not loaded properly!");
     PyObject *pScript = PyObject_GetAttrString(pModule, "square");
     QVERIFY2(pScript && PyCallable_Check(pScript), "Function not loaded properly!");
+    Py_DECREF(pModule);
 
     PyObject *pArgs = PyTuple_New(1);
     PyObject *pParameter = PyLong_FromLong(16);
@@ -75,6 +76,11 @@ void ScriptWrapperTest::testCase1()
     PyObject *pValue = PyObject_CallObject(pScript, pArgs);
     long returnValue = PyLong_AsLong(pValue);
     QVERIFY2(returnValue == 256, "Failure");
+
+    Py_DECREF(pValue);
+    Py_DECREF(pArgs);
+    Py_DECREF(pScript);
+    Py_DECREF(pModule);
 }
 
 void ScriptWrapperTest::testCase2()
@@ -93,6 +99,8 @@ void ScriptWrapperTest::testCase3()
     PyObject *pValue = PyObject_CallObject(extensionScript, nullptr);
     long returnValue = PyLong_AsLong(pValue);
     QVERIFY2(returnValue == 7, "Failure");
+    Py_DECREF(pValue);
+    Py_DECREF(extensionScript);
 }
 
 QTEST_APPLESS_MAIN(ScriptWrapperTest)

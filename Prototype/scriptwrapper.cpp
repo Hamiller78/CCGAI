@@ -24,6 +24,11 @@ ScriptWrapper::ScriptWrapper()
 
 }
 
+ScriptWrapper::~ScriptWrapper()
+{
+    Py_CLEAR(pyModule_);
+}
+
 PyObject *ScriptWrapper::LoadFunction(QString functionName)
 {
     if (pyModule_ == nullptr)

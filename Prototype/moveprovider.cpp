@@ -24,6 +24,11 @@ MoveProvider::MoveProvider()
 
 }
 
+MoveProvider::~MoveProvider()
+{
+//    Py_CLEAR(getMoveScript_); //leads to crash of unit test, because Python is already closed at this point?
+}
+
 void MoveProvider::LoadModule(QString moduleName)
 {
     ScriptWrapper::LoadModule(moduleName);
@@ -39,7 +44,10 @@ void MoveProvider::GetMoves(int gameStateNumber)
 
     PyObject *pReturnValue = PyObject_CallObject(getMoveScript_, pArgs);
 
+    Py_DECREF(pArgs);
+
     errorcode = PyLong_AsLong(pReturnValue);
+    Py_DECREF(pReturnValue);
     if (errorcode != 0)
     {
         throw ExceptionScriptWrapper("Python script returns error code: " + std::to_string(errorcode));

@@ -32,6 +32,7 @@ private:
     PyObject *getMoveScript_;
 public:
     MoveProvider();
+    ~MoveProvider();
     void LoadModule(QString moduleName) override;
 public Q_SLOTS:
     void GetMoves(int gameStateNumber);
