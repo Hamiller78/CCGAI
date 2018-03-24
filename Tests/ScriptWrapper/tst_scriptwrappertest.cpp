@@ -51,7 +51,7 @@ ScriptWrapperTest::ScriptWrapperTest()
 void ScriptWrapperTest::initTestCase()
 {
     PythonSetup::GetInstance()
-            .SetPluginPathAndReopenPython("../../../CCGAI/Tests/testdata/plugins/duelgame");
+            .OpenPython("../../../CCGAI/Tests/testdata/plugins/duelgame");
 }
 
 void ScriptWrapperTest::cleanupTestCase()

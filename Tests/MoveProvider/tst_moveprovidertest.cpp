@@ -29,7 +29,7 @@ class MoveProviderTest : public QObject
     Q_OBJECT
 
 private:
-    MoveProvider testWrapper;
+    MoveProvider *testWrapper;
 public:
     MoveProviderTest();
 
@@ -47,23 +47,25 @@ MoveProviderTest::MoveProviderTest()
 void MoveProviderTest::initTestCase()
 {
     PythonSetup::GetInstance()
-            .SetPluginPathAndReopenPython("../../../CCGAI/Tests/testdata/plugins/duelgame");
+            .OpenPython("../../../CCGAI/Tests/testdata/plugins/duelgame");
+    testWrapper = new MoveProvider;
 }
 
 void MoveProviderTest::cleanupTestCase()
 {
+    delete testWrapper;
     PythonSetup::GetInstance().ClosePython();
 }
 
 void MoveProviderTest::testCase1()
 {
-    testWrapper.LoadModule("Test");
-    testWrapper.GetMoves(0);
+    testWrapper->LoadModule("Test");
+    testWrapper->GetMoves(0);
 }
 
 void MoveProviderTest::testCase2()
 {
-    QVERIFY_EXCEPTION_THROWN(testWrapper.GetMoves(1),
+    QVERIFY_EXCEPTION_THROWN(testWrapper->GetMoves(1),
                              ExceptionScriptWrapper);
 }
 

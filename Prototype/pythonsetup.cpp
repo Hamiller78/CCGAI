@@ -32,24 +32,26 @@ void PythonSetup::ClosePython()
     {
         throw ExceptionScriptWrapper("Python shutdown failed!");
     }
+    pluginPath_ = "";
 }
 
-void PythonSetup::SetPluginPathAndReopenPython(QString newPluginPath)
+void PythonSetup::OpenPython(QString newPluginPath)
 {
-    if (newPluginPath != pluginPath_ && !newPluginPath.isEmpty())
+    if (!pluginPath_.isEmpty())
     {
-        pluginPath_ = newPluginPath;
-        ClosePython();
-        QString pluginAiPath = "../../../CCGAI/Tests/testdata/PythonLib";
-        pluginAiPath += ";" + newPluginPath + "/ai";
-        Py_SetPath(pluginAiPath.toStdWString().c_str());
-        int errorcode = PyImport_AppendInittab("ccgai", &PyInitCcgai);
-        if (errorcode == -1)
-        {
-            throw ExceptionScriptWrapper("CCGAI Python extension initialization failed!");
-        }
-        Py_Initialize();
+        throw ExceptionScriptWrapper("Python is already running!");
     }
+
+    pluginPath_ = newPluginPath;
+    QString pluginAiPath = "../../../CCGAI/Tests/testdata/PythonLib";
+    pluginAiPath += ";" + newPluginPath + "/ai";
+    Py_SetPath(pluginAiPath.toStdWString().c_str());
+    int errorcode = PyImport_AppendInittab("ccgai", &PyInitCcgai);
+    if (errorcode == -1)
+    {
+        throw ExceptionScriptWrapper("CCGAI Python extension initialization failed!");
+    }
+    Py_Initialize();
 }
 
 } // namespace python

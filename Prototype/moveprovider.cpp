@@ -26,7 +26,7 @@ MoveProvider::MoveProvider()
 
 MoveProvider::~MoveProvider()
 {
-//    Py_CLEAR(getMoveScript_); //leads to crash of unit test, because Python is already closed at this point?
+    Py_CLEAR(getMoveScript_);
 }
 
 void MoveProvider::LoadModule(QString moduleName)

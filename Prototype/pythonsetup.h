@@ -40,7 +40,7 @@ public:
     void operator=(PythonSetup const&) = delete;
     static PythonSetup& GetInstance();
     void ClosePython();
-    void SetPluginPathAndReopenPython(QString newPluginPath);
+    void OpenPython(QString newPluginPath);
 private:
     PythonSetup(){}
 };
