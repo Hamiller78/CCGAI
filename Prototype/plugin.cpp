@@ -57,6 +57,22 @@ void Plugin::CheckFileExists(const QString &fileName) const
     }
 }
 
+void Plugin::LoadGameStructure(const QString &dirName) const
+{
+    QString fileName = QDir::cleanPath(dirName + "/ai/gamestructure.txt");
+    CheckFileExists(fileName);
+    QFile gamestructureFile(fileName);
+    if (!gamestructureFile.open(QIODevice::ReadOnly))
+    {
+        throw ExceptionPlugin("AI gamestructure file couldn't be opened: " + fileName.toStdString());
+    }
+    QTextStream fileContent(&gamestructureFile);
+    QString dataTable = fileContent.readAll();
+    QStringList dataLines;
+    dataLines.append(dataTable.split(QRegExp("[\r\n]"), QString::SkipEmptyParts));
+    gamestructureFile.close();
+}
+
 QStringList Plugin::GetSetListFilenames(const QString &pluginDirName) const
 {
     QString fileName = QDir::cleanPath(pluginDirName + "/" + "setlist.txt");

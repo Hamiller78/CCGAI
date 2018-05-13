@@ -29,7 +29,7 @@ ScriptWrapper::~ScriptWrapper()
     Py_CLEAR(pyModule_);
 }
 
-PyObject *ScriptWrapper::LoadFunction(QString functionName)
+PyObject *ScriptWrapper::LoadFunction(const QString functionName)
 {
     if (pyModule_ == nullptr)
     {
@@ -43,7 +43,7 @@ PyObject *ScriptWrapper::LoadFunction(QString functionName)
     return pFunction;
 }
 
-void ScriptWrapper::LoadModule(QString moduleName)
+void ScriptWrapper::LoadModule(const QString moduleName)
 {
     pyModule_ = PyImport_ImportModule(moduleName.toStdString().c_str());
     if (pyModule_ == nullptr)

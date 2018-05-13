@@ -24,4 +24,49 @@ Gameloop::Gameloop()
 
 }
 
+void Gameloop::RunGame()
+{
+    // simplifications for prototype:
+    // - support only turn structure where one player goes through all turn phases and then passes control to other player
+    // - no reaction actions by the opponent yet
+    // - move depth when checking value of a move only 1
+
+    // required actions:
+    // - get possible moves for current gamestate
+    // - get estimated value for each move
+    // - execute best move
+    // - break loop when game finish condition reached
+    bool gameFinished = false;
+    int currentPhase = 1;
+    int activePlayer = 1;
+    do
+    {
+        std::vector<Gamemove> moveList = GetMoves(currentGamestate);
+        std:vector<Gamemove> ratedMoveList = RateMoves(moveList);
+        ratedMoveList.sort();
+        Gamemove bestMove = ratedMoveList.top();
+        Gamestate newGamestate = ExecuteBestMove(bestMove);
+        gameFinished = newGamestate.IsGameOver();
+        if (bestMove.type() == PASS)
+        {
+            currentPhase++;
+            if (currentPhase > numberOfPhases)
+            {
+                currentPhase = 1;
+                activePlayer++;
+                if (activePlayer > 2)
+                {
+                    activePlayer = 1;
+                }
+            }
+        }
+    }
+    while (!gameFinished)
+}
+
+void Gameloop::SetupGame()
+{
+    // create cards and put them on start positions
+}
+
 } // namespace game

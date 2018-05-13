@@ -42,6 +42,7 @@ public:
 private:
     void CheckDirExists(const QString& pluginDirName) const;
     void CheckFileExists(const QString& fileName) const;
+    void LoadGameStructure(const QString& dirName) const;
     QStringList GetSetListFilenames(const QString& dirName) const;
     void LoadCardBack(const QString& pluginDirName);
     QStringList LoadCardData(const QString& pluginDirName, const QStringList& setListFilenames);

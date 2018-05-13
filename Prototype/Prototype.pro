@@ -47,7 +47,8 @@ SOURCES += \
     pythonextension.cpp \
     pythonsetup.cpp \
     moveprovider.cpp \
-    exceptionscriptwrapper.cpp
+    exceptionscriptwrapper.cpp \
+    gamestate.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -70,7 +71,8 @@ HEADERS += \
     pythonextension.h \
     pythonsetup.h \
     moveprovider.h \
-    exceptionscriptwrapper.h
+    exceptionscriptwrapper.h \
+    gamestate.h
 
 FORMS += \
         mainwindow.ui

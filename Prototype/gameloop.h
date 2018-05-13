@@ -18,12 +18,18 @@
 #ifndef GAMELOOP_H
 #define GAMELOOP_H
 
+#include <vector>
+
+#include "gamemove.h"
+
 namespace game {
 
 class Gameloop
 {
 public:
     Gameloop();
+    void RunGame();
+    void SetupGame();
 };
 
 } // namespace game

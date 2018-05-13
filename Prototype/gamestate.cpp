@@ -15,36 +15,9 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef PYTHONSETUP_H
-#define PYTHONSETUP_H
+#include "gamestate.h"
 
-#include <cmath>
-#include "Python.h"
-
-#include <exception>
-#include <iostream>
-#include <QString>
-
-#include "exceptionscriptwrapper.h"
-#include "pythonextension.h"
-
-namespace python {
-
-class PythonSetup
+GameState::GameState()
 {
-private:
-    QString pluginPath_{""};
-    bool pythonInitialized_{false};
-public:
-    PythonSetup (PythonSetup const&) = delete;
-    void operator=(PythonSetup const&) = delete;
-    static PythonSetup& GetInstance();
-    void ClosePython();
-    void OpenPython(const QString newPluginPath);
-private:
-    PythonSetup(){}
-};
 
-} // namespace python
-
-#endif // PYTHONSETUP_H
+}

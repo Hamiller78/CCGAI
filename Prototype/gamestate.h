@@ -15,36 +15,25 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef PYTHONSETUP_H
-#define PYTHONSETUP_H
+#ifndef GAMESTATE_H
+#define GAMESTATE_H
 
-#include <cmath>
-#include "Python.h"
+#include "board.h"
 
-#include <exception>
-#include <iostream>
-#include <QString>
+namespace game {
 
-#include "exceptionscriptwrapper.h"
-#include "pythonextension.h"
+// Contains the complete description of the game
+// including board and later arrow/targets and external counters
 
-namespace python {
-
-class PythonSetup
+class GameState
 {
-private:
-    QString pluginPath_{""};
-    bool pythonInitialized_{false};
 public:
-    PythonSetup (PythonSetup const&) = delete;
-    void operator=(PythonSetup const&) = delete;
-    static PythonSetup& GetInstance();
-    void ClosePython();
-    void OpenPython(const QString newPluginPath);
+    GameState();
+    void SetBoard(std::shared_ptr<Board> newBoard){containedBoard_ = newBoard;}
 private:
-    PythonSetup(){}
+    std::shared_ptr<Board> containedBoard_;
 };
 
-} // namespace python
+} // namespace game
 
-#endif // PYTHONSETUP_H
+#endif // GAMESTATE_H

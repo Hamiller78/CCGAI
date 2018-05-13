@@ -35,7 +35,7 @@ void PythonSetup::ClosePython()
     pluginPath_ = "";
 }
 
-void PythonSetup::OpenPython(QString newPluginPath)
+void PythonSetup::OpenPython(const QString newPluginPath)
 {
     if (!pluginPath_.isEmpty())
     {

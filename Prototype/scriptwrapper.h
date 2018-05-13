@@ -35,8 +35,8 @@ private:
 public:
     ScriptWrapper();
     ~ScriptWrapper();
-    PyObject *LoadFunction(QString functionName);
-    virtual void LoadModule(QString moduleName);
+    PyObject *LoadFunction(const QString functionName);
+    virtual void LoadModule(const QString moduleName);
 };
 
 } // namespace python
