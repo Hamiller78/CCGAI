@@ -17,7 +17,21 @@
 
 #include "gamestate.h"
 
+namespace game {
+
 GameState::GameState()
 {
 
 }
+/*
+game::GameState game::GameState::ExecuteMove(game::Gamemove execMove)
+{
+    return *this;
+}
+*/
+bool game::GameState::IsGameOver()
+{
+    return true;
+}
+
+} // namespace game

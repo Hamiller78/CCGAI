@@ -21,11 +21,14 @@
 #include <vector>
 
 #include "gamemove.h"
+#include "gamestate.h"
 
 namespace game {
 
 class Gameloop
 {
+private:
+//    GameState currentGamestate_;
 public:
     Gameloop();
     void RunGame();

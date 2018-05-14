@@ -19,6 +19,7 @@
 #define GAMESTATE_H
 
 #include "board.h"
+#include "gamemove.h"
 
 namespace game {
 
@@ -30,8 +31,10 @@ class GameState
 public:
     GameState();
     void SetBoard(std::shared_ptr<Board> newBoard){containedBoard_ = newBoard;}
+//    GameState ExecuteMove(Gamemove execMove);
+    bool IsGameOver();
 private:
-    std::shared_ptr<Board> containedBoard_;
+    std::shared_ptr<Board> containedBoard_{nullptr};
 };
 
 } // namespace game

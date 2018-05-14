@@ -39,13 +39,13 @@ void Gameloop::RunGame()
     bool gameFinished = false;
     int currentPhase = 1;
     int activePlayer = 1;
-    do
+/*    do
     {
-        std::vector<Gamemove> moveList = GetMoves(currentGamestate);
+        std::vector<Gamemove> moveList = GetMoves(currentGamestate_);
         std:vector<Gamemove> ratedMoveList = RateMoves(moveList);
         ratedMoveList.sort();
         Gamemove bestMove = ratedMoveList.top();
-        Gamestate newGamestate = ExecuteBestMove(bestMove);
+        Gamestate newGamestate = currentGamestate_.ExecuteMove(bestMove);
         gameFinished = newGamestate.IsGameOver();
         if (bestMove.type() == PASS)
         {
@@ -61,7 +61,7 @@ void Gameloop::RunGame()
             }
         }
     }
-    while (!gameFinished)
+    while (!gameFinished) */
 }
 
 void Gameloop::SetupGame()
