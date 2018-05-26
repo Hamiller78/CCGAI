@@ -21,7 +21,6 @@ namespace game {
 
 Gameloop::Gameloop()
 {
-
 }
 
 void Gameloop::RunGame()
@@ -39,34 +38,47 @@ void Gameloop::RunGame()
     bool gameFinished = false;
     int currentPhase = 1;
     int activePlayer = 1;
-/*    do
+    do
     {
-        std::vector<Gamemove> moveList = GetMoves(currentGamestate_);
-        std:vector<Gamemove> ratedMoveList = RateMoves(moveList);
-        ratedMoveList.sort();
-        Gamemove bestMove = ratedMoveList.top();
-        Gamestate newGamestate = currentGamestate_.ExecuteMove(bestMove);
-        gameFinished = newGamestate.IsGameOver();
-        if (bestMove.type() == PASS)
-        {
-            currentPhase++;
-            if (currentPhase > numberOfPhases)
-            {
-                currentPhase = 1;
-                activePlayer++;
-                if (activePlayer > 2)
-                {
-                    activePlayer = 1;
-                }
-            }
-        }
+        std::vector<std::shared_ptr<Gamemove>> moveList = GetMoves(currentGamestate_);
+        std::map<std::shared_ptr<Gamemove>, int> ratedMoveList = RateMoves(moveList);
+//        Gamemove bestMove = ratedMoveList.top();
+//        Gamestate newGamestate = currentGamestate_.ExecuteMove(bestMove);
+//        gameFinished = newGamestate.IsGameOver();
+//        if (bestMove.type() == PASS)
+//        {
+//            currentPhase++;
+//            if (currentPhase > numberOfPhases)
+//            {
+//                currentPhase = 1;
+//                activePlayer++;
+//                if (activePlayer > 2)
+//                {
+//                    activePlayer = 1;
+//                }
+//            }
+//        }
     }
-    while (!gameFinished) */
+    while (!gameFinished);
 }
 
 void Gameloop::SetupGame()
 {
-    // create cards and put them on start positions
+    // TODO: create cards and put them on start positions
+}
+
+std::vector<std::shared_ptr<Gamemove>> Gameloop::GetMoves(const GameState &startState)
+{
+    // TODO: get all possible moves for the current gamestate
+    std::vector<std::shared_ptr<Gamemove>> moveList;
+    return moveList;
+}
+
+std::map<std::shared_ptr<Gamemove>, int>
+    Gameloop::RateMoves(const std::vector<std::shared_ptr<Gamemove>> &availableMoves)
+{
+    std::map<std::shared_ptr<Gamemove>, int> ratedMoves;
+    return ratedMoves;
 }
 
 } // namespace game
