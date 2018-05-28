@@ -31,8 +31,6 @@ void Gameloop::RunGame()
     // - move depth when checking value of a move only 1
 
     // required actions:
-    // - get possible moves for current gamestate
-    // - get estimated value for each move
     // - execute best move
     // - break loop when game finish condition reached
     bool gameFinished = false;
@@ -40,9 +38,13 @@ void Gameloop::RunGame()
     int activePlayer = 1;
     do
     {
+        // get moves and rate them
         std::vector<std::shared_ptr<Gamemove>> moveList = GetMoves(currentGamestate_);
-        std::map<std::shared_ptr<Gamemove>, int> ratedMoveList = RateMoves(moveList);
-//        Gamemove bestMove = ratedMoveList.top();
+        std::multimap<int,std::shared_ptr<Gamemove>> ratedMoveList = RateMoves(moveList);
+        // get best rated move
+        std::multimap<int,std::shared_ptr<Gamemove>>::iterator it=ratedMoveList.end();
+        std::shared_ptr<Gamemove> bestMovePtr = (*it).second;
+
 //        Gamestate newGamestate = currentGamestate_.ExecuteMove(bestMove);
 //        gameFinished = newGamestate.IsGameOver();
 //        if (bestMove.type() == PASS)
@@ -74,10 +76,10 @@ std::vector<std::shared_ptr<Gamemove>> Gameloop::GetMoves(const GameState &start
     return moveList;
 }
 
-std::map<std::shared_ptr<Gamemove>, int>
+std::multimap<int, std::shared_ptr<Gamemove> >
     Gameloop::RateMoves(const std::vector<std::shared_ptr<Gamemove>> &availableMoves)
 {
-    std::map<std::shared_ptr<Gamemove>, int> ratedMoves;
+    std::multimap<int,std::shared_ptr<Gamemove>> ratedMoves;
     return ratedMoves;
 }
 

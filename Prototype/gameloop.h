@@ -35,7 +35,8 @@ public:
     void SetupGame();
 private:
     std::vector<std::shared_ptr<Gamemove>> GetMoves(const GameState& startState);
-    std::map<std::shared_ptr<Gamemove>,int> RateMoves(const std::vector<std::shared_ptr<Gamemove>> &availableMoves);
+    std::multimap<int,std::shared_ptr<Gamemove>>
+        RateMoves(const std::vector<std::shared_ptr<Gamemove>> &availableMoves);
 };
 
 } // namespace game
