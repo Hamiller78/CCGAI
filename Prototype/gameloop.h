@@ -20,6 +20,7 @@
 
 #include <vector>
 
+#include "deck.h"
 #include "gamemove.h"
 #include "gamestate.h"
 
@@ -28,11 +29,11 @@ namespace game {
 class Gameloop
 {
 private:
-    GameState currentGamestate_;
+//    GameState currentGamestate_;
 public:
     Gameloop();
     void RunGame();
-    void SetupGame();
+    void SetupGame(plugin::Deck deck1, plugin::Deck deck2);
 private:
     std::vector<std::shared_ptr<Gamemove>> GetMoves(const GameState& startState);
     std::multimap<int,std::shared_ptr<Gamemove>>

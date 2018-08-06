@@ -39,11 +39,11 @@ void Gameloop::RunGame()
     do
     {
         // get moves and rate them
-        std::vector<std::shared_ptr<Gamemove>> moveList = GetMoves(currentGamestate_);
-        std::multimap<int,std::shared_ptr<Gamemove>> ratedMoveList = RateMoves(moveList);
+//        std::vector<std::shared_ptr<Gamemove>> moveList = GetMoves(currentGamestate_);
+//        std::multimap<int,std::shared_ptr<Gamemove>> ratedMoveList = RateMoves(moveList);
         // get best rated move
-        std::multimap<int,std::shared_ptr<Gamemove>>::iterator it=ratedMoveList.end();
-        std::shared_ptr<Gamemove> bestMovePtr = (*it).second;
+//        std::multimap<int,std::shared_ptr<Gamemove>>::iterator it=ratedMoveList.end();
+//        std::shared_ptr<Gamemove> bestMovePtr = (*it).second;
 
 //        Gamestate newGamestate = currentGamestate_.ExecuteMove(bestMove);
 //        gameFinished = newGamestate.IsGameOver();
@@ -64,7 +64,7 @@ void Gameloop::RunGame()
     while (!gameFinished);
 }
 
-void Gameloop::SetupGame()
+void Gameloop::SetupGame(plugin::Deck deck1, plugin::Deck deck2)
 {
     // TODO: create cards and put them on start positions
 }

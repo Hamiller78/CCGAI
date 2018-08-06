@@ -15,20 +15,25 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
+#include "../../Prototype/deck.h"
+#include "../../Prototype/gameloop.h"
+
 #include <QtTest>
 
-// add necessary includes here
+using namespace game;
 
-class Gameloop : public QObject
+class GameloopTest : public QObject
 {
     Q_OBJECT
 
 private:
     Gameloop *testLoop_;
+    plugin::Deck *deck1_;
+    plugin::Deck *deck2_;
 
 public:
-    Gameloop();
-    ~Gameloop();
+    GameloopTest();
+    ~GameloopTest();
 
 private slots:
     void initTestCase();
@@ -37,31 +42,35 @@ private slots:
 
 };
 
-Gameloop::Gameloop()
+GameloopTest::GameloopTest()
 {
 
 }
 
-Gameloop::~Gameloop()
+GameloopTest::~GameloopTest()
 {
 
 }
 
-void Gameloop::initTestCase()
+void GameloopTest::initTestCase()
 {
     testLoop_ = new Gameloop();
+    deck1_ = new plugin::Deck();
+    deck2_ = new plugin::Deck();
+    deck1_->LoadDecklistFromTxt("../../../CCGAI/Tests/testdata/plugins/duelgame/decks/deck1.txt");
+    deck2_->LoadDecklistFromTxt("../../../CCGAI/Tests/testdata/plugins/duelgame/decks/deck1.txt");
 }
 
-void Gameloop::cleanupTestCase()
+void GameloopTest::cleanupTestCase()
 {
     delete testLoop_;
 }
 
-void Gameloop::test_case1()
+void GameloopTest::test_case1()
 {
-
+    testLoop_->SetupGame(*deck1_, *deck2_);
 }
 
-QTEST_APPLESS_MAIN(Gameloop)
+QTEST_APPLESS_MAIN(GameloopTest)
 
-#include "tst_gameloop.moc"
+#include "tst_gamelooptest.moc"
