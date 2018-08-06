@@ -63,7 +63,7 @@ void DeckTest::testCase1()
     QVERIFY2(drawDeckList.size() == 20, "Size of deck is not equal 20!");
     QVERIFY2(drawDeckList[0] == "Rookie", "Slot 0 of deck does not contain Rookie.");
     QVERIFY2(drawDeckList[5] == "Rookie", "Slot 5 of deck does not contain Rookie.");
-    QVERIFY2(drawDeckList[9] == "Rookie", "Slot 0 of deck does not contain Rookie.");
+    QVERIFY2(drawDeckList[9] == "Rookie", "Slot 9 of deck does not contain Rookie.");
     QVERIFY2(drawDeckList[10] == "Veteran", "Slot 10 of deck does not contain Veteran.");
     QVERIFY2(drawDeckList[19] == "Veteran", "Slot 19 of deck does not contain Veteran.");
 }

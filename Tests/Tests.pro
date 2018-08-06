@@ -8,4 +8,5 @@ SUBDIRS += \
     Cardpool \
     Deck \
     ScriptWrapper \
-    MoveProvider
+    MoveProvider \
+    Gameloop
