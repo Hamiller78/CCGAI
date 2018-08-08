@@ -12,4 +12,6 @@ SOURCES +=  \
     ../../Prototype/deck.cpp \
     ../../Prototype/gameloop.cpp \
     ../../Prototype/gamestate.cpp \
+    ../../Prototype/rulebook.cpp \
+    ../../Prototype/rulebookmock.cpp \
     tst_gamelooptest.cpp

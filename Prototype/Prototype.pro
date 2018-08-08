@@ -48,7 +48,8 @@ SOURCES += \
     pythonsetup.cpp \
     moveprovider.cpp \
     exceptionscriptwrapper.cpp \
-    gamestate.cpp
+    gamestate.cpp \
+    rulebookmock.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -72,7 +73,8 @@ HEADERS += \
     pythonsetup.h \
     moveprovider.h \
     exceptionscriptwrapper.h \
-    gamestate.h
+    gamestate.h \
+    rulebookmock.h
 
 FORMS += \
         mainwindow.ui

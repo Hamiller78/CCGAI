@@ -15,22 +15,22 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef RULEBOOK_H
-#define RULEBOOK_H
+#ifndef RULEBOOKMOCK_H
+#define RULEBOOKMOCK_H
 
 #include "board.h"
 #include "deck.h"
+#include "rulebook.h"
 
 namespace game {
 
-class Rulebook
+class RulebookMock : public Rulebook
 {
 public:
-    Rulebook();
-    virtual ~Rulebook() = 0;
-    virtual Board SetupBoard(const plugin::Deck& Deck1, const plugin::Deck& Deck2) const;
+    RulebookMock();
+    Board SetupBoard(const plugin::Deck& Deck1, const plugin::Deck& Deck2) const override;
 };
 
 } // namespace game
 
-#endif // RULEBOOK_H
+#endif // RULEBOOKMOCK_H
