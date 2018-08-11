@@ -21,6 +21,9 @@
 #include "board.h"
 #include "deck.h"
 
+// Interface class to manage specific game rules.
+// Implementations should be in derived classes.
+
 namespace game {
 
 class Rulebook

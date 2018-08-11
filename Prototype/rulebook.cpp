@@ -19,9 +19,4 @@
 
 namespace game {
 
-Rulebook::Rulebook()
-{
-
-}
-
 } // namespace game
