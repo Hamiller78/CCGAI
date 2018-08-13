@@ -21,6 +21,8 @@
 #include "board.h"
 #include "gamemove.h"
 
+#include <memory>
+
 namespace game {
 
 // Contains the complete description of the game

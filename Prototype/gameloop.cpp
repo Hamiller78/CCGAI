@@ -19,11 +19,11 @@
 
 namespace game {
 
-Gameloop::Gameloop()
+Gameloop::Gameloop(Rulebook &currentRulebook) : currentRulebook_(currentRulebook)
 {
 }
 
-void Gameloop::RunGame()
+void Gameloop::RunGame(std::shared_ptr<GameState> startState)
 {
     // simplifications for prototype:
     // - support only turn structure where one player goes through all turn phases and then passes control to other player

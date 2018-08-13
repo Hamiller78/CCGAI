@@ -24,7 +24,7 @@ RulebookMock::RulebookMock()
 
 }
 
-game::Board game::RulebookMock::SetupBoard(const plugin::Deck &Deck1, const plugin::Deck &Deck2) const
+std::shared_ptr<GameState> RulebookMock::SetupGame(const plugin::Deck &Deck1, const plugin::Deck &Deck2) const
 {
 
 }

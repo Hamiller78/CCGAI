@@ -19,4 +19,9 @@
 
 namespace game {
 
+std::shared_ptr<GameState> Rulebook::SetupGame(const plugin::Deck &Deck1, const plugin::Deck &Deck2) const
+{
+
+}
+
 } // namespace game

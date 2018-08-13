@@ -20,6 +20,9 @@
 
 #include "board.h"
 #include "deck.h"
+#include "gamestate.h"
+
+#include <memory>
 
 // Interface class to manage specific game rules.
 // Implementations should be in derived classes.
@@ -31,7 +34,7 @@ class Rulebook
 public:
     Rulebook();
     virtual ~Rulebook() = 0;
-    virtual Board SetupBoard(const plugin::Deck& Deck1, const plugin::Deck& Deck2) const;
+    virtual std::shared_ptr<GameState> SetupGame(const plugin::Deck& Deck1, const plugin::Deck& Deck2) const;
 };
 
 } // namespace game

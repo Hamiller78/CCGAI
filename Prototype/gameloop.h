@@ -38,10 +38,9 @@ private:
 //    GameState currentGamestate_;
     Rulebook &currentRulebook_;
 public:
-    Gameloop();
-    void RunGame();
+    Gameloop(Rulebook &currentRulebook);
+    void RunGame(std::shared_ptr<GameState> startState);
     void SetRulebook(const Rulebook& usedRulebook){currentRulebook_ = usedRulebook;}
-    void SetupGame(plugin::Deck deck1, plugin::Deck deck2);
 private:
     std::vector<std::shared_ptr<Gamemove>> GetMoves(const GameState& startState);
     std::multimap<int,std::shared_ptr<Gamemove>>

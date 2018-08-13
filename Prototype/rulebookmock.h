@@ -28,7 +28,7 @@ class RulebookMock : public Rulebook
 {
 public:
     RulebookMock();
-    Board SetupBoard(const plugin::Deck& Deck1, const plugin::Deck& Deck2) const override;
+    std::shared_ptr<GameState> SetupGame(const plugin::Deck& Deck1, const plugin::Deck& Deck2) const override;
 };
 
 } // namespace game
