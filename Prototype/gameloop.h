@@ -36,11 +36,10 @@ class Gameloop
 {
 private:
 //    GameState currentGamestate_;
-    Rulebook &currentRulebook_;
+    const Rulebook &currentRulebook_;
 public:
-    Gameloop(Rulebook &currentRulebook);
+    Gameloop(const Rulebook &currentRulebook);
     void RunGame(std::shared_ptr<GameState> startState);
-    void SetRulebook(const Rulebook& usedRulebook){currentRulebook_ = usedRulebook;}
 private:
     std::vector<std::shared_ptr<Gamemove>> GetMoves(const GameState& startState);
     std::multimap<int,std::shared_ptr<Gamemove>>

@@ -27,7 +27,7 @@ Cardpool &Cardpool::GetInstance()
 
 std::shared_ptr<game::Card> Cardpool::MakeCard(int cardIndex)
 {
-    std::shared_ptr<game::Card> newCard (new game::Card(listOfCards_[cardIndex]));
+    std::shared_ptr<game::Card> newCard(new game::Card(listOfCards_[cardIndex]));
     return newCard;
 }
 

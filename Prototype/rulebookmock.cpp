@@ -24,9 +24,19 @@ RulebookMock::RulebookMock()
 
 }
 
-std::shared_ptr<GameState> RulebookMock::SetupGame(const plugin::Deck &Deck1, const plugin::Deck &Deck2) const
+std::shared_ptr<GameState> RulebookMock::SetupGame(const plugin::Deck &deck1, const plugin::Deck &deck2) const
 {
+    std::shared_ptr<GameState> newState(new GameState());
+    SpawnDeck(*newState, deck1, Position(1, -1));
+    SpawnDeck(*newState, deck2, Position(-11, 1));
+    return newState;
+}
 
+void RulebookMock::SpawnDeck(GameState &spawnState, const plugin::Deck &newDeck, const Position &spawnPosition) const
+{
+    // loop over cards in deck
+      // make card with name
+      // add it to board at position
 }
 
 } // namespace game

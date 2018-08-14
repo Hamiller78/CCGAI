@@ -19,7 +19,7 @@
 
 namespace game {
 
-Gameloop::Gameloop(Rulebook &currentRulebook) : currentRulebook_(currentRulebook)
+Gameloop::Gameloop(const Rulebook &currentRulebook) : currentRulebook_(currentRulebook)
 {
 }
 
@@ -62,11 +62,6 @@ void Gameloop::RunGame(std::shared_ptr<GameState> startState)
 //        }
     }
     while (!gameFinished);
-}
-
-void Gameloop::SetupGame(plugin::Deck deck1, plugin::Deck deck2)
-{
-    // TODO: create cards and put them on start positions
 }
 
 std::vector<std::shared_ptr<Gamemove>> Gameloop::GetMoves(const GameState &startState)
