@@ -24,19 +24,25 @@ RulebookMock::RulebookMock()
 
 }
 
-std::shared_ptr<GameState> RulebookMock::SetupGame(const plugin::Deck &deck1, const plugin::Deck &deck2) const
+std::shared_ptr<GameState> RulebookMock::SetupGame(const plugin::Deck &deck1,
+                                                   const plugin::Deck &deck2) const
 {
     std::shared_ptr<GameState> newState(new GameState());
     SpawnDeck(*newState, deck1, Position(1, -1));
-    SpawnDeck(*newState, deck2, Position(-11, 1));
+    SpawnDeck(*newState, deck2, Position(-1, 1));
     return newState;
 }
 
-void RulebookMock::SpawnDeck(GameState &spawnState, const plugin::Deck &newDeck, const Position &spawnPosition) const
+void RulebookMock::SpawnDeck(GameState &spawnState, const plugin::Deck &newDeck,
+                             const Position &spawnPosition) const
 {
-    // loop over cards in deck
-      // make card with name
-      // add it to board at position
+    std::vector<QStringList> deckLists = newDeck.GetDeckLists();
+    for (int i = 0; i < deckLists[0].size(); i++)
+    {
+        std::shared_ptr<Card> newCardPtr
+                = plugin::Cardpool::GetInstance().MakeCard(deckLists[0].at(i));
+        spawnState.AddGamepiece(newCardPtr, spawnPosition);
+    }
 }
 
 } // namespace game

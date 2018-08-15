@@ -32,8 +32,8 @@ private:
     QStringList deckNames_;
 public:
     Deck();
-    const std::vector<QStringList>& GetDeckLists(){return deckLists_;}
-    const QStringList& GetDeckNames(){return deckNames_;}
+    const std::vector<QStringList>& GetDeckLists() const {return deckLists_;}
+    const QStringList& GetDeckNames() const {return deckNames_;}
     void LoadDecklistFromTxt(const QString& deckFileName);
 private:
     void AddCards(const QString& txtLine);

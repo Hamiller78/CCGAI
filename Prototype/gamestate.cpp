@@ -21,7 +21,12 @@ namespace game {
 
 GameState::GameState()
 {
+    containedBoard_ = std::shared_ptr<Board>(new Board);
+}
 
+void GameState::AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position &spawnPosition)
+{
+    containedBoard_->AddGamepiece(newPiece, spawnPosition);
 }
 /*
 game::GameState game::GameState::ExecuteMove(game::Gamemove execMove)

@@ -19,6 +19,7 @@
 #define RULEBOOKMOCK_H
 
 #include "board.h"
+#include "cardpool.h"
 #include "deck.h"
 #include "rulebook.h"
 

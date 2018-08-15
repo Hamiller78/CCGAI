@@ -34,6 +34,7 @@ public:
     GameState();
     void SetBoard(std::shared_ptr<Board> newBoard){containedBoard_ = newBoard;}
 //    GameState ExecuteMove(Gamemove execMove);
+    void AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition);
     bool IsGameOver();
 private:
     std::shared_ptr<Board> containedBoard_{nullptr};
