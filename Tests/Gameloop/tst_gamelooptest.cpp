@@ -17,6 +17,7 @@
 
 #include "../../Prototype/deck.h"
 #include "../../Prototype/gameloop.h"
+#include "../../Prototype/rulebookmock.h"
 
 #include <QtTest>
 
@@ -30,6 +31,7 @@ private:
     Gameloop *testLoop_;
     plugin::Deck *deck1_;
     plugin::Deck *deck2_;
+    RulebookMock *testRulebook_;
 
 public:
     GameloopTest();
@@ -54,7 +56,8 @@ GameloopTest::~GameloopTest()
 
 void GameloopTest::initTestCase()
 {
-    testLoop_ = new Gameloop();
+    testRulebook_ = new RulebookMock();
+    testLoop_ = new Gameloop(*testRulebook_);
     deck1_ = new plugin::Deck();
     deck2_ = new plugin::Deck();
     deck1_->LoadDecklistFromTxt("../../../CCGAI/Tests/testdata/plugins/duelgame/decks/deck1.txt");
@@ -64,11 +67,12 @@ void GameloopTest::initTestCase()
 void GameloopTest::cleanupTestCase()
 {
     delete testLoop_;
+    delete testRulebook_;
 }
 
 void GameloopTest::test_case1()
 {
-    testLoop_->SetupGame(*deck1_, *deck2_);
+    testRulebook_->SetupGame(*deck1_, *deck2_);
 }
 
 QTEST_APPLESS_MAIN(GameloopTest)
