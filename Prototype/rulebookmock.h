@@ -31,6 +31,7 @@ class RulebookMock : public Rulebook
 {
 public:
     RulebookMock();
+    ~RulebookMock() override {}
     std::shared_ptr<GameState> SetupGame(const plugin::Deck& deck1, const plugin::Deck& deck2) const override;
 private:
     void SpawnDeck(GameState &spawnState, const plugin::Deck &newDeck, const Position &spawnPosition) const override;

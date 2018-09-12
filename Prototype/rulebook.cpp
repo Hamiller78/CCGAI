@@ -19,9 +19,4 @@
 
 namespace game {
 
-std::shared_ptr<GameState> Rulebook::SetupGame(const plugin::Deck &deck1, const plugin::Deck &deck2) const
-{
-    return std::shared_ptr<GameState>(new GameState);
-}
-
 } // namespace game
