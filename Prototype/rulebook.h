@@ -37,8 +37,6 @@ public:
     Rulebook(){}
     virtual ~Rulebook(){}
     virtual std::shared_ptr<GameState> SetupGame(const plugin::Deck& deck1, const plugin::Deck& deck2) const = 0;
-private:
-    virtual void SpawnDeck(GameState &spawnState, const plugin::Deck &newDeck, const Position &spawnPosition) const = 0;
 };
 
 } // namespace game
