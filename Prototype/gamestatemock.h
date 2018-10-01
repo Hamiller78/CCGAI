@@ -15,24 +15,26 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
+#ifndef GAMESTATEMOCK_H
+#define GAMESTATEMOCK_H
+
 #include "gamestate.h"
 
 namespace game {
 
-GameState::GameState()
-{
-    containedBoard_ = std::shared_ptr<Board>(new Board);
-}
+// Mock of gamestate class for tests
+// Implemented as derived class from gamestate overriding the required methods
+// Will only simulate a few GameStates indexed by the property stateNumber
 
-void GameState::AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position &spawnPosition)
+class GameStateMock : public GameState
 {
-    containedBoard_->AddGamepiece(newPiece, spawnPosition);
-}
-/*
-game::GameState game::GameState::ExecuteMove(game::Gamemove execMove)
-{
-    return *this;
-}
-*/
+public:
+    GameStateMock();
+    GameStateMock(int stateNumber);
+private:
+    int stateNumber_{0};
+};
 
 } // namespace game
+
+#endif // GAMESTATEMOCK_H

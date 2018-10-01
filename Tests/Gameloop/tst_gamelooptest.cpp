@@ -15,8 +15,8 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "../../Prototype/deck.h"
 #include "../../Prototype/gameloop.h"
+#include "../../Prototype/gamestatemock.h"
 #include "../../Prototype/rulebookmock.h"
 
 #include <QtTest>
@@ -28,10 +28,9 @@ class GameloopTest : public QObject
     Q_OBJECT
 
 private:
-    Gameloop *testLoop_;
-    plugin::Deck *deck1_;
-    plugin::Deck *deck2_;
-    RulebookMock *testRulebook_;
+    std::shared_ptr<Gameloop> testLoop_;
+    std::shared_ptr<Rulebook> testRulebook_;
+    std::shared_ptr<GameState> startState_;
 
 public:
     GameloopTest();
@@ -40,7 +39,7 @@ public:
 private slots:
     void initTestCase();
     void cleanupTestCase();
-    void test_case1();
+    void test_RunGame();
 
 };
 
@@ -56,23 +55,24 @@ GameloopTest::~GameloopTest()
 
 void GameloopTest::initTestCase()
 {
-    testRulebook_ = new RulebookMock();
-    testLoop_ = new Gameloop(*testRulebook_);
-    deck1_ = new plugin::Deck();
-    deck2_ = new plugin::Deck();
-    deck1_->LoadDecklistFromTxt("../../../CCGAI/Tests/testdata/plugins/duelgame/decks/deck1.txt");
-    deck2_->LoadDecklistFromTxt("../../../CCGAI/Tests/testdata/plugins/duelgame/decks/deck1.txt");
+    testRulebook_ = std::shared_ptr<Rulebook>(new RulebookMock());
+    startState_ = std::shared_ptr<GameState>(new GameStateMock(0));
+    testLoop_ = std::shared_ptr<Gameloop>(new Gameloop(*testRulebook_));
 }
 
 void GameloopTest::cleanupTestCase()
 {
-    delete testLoop_;
-    delete testRulebook_;
+    testLoop_.reset();
+    startState_.reset();
+    testRulebook_.reset();
 }
 
-void GameloopTest::test_case1()
+void GameloopTest::test_RunGame()
 {
-    testRulebook_->SetupGame(*deck1_, *deck2_);
+    // TODO: RunGame requires a return value with the result of the game
+    // TODO: Mock objects should check that the expected moves are executed
+    int Winner = testLoop_->RunGame(startState_);
+    QVERIFY2(Winner == 2, "The winner of the game was not player 2!");
 }
 
 QTEST_APPLESS_MAIN(GameloopTest)

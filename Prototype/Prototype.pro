@@ -49,7 +49,8 @@ SOURCES += \
     moveprovider.cpp \
     exceptionscriptwrapper.cpp \
     gamestate.cpp \
-    rulebookmock.cpp
+    rulebookmock.cpp \
+    gamestatemock.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -74,7 +75,8 @@ HEADERS += \
     moveprovider.h \
     exceptionscriptwrapper.h \
     gamestate.h \
-    rulebookmock.h
+    rulebookmock.h \
+    gamestatemock.h
 
 FORMS += \
         mainwindow.ui

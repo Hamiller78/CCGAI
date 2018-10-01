@@ -39,7 +39,7 @@ private:
     const Rulebook &currentRulebook_;
 public:
     Gameloop(const Rulebook &currentRulebook);
-    void RunGame(std::shared_ptr<GameState> startState);
+    int RunGame(std::shared_ptr<GameState> startState);
 private:
     std::vector<std::shared_ptr<Gamemove>> GetMoves(const GameState& startState);
     std::multimap<int,std::shared_ptr<Gamemove>>

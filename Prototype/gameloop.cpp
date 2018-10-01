@@ -23,7 +23,7 @@ Gameloop::Gameloop(const Rulebook &currentRulebook) : currentRulebook_(currentRu
 {
 }
 
-void Gameloop::RunGame(std::shared_ptr<GameState> startState)
+int Gameloop::RunGame(std::shared_ptr<GameState> startState)
 {
     // simplifications for prototype:
     // - support only turn structure where one player goes through all turn phases and then passes control to other player
@@ -62,6 +62,7 @@ void Gameloop::RunGame(std::shared_ptr<GameState> startState)
 //        }
     }
     while (!gameFinished);
+    return 0;
 }
 
 std::vector<std::shared_ptr<Gamemove>> Gameloop::GetMoves(const GameState &startState)
