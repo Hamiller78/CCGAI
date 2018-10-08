@@ -15,32 +15,27 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef RULEBOOK_H
-#define RULEBOOK_H
+#ifndef GAMEMOVEMOCK_H
+#define GAMEMOVEMOCK_H
 
-#include "board.h"
-#include "deck.h"
 #include "gamemove.h"
-#include "gamestate.h"
-
-#include <memory>
-
-// Interface class to manage specific game rules.
-// Implementations should be in derived classes.
 
 namespace game {
 
+// Mock class for gamemoves.
+// Only uses an index number, which is good enough for the related mock classes.
+
 using Position = std::pair<int, int>;
 
-class Rulebook
+class GamemoveMock : public Gamemove
 {
 public:
-    Rulebook(){}
-    virtual ~Rulebook(){}
-    virtual std::shared_ptr<GameState> SetupGame(const plugin::Deck& deck1, const plugin::Deck& deck2) const = 0;
-    virtual std::vector<std::shared_ptr<Gamemove>> GetPossibleMoves(const GameState& currentState) const;
+    GamemoveMock(int moveNumber){moveNumber_ = moveNumber;}
+    Board ApplyOnBoard(const Board& oldBoard) const override;
+private:
+    int moveNumber_{0};
 };
 
 } // namespace game
 
-#endif // RULEBOOK_H
+#endif // GAMEMOVEMOCK_H

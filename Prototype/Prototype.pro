@@ -50,7 +50,8 @@ SOURCES += \
     exceptionscriptwrapper.cpp \
     gamestate.cpp \
     rulebookmock.cpp \
-    gamestatemock.cpp
+    gamestatemock.cpp \
+    gamemovemock.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -76,7 +77,8 @@ HEADERS += \
     exceptionscriptwrapper.h \
     gamestate.h \
     rulebookmock.h \
-    gamestatemock.h
+    gamestatemock.h \
+    gamemovemock.h
 
 FORMS += \
         mainwindow.ui

@@ -15,32 +15,14 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef RULEBOOK_H
-#define RULEBOOK_H
-
-#include "board.h"
-#include "deck.h"
-#include "gamemove.h"
-#include "gamestate.h"
-
-#include <memory>
-
-// Interface class to manage specific game rules.
-// Implementations should be in derived classes.
+#include "gamemovemock.h"
 
 namespace game {
 
-using Position = std::pair<int, int>;
-
-class Rulebook
+game::Board game::GamemoveMock::ApplyOnBoard(const game::Board &oldBoard) const
 {
-public:
-    Rulebook(){}
-    virtual ~Rulebook(){}
-    virtual std::shared_ptr<GameState> SetupGame(const plugin::Deck& deck1, const plugin::Deck& deck2) const = 0;
-    virtual std::vector<std::shared_ptr<Gamemove>> GetPossibleMoves(const GameState& currentState) const;
-};
 
-} // namespace game
+ return Board();
+}
 
-#endif // RULEBOOK_H
+} // namestate game

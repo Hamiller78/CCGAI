@@ -27,22 +27,71 @@ RulebookMock::RulebookMock()
 std::shared_ptr<GameState> RulebookMock::SetupGame(const plugin::Deck &deck1,
                                                    const plugin::Deck &deck2) const
 {
-    std::shared_ptr<GameState> newState(new GameState());
-    SpawnDeck(*newState, deck1, Position(1, -1));
-    SpawnDeck(*newState, deck2, Position(-1, 1));
+    // decks are not used in mock
+    Q_UNUSED(deck1);
+    Q_UNUSED(deck2);
+
+    std::shared_ptr<GameState> newState(new GameStateMock(1));
     return newState;
 }
 
-void RulebookMock::SpawnDeck(GameState &spawnState, const plugin::Deck &newDeck,
-                             const Position &spawnPosition) const
+std::vector<std::shared_ptr<Gamemove>> RulebookMock::GetPossibleMoves(const GameState &currentState) const
 {
-    std::vector<QStringList> deckLists = newDeck.GetDeckLists();
-    for (int i = 0; i < deckLists[0].size(); i++)
+    std::vector<std::shared_ptr<Gamemove>> returnMoves;
+    std::shared_ptr<Gamemove> tempMock;
+
+    // the rulebook mock can only handle GameStateMocks
+    try
     {
-        std::shared_ptr<Card> newCardPtr
-                = plugin::Cardpool::GetInstance().MakeCard(deckLists[0].at(i));
-        spawnState.AddGamepiece(newCardPtr, spawnPosition);
+        const GameStateMock&currentStateMock = dynamic_cast<const GameStateMock&>(currentState);
+
+        // Return fixed GamemoveMocks depending on state number
+        switch(currentStateMock.GetStateNumber())
+        {
+        case 1:
+            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
+            returnMoves.push_back(tempMock);
+            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2));
+            returnMoves.push_back(tempMock);
+            break;
+        case 2:
+            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
+            returnMoves.push_back(tempMock);
+            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2));
+            returnMoves.push_back(tempMock);
+            break;
+        case 3:
+            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
+            returnMoves.push_back(tempMock);
+            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2));
+            returnMoves.push_back(tempMock);
+            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(3));
+            returnMoves.push_back(tempMock);
+            break;
+        case 4:
+            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
+            returnMoves.push_back(tempMock);
+            break;
+        case 5:
+            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
+            returnMoves.push_back(tempMock);
+            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2));
+            returnMoves.push_back(tempMock);
+            break;
+        case 6:
+            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
+            returnMoves.push_back(tempMock);
+            break;
+        default:
+            throw (std::logic_error("RulebookMock called with illegal GamestateMock."));
+        }
     }
+    catch (std::bad_cast)
+    {
+        throw(std::logic_error("RulebookMock was called with a GameState that is not a mock!"));
+    }
+
+    return returnMoves;
 }
 
 } // namespace game

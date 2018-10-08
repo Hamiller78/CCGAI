@@ -19,11 +19,13 @@
 #define RULEBOOKMOCK_H
 
 #include "board.h"
-#include "cardpool.h"
 #include "deck.h"
+#include "gamemovemock.h"
+#include "gamestatemock.h"
 #include "rulebook.h"
 
 #include <memory>
+#include <stdexcept>
 
 namespace game {
 
@@ -33,8 +35,7 @@ public:
     RulebookMock();
     ~RulebookMock() override {}
     std::shared_ptr<GameState> SetupGame(const plugin::Deck& deck1, const plugin::Deck& deck2) const override;
-private:
-    void SpawnDeck(GameState &spawnState, const plugin::Deck &newDeck, const Position &spawnPosition) const;
+    std::vector<std::shared_ptr<Gamemove>> GetPossibleMoves(const GameState& currentState) const override;
 };
 
 } // namespace game

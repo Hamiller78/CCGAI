@@ -31,6 +31,7 @@ class GameStateMock : public GameState
 public:
     GameStateMock();
     GameStateMock(int stateNumber);
+    int GetStateNumber() const {return stateNumber_;}
 private:
     int stateNumber_{0};
 };

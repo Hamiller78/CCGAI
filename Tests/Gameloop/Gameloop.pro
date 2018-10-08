@@ -13,7 +13,9 @@ SOURCES +=  \
     ../../Prototype/board.cpp \
     ../../Prototype/gameloop.cpp \
     ../../Prototype/gamemove.cpp \
+    ../../Prototype/gamemovemock.cpp \
     ../../Prototype/gamestate.cpp \
     ../../Prototype/gamestatemock.cpp \
+    ../../Prototype/pile.cpp \
     ../../Prototype/rulebook.cpp \
     ../../Prototype/rulebookmock.cpp
