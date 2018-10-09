@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017/2018 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -18,5 +18,11 @@
 #include "gamemove.h"
 
 namespace game {
+
+GameState Gamemove::ApplyOnGamestate(const GameState &oldState) const
+{
+ //TODO: copy the gamestate and apply the move on the contained board
+    return GameState();
+}
 
 } // namespace game

@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017/2018 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -19,6 +19,7 @@
 #define GAMEMOVE_H
 
 #include "board.h"
+#include "gamestate.h"
 
 namespace game {
 
@@ -33,6 +34,7 @@ public:
     Gamemove(){}
     virtual ~Gamemove(){}
     virtual Board ApplyOnBoard(const Board& oldBoard) const = 0;
+    virtual GameState ApplyOnGamestate(const GameState& oldState) const;
 };
 
 } // namespace game
