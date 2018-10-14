@@ -19,6 +19,9 @@
 #define GAMEMOVEMOCK_H
 
 #include "gamemove.h"
+#include "gamestatemock.h"
+
+#include <stdexcept>
 
 namespace game {
 
@@ -32,6 +35,7 @@ class GamemoveMock : public Gamemove
 public:
     GamemoveMock(int moveNumber){moveNumber_ = moveNumber;}
     Board ApplyOnBoard(const Board& oldBoard) const override;
+    GameState ApplyOnGamestate(const GameState& oldState) const override;
 private:
     int moveNumber_{0};
 };

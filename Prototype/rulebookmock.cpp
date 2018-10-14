@@ -43,48 +43,13 @@ std::vector<std::shared_ptr<Gamemove>> RulebookMock::GetPossibleMoves(const Game
     // the rulebook mock can only handle GameStateMocks
     try
     {
-        const GameStateMock&currentStateMock = dynamic_cast<const GameStateMock&>(currentState);
+        const GameStateMock &currentStateMock = dynamic_cast<const GameStateMock&>(currentState);
 
-        // Return fixed GamemoveMocks depending on state number
-        switch(currentStateMock.GetStateNumber())
-        {
-        case 1:
-            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
-            returnMoves.push_back(tempMock);
-            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2));
-            returnMoves.push_back(tempMock);
-            break;
-        case 2:
-            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
-            returnMoves.push_back(tempMock);
-            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2));
-            returnMoves.push_back(tempMock);
-            break;
-        case 3:
-            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
-            returnMoves.push_back(tempMock);
-            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2));
-            returnMoves.push_back(tempMock);
-            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(3));
-            returnMoves.push_back(tempMock);
-            break;
-        case 4:
-            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
-            returnMoves.push_back(tempMock);
-            break;
-        case 5:
-            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
-            returnMoves.push_back(tempMock);
-            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2));
-            returnMoves.push_back(tempMock);
-            break;
-        case 6:
-            tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
-            returnMoves.push_back(tempMock);
-            break;
-        default:
-            throw (std::logic_error("RulebookMock called with illegal GamestateMock."));
-        }
+        // Return fixed GamemoveMocks
+        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(-1));
+        returnMoves.push_back(tempMock);
+        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(3));
+        returnMoves.push_back(tempMock);
     }
     catch (std::bad_cast)
     {
@@ -92,6 +57,19 @@ std::vector<std::shared_ptr<Gamemove>> RulebookMock::GetPossibleMoves(const Game
     }
 
     return returnMoves;
+}
+
+int RulebookMock::HasSomeoneWon(const GameState &currentState) const
+{
+    const GameStateMock &currentStateMock = dynamic_cast<const GameStateMock&>(currentState);
+    if (currentStateMock.GetStateNumber() == 99)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 } // namespace game

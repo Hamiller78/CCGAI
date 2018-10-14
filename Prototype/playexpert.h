@@ -15,31 +15,28 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef GAMESTATE_H
-#define GAMESTATE_H
+#ifndef PLAYEXPERT_H
+#define PLAYEXPERT_H
 
-#include "board.h"
+#include "gamemove.h"
 
 #include <memory>
 
+// Interface class to manage rating of game states.
+// Implementations should be in derived classes.
+
 namespace game {
 
-// Contains the complete description of the game
-// including board and later arrow/targets and external counters
-
-class GameState
+class PlayExpert
 {
 public:
-    GameState();
-    GameState(const GameState& sourceState);
-    virtual ~GameState(){}
-    std::shared_ptr<Board> GetBoardPtr() const {return containedBoard_;}
-    void SetBoardPtr(std::shared_ptr<Board> newBoard){containedBoard_ = newBoard;}
-    void AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition);
-private:
-    std::shared_ptr<Board> containedBoard_{nullptr};
+    PlayExpert(){}
+    virtual ~PlayExpert() = 0;
+    virtual std::multimap<int,std::shared_ptr<Gamemove>> RateMoves(const GameState &currentState,
+        const std::vector<std::shared_ptr<Gamemove>> &moveList) const = 0;
+    virtual int RateState(const GameState &rateState) const = 0;
 };
 
 } // namespace game
 
-#endif // GAMESTATE_H
+#endif // PLAYEXPERT_H

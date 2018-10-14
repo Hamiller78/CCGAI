@@ -72,7 +72,7 @@ void GameloopTest::test_RunGame()
     // TODO: RunGame requires a return value with the result of the game
     // TODO: Mock objects should check that the expected moves are executed
     int Winner = testLoop_->RunGame(startState_);
-    QVERIFY2(Winner == 2, "The winner of the game was not player 2!");
+    QVERIFY2(Winner == 1, "The winner of the game was not player 1!");
 }
 
 QTEST_APPLESS_MAIN(GameloopTest)

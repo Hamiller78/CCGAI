@@ -15,31 +15,31 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef GAMESTATE_H
-#define GAMESTATE_H
+#ifndef PLAYEXPERTMOCK_H
+#define PLAYEXPERTMOCK_H
 
-#include "board.h"
+#include "gamemove.h"
+#include "gamemovemock.h"
+#include "gamestatemock.h"
+#include "playexpert.h"
 
 #include <memory>
 
+// Mock for PlayExpert class
+// Will only rate mock moves and states according to their index number
+
 namespace game {
 
-// Contains the complete description of the game
-// including board and later arrow/targets and external counters
-
-class GameState
+class PlayExpertMock : public PlayExpert
 {
 public:
-    GameState();
-    GameState(const GameState& sourceState);
-    virtual ~GameState(){}
-    std::shared_ptr<Board> GetBoardPtr() const {return containedBoard_;}
-    void SetBoardPtr(std::shared_ptr<Board> newBoard){containedBoard_ = newBoard;}
-    void AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition);
-private:
-    std::shared_ptr<Board> containedBoard_{nullptr};
+    PlayExpertMock(){}
+    virtual std::multimap<int,std::shared_ptr<Gamemove>>
+      RateMoves(const GameState &currentState,
+                const std::vector<std::shared_ptr<Gamemove>> &moveList) const override;
+    virtual int RateState(const GameState &rateState) const override;
 };
 
 } // namespace game
 
-#endif // GAMESTATE_H
+#endif // PLAYEXPERTMOCK_H

@@ -15,31 +15,8 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef GAMESTATE_H
-#define GAMESTATE_H
-
-#include "board.h"
-
-#include <memory>
+#include "playexpert.h"
 
 namespace game {
 
-// Contains the complete description of the game
-// including board and later arrow/targets and external counters
-
-class GameState
-{
-public:
-    GameState();
-    GameState(const GameState& sourceState);
-    virtual ~GameState(){}
-    std::shared_ptr<Board> GetBoardPtr() const {return containedBoard_;}
-    void SetBoardPtr(std::shared_ptr<Board> newBoard){containedBoard_ = newBoard;}
-    void AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition);
-private:
-    std::shared_ptr<Board> containedBoard_{nullptr};
-};
-
 } // namespace game
-
-#endif // GAMESTATE_H

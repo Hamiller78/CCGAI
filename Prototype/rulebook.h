@@ -39,6 +39,7 @@ public:
     virtual ~Rulebook(){}
     virtual std::shared_ptr<GameState> SetupGame(const plugin::Deck& deck1, const plugin::Deck& deck2) const = 0;
     virtual std::vector<std::shared_ptr<Gamemove>> GetPossibleMoves(const GameState& currentState) const = 0;
+    virtual int HasSomeoneWon(const GameState& currentState) const = 0;
 };
 
 } // namespace game

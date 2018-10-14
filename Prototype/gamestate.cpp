@@ -24,15 +24,14 @@ GameState::GameState()
     containedBoard_ = std::shared_ptr<Board>(new Board);
 }
 
+GameState::GameState(const GameState &sourceState)
+{
+    containedBoard_ = sourceState.GetBoardPtr();
+}
+
 void GameState::AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position &spawnPosition)
 {
     containedBoard_->AddGamepiece(newPiece, spawnPosition);
 }
-/*
-game::GameState game::GameState::ExecuteMove(game::Gamemove execMove)
-{
-    return *this;
-}
-*/
 
 } // namespace game

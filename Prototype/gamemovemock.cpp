@@ -21,8 +21,16 @@ namespace game {
 
 game::Board game::GamemoveMock::ApplyOnBoard(const game::Board &oldBoard) const
 {
+    throw(std::logic_error("ApplyOnBoard method of GamemoveMock class should never be called!"));
+    return Board();
+}
 
- return Board();
+GameState GamemoveMock::ApplyOnGamestate(const GameState &oldState) const
+{
+    const GameStateMock &oldStateMock = dynamic_cast<const GameStateMock&>(oldState);
+    int tempStateNumber = oldStateMock.GetStateNumber();
+    const GameStateMock newStateMock(tempStateNumber + moveNumber_);
+    return newStateMock;
 }
 
 } // namestate game

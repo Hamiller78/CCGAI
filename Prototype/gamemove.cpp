@@ -21,8 +21,9 @@ namespace game {
 
 GameState Gamemove::ApplyOnGamestate(const GameState &oldState) const
 {
- //TODO: copy the gamestate and apply the move on the contained board
-    return GameState();
+    GameState resultState = GameState(oldState);
+    ApplyOnBoard(*resultState.GetBoardPtr());
+    return resultState;
 }
 
 } // namespace game
