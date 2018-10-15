@@ -19,7 +19,8 @@
 
 namespace game {
 
-Gameloop::Gameloop(const Rulebook &currentRulebook) : currentRulebook_(currentRulebook)
+Gameloop::Gameloop(const Rulebook &usedRulebook, const PlayerAgent &usedPlayExpert)
+    : usedRulebook_(usedRulebook), usedPlayExpert_(usedPlayExpert)
 {
 }
 

@@ -15,12 +15,30 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "playexpertmock.h"
+#include "playeragentmock.h"
 
 namespace game {
 
+std::shared_ptr<Gamemove>
+    PlayerAgentMock::ChooseMove(const GameState &currentState,
+                                const std::vector<std::shared_ptr<Gamemove> > &moveList) const
+{
+    const std::multimap<int, std::shared_ptr<game::Gamemove>> ratedMoveList
+            = RateMoves(currentState, moveList);
+    if (ratedMoveList.size() > 0)
+    {
+        auto topMoveIter = ratedMoveList.end();
+        topMoveIter--;
+        return topMoveIter->second;
+    }
+    else
+    {
+        return std::shared_ptr<Gamemove>(nullptr);
+    }
+}
+
 std::multimap<int, std::shared_ptr<game::Gamemove>>
-    game::PlayExpertMock::RateMoves(const game::GameState &currentState,
+    game::PlayerAgentMock::RateMoves(const game::GameState &currentState,
                                     const std::vector<std::shared_ptr<game::Gamemove> > &moveList) const
 {
     // this throws a bad cast exception if the GameState is not a mock
@@ -37,7 +55,7 @@ std::multimap<int, std::shared_ptr<game::Gamemove>>
     return ratedMoves;
 }
 
-int PlayExpertMock::RateState(const GameState &rateState) const
+int PlayerAgentMock::RateState(const GameState &rateState) const
 {
     const GameStateMock &curStateMock = dynamic_cast<const GameStateMock&>(rateState);
     return curStateMock.GetStateNumber();

@@ -52,8 +52,8 @@ SOURCES += \
     gamestate.cpp \
     gamestatemock.cpp \
     gamemovemock.cpp \
-    playexpert.cpp \
-    playexpertmock.cpp
+    playeragent.cpp \
+    playeragentmock.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -81,8 +81,8 @@ HEADERS += \
     gamestate.h \
     gamestatemock.h \
     gamemovemock.h \
-    playexpert.h \
-    playexpertmock.h
+    playeragent.h \
+    playeragentmock.h
 
 FORMS += \
         mainwindow.ui

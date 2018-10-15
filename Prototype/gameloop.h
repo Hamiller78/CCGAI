@@ -23,6 +23,7 @@
 #include "deck.h"
 #include "gamemove.h"
 #include "gamestate.h"
+#include "playeragent.h"
 #include "rulebook.h"
 
 #include <memory>
@@ -36,9 +37,10 @@ class Gameloop
 {
 private:
 //    GameState currentGamestate_;
-    const Rulebook &currentRulebook_;
+    const PlayerAgent &usedPlayExpert_;
+    const Rulebook &usedRulebook_;
 public:
-    Gameloop(const Rulebook &currentRulebook);
+    Gameloop(const Rulebook &usedRulebook, const PlayerAgent &usedPlayExpert);
     int RunGame(std::shared_ptr<GameState> startState);
 private:
     std::vector<std::shared_ptr<Gamemove>> GetMoves(const GameState& startState);

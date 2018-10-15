@@ -15,31 +15,30 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef PLAYEXPERTMOCK_H
-#define PLAYEXPERTMOCK_H
+#ifndef PLAYERAGENT_H
+#define PLAYERAGENT_H
 
 #include "gamemove.h"
-#include "gamemovemock.h"
-#include "gamestatemock.h"
-#include "playexpert.h"
+#include "gamestate.h"
 
 #include <memory>
+#include <vector>
 
-// Mock for PlayExpert class
-// Will only rate mock moves and states according to their index number
+// Interface class to manage possible players like AI, GUI interface for human player, network connection...
+// Implementations should be in derived classes.
 
 namespace game {
 
-class PlayExpertMock : public PlayExpert
+class PlayerAgent
 {
 public:
-    PlayExpertMock(){}
-    virtual std::multimap<int,std::shared_ptr<Gamemove>>
-      RateMoves(const GameState &currentState,
-                const std::vector<std::shared_ptr<Gamemove>> &moveList) const override;
-    virtual int RateState(const GameState &rateState) const override;
+    PlayerAgent(){}
+    virtual ~PlayerAgent(){}
+    virtual std::shared_ptr<Gamemove>
+        ChooseMove(const GameState &currentState,
+                   const std::vector<std::shared_ptr<Gamemove>> &moveList) const = 0;
 };
 
 } // namespace game
 
-#endif // PLAYEXPERTMOCK_H
+#endif // PLAYERAGENT_H

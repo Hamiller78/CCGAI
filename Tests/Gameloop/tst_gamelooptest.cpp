@@ -17,6 +17,7 @@
 
 #include "../../Prototype/gameloop.h"
 #include "../../Prototype/gamestatemock.h"
+#include "../../Prototype/playeragentmock.h"
 #include "../../Prototype/rulebookmock.h"
 
 #include <QtTest>
@@ -30,6 +31,7 @@ class GameloopTest : public QObject
 private:
     std::shared_ptr<Gameloop> testLoop_;
     std::shared_ptr<Rulebook> testRulebook_;
+    std::shared_ptr<PlayerAgent> testPlayExpert_;
     std::shared_ptr<GameState> startState_;
 
 public:
@@ -56,20 +58,21 @@ GameloopTest::~GameloopTest()
 void GameloopTest::initTestCase()
 {
     testRulebook_ = std::shared_ptr<Rulebook>(new RulebookMock());
+    testPlayExpert_ = std::shared_ptr<PlayerAgent>(new PlayerAgentMock());
+    testLoop_ = std::shared_ptr<Gameloop>(new Gameloop(*testRulebook_, *testPlayExpert_));
     startState_ = std::shared_ptr<GameState>(new GameStateMock(0));
-    testLoop_ = std::shared_ptr<Gameloop>(new Gameloop(*testRulebook_));
 }
 
 void GameloopTest::cleanupTestCase()
 {
     testLoop_.reset();
     startState_.reset();
+    testPlayExpert_.reset();
     testRulebook_.reset();
 }
 
 void GameloopTest::test_RunGame()
 {
-    // TODO: RunGame requires a return value with the result of the game
     // TODO: Mock objects should check that the expected moves are executed
     int Winner = testLoop_->RunGame(startState_);
     QVERIFY2(Winner == 1, "The winner of the game was not player 1!");

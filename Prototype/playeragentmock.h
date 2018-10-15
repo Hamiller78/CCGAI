@@ -15,28 +15,37 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef PLAYEXPERT_H
-#define PLAYEXPERT_H
+#ifndef PLAYERAGENTMOCK_H
+#define PLAYERAGENTMOCK_H
 
 #include "gamemove.h"
+#include "gamemovemock.h"
+#include "gamestatemock.h"
+#include "playeragent.h"
 
+#include <map>
 #include <memory>
 
-// Interface class to manage rating of game states.
-// Implementations should be in derived classes.
+// Mock for PlayExpert class
+// Will only rate mock moves and states according to their index number
 
 namespace game {
 
-class PlayExpert
+class PlayerAgentMock : public PlayerAgent
 {
 public:
-    PlayExpert(){}
-    virtual ~PlayExpert() = 0;
-    virtual std::multimap<int,std::shared_ptr<Gamemove>> RateMoves(const GameState &currentState,
-        const std::vector<std::shared_ptr<Gamemove>> &moveList) const = 0;
-    virtual int RateState(const GameState &rateState) const = 0;
+    PlayerAgentMock(){}
+    ~PlayerAgentMock() override {}
+    virtual std::shared_ptr<Gamemove>
+        ChooseMove(const GameState &currentState,
+                   const std::vector<std::shared_ptr<Gamemove>> &moveList) const override;
+private:
+    std::multimap<int,std::shared_ptr<Gamemove>>
+      RateMoves(const GameState &currentState,
+                const std::vector<std::shared_ptr<Gamemove>> &moveList) const;
+    int RateState(const GameState &rateState) const;
 };
 
 } // namespace game
 
-#endif // PLAYEXPERT_H
+#endif // PLAYERAGENTMOCK_H
