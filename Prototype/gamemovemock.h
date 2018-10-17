@@ -36,6 +36,7 @@ public:
     GamemoveMock(int moveNumber){moveNumber_ = moveNumber;}
     Board ApplyOnBoard(const Board& oldBoard) const override;
     GameState ApplyOnGamestate(const GameState& oldState) const override;
+    GameStateMock ApplyOnGamestateMock(const GameState& oldState) const;
 private:
     int moveNumber_{0};
 };

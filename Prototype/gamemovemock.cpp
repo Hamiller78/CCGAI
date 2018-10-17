@@ -27,6 +27,11 @@ game::Board game::GamemoveMock::ApplyOnBoard(const game::Board &oldBoard) const
 
 GameState GamemoveMock::ApplyOnGamestate(const GameState &oldState) const
 {
+    return ApplyOnGamestateMock(oldState);
+}
+
+GameStateMock GamemoveMock::ApplyOnGamestateMock(const GameState &oldState) const
+{
     const GameStateMock &oldStateMock = dynamic_cast<const GameStateMock&>(oldState);
     int tempStateNumber = oldStateMock.GetStateNumber();
     const GameStateMock newStateMock(tempStateNumber + moveNumber_);

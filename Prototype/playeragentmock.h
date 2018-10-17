@@ -41,8 +41,8 @@ public:
                    const std::vector<std::shared_ptr<Gamemove>> &moveList) const override;
 private:
     std::multimap<int,std::shared_ptr<Gamemove>>
-      RateMoves(const GameState &currentState,
-                const std::vector<std::shared_ptr<Gamemove>> &moveList) const;
+        RateMoves(const GameState &currentState,
+                  const std::vector<std::shared_ptr<Gamemove>> &moveList) const;
     int RateState(const GameState &rateState) const;
 };
 

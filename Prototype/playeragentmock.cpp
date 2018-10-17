@@ -38,18 +38,20 @@ std::shared_ptr<Gamemove>
 }
 
 std::multimap<int, std::shared_ptr<game::Gamemove>>
-    game::PlayerAgentMock::RateMoves(const game::GameState &currentState,
-                                    const std::vector<std::shared_ptr<game::Gamemove> > &moveList) const
+    game::PlayerAgentMock::RateMoves
+        (const game::GameState &currentState,
+         const std::vector<std::shared_ptr<game::Gamemove> > &moveList) const
 {
     // this throws a bad cast exception if the GameState is not a mock
     const GameStateMock &curStateMock = dynamic_cast<const GameStateMock&>(currentState);
 
     std::multimap<int, std::shared_ptr<game::Gamemove>> ratedMoves;
-    for (auto &currentMove : moveList)
+    for (auto const &currentMove : moveList)
     {
         const GamemoveMock &curMoveMock = dynamic_cast<const GamemoveMock&>(*currentMove);
-        const GameState nextState = curMoveMock.ApplyOnGamestate(curStateMock);
-        int moveRating = RateState(nextState);
+        const GameStateMock nextStateMock
+                = curMoveMock.ApplyOnGamestateMock(curStateMock);
+        int moveRating = RateState(nextStateMock);
         ratedMoves.emplace(moveRating, currentMove);
     }
     return ratedMoves;

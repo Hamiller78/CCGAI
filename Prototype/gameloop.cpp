@@ -19,35 +19,36 @@
 
 namespace game {
 
-Gameloop::Gameloop(const Rulebook &usedRulebook, const PlayerAgent &usedPlayExpert)
-    : usedRulebook_(usedRulebook), usedPlayExpert_(usedPlayExpert)
+Gameloop::Gameloop(const Rulebook &usedRulebook, const PlayerAgent &player1)
+    : player1_(player1), usedRulebook_(usedRulebook)
 {
 }
 
-int Gameloop::RunGame(std::shared_ptr<GameState> startState)
+int Gameloop::RunGame(GameState &startState)
 {
     // simplifications for prototype:
     // - support only turn structure where one player goes through all turn phases and then passes control to other player
     // - no reaction actions by the opponent yet
     // - move depth when checking value of a move only 1
+    // - TODO: Support more than one player
+    // - TODO: Other player may do something when first player passes
 
-    // required actions:
-    // - execute best move
-    // - break loop when game finish condition reached
-    bool gameFinished = false;
+    int winner = 0;
     int currentPhase = 1;
     int activePlayer = 1;
+
+    GameState currentState = startState;
+
     do
     {
-        // get moves and rate them
-//        std::vector<std::shared_ptr<Gamemove>> moveList = GetMoves(currentGamestate_);
-//        std::multimap<int,std::shared_ptr<Gamemove>> ratedMoveList = RateMoves(moveList);
-        // get best rated move
-//        std::multimap<int,std::shared_ptr<Gamemove>>::iterator it=ratedMoveList.end();
-//        std::shared_ptr<Gamemove> bestMovePtr = (*it).second;
+        // get moves and choose one
+        std::vector<std::shared_ptr<Gamemove>> moveList
+                = usedRulebook_.GetPossibleMoves(startState);
+        std::shared_ptr<Gamemove> chosenMovePtr = player1_.ChooseMove(startState, moveList);
 
-//        Gamestate newGamestate = currentGamestate_.ExecuteMove(bestMove);
-//        gameFinished = newGamestate.IsGameOver();
+        // TODO: Mock classes can't handle the original gamestate class
+        currentState = chosenMovePtr->ApplyOnGamestate(currentState);
+        winner = usedRulebook_.HasSomeoneWon(currentState);
 //        if (bestMove.type() == PASS)
 //        {
 //            currentPhase++;
@@ -62,8 +63,8 @@ int Gameloop::RunGame(std::shared_ptr<GameState> startState)
 //            }
 //        }
     }
-    while (!gameFinished);
-    return 0;
+    while (winner == 0);
+    return winner;
 }
 
 std::vector<std::shared_ptr<Gamemove>> Gameloop::GetMoves(const GameState &startState)

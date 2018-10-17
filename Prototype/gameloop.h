@@ -37,11 +37,11 @@ class Gameloop
 {
 private:
 //    GameState currentGamestate_;
-    const PlayerAgent &usedPlayExpert_;
+    const PlayerAgent &player1_;
     const Rulebook &usedRulebook_;
 public:
-    Gameloop(const Rulebook &usedRulebook, const PlayerAgent &usedPlayExpert);
-    int RunGame(std::shared_ptr<GameState> startState);
+    Gameloop(const Rulebook &usedRulebook, const PlayerAgent &player1);
+    int RunGame(GameState &startState);
 private:
     std::vector<std::shared_ptr<Gamemove>> GetMoves(const GameState& startState);
     std::multimap<int,std::shared_ptr<Gamemove>>
