@@ -48,11 +48,11 @@ std::multimap<int, std::shared_ptr<game::Gamemove>>
     std::multimap<int, std::shared_ptr<game::Gamemove>> ratedMoves;
     for (auto const &currentMove : moveList)
     {
-        const GamemoveMock &curMoveMock = dynamic_cast<const GamemoveMock&>(*currentMove);
-        const GameStateMock nextStateMock
-                = curMoveMock.ApplyOnGamestateMock(curStateMock);
-        int moveRating = RateState(nextStateMock);
-        ratedMoves.emplace(moveRating, currentMove);
+//        const GamemoveMock &curMoveMock = dynamic_cast<const GamemoveMock&>(*currentMove);
+//        const GameStateMock nextStateMock
+//                = curMoveMock.ApplyOnGamestateMock(curStateMock);
+//        int moveRating = RateState(nextStateMock);
+//        ratedMoves.emplace(moveRating, currentMove);
     }
     return ratedMoves;
 }

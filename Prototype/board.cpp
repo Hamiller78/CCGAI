@@ -26,11 +26,7 @@ Board::Board()
 
 Board::Board(const Board &sourceBoard)
 {
-    for (auto loopPile : sourceBoard.pilesOnBoard_)
-    {
-        Pile* pileCopy = new Pile(*loopPile.second);
-        pilesOnBoard_[loopPile.first] = pileCopy;
-    }
+    CopyBoardMembers(sourceBoard);
 }
 
 Board::~Board()
@@ -39,6 +35,15 @@ Board::~Board()
     {
         delete pileIterator.second;
     }
+}
+
+Board &Board::operator=(const Board &otherBoard)
+{
+    if (this != &otherBoard)
+    {
+        CopyBoardMembers(otherBoard);
+    }
+    return *this;
 }
 
 void Board::AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition)
@@ -102,6 +107,15 @@ void Board::RemovePile(const Position &clearPosition)
     else
     {
         throw std::logic_error("Attempted to remove a pile from an empty board tile!");
+    }
+}
+
+void Board::CopyBoardMembers(const Board &sourceBoard)
+{
+    for (auto loopPile : sourceBoard.pilesOnBoard_)
+    {
+        Pile* pileCopy = new Pile(*loopPile.second);
+        pilesOnBoard_[loopPile.first] = pileCopy;
     }
 }
 

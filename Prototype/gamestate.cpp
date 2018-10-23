@@ -21,17 +21,17 @@ namespace game {
 
 GameState::GameState()
 {
-    containedBoard_ = std::shared_ptr<Board>(new Board);
+
 }
 
-GameState::GameState(const GameState &sourceState)
+GameState::GameState(const GameState &sourceState) : Board(sourceState)
 {
-    containedBoard_ = sourceState.GetBoardPtr();
 }
 
-void GameState::AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position &spawnPosition)
+GameState &GameState::operator=(const GameState &otherState)
 {
-    containedBoard_->AddGamepiece(newPiece, spawnPosition);
+    Board::operator=(otherState);
+    return *this;
 }
 
 } // namespace game

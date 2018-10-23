@@ -25,11 +25,11 @@ GamemoveMovePile::GamemoveMovePile(const Position &startPosition, const Position
     targetPosition_ = targetPosition;
 }
 
-Board GamemoveMovePile::ApplyOnBoard(const Board &oldBoard) const
+GameState GamemoveMovePile::ApplyOnGamestate(const GameState &oldState) const
 {
-    Board newBoard(oldBoard);
-    newBoard.MovePile(startPosition_, targetPosition_);
-    return newBoard;
+    GameState newState(oldState);
+    newState.MovePile(startPosition_, targetPosition_);
+    return newState;
 }
 
 } // namespace game

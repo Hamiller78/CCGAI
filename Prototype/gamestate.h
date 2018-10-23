@@ -27,17 +27,15 @@ namespace game {
 // Contains the complete description of the game
 // including board and later arrow/targets and external counters
 
-class GameState
+class GameState : public Board
 {
 public:
     GameState();
     GameState(const GameState& sourceState);
     virtual ~GameState(){}
-    std::shared_ptr<Board> GetBoardPtr() const {return containedBoard_;}
-    void SetBoardPtr(std::shared_ptr<Board> newBoard){containedBoard_ = newBoard;}
-    void AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition);
+    GameState &operator=(const GameState& otherState);
 private:
-    std::shared_ptr<Board> containedBoard_{nullptr};
+
 };
 
 } // namespace game

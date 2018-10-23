@@ -25,11 +25,11 @@ GamemoveMoveTop::GamemoveMoveTop(const Position &startPosition, const Position &
     targetPosition_ = targetPosition;
 }
 
-Board GamemoveMoveTop::ApplyOnBoard(const Board &oldBoard) const
+GameState GamemoveMoveTop::ApplyOnGamestate(const GameState &oldState) const
 {
-    Board newBoard(oldBoard);
-    newBoard.MoveTopPiece(startPosition_, targetPosition_);
-    return newBoard;
+    GameState newState(oldState);
+    newState.MoveTopPiece(startPosition_, targetPosition_);
+    return newState;
 }
 
 } // namespace game

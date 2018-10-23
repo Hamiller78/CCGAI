@@ -31,7 +31,7 @@ class GamemoveSpawnPiece : public Gamemove
 {
 public:
     GamemoveSpawnPiece(int cardNumber, const Position& spawnPosition);
-    Board ApplyOnBoard(const Board& oldBoard) const override;
+    GameState ApplyOnGamestate(const GameState& oldState) const override;
 private:
     int cardNumber_;
     Position spawnPosition_;

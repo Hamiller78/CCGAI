@@ -41,6 +41,7 @@ public:
     Board();
     Board(const Board& sourceBoard);
     ~Board();
+    Board &operator=(const Board& otherBoard);
     void AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition);
     std::shared_ptr<Gamepiece> GetTopPiece(const Position& pilePosition) const;
     void MovePile(const Position& startPosition, const Position& destinationPosition);
@@ -48,6 +49,7 @@ public:
     void RemovePile(const Position& clearPosition);
 private:
     std::map<Position, Pile*> pilesOnBoard_;
+    void CopyBoardMembers(const Board& sourceBoard);
 };
 
 } // namespace game

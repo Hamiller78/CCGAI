@@ -33,8 +33,7 @@ class Gamemove
 public:
     Gamemove(){}
     virtual ~Gamemove(){}
-    virtual Board ApplyOnBoard(const Board& oldBoard) const = 0;
-    virtual GameState ApplyOnGamestate(const GameState& oldState) const;
+    virtual GameState ApplyOnGamestate(const GameState& oldState) const = 0;
 };
 
 } // namespace game

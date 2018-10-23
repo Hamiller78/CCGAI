@@ -19,11 +19,4 @@
 
 namespace game {
 
-GameState Gamemove::ApplyOnGamestate(const GameState &oldState) const
-{
-    GameState resultState = GameState(oldState);
-    ApplyOnBoard(*resultState.GetBoardPtr());
-    return resultState;
-}
-
 } // namespace game
