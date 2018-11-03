@@ -39,9 +39,11 @@ public:
 private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
-    void testCase1();
-    void testCase2();
-    void testCase3();
+    void test_AddMoveRemovePile();
+    void test_Exception();
+    void test_PileHandling();
+    void test_AssignmentOperator();
+    void test_CopyConstructor();
 };
 
 BoardTest::BoardTest()
@@ -62,7 +64,7 @@ void BoardTest::cleanupTestCase()
     delete testBoard_;
 }
 
-void BoardTest::testCase1()
+void BoardTest::test_AddMoveRemovePile()
 {
     // add a gamepiece, move it and remove it
     testBoard_->AddGamepiece(testPiece1_, Position (0, 0));
@@ -70,7 +72,7 @@ void BoardTest::testCase1()
     testBoard_->RemovePile(Position(1, 1));
 }
 
-void BoardTest::testCase2()
+void BoardTest::test_Exception()
 {
     // move non-existing pile to test exceptions
     QVERIFY_EXCEPTION_THROWN(testBoard_->MovePile(Position (0, 0),
@@ -78,7 +80,7 @@ void BoardTest::testCase2()
     QVERIFY_EXCEPTION_THROWN(testBoard_->RemovePile(Position(2, 2)), std::logic_error);
 }
 
-void BoardTest::testCase3()
+void BoardTest::test_PileHandling()
 {
     // test pile handling
     testBoard_->AddGamepiece(testPiece1_, Position (0, 0));
@@ -91,7 +93,32 @@ void BoardTest::testCase3()
     QVERIFY2(testPiece2_ == testBoard_->GetTopPiece(Position(0, 0)),
       "Testpiece 2 not found on top at (0,0).");
     testBoard_->RemovePile(Position(0, 0));
+    testBoard_->RemovePile(Position(2, 0));
     QVERIFY_EXCEPTION_THROWN(testBoard_->RemovePile(Position(1, 0));, std::logic_error);
+}
+
+void BoardTest::test_AssignmentOperator()
+{
+    Board *sourceBoard = new Board;
+    sourceBoard->AddGamepiece(testPiece1_, Position(3, 2));
+    Board copyBoard = *sourceBoard;
+    QVERIFY2(testPiece1_ == copyBoard.GetTopPiece(Position(3, 2)),
+      "Testpiece 1 not copied properly to new board.");
+    delete sourceBoard;
+    QVERIFY2(testPiece1_ == copyBoard.GetTopPiece(Position(3, 2)),
+      "Testpiece 1 not found after deleting sourceBoard.");
+}
+
+void BoardTest::test_CopyConstructor()
+{
+    Board *sourceBoard = new Board;
+    sourceBoard->AddGamepiece(testPiece1_, Position(3, 2));
+    Board copyBoard(*sourceBoard);
+    QVERIFY2(testPiece1_ == copyBoard.GetTopPiece(Position(3, 2)),
+      "Testpiece 1 not copied properly to new board.");
+    delete sourceBoard;
+    QVERIFY2(testPiece1_ == copyBoard.GetTopPiece(Position(3, 2)),
+      "Testpiece 1 not found after deleting sourceBoard.");
 }
 
 QTEST_APPLESS_MAIN(BoardTest)
