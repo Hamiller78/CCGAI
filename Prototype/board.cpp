@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017,2018 Torben Kneesch
 
  This file is part of the CCGAI Framework
 

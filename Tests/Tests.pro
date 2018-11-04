@@ -9,4 +9,5 @@ SUBDIRS += \
     Deck \
     ScriptWrapper \
     MoveProvider \
-    Gameloop
+    Gameloop \
+    Gamestate

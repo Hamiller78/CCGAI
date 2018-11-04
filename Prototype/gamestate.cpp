@@ -19,6 +19,8 @@
 
 namespace game {
 
+int GameState::numberOfPointCounters_ = 2;
+
 GameState::GameState()
 {
 

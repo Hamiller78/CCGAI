@@ -29,11 +29,21 @@ namespace game {
 
 class GameState : public Board
 {
+private:
+    static int numberOfPointCounters_;
 public:
     GameState();
     GameState(const GameState& sourceState);
     virtual ~GameState(){}
     GameState &operator=(const GameState& otherState);
+
+    static int GetNumberOfPointCounters(){return numberOfPointCounters_;}
+    static void SetNumberOfPointCounters(int newNumber){numberOfPointCounters_ = newNumber;}
+
+    void AlterPoints(int pointIndex, int relativeValue);
+    int GetPoints(int pointIndex);
+    void SetPoints(int pointIndex, int absoluteValue);
+
 private:
 
 };
