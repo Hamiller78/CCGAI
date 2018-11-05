@@ -50,7 +50,6 @@ SOURCES += \
     moveprovider.cpp \
     exceptionscriptwrapper.cpp \
     gamestate.cpp \
-    gamestatemock.cpp \
     gamemovemock.cpp \
     playeragent.cpp \
     playeragentmock.cpp
@@ -79,7 +78,6 @@ HEADERS += \
     moveprovider.h \
     exceptionscriptwrapper.h \
     gamestate.h \
-    gamestatemock.h \
     gamemovemock.h \
     playeragent.h \
     playeragentmock.h

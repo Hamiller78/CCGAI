@@ -19,7 +19,7 @@
 #define GAMEMOVEMOCK_H
 
 #include "gamemove.h"
-#include "gamestatemock.h"
+#include "gamestate.h"
 
 #include <stdexcept>
 

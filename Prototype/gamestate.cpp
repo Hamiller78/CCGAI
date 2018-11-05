@@ -17,23 +17,56 @@
 
 #include "gamestate.h"
 
+//TODO: Error handling: Redefinition of number of point counter when objects are instanced and bound violations
+
 namespace game {
 
-int GameState::numberOfPointCounters_ = 2;
+unsigned int GameState::numberOfPointCounters_ = 2;
 
 GameState::GameState()
 {
+    pointCounters_ = new std::vector<int>(numberOfPointCounters_, 0);
+}
 
+GameState::~GameState()
+{
+    delete pointCounters_;
 }
 
 GameState::GameState(const GameState &sourceState) : Board(sourceState)
 {
+    CopyPointCounters(sourceState);
 }
 
 GameState &GameState::operator=(const GameState &otherState)
 {
     Board::operator=(otherState);
+    CopyPointCounters(otherState);
     return *this;
+}
+
+void GameState::AlterPoints(unsigned int pointIndex, int relativeValue)
+{
+    pointCounters_->at(pointIndex) = pointCounters_->at(pointIndex) + relativeValue;
+}
+
+int GameState::GetPoints(unsigned int pointIndex) const
+{
+    return pointCounters_->at(pointIndex);
+}
+
+void GameState::SetPoints(unsigned int pointIndex, int absoluteValue)
+{
+    pointCounters_->at(pointIndex) = absoluteValue;
+}
+
+void GameState::CopyPointCounters(const GameState &sourceState)
+{
+    if (nullptr != pointCounters_)
+    {
+        throw(std::logic_error("Point counters already set when copying GameState!"));
+    }
+    pointCounters_ = new std::vector<int>(*sourceState.pointCounters_);
 }
 
 } // namespace game

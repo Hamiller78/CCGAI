@@ -31,7 +31,7 @@ std::shared_ptr<GameState> RulebookMock::SetupGame(const plugin::Deck &deck1,
     Q_UNUSED(deck1);
     Q_UNUSED(deck2);
 
-    std::shared_ptr<GameState> newState(new GameStateMock(1));
+    std::shared_ptr<GameState> newState(new GameState());
     return newState;
 }
 
@@ -43,7 +43,7 @@ std::vector<std::shared_ptr<Gamemove>> RulebookMock::GetPossibleMoves(const Game
     // the rulebook mock can only handle GameStateMocks
     try
     {
-        const GameStateMock &currentStateMock = dynamic_cast<const GameStateMock&>(currentState);
+        const GameState &currentState = dynamic_cast<const GameState&>(currentState);
 
         // Return fixed GamemoveMocks
         tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(-1));
@@ -61,8 +61,8 @@ std::vector<std::shared_ptr<Gamemove>> RulebookMock::GetPossibleMoves(const Game
 
 int RulebookMock::HasSomeoneWon(const GameState &currentState) const
 {
-    const GameStateMock &currentStateMock = dynamic_cast<const GameStateMock&>(currentState);
-    if (currentStateMock.GetStateNumber() == 99)
+    const GameState &currentStateMock = dynamic_cast<const GameState&>(currentState);
+    if (currentState.GetPoints(0) == 99)
     {
         return 1;
     }

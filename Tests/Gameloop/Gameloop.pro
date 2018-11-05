@@ -15,7 +15,6 @@ SOURCES +=  \
     ../../Prototype/gamemove.cpp \
     ../../Prototype/gamemovemock.cpp \
     ../../Prototype/gamestate.cpp \
-    ../../Prototype/gamestatemock.cpp \
     ../../Prototype/pile.cpp \
     ../../Prototype/playeragent.cpp \
     ../../Prototype/playeragentmock.cpp \

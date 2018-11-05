@@ -21,7 +21,7 @@
 #include "board.h"
 #include "deck.h"
 #include "gamemovemock.h"
-#include "gamestatemock.h"
+#include "gamestate.h"
 #include "rulebook.h"
 
 #include <memory>

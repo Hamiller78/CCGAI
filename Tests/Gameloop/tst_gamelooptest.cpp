@@ -16,7 +16,7 @@
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "../../Prototype/gameloop.h"
-#include "../../Prototype/gamestatemock.h"
+#include "../../Prototype/gamestate.h"
 #include "../../Prototype/playeragentmock.h"
 #include "../../Prototype/rulebookmock.h"
 
@@ -60,7 +60,7 @@ void GameloopTest::initTestCase()
     testRulebook_ = std::shared_ptr<Rulebook>(new RulebookMock());
     testPlayExpert_ = std::shared_ptr<PlayerAgent>(new PlayerAgentMock());
     testLoop_ = std::shared_ptr<Gameloop>(new Gameloop(*testRulebook_, *testPlayExpert_));
-    startState_ = std::shared_ptr<GameState>(new GameStateMock(0));
+    startState_ = std::shared_ptr<GameState>(new GameState());
 }
 
 void GameloopTest::cleanupTestCase()

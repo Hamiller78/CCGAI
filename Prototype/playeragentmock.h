@@ -20,7 +20,7 @@
 
 #include "gamemove.h"
 #include "gamemovemock.h"
-#include "gamestatemock.h"
+#include "gamestate.h"
 #include "playeragent.h"
 
 #include <map>

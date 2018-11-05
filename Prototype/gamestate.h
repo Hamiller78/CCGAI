@@ -21,6 +21,7 @@
 #include "board.h"
 
 #include <memory>
+#include <vector>
 
 namespace game {
 
@@ -30,22 +31,22 @@ namespace game {
 class GameState : public Board
 {
 private:
-    static int numberOfPointCounters_;
+    static unsigned int numberOfPointCounters_;
+    std::vector<int> *pointCounters_{nullptr};
 public:
     GameState();
     GameState(const GameState& sourceState);
-    virtual ~GameState(){}
+    ~GameState();
     GameState &operator=(const GameState& otherState);
 
-    static int GetNumberOfPointCounters(){return numberOfPointCounters_;}
-    static void SetNumberOfPointCounters(int newNumber){numberOfPointCounters_ = newNumber;}
+    static unsigned int GetNumberOfPointCounters(){return numberOfPointCounters_;}
+    static void SetNumberOfPointCounters(unsigned int newNumber){numberOfPointCounters_ = newNumber;}
 
-    void AlterPoints(int pointIndex, int relativeValue);
-    int GetPoints(int pointIndex);
-    void SetPoints(int pointIndex, int absoluteValue);
-
+    void AlterPoints(unsigned int pointIndex, int relativeValue);
+    int GetPoints(unsigned int pointIndex) const;
+    void SetPoints(unsigned int pointIndex, int absoluteValue);
 private:
-
+    void CopyPointCounters(const GameState& sourceState);
 };
 
 } // namespace game
