@@ -34,7 +34,7 @@ private slots:
     void cleanupTestCase();
     void test_SetNumberOfPointCounters();
     void test_ManipulatePoints();
-
+    void test_InstantiatedObjectsException();
 };
 
 GameStateTest::GameStateTest()
@@ -69,15 +69,27 @@ void GameStateTest::test_SetNumberOfPointCounters()
 void GameStateTest::test_ManipulatePoints()
 {
     GameState::SetNumberOfPointCounters(4);
-    GameState testState;
-    testState.SetPoints(3, 42);
-    QVERIFY2(testState.GetPoints(3) == 42, "Points of index 3 not read correctly after setting.");
-    testState.AlterPoints(3, 10);
-    QVERIFY2(testState.GetPoints(3) == 52
+    GameState *testState = new GameState();
+    testState->SetPoints(3, 42);
+    QVERIFY2(testState->GetPoints(3) == 42, "Points of index 3 not read correctly after setting.");
+    testState->AlterPoints(3, 10);
+    QVERIFY2(testState->GetPoints(3) == 52
              , "Points of index 3 not read correctly after increasing.");
-    testState.AlterPoints(3, -20);
-    QVERIFY2(testState.GetPoints(3) == 32
+    testState->AlterPoints(3, -20);
+    QVERIFY2(testState->GetPoints(3) == 32
              , "Points of index 3 not read correctly after decreasing.");
+    delete testState;
+    GameState::SetNumberOfPointCounters(2);
+}
+
+void GameStateTest::test_InstantiatedObjectsException()
+{
+    GameState *testState = new GameState();
+    QVERIFY_EXCEPTION_THROWN(GameState::SetNumberOfPointCounters(4), std::runtime_error);
+    GameState *copyState = new GameState(*testState);
+    delete testState;
+    QVERIFY_EXCEPTION_THROWN(GameState::SetNumberOfPointCounters(4), std::runtime_error);
+    delete copyState;
     GameState::SetNumberOfPointCounters(2);
 }
 

@@ -22,20 +22,24 @@
 namespace game {
 
 unsigned int GameState::numberOfPointCounters_ = 2;
+unsigned int GameState::countInstances_ = 0;
 
 GameState::GameState()
 {
     pointCounters_ = new std::vector<int>(numberOfPointCounters_, 0);
+    GameState::countInstances_++;
 }
 
 GameState::~GameState()
 {
+    GameState::countInstances_--;
     delete pointCounters_;
 }
 
 GameState::GameState(const GameState &sourceState) : Board(sourceState)
 {
     CopyPointCounters(sourceState);
+    GameState::countInstances_++;
 }
 
 GameState &GameState::operator=(const GameState &otherState)
@@ -43,6 +47,19 @@ GameState &GameState::operator=(const GameState &otherState)
     Board::operator=(otherState);
     CopyPointCounters(otherState);
     return *this;
+}
+
+void GameState::SetNumberOfPointCounters(unsigned int newNumber)
+{
+    if (0 == GameState::countInstances_)
+    {
+        numberOfPointCounters_ = newNumber;
+    }
+    else
+    {
+        throw std::runtime_error("Attempt to change number of pointer counters in GameState class"
+                                 " while objects are instantiated!");
+    }
 }
 
 void GameState::AlterPoints(unsigned int pointIndex, int relativeValue)

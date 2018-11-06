@@ -32,6 +32,7 @@ class GameState : public Board
 {
 private:
     static unsigned int numberOfPointCounters_;
+    static unsigned int countInstances_;
     std::vector<int> *pointCounters_{nullptr};
 public:
     GameState();
@@ -40,7 +41,9 @@ public:
     GameState &operator=(const GameState& otherState);
 
     static unsigned int GetNumberOfPointCounters(){return numberOfPointCounters_;}
-    static void SetNumberOfPointCounters(unsigned int newNumber){numberOfPointCounters_ = newNumber;}
+    // only allowed while no objects are instantiated
+    // will throw a runtime exception if tried otherwise
+    static void SetNumberOfPointCounters(unsigned int newNumber);
 
     void AlterPoints(unsigned int pointIndex, int relativeValue);
     int GetPoints(unsigned int pointIndex) const;
