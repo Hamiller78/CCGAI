@@ -19,11 +19,11 @@
 
 namespace game {
 
-// method is just reimplemented to satify compiler
 GameState game::GamemoveMock::ApplyOnGamestate(const GameState &oldState) const
 {
-    throw(std::logic_error("ApplyOnGamestate method of GamemoveMock class should never be called!"));
-    return GameState();
+    GameState newState(oldState);
+    newState.AlterPoints(0, moveNumber_);
+    return newState;
 }
 
 } // namestate game

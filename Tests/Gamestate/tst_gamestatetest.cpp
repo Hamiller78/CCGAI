@@ -35,6 +35,8 @@ private slots:
     void test_SetNumberOfPointCounters();
     void test_ManipulatePoints();
     void test_InstantiatedObjectsException();
+    void test_CopyConstructor();
+    void test_AssignmentOperator();
 };
 
 GameStateTest::GameStateTest()
@@ -91,6 +93,30 @@ void GameStateTest::test_InstantiatedObjectsException()
     QVERIFY_EXCEPTION_THROWN(GameState::SetNumberOfPointCounters(4), std::runtime_error);
     delete copyState;
     GameState::SetNumberOfPointCounters(2);
+}
+
+void GameStateTest::test_AssignmentOperator()
+{
+    GameState *sourceState = new GameState;
+    sourceState->SetPoints(0, 42);
+    GameState copyState = *sourceState;
+    QVERIFY2(42 == copyState.GetPoints(0),
+      "Value of point index 0 not copied properly to new GameState.");
+    delete sourceState;
+    QVERIFY2(42 == copyState.GetPoints(0),
+      "Point value not found after deleting sourceState.");
+}
+
+void GameStateTest::test_CopyConstructor()
+{
+    GameState *sourceState = new GameState;
+    sourceState->SetPoints(1, 4711);
+    GameState copyState(*sourceState);
+    QVERIFY2(4711 == copyState.GetPoints(1),
+      "Value of point index 1 not copied properly to new gamestate.");
+    delete sourceState;
+    QVERIFY2(4711 == copyState.GetPoints(1),
+      "Value of point index 1 not found after deleting sourceState.");
 }
 
 QTEST_APPLESS_MAIN(GameStateTest)

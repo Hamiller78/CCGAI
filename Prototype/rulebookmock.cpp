@@ -40,28 +40,18 @@ std::vector<std::shared_ptr<Gamemove>> RulebookMock::GetPossibleMoves(const Game
     std::vector<std::shared_ptr<Gamemove>> returnMoves;
     std::shared_ptr<Gamemove> tempMock;
 
-    // the rulebook mock can only handle GameStateMocks
-    try
-    {
-        const GameState &currentState = dynamic_cast<const GameState&>(currentState);
-
-        // Return fixed GamemoveMocks
-        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(-1));
-        returnMoves.push_back(tempMock);
-        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(3));
-        returnMoves.push_back(tempMock);
-    }
-    catch (std::bad_cast)
-    {
-        throw(std::logic_error("RulebookMock was called with a GameState that is not a mock!"));
-    }
+    // Return fixed GamemoveMocks independent of currentState
+    Q_UNUSED(currentState);
+    tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(-1));
+    returnMoves.push_back(tempMock);
+    tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(3));
+    returnMoves.push_back(tempMock);
 
     return returnMoves;
 }
 
 int RulebookMock::HasSomeoneWon(const GameState &currentState) const
 {
-    const GameState &currentStateMock = dynamic_cast<const GameState&>(currentState);
     if (currentState.GetPoints(0) == 99)
     {
         return 1;

@@ -44,9 +44,9 @@ int Gameloop::RunGame(GameState &startState)
         // get moves and choose one
         std::vector<std::shared_ptr<Gamemove>> moveList
                 = usedRulebook_.GetPossibleMoves(startState);
+
         std::shared_ptr<Gamemove> chosenMovePtr = player1_.ChooseMove(startState, moveList);
 
-        // TODO: Mock classes can't handle the original gamestate class
         currentState = chosenMovePtr->ApplyOnGamestate(currentState);
         winner = usedRulebook_.HasSomeoneWon(currentState);
 //        if (bestMove.type() == PASS)
