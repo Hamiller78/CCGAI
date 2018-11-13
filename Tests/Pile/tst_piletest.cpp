@@ -41,7 +41,7 @@ public:
 private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
-    void testCase1();
+    void test_PileManipulations();
 };
 
 PileTest::PileTest()
@@ -68,7 +68,7 @@ void PileTest::cleanupTestCase()
     delete testPile2_;
 }
 
-void PileTest::testCase1()
+void PileTest::test_PileManipulations()
 {
     testPile1_->AddOnTop(testPiece1_);
     QVERIFY2(testPile1_->GetTopPiece() == testPiece1_, "Incorrect gamepiece on top of pile!");

@@ -35,8 +35,8 @@ public:
 private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
-    void testCase1();
-    void testCase2();
+    void test_LoadPlugin();
+    void test_FileNotFoundException();
 };
 
 PluginTest::PluginTest()
@@ -53,7 +53,7 @@ void PluginTest::cleanupTestCase()
     delete testPlugin_;
 }
 
-void PluginTest::testCase1()
+void PluginTest::test_LoadPlugin()
 {
     testPlugin_->LoadPlugin("../../../CCGAI/Tests/testdata/plugins/duelgame");
     Cardpool &testPool = Cardpool::GetInstance();
@@ -82,7 +82,7 @@ void PluginTest::testCase1()
     QVERIFY2(cardName == QString("Rookie"), "Name of card with title Rookie is wrong!");
 }
 
-void PluginTest::testCase2()
+void PluginTest::test_FileNotFoundException()
 {
     QVERIFY_EXCEPTION_THROWN(testPlugin_->LoadPlugin("../../../CCGAI/Tests/testdata/not_existing"),
                              ExceptionPlugin);

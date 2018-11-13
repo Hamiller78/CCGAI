@@ -39,9 +39,9 @@ public:
 private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
-    void testCase1();
-    void testCase2();
-    void testCase3();
+    void test_FunctionCall();
+    void test_ModuleNotFoundException();
+    void test_LoadFunction();
 };
 
 ScriptWrapperTest::ScriptWrapperTest()
@@ -59,7 +59,7 @@ void ScriptWrapperTest::cleanupTestCase()
     PythonSetup::GetInstance().ClosePython();
 }
 
-void ScriptWrapperTest::testCase1()
+void ScriptWrapperTest::test_FunctionCall()
 {
     int errorcode;
 
@@ -83,14 +83,14 @@ void ScriptWrapperTest::testCase1()
     Py_DECREF(pModule);
 }
 
-void ScriptWrapperTest::testCase2()
+void ScriptWrapperTest::test_ModuleNotFoundException()
 {
     ScriptWrapper failWrapper;
     QVERIFY_EXCEPTION_THROWN(failWrapper.LoadModule("not_existing"),
                              ExceptionScriptWrapper);
 }
 
-void ScriptWrapperTest::testCase3()
+void ScriptWrapperTest::test_LoadFunction()
 {
     testWrapper.LoadModule("Test");
     QVERIFY_EXCEPTION_THROWN(testWrapper.LoadFunction("not_existing"),

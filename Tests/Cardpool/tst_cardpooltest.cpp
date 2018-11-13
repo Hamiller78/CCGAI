@@ -47,6 +47,8 @@ void CardpoolTest::cleanupTestCase()
 {
 }
 
+//TODO: Tests missing.
+
 void CardpoolTest::testCase1()
 {
     QVERIFY2(true, "Failure");

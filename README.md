@@ -13,7 +13,7 @@ At the current early stage you can only run the unit tests of the project within
 Qt creator.
 
 The framework itself is written in C++11 within the QT framework. Development
-is done with the QT Creator 4.5.1 (using the Qt libraries 5.9.2) and the 
+is done with the QT Creator 4.7.2 (using the Qt libraries 5.9.2) and the 
 MSVC2015 32Bit compiler.
 
 In addition Python 3.6 is used as the script language.
@@ -39,10 +39,6 @@ allows online card games between human players.
 The goal of this project is to extend these plugin directories with AI functionality.
 
 ## Links
-
-Even though this information can be found inside the project on machine-readable
-format like in a .json file, it's good to include a summary of most useful
-links to humans using your project. You can include links like:
 
 - Repository: https://www.github.com/Hamiller78/CCGAI/
 - Related projects:

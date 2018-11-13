@@ -36,8 +36,8 @@ public:
 private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
-    void testCase1();
-    void testCase2();
+    void test_GetMoves();
+    void test_ExceptionOnErrorCode();
 };
 
 MoveProviderTest::MoveProviderTest()
@@ -57,13 +57,13 @@ void MoveProviderTest::cleanupTestCase()
     PythonSetup::GetInstance().ClosePython();
 }
 
-void MoveProviderTest::testCase1()
+void MoveProviderTest::test_GetMoves()
 {
     testWrapper->LoadModule("Test");
     testWrapper->GetMoves(0);
 }
 
-void MoveProviderTest::testCase2()
+void MoveProviderTest::test_ExceptionOnErrorCode()
 {
     QVERIFY_EXCEPTION_THROWN(testWrapper->GetMoves(1),
                              ExceptionScriptWrapper);

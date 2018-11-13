@@ -36,7 +36,7 @@ public:
 private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
-    void testCase1();
+    void test_LoadFromTxtFile();
 };
 
 DeckTest::DeckTest()
@@ -53,7 +53,7 @@ void DeckTest::cleanupTestCase()
     delete testDeck_;
 }
 
-void DeckTest::testCase1()
+void DeckTest::test_LoadFromTxtFile()
 {
     testDeck_->LoadDecklistFromTxt("../../../CCGAI/Tests/testdata/plugins/duelgame/decks/deck1.txt");
     QStringList deckNames = testDeck_->GetDeckNames();
