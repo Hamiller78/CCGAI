@@ -33,8 +33,11 @@ namespace game {
 
 class PlayerAgentMock : public PlayerAgent
 {
+private:
+    int turnDepth_{1};
 public:
     PlayerAgentMock(){}
+    PlayerAgentMock(int turnDepth){turnDepth_ = turnDepth;}
     ~PlayerAgentMock() override {}
     virtual std::shared_ptr<Gamemove>
         ChooseMove(const GameState &currentState,

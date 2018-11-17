@@ -40,21 +40,37 @@ std::vector<std::shared_ptr<Gamemove>> RulebookMock::GetPossibleMoves(const Game
     std::vector<std::shared_ptr<Gamemove>> returnMoves;
     std::shared_ptr<Gamemove> tempMock;
 
-    // Return fixed GamemoveMocks independent of currentState
-    Q_UNUSED(currentState);
-    tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(-1));
-    returnMoves.push_back(tempMock);
-    tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(3));
-    returnMoves.push_back(tempMock);
-
+    // Return fixed GamemoveMocks only depending whether Gametate is even or odd
+    if (currentState.GetPoints(0) % 2 == 0)
+    {
+        // possible moves from even states
+        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(6));
+        returnMoves.push_back(tempMock);
+        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
+        returnMoves.push_back(tempMock);
+        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(-2));
+        returnMoves.push_back(tempMock);
+    }
+    else
+    {
+        // possible moves from odd state
+        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(-4));
+        returnMoves.push_back(tempMock);
+        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2));
+        returnMoves.push_back(tempMock);
+    }
     return returnMoves;
 }
 
 int RulebookMock::HasSomeoneWon(const GameState &currentState) const
 {
-    if (currentState.GetPoints(0) == 99)
+    if (currentState.GetPoints(0) >= 20)
     {
         return 1;
+    }
+    else if (currentState.GetPoints(0) <= -20)
+    {
+        return 2;
     }
     else
     {
