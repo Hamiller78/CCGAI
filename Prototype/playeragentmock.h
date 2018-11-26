@@ -36,9 +36,12 @@ class PlayerAgentMock : public PlayerAgent
 private:
     int turnDepth_{1};
 public:
-    PlayerAgentMock(){}
-    PlayerAgentMock(int turnDepth){turnDepth_ = turnDepth;}
+    PlayerAgentMock(const int playerNumber) : PlayerAgent(playerNumber){}
     ~PlayerAgentMock() override {}
+
+    int GetTurnDepth(){return turnDepth_;}
+    void SetTurnDepth(const int turnDepth){turnDepth_ = turnDepth;}
+
     virtual std::shared_ptr<Gamemove>
         ChooseMove(const GameState &currentState,
                    const std::vector<std::shared_ptr<Gamemove>> &moveList) const override;

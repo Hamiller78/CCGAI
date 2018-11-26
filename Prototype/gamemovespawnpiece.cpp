@@ -19,12 +19,6 @@
 
 namespace game {
 
-GamemoveSpawnPiece::GamemoveSpawnPiece(int cardNumber, const Position &spawnPosition)
-{
-    cardNumber_ = cardNumber;
-    spawnPosition_ = spawnPosition;
-}
-
 GameState GamemoveSpawnPiece::ApplyOnGamestate(const GameState &oldState) const
 {
     GameState newState(oldState);

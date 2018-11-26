@@ -19,12 +19,6 @@
 
 namespace game {
 
-GamemoveMovePile::GamemoveMovePile(const Position &startPosition, const Position &targetPosition)
-{
-    startPosition_ = startPosition;
-    targetPosition_ = targetPosition;
-}
-
 GameState GamemoveMovePile::ApplyOnGamestate(const GameState &oldState) const
 {
     GameState newState(oldState);

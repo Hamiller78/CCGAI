@@ -30,7 +30,8 @@ namespace game {
 class GamemoveSpawnPiece : public Gamemove
 {
 public:
-    GamemoveSpawnPiece(int cardNumber, const Position& spawnPosition);
+    GamemoveSpawnPiece(int activePlayer, int cardNumber, const Position& spawnPosition)
+        : Gamemove(activePlayer), cardNumber_(cardNumber), spawnPosition_(spawnPosition){}
     GameState ApplyOnGamestate(const GameState& oldState) const override;
 private:
     int cardNumber_;

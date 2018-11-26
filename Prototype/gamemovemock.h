@@ -33,10 +33,11 @@ using Position = std::pair<int, int>;
 class GamemoveMock : public Gamemove
 {
 public:
-    GamemoveMock(int moveNumber){moveNumber_ = moveNumber;}
+    GamemoveMock(int activePlayer, int moveNumber)
+                : Gamemove(activePlayer), moveNumber_(moveNumber){}
     GameState ApplyOnGamestate(const GameState& oldState) const override;
 private:
-    int moveNumber_{0};
+    int moveNumber_;
 };
 
 } // namespace game

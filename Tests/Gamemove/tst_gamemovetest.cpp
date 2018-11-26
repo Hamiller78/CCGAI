@@ -57,9 +57,9 @@ GamemoveTest::GamemoveTest()
 
 void GamemoveTest::initTestCase()
 {
-    moveMove_ = new GamemoveMovePile(Position (0, 0), Position(1, 1));
-    moveTopMove_ = new GamemoveMoveTop(Position (1, 1), Position(-1, -1));
-    moveSpawnMove_ = new GamemoveSpawnPiece(0, Position(2,-1));
+    moveMove_ = new GamemoveMovePile(1, Position (0, 0), Position(1, 1));
+    moveTopMove_ = new GamemoveMoveTop(1, Position (1, 1), Position(-1, -1));
+    moveSpawnMove_ = new GamemoveSpawnPiece(1, 0, Position(2,-1));
 
     testState_ = new GameState;
     testPiece1_ = std::shared_ptr<Gamepiece>(new Gamepiece);

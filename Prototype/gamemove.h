@@ -30,10 +30,13 @@ using Position = std::pair<int, int>;
 
 class Gamemove
 {
+protected:
+    const int activePlayer_{0};
 public:
-    Gamemove(){}
+    Gamemove(int activePlayer) : activePlayer_(activePlayer){}
     virtual ~Gamemove(){}
     virtual GameState ApplyOnGamestate(const GameState& oldState) const = 0;
+    int GetActivePlayer(){return activePlayer_;}
 };
 
 } // namespace game

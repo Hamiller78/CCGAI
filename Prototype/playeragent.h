@@ -24,15 +24,18 @@
 #include <memory>
 #include <vector>
 
-// Interface class to manage possible players like AI, GUI interface for human player, network connection...
+// Base class to manage possible players like AI, GUI interface for human player,
+//   network connection...
 // Implementations should be in derived classes.
 
 namespace game {
 
 class PlayerAgent
 {
+protected:
+    const int playerNumber_{1};
 public:
-    PlayerAgent(){}
+    PlayerAgent(const int playerNumber) : playerNumber_(playerNumber){}
     virtual ~PlayerAgent(){}
     virtual std::shared_ptr<Gamemove>
         ChooseMove(const GameState &currentState,

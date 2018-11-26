@@ -19,11 +19,6 @@
 
 namespace game {
 
-Gameloop::Gameloop(const Rulebook &usedRulebook, const PlayerAgent &player1)
-    : player1_(player1), usedRulebook_(usedRulebook)
-{
-}
-
 int Gameloop::RunGame(GameState &startState)
 {
     // simplifications for prototype:

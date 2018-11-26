@@ -23,6 +23,15 @@ std::shared_ptr<Gamemove>
     PlayerAgentMock::ChooseMove(const GameState &currentState,
                                 const std::vector<std::shared_ptr<Gamemove> > &moveList) const
 {
+    // look for best move iteratively
+    // loop over GameDepth
+      // get list of resulting GameStates
+      // get list of legal moves to each GameState
+    //??? What about opponent's moves
+      // rate from opponent's view
+
+
+
     const std::multimap<int, std::shared_ptr<game::Gamemove>> ratedMoveList
             = RateMoves(currentState, moveList);
     if (ratedMoveList.size() > 0)
@@ -54,7 +63,14 @@ std::multimap<int, std::shared_ptr<game::Gamemove>> game::PlayerAgentMock::RateM
 
 int PlayerAgentMock::RateState(const GameState &rateState) const
 {
-    return rateState.GetPoints(0);
+    if (playerNumber_ == 2)
+    {
+        return -rateState.GetPoints(0);
+    }
+    else
+    {
+        return rateState.GetPoints(0);
+    }
 }
 
 } // namespace game

@@ -44,19 +44,19 @@ std::vector<std::shared_ptr<Gamemove>> RulebookMock::GetPossibleMoves(const Game
     if (currentState.GetPoints(0) % 2 == 0)
     {
         // possible moves from even states
-        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(6));
+        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1, 6));
         returnMoves.push_back(tempMock);
-        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1));
+        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2, 1));
         returnMoves.push_back(tempMock);
-        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(-2));
+        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2, -2));
         returnMoves.push_back(tempMock);
     }
     else
     {
         // possible moves from odd state
-        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(-4));
+        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2, -4));
         returnMoves.push_back(tempMock);
-        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(2));
+        tempMock = std::shared_ptr<GamemoveMock>(new GamemoveMock(1, 2));
         returnMoves.push_back(tempMock);
     }
     return returnMoves;

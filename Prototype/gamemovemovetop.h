@@ -25,7 +25,12 @@ namespace game {
 class GamemoveMoveTop : public Gamemove
 {
 public:
-    GamemoveMoveTop(const Position& startPosition, const Position& targetPosition);
+    GamemoveMoveTop(int activePlayer,
+                    const Position& startPosition,
+                    const Position& targetPosition)
+                   : Gamemove(activePlayer),
+                     startPosition_(startPosition),
+                     targetPosition_(targetPosition){}
     GameState ApplyOnGamestate(const GameState& oldState) const override;
 private:
     Position startPosition_;
