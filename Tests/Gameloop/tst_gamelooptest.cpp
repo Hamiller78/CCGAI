@@ -79,10 +79,11 @@ void GameloopTest::test_RunGameAiDepth1()
 {
     PlayerAgentMock testPlayer1(1);
     PlayerAgentMock testPlayer2(2);
+    std::vector<PlayerAgent> playerList{&testPlayer1, &testPlayer2};
     GameState testStartState;
-    Gameloop testLoop(*testRulebook_, testPlayer1, testPlayer2);
+    Gameloop testLoop(*testRulebook_, playerList);
 
-    int Winner = testLoop->RunGame(testStartState);
+    int Winner = testLoop.RunGame(testStartState);
     QVERIFY2(Winner == 1, "The winner of the game was not player 1!");
 }
 
@@ -90,12 +91,13 @@ void GameloopTest::test_RunGameAiDepth3()
 {
     PlayerAgentMock testPlayer1(1);
     PlayerAgentMock testPlayer2(2);
+    std::vector<PlayerAgent> playerList{&testPlayer1, &testPlayer2};
     testPlayer1.SetTurnDepth(3);
     testPlayer2.SetTurnDepth(3);
     GameState testStartState;
-    Gameloop testLoop(*testRulebook_, testPlayer1, testPlayer2);
+    Gameloop testLoop(*testRulebook_, playerList);
 
-    int Winner = testLoop->RunGame(testStartState);
+    int Winner = testLoop.RunGame(testStartState);
     QVERIFY2(Winner == 2, "The winner of the game was not player 2!");
 }
 

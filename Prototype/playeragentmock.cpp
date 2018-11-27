@@ -30,8 +30,6 @@ std::shared_ptr<Gamemove>
     //??? What about opponent's moves
       // rate from opponent's view
 
-
-
     const std::multimap<int, std::shared_ptr<game::Gamemove>> ratedMoveList
             = RateMoves(currentState, moveList);
     if (ratedMoveList.size() > 0)
@@ -46,24 +44,25 @@ std::shared_ptr<Gamemove>
     }
 }
 
-std::multimap<int, std::shared_ptr<game::Gamemove>> game::PlayerAgentMock::RateMoves(
-        const game::GameState &currentState,
-        const std::vector<std::shared_ptr<game::Gamemove> > &moveList) const
+std::multimap<int, std::shared_ptr<game::Gamemove>>
+  game::PlayerAgentMock::RateMoves(const game::GameState &startState,
+                                   const std::vector<std::shared_ptr<game::Gamemove> > &moveList
+                                   ) const
 {
     std::multimap<int, std::shared_ptr<game::Gamemove>> ratedMoves;
     for (auto const &currentMove : moveList)
     {
         const GamemoveMock &curMove = dynamic_cast<const GamemoveMock&>(*currentMove);
-        const GameState nextState = curMove.ApplyOnGamestate(currentState);
-        int moveRating = RateState(nextState);
+        const GameState nextState = curMove.ApplyOnGamestate(startState);
+        int moveRating = RateState(curMove.GetActivePlayer(), nextState);
         ratedMoves.emplace(moveRating, currentMove);
     }
     return ratedMoves;
 }
 
-int PlayerAgentMock::RateState(const GameState &rateState) const
+int PlayerAgentMock::RateState(int actingPlayer, const GameState &rateState) const
 {
-    if (playerNumber_ == 2)
+    if (actingPlayer == 2)
     {
         return -rateState.GetPoints(0);
     }

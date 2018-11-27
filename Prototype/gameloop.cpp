@@ -30,7 +30,7 @@ int Gameloop::RunGame(GameState &startState)
 
     int winner = 0;
     int currentPhase = 1;
-    int activePlayer = 1;
+    unsigned int activePlayer = 1;
 
     GameState currentState = startState;
 
@@ -40,10 +40,12 @@ int Gameloop::RunGame(GameState &startState)
         std::vector<std::shared_ptr<Gamemove>> moveList
                 = usedRulebook_.GetPossibleMoves(startState);
 
-        std::shared_ptr<Gamemove> chosenMovePtr = player1_.ChooseMove(startState, moveList);
+        std::shared_ptr<Gamemove> chosenMovePtr
+                = playerList_[activePlayer].ChooseMove(startState, moveList);
 
         currentState = chosenMovePtr->ApplyOnGamestate(currentState);
         winner = usedRulebook_.HasSomeoneWon(currentState);
+        activePlayer = activePlayer<playerList_.size() ? activePlayer+1 : 1;
 //        if (bestMove.type() == PASS)
 //        {
 //            currentPhase++;

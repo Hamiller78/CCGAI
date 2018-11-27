@@ -36,7 +36,7 @@ public:
     Gamemove(int activePlayer) : activePlayer_(activePlayer){}
     virtual ~Gamemove(){}
     virtual GameState ApplyOnGamestate(const GameState& oldState) const = 0;
-    int GetActivePlayer(){return activePlayer_;}
+    int GetActivePlayer() const {return activePlayer_;}
 };
 
 } // namespace game
