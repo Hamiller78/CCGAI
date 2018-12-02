@@ -35,8 +35,9 @@ public:
     RulebookMock();
     ~RulebookMock() override {}
     std::shared_ptr<GameState> SetupGame(const plugin::Deck& deck1, const plugin::Deck& deck2) const override;
-    std::vector<std::shared_ptr<Gamemove>> GetPossibleMoves(const GameState& currentState) const override;
-    int HasSomeoneWon(const GameState& currentState) const override;
+    std::vector<std::shared_ptr<Gamemove>>
+        GetPossibleMoves(const std::shared_ptr<GameState> currentState) const override;
+    int HasSomeoneWon(const std::shared_ptr<GameState> currentState) const override;
 };
 
 } // namespace game

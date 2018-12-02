@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017,2018 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -19,11 +19,15 @@
 
 namespace game {
 
-GameState GamemoveMoveTop::ApplyOnGamestate(const GameState &oldState) const
+std::shared_ptr<GameState> GamemoveMoveTop::ApplyOnGamestate(const std::shared_ptr<GameState> oldState)
 {
-    GameState newState(oldState);
-    newState.MoveTopPiece(startPosition_, targetPosition_);
-    return newState;
+    if (nullptr == resultingState_)
+    {
+        std::shared_ptr<GameState> resultStatePtr(new GameState(*oldState));
+        resultStatePtr->MoveTopPiece(startPosition_, targetPosition_);
+        Gamemove::resultingState_ = resultStatePtr;
+    }
+    return resultingState_;
 }
 
 } // namespace game

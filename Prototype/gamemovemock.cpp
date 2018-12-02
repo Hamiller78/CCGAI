@@ -19,11 +19,15 @@
 
 namespace game {
 
-GameState game::GamemoveMock::ApplyOnGamestate(const GameState &oldState) const
+std::shared_ptr<GameState> game::GamemoveMock::ApplyOnGamestate(const std::shared_ptr<GameState> oldState)
 {
-    GameState newState(oldState);
-    newState.AlterPoints(0, moveNumber_);
-    return newState;
+    if (nullptr == resultingState_)
+    {
+        std::shared_ptr<GameState> resultStatePtr(new GameState(*oldState));
+        resultStatePtr->AlterPoints(0, moveNumber_);
+        Gamemove::resultingState_ = resultStatePtr;
+    }
+    return resultingState_;
 }
 
 } // namestate game

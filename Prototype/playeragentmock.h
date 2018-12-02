@@ -43,11 +43,11 @@ public:
     void SetTurnDepth(const int turnDepth){turnDepth_ = turnDepth;}
 
     virtual std::shared_ptr<Gamemove>
-        ChooseMove(const GameState &currentState,
+        ChooseMove(const std::shared_ptr<GameState> currentState,
                    const std::vector<std::shared_ptr<Gamemove>> &moveList) const override;
 private:
     std::multimap<int,std::shared_ptr<Gamemove>>
-        RateMoves(const GameState &startState,
+        RateMoves(const std::shared_ptr<GameState> startState,
                   const std::vector<std::shared_ptr<Gamemove>> &moveList
                   ) const;
     int RateState(int actingPlayer, const GameState &rateState) const;

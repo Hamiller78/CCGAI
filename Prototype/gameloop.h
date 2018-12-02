@@ -44,7 +44,7 @@ public:
              const std::vector<PlayerAgent> &playerList)
             : usedRulebook_(usedRulebook),
               playerList_(playerList){}
-    int RunGame(GameState &startState);
+    int RunGame(std::shared_ptr<GameState> startState);
 private:
     std::vector<std::shared_ptr<Gamemove>> GetMoves(const GameState& startState);
     std::multimap<int,std::shared_ptr<Gamemove>>

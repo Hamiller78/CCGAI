@@ -19,7 +19,7 @@
 
 namespace game {
 
-int Gameloop::RunGame(GameState &startState)
+int Gameloop::RunGame(std::shared_ptr<GameState> startState)
 {
     // simplifications for prototype:
     // - support only turn structure where one player goes through all turn phases and then passes control to other player
@@ -32,7 +32,7 @@ int Gameloop::RunGame(GameState &startState)
     int currentPhase = 1;
     unsigned int activePlayer = 1;
 
-    GameState currentState = startState;
+    std::shared_ptr<GameState> currentState(new GameState(*startState));
 
     do
     {

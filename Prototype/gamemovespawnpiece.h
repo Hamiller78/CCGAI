@@ -32,7 +32,7 @@ class GamemoveSpawnPiece : public Gamemove
 public:
     GamemoveSpawnPiece(int activePlayer, int cardNumber, const Position& spawnPosition)
         : Gamemove(activePlayer), cardNumber_(cardNumber), spawnPosition_(spawnPosition){}
-    GameState ApplyOnGamestate(const GameState& oldState) const override;
+    std::shared_ptr<GameState> ApplyOnGamestate(const std::shared_ptr<GameState> oldState) override;
 private:
     int cardNumber_;
     Position spawnPosition_;

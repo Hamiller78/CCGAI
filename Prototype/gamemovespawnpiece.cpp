@@ -19,12 +19,16 @@
 
 namespace game {
 
-GameState GamemoveSpawnPiece::ApplyOnGamestate(const GameState &oldState) const
+std::shared_ptr<GameState> GamemoveSpawnPiece::ApplyOnGamestate(const std::shared_ptr<GameState> oldState)
 {
-    GameState newState(oldState);
-    std::shared_ptr<Gamepiece> spawnPiece = plugin::Cardpool::GetInstance().MakeCard(cardNumber_);
-    newState.AddGamepiece(spawnPiece, spawnPosition_);
-    return newState;
+    if (nullptr == resultingState_)
+    {
+        std::shared_ptr<GameState> resultStatePtr(new GameState(*oldState));
+        std::shared_ptr<Gamepiece> spawnPiece = plugin::Cardpool::GetInstance().MakeCard(cardNumber_);
+        resultStatePtr->AddGamepiece(spawnPiece, spawnPosition_);
+        Gamemove::resultingState_ = resultStatePtr;
+    }
+    return resultingState_;
 }
 
 } // namespace game

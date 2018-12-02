@@ -38,7 +38,7 @@ public:
     PlayerAgent(const int playerNumber) : playerNumber_(playerNumber){}
     virtual ~PlayerAgent(){}
     virtual std::shared_ptr<Gamemove>
-        ChooseMove(const GameState &currentState,
+        ChooseMove(const std::shared_ptr<GameState> currentState,
                    const std::vector<std::shared_ptr<Gamemove>> &moveList) const = 0;
 };
 

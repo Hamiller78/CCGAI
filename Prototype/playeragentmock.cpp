@@ -20,8 +20,8 @@
 namespace game {
 
 std::shared_ptr<Gamemove>
-    PlayerAgentMock::ChooseMove(const GameState &currentState,
-                                const std::vector<std::shared_ptr<Gamemove> > &moveList) const
+    PlayerAgentMock::ChooseMove(const std::shared_ptr<GameState> currentState,
+                                const std::vector<std::shared_ptr<Gamemove>> &moveList) const
 {
     // look for best move iteratively
     // loop over GameDepth
@@ -45,16 +45,16 @@ std::shared_ptr<Gamemove>
 }
 
 std::multimap<int, std::shared_ptr<game::Gamemove>>
-  game::PlayerAgentMock::RateMoves(const game::GameState &startState,
+  game::PlayerAgentMock::RateMoves(const std::shared_ptr<GameState> startState,
                                    const std::vector<std::shared_ptr<game::Gamemove> > &moveList
                                    ) const
 {
     std::multimap<int, std::shared_ptr<game::Gamemove>> ratedMoves;
     for (auto const &currentMove : moveList)
     {
-        const GamemoveMock &curMove = dynamic_cast<const GamemoveMock&>(*currentMove);
-        const GameState nextState = curMove.ApplyOnGamestate(startState);
-        int moveRating = RateState(curMove.GetActivePlayer(), nextState);
+        GamemoveMock &curMove = dynamic_cast<GamemoveMock&>(*currentMove);
+        std::shared_ptr<GameState> nextState = curMove.ApplyOnGamestate(startState);
+        int moveRating = RateState(curMove.GetActivePlayer(), *nextState);
         ratedMoves.emplace(moveRating, currentMove);
     }
     return ratedMoves;

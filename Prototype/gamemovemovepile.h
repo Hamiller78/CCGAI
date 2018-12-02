@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017,2018 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -31,7 +31,7 @@ public:
                     : Gamemove(activePlayer),
                       startPosition_(startPosition),
                       targetPosition_(targetPosition){}
-    GameState ApplyOnGamestate(const GameState& oldState) const override;
+    std::shared_ptr<GameState> ApplyOnGamestate(const std::shared_ptr<GameState> oldState) override;
 private:
     Position startPosition_;
     Position targetPosition_;

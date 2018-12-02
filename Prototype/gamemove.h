@@ -1,4 +1,4 @@
-/* Copyright (c) 2017/2018 Torben Kneesch
+/* Copyright (c) 2017,2018 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -32,10 +32,11 @@ class Gamemove
 {
 protected:
     const int activePlayer_{0};
+    std::shared_ptr<GameState> resultingState_{nullptr};
 public:
     Gamemove(int activePlayer) : activePlayer_(activePlayer){}
     virtual ~Gamemove(){}
-    virtual GameState ApplyOnGamestate(const GameState& oldState) const = 0;
+    virtual std::shared_ptr<GameState> ApplyOnGamestate(const std::shared_ptr<GameState> oldState) = 0;
     int GetActivePlayer() const {return activePlayer_;}
 };
 
