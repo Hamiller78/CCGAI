@@ -33,9 +33,6 @@ class GamemoveTest : public QObject
     Q_OBJECT
 
 private:
-    GamemoveMovePile *moveMove_;
-    GamemoveMoveTop *moveTopMove_;
-    GamemoveSpawnPiece *moveSpawnMove_;
     std::shared_ptr<GameState> testState_;
     std::shared_ptr<Gamepiece> testPiece1_;
     std::shared_ptr<Gamepiece> testPiece2_;
@@ -57,11 +54,6 @@ GamemoveTest::GamemoveTest()
 
 void GamemoveTest::initTestCase()
 {
-    moveMove_ = new GamemoveMovePile(1, Position (0, 0), Position(1, 1));
-    moveTopMove_ = new GamemoveMoveTop(1, Position (1, 1), Position(-1, -1));
-    moveSpawnMove_ = new GamemoveSpawnPiece(1, 0, Position(2,-1));
-
-    testState_ = std::shared_ptr<GameState>(new GameState());
     testPiece1_ = std::shared_ptr<Gamepiece>(new Gamepiece);
     testPiece2_ = std::shared_ptr<Gamepiece>(new Gamepiece);
 
@@ -75,31 +67,41 @@ void GamemoveTest::cleanupTestCase()
 {
     testPiece1_.reset();
     testPiece2_.reset();
-    testState_.reset();
-    delete moveSpawnMove_;
-    delete moveMove_;
 }
 
 void GamemoveTest::test_SpawnMove()
 {
-    std::shared_ptr<GameState> resultState = moveSpawnMove_->ApplyOnGamestate(testState_);
+    std::shared_ptr<GameState> testState = std::shared_ptr<GameState>(new GameState());
+
+    GamemoveSpawnPiece moveSpawnMove(1, 0, Position(2,-1));
+
+    std::shared_ptr<GameState> resultState = moveSpawnMove.ApplyOnGamestate(testState);
     resultState->RemovePile(Position(2, -1));
 }
 
 void GamemoveTest::test_MoveMove()
 {
-    testState_->AddGamepiece(testPiece1_, Position (0, 0));
-    testState_->AddGamepiece(testPiece2_, Position (1, 1));
-    std::shared_ptr<GameState> resultState = moveMove_->ApplyOnGamestate(testState_);
+    std::shared_ptr<GameState> testState = std::shared_ptr<GameState>(new GameState());
+    testState->AddGamepiece(testPiece1_, Position (0, 0));
+    testState->AddGamepiece(testPiece2_, Position (1, 1));
+
+    GamemoveMovePile moveMove(1, Position (0, 0), Position(1, 1));
+
+    std::shared_ptr<GameState> resultState = moveMove.ApplyOnGamestate(testState);
     resultState->RemovePile(Position(1, 1));
 }
 
 void GamemoveTest::test_TopMove()
 {
-    testState_->AddGamepiece(testPiece1_, Position (0, 0));
-    testState_->AddGamepiece(testPiece2_, Position (1, 1));
-    std::shared_ptr<GameState> resultState1 = moveMove_->ApplyOnGamestate(testState_);
-    std::shared_ptr<GameState> resultState2 = moveTopMove_->ApplyOnGamestate(resultState1);
+    std::shared_ptr<GameState> testState = std::shared_ptr<GameState>(new GameState());
+    testState->AddGamepiece(testPiece1_, Position (0, 0));
+    testState->AddGamepiece(testPiece2_, Position (1, 1));
+
+    GamemoveMovePile moveMove(1, Position (0, 0), Position(1, 1));
+    GamemoveMoveTop moveTopMove(1, Position (1, 1), Position(-1, -1));
+
+    std::shared_ptr<GameState> resultState1 = moveMove.ApplyOnGamestate(testState);
+    std::shared_ptr<GameState> resultState2 = moveTopMove.ApplyOnGamestate(resultState1);
     resultState2->RemovePile(Position(1, 1));
     resultState2->RemovePile(Position(-1, -1));
 }

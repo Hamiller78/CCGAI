@@ -79,7 +79,7 @@ void GameloopTest::test_RunGameAiDepth1()
 {
     PlayerAgentMock testPlayer1(1);
     PlayerAgentMock testPlayer2(2);
-    std::vector<PlayerAgent> playerList{&testPlayer1, &testPlayer2};
+    std::vector<PlayerAgent*> playerList{&testPlayer1, &testPlayer2};
     std::shared_ptr<GameState> testStartState = std::shared_ptr<GameState>(new GameState());
     Gameloop testLoop(*testRulebook_, playerList);
 
@@ -91,7 +91,7 @@ void GameloopTest::test_RunGameAiDepth3()
 {
     PlayerAgentMock testPlayer1(1);
     PlayerAgentMock testPlayer2(2);
-    std::vector<PlayerAgent> playerList{&testPlayer1, &testPlayer2};
+    std::vector<PlayerAgent*> playerList{&testPlayer1, &testPlayer2};
     testPlayer1.SetTurnDepth(3);
     testPlayer2.SetTurnDepth(3);
     std::shared_ptr<GameState> testStartState = std::shared_ptr<GameState>(new GameState());

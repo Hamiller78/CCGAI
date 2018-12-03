@@ -38,10 +38,10 @@ class Gameloop
 private:
 //    GameState currentGamestate_;
     const Rulebook &usedRulebook_;
-    const std::vector<PlayerAgent> &playerList_;
+    const std::vector<PlayerAgent*> &playerList_;
 public:
     Gameloop(const Rulebook &usedRulebook,
-             const std::vector<PlayerAgent> &playerList)
+             const std::vector<PlayerAgent*> &playerList)
             : usedRulebook_(usedRulebook),
               playerList_(playerList){}
     int RunGame(std::shared_ptr<GameState> startState);
