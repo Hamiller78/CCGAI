@@ -15,33 +15,23 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef PLAYERAGENT_H
-#define PLAYERAGENT_H
+#ifndef STATEANALYZERMOCK_H
+#define STATEANALYZERMOCK_H
 
-#include "gamemove.h"
-#include "gamestate.h"
+#include "stateanalyzer.h"
 
-#include <memory>
-#include <vector>
-
-// Base class to manage possible players like AI, GUI interface for human player,
-//   network connection...
-// Implementations should be in derived classes.
+// Mock class to rate GameStates
+// In this implementation of the StateAnalyzer simply the point value of a state is used to rate it
 
 namespace ai {
 
-class PlayerAgent
+class StateAnalyzerMock : public StateAnalyzer
 {
-protected:
-    const int playerNumber_{1};
 public:
-    PlayerAgent(const int playerNumber) : playerNumber_(playerNumber){}
-    virtual ~PlayerAgent(){}
-    virtual std::shared_ptr<game::Gamemove>
-        ChooseMove(const std::shared_ptr<game::GameState> currentState,
-                   const std::vector<std::shared_ptr<game::Gamemove>> &moveList) const = 0;
+    StateAnalyzerMock();
+    virtual int RateState(int actingPlayer, const game::GameState &rateState) const override;
 };
 
 } // namespace ai
 
-#endif // PLAYERAGENT_H
+#endif // STATEANALYZERMOCK_H

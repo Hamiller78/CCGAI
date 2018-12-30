@@ -10,4 +10,5 @@ SUBDIRS += \
     ScriptWrapper \
     MoveProvider \
     Gameloop \
-    Gamestate
+    Gamestate \
+    FutureTree

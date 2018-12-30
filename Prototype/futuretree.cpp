@@ -15,33 +15,8 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef PLAYERAGENT_H
-#define PLAYERAGENT_H
-
-#include "gamemove.h"
-#include "gamestate.h"
-
-#include <memory>
-#include <vector>
-
-// Base class to manage possible players like AI, GUI interface for human player,
-//   network connection...
-// Implementations should be in derived classes.
+#include "futuretree.h"
 
 namespace ai {
 
-class PlayerAgent
-{
-protected:
-    const int playerNumber_{1};
-public:
-    PlayerAgent(const int playerNumber) : playerNumber_(playerNumber){}
-    virtual ~PlayerAgent(){}
-    virtual std::shared_ptr<game::Gamemove>
-        ChooseMove(const std::shared_ptr<game::GameState> currentState,
-                   const std::vector<std::shared_ptr<game::Gamemove>> &moveList) const = 0;
-};
-
 } // namespace ai
-
-#endif // PLAYERAGENT_H

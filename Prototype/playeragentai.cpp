@@ -15,13 +15,24 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "playeragentmock.h"
+#include "playeragentai.h"
 
-namespace game {
+namespace ai {
 
-std::shared_ptr<Gamemove>
-    PlayerAgentMock::ChooseMove(const std::shared_ptr<GameState> currentState,
-                                const std::vector<std::shared_ptr<Gamemove>> &moveList) const
+PlayerAgentAi::PlayerAgentAi(const int playerNumber, const StateAnalyzer &usedAnalyzer)
+    : PlayerAgent(playerNumber)
+{
+    FutureTree_ = new FutureTree(usedAnalyzer);
+}
+
+PlayerAgentAi::~PlayerAgentAi()
+{
+    delete FutureTree_;
+}
+
+std::shared_ptr<game::Gamemove>
+    PlayerAgentAi::ChooseMove(const std::shared_ptr<game::GameState> currentState,
+                                const std::vector<std::shared_ptr<game::Gamemove>> &moveList) const
 {
     // look for best move iteratively
     // loop over GameDepth
@@ -40,36 +51,8 @@ std::shared_ptr<Gamemove>
     }
     else
     {
-        return std::shared_ptr<Gamemove>(nullptr);
+        return std::shared_ptr<game::Gamemove>(nullptr);
     }
 }
 
-std::multimap<int, std::shared_ptr<game::Gamemove>>
-  game::PlayerAgentMock::RateMoves(const std::shared_ptr<GameState> startState,
-                                   const std::vector<std::shared_ptr<game::Gamemove> > &moveList
-                                   ) const
-{
-    std::multimap<int, std::shared_ptr<game::Gamemove>> ratedMoves;
-    for (auto const &currentMove : moveList)
-    {
-        GamemoveMock &curMove = dynamic_cast<GamemoveMock&>(*currentMove);
-        std::shared_ptr<GameState> nextState = curMove.ApplyOnGamestate(startState);
-        int moveRating = RateState(curMove.GetActivePlayer(), *nextState);
-        ratedMoves.emplace(moveRating, currentMove);
-    }
-    return ratedMoves;
-}
-
-int PlayerAgentMock::RateState(int actingPlayer, const GameState &rateState) const
-{
-    if (actingPlayer == 2)
-    {
-        return -rateState.GetPoints(0);
-    }
-    else
-    {
-        return rateState.GetPoints(0);
-    }
-}
-
-} // namespace game
+} // namespace ai

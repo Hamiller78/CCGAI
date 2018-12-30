@@ -52,7 +52,10 @@ SOURCES += \
     gamestate.cpp \
     gamemovemock.cpp \
     playeragent.cpp \
-    playeragentmock.cpp
+    playeragentai.cpp \
+    futuretree.cpp \
+    stateanalyzer.cpp \
+    stateanalyzermock.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -80,7 +83,10 @@ HEADERS += \
     gamestate.h \
     gamemovemock.h \
     playeragent.h \
-    playeragentmock.h
+    playeragentai.h \
+    futuretree.h \
+    stateanalyzer.h \
+    stateanalyzermock.h
 
 FORMS += \
         mainwindow.ui

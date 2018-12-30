@@ -17,6 +17,6 @@
 
 #include "playeragent.h"
 
-namespace game {
+namespace ai {
 
-} // namespace game
+} // namespace ai

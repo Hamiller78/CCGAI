@@ -15,33 +15,38 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef PLAYERAGENT_H
-#define PLAYERAGENT_H
+#include <QtTest>
 
-#include "gamemove.h"
-#include "gamestate.h"
+// add necessary includes here
 
-#include <memory>
-#include <vector>
-
-// Base class to manage possible players like AI, GUI interface for human player,
-//   network connection...
-// Implementations should be in derived classes.
-
-namespace ai {
-
-class PlayerAgent
+class FutureTreeTest : public QObject
 {
-protected:
-    const int playerNumber_{1};
+    Q_OBJECT
+
 public:
-    PlayerAgent(const int playerNumber) : playerNumber_(playerNumber){}
-    virtual ~PlayerAgent(){}
-    virtual std::shared_ptr<game::Gamemove>
-        ChooseMove(const std::shared_ptr<game::GameState> currentState,
-                   const std::vector<std::shared_ptr<game::Gamemove>> &moveList) const = 0;
+    FutureTreeTest();
+    ~FutureTreeTest();
+
+private slots:
+    void test_case1();
+
 };
 
-} // namespace ai
+FutureTreeTest::FutureTreeTest()
+{
 
-#endif // PLAYERAGENT_H
+}
+
+FutureTreeTest::~FutureTreeTest()
+{
+
+}
+
+void FutureTreeTest::test_case1()
+{
+
+}
+
+QTEST_APPLESS_MAIN(FutureTreeTest)
+
+#include "tst_futuretreetest.moc"

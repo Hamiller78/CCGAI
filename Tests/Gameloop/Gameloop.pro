@@ -17,7 +17,7 @@ SOURCES +=  \
     ../../Prototype/gamestate.cpp \
     ../../Prototype/pile.cpp \
     ../../Prototype/playeragent.cpp \
-    ../../Prototype/playeragentmock.cpp \
+    ../../Prototype/playeragentai.cpp \
     ../../Prototype/rulebook.cpp \
     ../../Prototype/rulebookmock.cpp
 

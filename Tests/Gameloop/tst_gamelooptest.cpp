@@ -17,8 +17,9 @@
 
 #include "../../Prototype/gameloop.h"
 #include "../../Prototype/gamestate.h"
-#include "../../Prototype/playeragentmock.h"
+#include "../../Prototype/playeragentai.h"
 #include "../../Prototype/rulebookmock.h"
+#include "../../Prototype/stateanalyzermock.h"
 
 #include <QtTest>
 
@@ -77,9 +78,11 @@ void GameloopTest::cleanupTestCase()
 
 void GameloopTest::test_RunGameAiDepth1()
 {
-    PlayerAgentMock testPlayer1(1);
-    PlayerAgentMock testPlayer2(2);
-    std::vector<PlayerAgent*> playerList{&testPlayer1, &testPlayer2};
+    const ai::StateAnalyzerMock &testAnalyzer1();
+    ai::StateAnalyzerMock &testAnalyzer2();
+    ai::PlayerAgentAi testPlayer1(1, testAnalyzer1);
+    ai::PlayerAgentAi testPlayer2(2, testAnalyzer2);
+    std::vector<ai::PlayerAgent*> playerList{&testPlayer1, &testPlayer2};
     std::shared_ptr<GameState> testStartState = std::shared_ptr<GameState>(new GameState());
     Gameloop testLoop(*testRulebook_, playerList);
 
@@ -89,8 +92,10 @@ void GameloopTest::test_RunGameAiDepth1()
 
 void GameloopTest::test_RunGameAiDepth3()
 {
-    PlayerAgentMock testPlayer1(1);
-    PlayerAgentMock testPlayer2(2);
+    ai::StateAnalyzerMock &testAnalyzer1();
+    ai::StateAnalyzerMock &testAnalyzer2();
+    ai::PlayerAgentAi testPlayer1(1, testAnalyzer1);
+    ai::PlayerAgentAi testPlayer2(2, testAnalyzer2);
     std::vector<PlayerAgent*> playerList{&testPlayer1, &testPlayer2};
     testPlayer1.SetTurnDepth(3);
     testPlayer2.SetTurnDepth(3);
