@@ -19,4 +19,32 @@
 
 namespace ai {
 
+void FutureTree::AddBranchesToNode(FutureTreeNode &currentNode)
+{
+
+}
+
+void FutureTree::AddNodesToBranches(FutureTreeNode &currentNode)
+{
+
+}
+
+/*
+std::multimap<int, std::shared_ptr<game::Gamemove>>
+  FutureTree::RateMoves(const std::shared_ptr<game::GameState> startState,
+                                   const std::vector<std::shared_ptr<game::Gamemove> > &moveList
+                                   ) const
+{
+    std::multimap<int, std::shared_ptr<game::Gamemove>> ratedMoves;
+    for (auto const &currentMove : moveList)
+    {
+        game::GamemoveMock &curMove = dynamic_cast<game::GamemoveMock&>(*currentMove);
+        std::shared_ptr<game::GameState> nextState = curMove.ApplyOnGamestate(startState);
+        int moveRating = usedAnalyzer_.RateState(curMove.GetActivePlayer(), *nextState);
+        ratedMoves.emplace(moveRating, currentMove);
+    }
+    return ratedMoves;
+}
+*/
+
 } // namespace ai

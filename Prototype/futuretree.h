@@ -32,9 +32,9 @@ namespace ai {
 
 struct FutureTreeNode
 {
-    std:shared_ptr<game::GameState> state;
-    int rating;
-    std::vector<std::pair<std::shared_ptr<game::Gamemove>, std::shared_ptr<FutureTreeNode>>>
+    std::shared_ptr<game::GameState> state;
+    std::shared_ptr<FutureTreeNode> parentNode;
+    std::vector<std::tuple<std::shared_ptr<game::Gamemove>, int, std::shared_ptr<FutureTreeNode>>>
       branchMoves;
 };
 
@@ -47,15 +47,13 @@ public:
       FindBestMove(const std::shared_ptr<game::GameState> startState, int player) const;
 private:
     const StateAnalyzer &usedAnalyzer_;
+    int treeSize_{0};
     int turnDepth_{1};                // number of future turns are calculated
     int worthyRatingsInPercent_{10};  // parameter which fraction of the rating range is considered
                                       // good enough to calculate follow-up moves
 
-    std::multimap<int, std::shared_ptr<game::Gamemove>>
-      FutureTree::RateMoves(
-                            const std::shared_ptr<game::GameState> startState,
-                            const std::vector<std::shared_ptr<game::Gamemove> > &moveList
-                            ) const;
+    void AddBranchesToNode(FutureTreeNode &currentNode);
+    void AddNodesToBranches(FutureTreeNode &currentNode);
 };
 
 } // namespace ai
