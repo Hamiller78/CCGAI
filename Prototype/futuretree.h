@@ -45,12 +45,13 @@ public:
     FutureTree(const StateAnalyzer &usedAnalyzer) : usedAnalyzer_(usedAnalyzer){}
     std::shared_ptr<game::Gamemove>
       FindBestMove(const std::shared_ptr<game::GameState> startState, int player) const;
+    void SetDepth(int turnDepth){turnDepth_ = turnDepth;}
+    void SetRatingsThreshold(int ratingsThreshold){ratingsThreshold_ = ratingsThreshold;}
 private:
     const StateAnalyzer &usedAnalyzer_;
     int treeSize_{0};
     int turnDepth_{1};                // number of future turns are calculated
-    int worthyRatingsInPercent_{10};  // parameter which fraction of the rating range is considered
-                                      // good enough to calculate follow-up moves
+    int ratingsThreshold_{10};        // threshold for fraction of the rating range to discard
 
     void AddBranchesToNode(FutureTreeNode &currentNode);
     void AddNodesToBranches(FutureTreeNode &currentNode);

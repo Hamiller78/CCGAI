@@ -18,6 +18,12 @@
 #include <QtTest>
 
 // add necessary includes here
+#include "../../Prototype/futuretree.h"
+#include "../../Prototype/gamemovemock.h"
+#include "../../Prototype/gamestate.h"
+#include "../../Prototype/stateanalyzermock.h"
+
+using namespace ai;
 
 class FutureTreeTest : public QObject
 {
@@ -28,7 +34,7 @@ public:
     ~FutureTreeTest();
 
 private slots:
-    void test_case1();
+    void test_turndepth1();
 
 };
 
@@ -42,9 +48,22 @@ FutureTreeTest::~FutureTreeTest()
 
 }
 
-void FutureTreeTest::test_case1()
+void FutureTreeTest::test_turndepth1()
 {
+    StateAnalyzer *testAnalyzer = new StateAnalyzerMock();
+    FutureTree testTree = FutureTree(*testAnalyzer);
+    std::shared_ptr<game::GameState> startStatePtr
+            = std::shared_ptr<game::GameState>(new game::GameState());
 
+    testTree.SetDepth(100);
+
+    std::shared_ptr<game::Gamemove> bestMove = testTree.FindBestMove(startStatePtr, 1);
+    std::shared_ptr<game::GamemoveMock> bestMoveMock
+            = std::dynamic_pointer_cast<game::GamemoveMock>(bestMove);
+
+    QVERIFY2(bestMoveMock->GetMoveNumber() ==  4, "Best move is not the expected one.");
+
+    delete testAnalyzer;
 }
 
 QTEST_APPLESS_MAIN(FutureTreeTest)

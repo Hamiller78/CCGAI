@@ -36,6 +36,7 @@ public:
     GamemoveMock(int activePlayer, int moveNumber)
                 : Gamemove(activePlayer), moveNumber_(moveNumber){}
     std::shared_ptr<GameState> ApplyOnGamestate(const std::shared_ptr<GameState> oldState) override;
+    int GetMoveNumber(){return moveNumber_;}
 private:
     int moveNumber_;
 };
