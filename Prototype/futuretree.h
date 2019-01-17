@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "gamemove.h"
+#include "rulebook.h"
 #include "stateanalyzer.h"
 
 // Class to manage tree with possible future GameStates
@@ -42,13 +43,15 @@ struct FutureTreeNode
 class FutureTree
 {
 public:
-    FutureTree(const StateAnalyzer &usedAnalyzer) : usedAnalyzer_(usedAnalyzer){}
+    FutureTree(const StateAnalyzer &usedAnalyzer, const game::Rulebook &usedRulebook)
+        : usedAnalyzer_(usedAnalyzer), usedRulebook_(usedRulebook){}
     std::shared_ptr<game::Gamemove>
       FindBestMove(const std::shared_ptr<game::GameState> startState, int player) const;
     void SetDepth(int turnDepth){turnDepth_ = turnDepth;}
     void SetRatingsThreshold(int ratingsThreshold){ratingsThreshold_ = ratingsThreshold;}
 private:
     const StateAnalyzer &usedAnalyzer_;
+    const game::Rulebook &usedRulebook_;
     int treeSize_{0};
     int turnDepth_{1};                // number of future turns are calculated
     int ratingsThreshold_{10};        // threshold for fraction of the rating range to discard

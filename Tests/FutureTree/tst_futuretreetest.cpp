@@ -21,6 +21,7 @@
 #include "../../Prototype/futuretree.h"
 #include "../../Prototype/gamemovemock.h"
 #include "../../Prototype/gamestate.h"
+#include "../../Prototype/rulebookmock.h"
 #include "../../Prototype/stateanalyzermock.h"
 
 using namespace ai;
@@ -51,7 +52,8 @@ FutureTreeTest::~FutureTreeTest()
 void FutureTreeTest::test_turndepth1()
 {
     StateAnalyzer *testAnalyzer = new StateAnalyzerMock();
-    FutureTree testTree = FutureTree(*testAnalyzer);
+    game::Rulebook *testRulebook = new game::RulebookMock();
+    FutureTree testTree = FutureTree(*testAnalyzer, *testRulebook);
     std::shared_ptr<game::GameState> startStatePtr
             = std::shared_ptr<game::GameState>(new game::GameState());
 
