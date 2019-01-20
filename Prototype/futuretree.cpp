@@ -1,4 +1,4 @@
-/* Copyright (c) 2018 Torben Kneesch
+/* Copyright (c) 2018,2019 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -19,9 +19,27 @@
 
 namespace ai {
 
-void FutureTree::AddBranchesToNode(FutureTreeNode &currentNode)
+std::shared_ptr<game::Gamemove>
+    FutureTree::FindBestMove(const std::shared_ptr<game::GameState> startState, int player)
 {
+    rootNode_.state = startState;
+    // loop over depth
+    FutureTreeNode currentNode = rootNode_;
+    for (int i = 0; i <= turnDepth_; i++)
+    {
+        AddBranchesToNode(player, currentNode);
 
+    }
+}
+
+void FutureTree::AddBranchesToNode(int player, FutureTreeNode &currentNode)
+{
+    std::vector<std::shared_ptr<game::Gamemove>> possibleMoves = usedRulebook_.GetPossibleMoves(currentNode.state);
+    // rate the moves
+    for (auto moveIt: possibleMoves)
+    {
+        usedAnalyzer_.RateState(player, *moveIt->ApplyOnGamestate(currentNode.state));
+    }
 }
 
 void FutureTree::AddNodesToBranches(FutureTreeNode &currentNode)

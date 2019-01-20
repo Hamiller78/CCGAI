@@ -1,4 +1,4 @@
-/* Copyright (c) 2018 Torben Kneesch
+/* Copyright (c) 2018,2019 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -46,7 +46,7 @@ public:
     FutureTree(const StateAnalyzer &usedAnalyzer, const game::Rulebook &usedRulebook)
         : usedAnalyzer_(usedAnalyzer), usedRulebook_(usedRulebook){}
     std::shared_ptr<game::Gamemove>
-      FindBestMove(const std::shared_ptr<game::GameState> startState, int player) const;
+      FindBestMove(const std::shared_ptr<game::GameState> startState, int player);
     void SetDepth(int turnDepth){turnDepth_ = turnDepth;}
     void SetRatingsThreshold(int ratingsThreshold){ratingsThreshold_ = ratingsThreshold;}
 private:
@@ -56,7 +56,9 @@ private:
     int turnDepth_{1};                // number of future turns are calculated
     int ratingsThreshold_{10};        // threshold for fraction of the rating range to discard
 
-    void AddBranchesToNode(FutureTreeNode &currentNode);
+    FutureTreeNode rootNode_;
+
+    void AddBranchesToNode(int player, FutureTreeNode &currentNode);
     void AddNodesToBranches(FutureTreeNode &currentNode);
 };
 
