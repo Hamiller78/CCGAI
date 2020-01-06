@@ -24,7 +24,7 @@
 #include <memory>
 #include <utility>
 
-#include "gamepiece.h"
+#include "IGamepiece.h"
 #include "pile.h"
 
 namespace game {
@@ -42,8 +42,8 @@ public:
     Board(const Board& sourceBoard);
     ~Board();
     Board &operator=(const Board& otherBoard);
-    void AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition);
-    std::shared_ptr<Gamepiece> GetTopPiece(const Position& pilePosition) const;
+    void AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Position& spawnPosition);
+    std::shared_ptr<IGamepiece> GetTopPiece(const Position& pilePosition) const;
     void MovePile(const Position& startPosition, const Position& destinationPosition);
     void MoveTopPiece(const Position& startPosition, const Position& destinationPosition);
     void RemovePile(const Position& clearPosition);

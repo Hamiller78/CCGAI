@@ -25,13 +25,13 @@ Cardpool &Cardpool::GetInstance()
     return instance;
 }
 
-std::shared_ptr<game::Card> Cardpool::MakeCard(int cardIndex)
+std::shared_ptr<game::GamepieceCard> Cardpool::MakeCard(int cardIndex)
 {
-    std::shared_ptr<game::Card> newCard(new game::Card(listOfCards_[cardIndex]));
+    std::shared_ptr<game::GamepieceCard> newCard(new game::GamepieceCard(listOfCards_[cardIndex]));
     return newCard;
 }
 
-std::shared_ptr<game::Card> Cardpool::MakeCard(QString cardTitle)
+std::shared_ptr<game::GamepieceCard> Cardpool::MakeCard(QString cardTitle)
 {
     uint cardIndex;
     for (cardIndex = 0; cardIndex < listOfCards_.size(); cardIndex++)

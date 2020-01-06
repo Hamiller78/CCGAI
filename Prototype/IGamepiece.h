@@ -1,4 +1,4 @@
-/* Copyright (c) 2017,2018 Torben Kneesch
+/* Copyright (c) 2017 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,28 +15,18 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef GAMEMOVESPAWNPIECE_H
-#define GAMEMOVESPAWNPIECE_H
-
-#include <utility>
-
-#include "GamepieceCard.h"
-#include "cardpool.h"
-#include "IGamepiece.h"
-#include "gamemove.h"
+#ifndef GAMEPIECE_H
+#define GAMEPIECE_H
 
 namespace game {
 
-class GamemoveSpawnPiece : public Gamemove
+class IGamepiece
 {
 public:
-    GamemoveSpawnPiece(int cardNumber, const Position& spawnPosition);
-    GameState ApplyOnGamestate(const GameState& oldState) const override;
-private:
-    int cardNumber_;
-    Position spawnPosition_;
+    // TODO: Delete the destructor once all tests using this are rewritten to use a derived mock of this interface class
+    virtual ~IGamepiece() {}
 };
 
 } // namespace game
 
-#endif // GAMEMOVESPAWNPIECE_H
+#endif // GAMEPIECE_H

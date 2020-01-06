@@ -18,7 +18,7 @@
 #ifndef PILE_H
 #define PILE_H
 
-#include "gamepiece.h"
+#include "IGamepiece.h"
 
 #include <memory>
 #include <stdexcept>
@@ -32,18 +32,18 @@ class Pile
 public:
     Pile();
     Pile(const Pile& sourcePile);
-    void AddOnTop(const std::shared_ptr<Gamepiece> newPiece);
+    void AddOnTop(const std::shared_ptr<IGamepiece> newPiece);
     void AddPile(Pile& extraPile);
-    void AddToBottom(const std::shared_ptr<Gamepiece> newPiece);
+    void AddToBottom(const std::shared_ptr<IGamepiece> newPiece);
     void EmptyPile();
-    std::vector<std::shared_ptr<Gamepiece>> GetPieceVector();
+    std::vector<std::shared_ptr<IGamepiece>> GetPieceVector();
     int GetPilesize() const;
-    std::shared_ptr<Gamepiece> GetTopPiece() const;
-    std::shared_ptr<Gamepiece> PickupTopPiece();
+    std::shared_ptr<IGamepiece> GetTopPiece() const;
+    std::shared_ptr<IGamepiece> PickupTopPiece();
 private:
     // vector containing the gamepieces in the pile
     // for efficiency the top piece is at the end of the vector
-    std::vector<std::shared_ptr<Gamepiece>> pileElements_;
+    std::vector<std::shared_ptr<IGamepiece>> pileElements_;
 };
 
 } // namespace game

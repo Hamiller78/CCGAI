@@ -28,7 +28,7 @@ GamemoveSpawnPiece::GamemoveSpawnPiece(int cardNumber, const Position &spawnPosi
 GameState GamemoveSpawnPiece::ApplyOnGamestate(const GameState &oldState) const
 {
     GameState newState(oldState);
-    std::shared_ptr<Gamepiece> spawnPiece = plugin::Cardpool::GetInstance().MakeCard(cardNumber_);
+    std::shared_ptr<IGamepiece> spawnPiece = plugin::Cardpool::GetInstance().MakeCard(cardNumber_);
     newState.AddGamepiece(spawnPiece, spawnPosition_);
     return newState;
 }

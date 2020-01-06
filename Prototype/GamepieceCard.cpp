@@ -15,16 +15,16 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "card.h"
+#include "GamepieceCard.h"
 
 namespace game {
 
-Card::Card()
+GamepieceCard::GamepieceCard()
 {
 
 }
 
-Card::Card(const CardmasterPointer &myMaster)
+GamepieceCard::GamepieceCard(const CardmasterPointer &myMaster)
 {
     myMaster_ = myMaster;
 }

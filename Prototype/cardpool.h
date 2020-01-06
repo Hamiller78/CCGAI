@@ -24,7 +24,7 @@
 #include <QString>
 #include <QStringList>
 
-#include "card.h"
+#include "GamepieceCard.h"
 #include "cardmaster.h"
 #include "exceptionplugin.h"
 
@@ -44,8 +44,8 @@ public:
     Cardpool (Cardpool const&) = delete;
     void operator=(Cardpool const&) = delete;
     static Cardpool& GetInstance();
-    std::shared_ptr<game::Card> MakeCard(int cardIndex);
-    std::shared_ptr<game::Card> MakeCard(QString cardTitle);
+    std::shared_ptr<game::GamepieceCard> MakeCard(int cardIndex);
+    std::shared_ptr<game::GamepieceCard> MakeCard(QString cardTitle);
     void SetPool(const QStringList& lackeyCardData);
 private:
     Cardpool(){}

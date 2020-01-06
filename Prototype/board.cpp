@@ -46,7 +46,7 @@ Board &Board::operator=(const Board &otherBoard)
     return *this;
 }
 
-void Board::AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition)
+void Board::AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Position& spawnPosition)
 {
     Pile* addPile = pilesOnBoard_[spawnPosition];
     if (addPile == nullptr)
@@ -57,7 +57,7 @@ void Board::AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Positi
     addPile->AddOnTop(newPiece);
 }
 
-std::shared_ptr<Gamepiece> Board::GetTopPiece(const Position &pilePosition) const
+std::shared_ptr<IGamepiece> Board::GetTopPiece(const Position &pilePosition) const
 {
     Pile* readPile = pilesOnBoard_.at(pilePosition);
     return readPile->GetTopPiece();
@@ -87,7 +87,7 @@ void Board::MovePile(const Position &startPosition, const Position &destinationP
 void Board::MoveTopPiece(const Position &startPosition, const Position &destinationPosition)
 {
     Pile* readPile = pilesOnBoard_.at(startPosition);
-    std::shared_ptr<Gamepiece> pickedPiece = readPile->PickupTopPiece();
+    std::shared_ptr<IGamepiece> pickedPiece = readPile->PickupTopPiece();
     AddGamepiece(pickedPiece, destinationPosition);
     if (readPile->GetPilesize() == 0)
     {

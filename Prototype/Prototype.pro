@@ -26,10 +26,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    GamepieceCard.cpp \
+    IGamepiece.cpp \
     main.cpp \
     mainwindow.cpp \
     board.cpp \
-    gamepiece.cpp \
     gamemove.cpp \
     pile.cpp \
     gamemovemovepile.cpp \
@@ -39,7 +40,6 @@ SOURCES += \
     cardpool.cpp \
     exceptionplugin.cpp \
     cardmaster.cpp \
-    card.cpp \
     deck.cpp \
     rulebook.cpp \
     rulebookmock.cpp \
@@ -55,9 +55,10 @@ SOURCES += \
     playeragentmock.cpp
 
 HEADERS += \
-        mainwindow.h \
+    GamepieceCard.h \
+    IGamepiece.h \
+    mainwindow.h \
     board.h \
-    gamepiece.h \
     gamemove.h \
     pile.h \
     gamemovemovepile.h \
@@ -67,7 +68,6 @@ HEADERS += \
     cardpool.h \
     exceptionplugin.h \
     cardmaster.h \
-    card.h \
     deck.h \
     rulebook.h \
     rulebookmock.h \

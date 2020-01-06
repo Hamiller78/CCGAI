@@ -7,10 +7,10 @@ CONFIG += thread
 CONFIG -= qt
 
 HEADERS += \
+    MockGamepiece.h \
     tst_googletest.h
 
 SOURCES += \
         main.cpp \
-        ../Prototype/gamepiece.cpp \
         ../Prototype/pile.cpp \
         tst_pile.cpp

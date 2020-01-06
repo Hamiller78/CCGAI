@@ -29,11 +29,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         tst_gamemovetest.cpp \
     ../../Prototype/board.cpp \
-    ../../Prototype/card.cpp \
+    ../../Prototype/GamepieceCard.cpp \
     ../../Prototype/cardmaster.cpp \
     ../../Prototype/cardpool.cpp \
     ../../Prototype/exceptionplugin.cpp \
-    ../../Prototype/gamepiece.cpp \
+    ../../Prototype/IGamepiece.cpp \
     ../../Prototype/gamemove.cpp \
     ../../Prototype/gamemovemovepile.cpp \
     ../../Prototype/gamemovemovetop.cpp \

@@ -37,8 +37,8 @@ private:
     GamemoveMoveTop *moveTopMove_;
     GamemoveSpawnPiece *moveSpawnMove_;
     GameState *testState_;
-    std::shared_ptr<Gamepiece> testPiece1_;
-    std::shared_ptr<Gamepiece> testPiece2_;
+    std::shared_ptr<IGamepiece> testPiece1_;
+    std::shared_ptr<IGamepiece> testPiece2_;
 
 public:
     GamemoveTest();
@@ -62,8 +62,8 @@ void GamemoveTest::initTestCase()
     moveSpawnMove_ = new GamemoveSpawnPiece(0, Position(2,-1));
 
     testState_ = new GameState;
-    testPiece1_ = std::shared_ptr<Gamepiece>(new Gamepiece);
-    testPiece2_ = std::shared_ptr<Gamepiece>(new Gamepiece);
+    testPiece1_ = std::shared_ptr<IGamepiece>(new IGamepiece);
+    testPiece2_ = std::shared_ptr<IGamepiece>(new IGamepiece);
 
     plugin::Cardpool& testPool = plugin::Cardpool::GetInstance();
     QStringList testPoolData;

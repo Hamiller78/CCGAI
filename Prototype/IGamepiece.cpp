@@ -15,13 +15,8 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "gamepiece.h"
+#include "IGamepiece.h"
 
 namespace game {
-
-Gamepiece::Gamepiece()
-{
-
-}
 
 } // namespace game

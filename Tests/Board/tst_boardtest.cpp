@@ -30,8 +30,8 @@ class BoardTest : public QObject
 
 private:
     Board *testBoard_;
-    std::shared_ptr<Gamepiece> testPiece1_;
-    std::shared_ptr<Gamepiece> testPiece2_;
+    std::shared_ptr<IGamepiece> testPiece1_;
+    std::shared_ptr<IGamepiece> testPiece2_;
 
 public:
     BoardTest();
@@ -53,8 +53,8 @@ BoardTest::BoardTest()
 void BoardTest::initTestCase()
 {
     testBoard_ = new Board;
-    testPiece1_ = std::shared_ptr<Gamepiece>(new Gamepiece);
-    testPiece2_ = std::shared_ptr<Gamepiece>(new Gamepiece);
+    testPiece1_ = std::shared_ptr<IGamepiece>(new IGamepiece);
+    testPiece2_ = std::shared_ptr<IGamepiece>(new IGamepiece);
 }
 
 void BoardTest::cleanupTestCase()

@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,28 +15,22 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef CARD_H
-#define CARD_H
+#ifndef MOCKGAMEPIECE_H
+#define MOCKGAMEPIECE_H
 
-#include <memory>
+#include "gmock/gmock.h"
+#include "../Prototype/IGamepiece.h"
 
-#include "cardmaster.h"
-#include "gamepiece.h"
+namespace mocks {
 
-namespace game {
-
-using CardmasterPointer = std::shared_ptr<plugin::Cardmaster>;
-
-class Card : public Gamepiece
+class MockGamepiece: public game::IGamepiece
 {
-private:
-    CardmasterPointer myMaster_;
 public:
-    Card();
-    Card(const CardmasterPointer &myMaster);
-    QString GetTraitText(QString trait){return myMaster_->GetTraitText((trait));}
+    MockGamepiece() {}
+    ~MockGamepiece() override {}
+    // add MOCK_METHOD macros here once IGamepiece gets more methods
 };
 
-} // namespace game
+} // namespace mocks
 
-#endif // CARD_H
+#endif // MOCKGAMEPIECE_H
