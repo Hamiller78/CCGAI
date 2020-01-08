@@ -17,6 +17,7 @@
 
 #include "../../Prototype/gameloop.h"
 #include "../../Prototype/gamestate.h"
+#include "../../Prototype/objfactory.h"
 #include "../../Prototype/playeragentmock.h"
 #include "../../Prototype/rulebookmock.h"
 
@@ -33,6 +34,7 @@ private:
     std::shared_ptr<Rulebook> testRulebook_;
     std::shared_ptr<PlayerAgent> testPlayExpert_;
     std::shared_ptr<GameState> startState_;
+    const ObjFactory<game::Pile> pileFactory_;
 
 public:
     GameloopTest();
@@ -60,7 +62,7 @@ void GameloopTest::initTestCase()
     testRulebook_ = std::shared_ptr<Rulebook>(new RulebookMock());
     testPlayExpert_ = std::shared_ptr<PlayerAgent>(new PlayerAgentMock());
     testLoop_ = std::shared_ptr<Gameloop>(new Gameloop(*testRulebook_, *testPlayExpert_));
-    startState_ = std::shared_ptr<GameState>(new GameState());
+    startState_ = std::shared_ptr<GameState>(new GameState(pileFactory_));
 }
 
 void GameloopTest::cleanupTestCase()

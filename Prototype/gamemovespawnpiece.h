@@ -20,9 +20,9 @@
 
 #include <utility>
 
-#include "GamepieceCard.h"
+#include "gamepiececard.h"
 #include "cardpool.h"
-#include "IGamepiece.h"
+#include "igamepiece.h"
 #include "gamemove.h"
 
 namespace game {

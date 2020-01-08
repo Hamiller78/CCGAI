@@ -12,5 +12,9 @@ HEADERS += \
 
 SOURCES += \
         main.cpp \
-        ../Prototype/pile.cpp \
+        tst_board.cpp \
         tst_pile.cpp
+
+SOURCES += \
+        ../Prototype/board.cpp \
+        ../Prototype/pile.cpp \

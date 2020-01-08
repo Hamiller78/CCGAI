@@ -24,7 +24,8 @@
 #include <memory>
 #include <utility>
 
-#include "IGamepiece.h"
+#include "igamepiece.h"
+#include "objfactory.h"
 #include "pile.h"
 
 namespace game {
@@ -38,7 +39,7 @@ using Position = std::pair<int, int>;
 class Board
 {
 public:
-    Board();
+    Board(const ObjFactory<Pile>& pileFactory) : pileFactory_(pileFactory){}
     Board(const Board& sourceBoard);
     ~Board();
     Board &operator=(const Board& otherBoard);
@@ -48,6 +49,7 @@ public:
     void MoveTopPiece(const Position& startPosition, const Position& destinationPosition);
     void RemovePile(const Position& clearPosition);
 private:
+    const ObjFactory<Pile> &pileFactory_;
     std::map<Position, Pile*> pilesOnBoard_;
     void CopyBoardMembers(const Board& sourceBoard);
 };

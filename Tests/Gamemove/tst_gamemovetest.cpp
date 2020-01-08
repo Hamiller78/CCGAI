@@ -24,7 +24,7 @@
 #include "../../Prototype/gamemovemovetop.h"
 #include "../../Prototype/gamemovespawnpiece.h"
 #include "../../Prototype/gamestate.h"
-
+#include "../../Prototype/objfactory.h"
 
 using namespace game;
 
@@ -39,6 +39,7 @@ private:
     GameState *testState_;
     std::shared_ptr<IGamepiece> testPiece1_;
     std::shared_ptr<IGamepiece> testPiece2_;
+    const ObjFactory<game::Pile> pileFactory_;
 
 public:
     GamemoveTest();
@@ -61,7 +62,7 @@ void GamemoveTest::initTestCase()
     moveTopMove_ = new GamemoveMoveTop(Position (1, 1), Position(-1, -1));
     moveSpawnMove_ = new GamemoveSpawnPiece(0, Position(2,-1));
 
-    testState_ = new GameState;
+    testState_ = new GameState(pileFactory_);
     testPiece1_ = std::shared_ptr<IGamepiece>(new IGamepiece);
     testPiece2_ = std::shared_ptr<IGamepiece>(new IGamepiece);
 

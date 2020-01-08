@@ -19,12 +19,7 @@
 
 namespace game {
 
-Board::Board()
-{
-
-}
-
-Board::Board(const Board &sourceBoard)
+Board::Board(const Board &sourceBoard) : pileFactory_(sourceBoard.pileFactory_)
 {
     CopyBoardMembers(sourceBoard);
 }
@@ -51,7 +46,7 @@ void Board::AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Posit
     Pile* addPile = pilesOnBoard_[spawnPosition];
     if (addPile == nullptr)
     {
-        addPile = new Pile;
+        addPile = pileFactory_.Create();
         pilesOnBoard_[spawnPosition] = addPile;
     }
     addPile->AddOnTop(newPiece);

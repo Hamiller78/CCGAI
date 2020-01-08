@@ -15,18 +15,28 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "GamepieceCard.h"
+#ifndef CARD_H
+#define CARD_H
+
+#include <memory>
+
+#include "cardmaster.h"
+#include "igamepiece.h"
 
 namespace game {
 
-GamepieceCard::GamepieceCard()
-{
+using CardmasterPointer = std::shared_ptr<plugin::Cardmaster>;
 
-}
-
-GamepieceCard::GamepieceCard(const CardmasterPointer &myMaster)
+class GamepieceCard : public IGamepiece
 {
-    myMaster_ = myMaster;
-}
+private:
+    CardmasterPointer myMaster_;
+public:
+    GamepieceCard();
+    GamepieceCard(const CardmasterPointer &myMaster);
+    QString GetTraitText(QString trait){return myMaster_->GetTraitText((trait));}
+};
 
 } // namespace game
+
+#endif // CARD_H

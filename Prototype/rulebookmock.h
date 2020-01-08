@@ -22,6 +22,7 @@
 #include "deck.h"
 #include "gamemovemock.h"
 #include "gamestate.h"
+#include "objfactory.h"
 #include "rulebook.h"
 
 #include <memory>
@@ -37,6 +38,8 @@ public:
     std::shared_ptr<GameState> SetupGame(const plugin::Deck& deck1, const plugin::Deck& deck2) const override;
     std::vector<std::shared_ptr<Gamemove>> GetPossibleMoves(const GameState& currentState) const override;
     int HasSomeoneWon(const GameState& currentState) const override;
+private:
+    const ObjFactory<game::Pile> pileFactory_;
 };
 
 } // namespace game

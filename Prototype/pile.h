@@ -18,7 +18,7 @@
 #ifndef PILE_H
 #define PILE_H
 
-#include "IGamepiece.h"
+#include "igamepiece.h"
 
 #include <memory>
 #include <stdexcept>

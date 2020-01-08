@@ -26,8 +26,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    GamepieceCard.cpp \
-    IGamepiece.cpp \
+    gamepiececard.cpp \
+    igamepiece.cpp \
     main.cpp \
     mainwindow.cpp \
     board.cpp \
@@ -55,11 +55,12 @@ SOURCES += \
     playeragentmock.cpp
 
 HEADERS += \
-    GamepieceCard.h \
-    IGamepiece.h \
+    gamepiececard.h \
+    igamepiece.h \
     mainwindow.h \
     board.h \
     gamemove.h \
+    objfactory.h \
     pile.h \
     gamemovemovepile.h \
     gamemovespawnpiece.h \

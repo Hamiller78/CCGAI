@@ -24,7 +24,7 @@
 #include <QString>
 #include <QStringList>
 
-#include "GamepieceCard.h"
+#include "gamepiececard.h"
 #include "cardmaster.h"
 #include "exceptionplugin.h"
 

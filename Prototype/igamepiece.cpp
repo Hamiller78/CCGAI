@@ -1,4 +1,4 @@
-/* Copyright (c) 2020 Torben Kneesch
+/* Copyright (c) 2017 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,22 +15,8 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef MOCKGAMEPIECE_H
-#define MOCKGAMEPIECE_H
+#include "igamepiece.h"
 
-#include "gmock/gmock.h"
-#include "../Prototype/igamepiece.h"
+namespace game {
 
-namespace mocks {
-
-class MockGamepiece: public game::IGamepiece
-{
-public:
-    MockGamepiece() {}
-    ~MockGamepiece() override {}
-    // add MOCK_METHOD macros here once IGamepiece gets more methods
-};
-
-} // namespace mocks
-
-#endif // MOCKGAMEPIECE_H
+} // namespace game
