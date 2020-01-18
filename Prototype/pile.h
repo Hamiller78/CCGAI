@@ -32,14 +32,15 @@ class Pile
 public:
     Pile();
     Pile(const Pile& sourcePile);
-    void AddOnTop(const std::shared_ptr<IGamepiece> newPiece);
-    void AddPile(Pile& extraPile);
+    virtual ~Pile() {}
+    virtual void AddOnTop(const std::shared_ptr<IGamepiece> newPiece);
+    virtual void AddPile(Pile* extraPile);
     void AddToBottom(const std::shared_ptr<IGamepiece> newPiece);
-    void EmptyPile();
+    virtual void EmptyPile();
     std::vector<std::shared_ptr<IGamepiece>> GetPieceVector();
     int GetPilesize() const;
-    std::shared_ptr<IGamepiece> GetTopPiece() const;
-    std::shared_ptr<IGamepiece> PickupTopPiece();
+    virtual std::shared_ptr<IGamepiece> GetTopPiece() const;
+    virtual std::shared_ptr<IGamepiece> PickupTopPiece();
 private:
     // vector containing the gamepieces in the pile
     // for efficiency the top piece is at the end of the vector

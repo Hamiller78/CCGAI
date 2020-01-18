@@ -75,7 +75,8 @@ void Board::MovePile(const Position &startPosition, const Position &destinationP
     }
     else
     {
-        targetPile->AddPile(*movePile);
+        targetPile->AddPile(movePile);
+        delete movePile;
     }
 }
 
@@ -107,6 +108,7 @@ void Board::RemovePile(const Position &clearPosition)
 
 void Board::CopyBoardMembers(const Board &sourceBoard)
 {
+    // TODO: change this to use the injected pileFactory
     for (auto loopPile : sourceBoard.pilesOnBoard_)
     {
         Pile* pileCopy = new Pile(*loopPile.second);

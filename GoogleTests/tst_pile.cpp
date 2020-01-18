@@ -50,8 +50,9 @@ TEST(Pile, AddPile)
     testPile2.AddOnTop(testPiecePtr3);
     testPile2.AddOnTop(testPiecePtr4);
 
-    testPile2.AddPile(testPile1);
+    testPile2.AddPile(&testPile1);
     ASSERT_EQ(4, testPile2.GetPilesize());
+    ASSERT_EQ(0, testPile1.GetPilesize());
     ASSERT_EQ(testPiecePtr2, testPile2.GetTopPiece());
 }
 

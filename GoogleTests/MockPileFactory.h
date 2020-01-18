@@ -15,16 +15,23 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef OBJFACTORY_H
-#define OBJFACTORY_H
+#ifndef MOCKOBJFACTORY_H
+#define MOCKOBJFACTORY_H
 
+#include "gmock/gmock.h"
+#include "../Prototype/objfactory.h"
+#include "../Prototype/pile.h"
 
-template <class T>
-class ObjFactory
+namespace mocks {
+
+class MockPileFactory: public ObjFactory<game::Pile>
 {
 public:
-    virtual ~ObjFactory() {}
-    virtual T* Create() const {return new T;}
+    MockPileFactory() {}
+    ~MockPileFactory() override {}
+    MOCK_METHOD(game::Pile*, Create, (), (const, override));
 };
 
-#endif // OBJFACTORY_H
+} // namespace mocks
+
+#endif // MOCKOBJFACTORY_H

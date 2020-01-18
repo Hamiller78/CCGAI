@@ -8,6 +8,8 @@ CONFIG -= qt
 
 HEADERS += \
     MockGamepiece.h \
+    MockPile.h \
+    MockPileFactory.h \
     tst_googletest.h
 
 SOURCES += \

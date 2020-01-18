@@ -34,13 +34,13 @@ void Pile::AddOnTop(const std::shared_ptr<IGamepiece> newPiece)
     pileElements_.push_back(newPiece);
 }
 
-void Pile::AddPile(Pile &extraPile)
+void Pile::AddPile(Pile *extraPile)
 {
-    for (auto loopPiece : extraPile.GetPieceVector())
+    for (auto loopPiece : extraPile->GetPieceVector())
     {
         pileElements_.push_back(loopPiece);
     }
-    extraPile.EmptyPile();
+    extraPile->EmptyPile();
 }
 
 void Pile::AddToBottom(const std::shared_ptr<IGamepiece> newPiece)
