@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -27,6 +27,13 @@ Pile::Pile()
 Pile::Pile(const Pile &sourcePile)
 {
     pileElements_ = sourcePile.pileElements_;
+}
+
+Pile* Pile::CreateCopy() const
+{
+    Pile* newPile = new Pile;
+    newPile->pileElements_ = pileElements_;
+    return newPile;
 }
 
 void Pile::AddOnTop(const std::shared_ptr<IGamepiece> newPiece)

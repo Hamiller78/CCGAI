@@ -98,7 +98,7 @@ TEST(Board, AddNewPieceDirectlyOnPile)
     // TODO: check that mock pile was deleted
 }
 
-TEST(Board, CopyByAssignmentOperator)
+TEST(Board, TestAssignmentOperator)
 {
     const mocks::MockPileFactory mockPileFactory;
     game::Board *sourceBoard = new game::Board(mockPileFactory);
@@ -106,10 +106,9 @@ TEST(Board, CopyByAssignmentOperator)
     mocks::MockPile *mockPilePtr1 = new mocks::MockPile;
     mocks::MockPile *mockPilePtr2 = new mocks::MockPile;
 
-    EXPECT_CALL(mockPileFactory, Create()).Times(2).WillOnce(Return(mockPilePtr1))
-                                                   .WillOnce(Return(mockPilePtr2));
-    EXPECT_CALL(*mockPilePtr1, GetTopPiece()).Times(1).WillOnce(Return(mockPiecePtr));
-    EXPECT_CALL(*mockPilePtr2, GetTopPiece()).Times(1).WillOnce(Return(mockPiecePtr));
+    EXPECT_CALL(mockPileFactory, Create()).Times(1).WillOnce(Return(mockPilePtr1));
+    EXPECT_CALL(*mockPilePtr1, CreateCopy()).Times(1).WillOnce(Return(mockPilePtr2));
+    EXPECT_CALL(*mockPilePtr2, GetTopPiece()).Times(2).WillRepeatedly(Return(mockPiecePtr));
 
     sourceBoard->AddGamepiece(mockPiecePtr, game::Position(3, 2));
 
@@ -122,29 +121,23 @@ TEST(Board, CopyByAssignmentOperator)
 
 }
 
-/*
-void BoardTest::test_AssignmentOperator()
+TEST(Board, TestCopyConstructor)
 {
-    Board *sourceBoard = new Board;
-    sourceBoard->AddGamepiece(testPiece1_, Position(3, 2));
-    Board copyBoard = *sourceBoard;
-    QVERIFY2(testPiece1_ == copyBoard.GetTopPiece(Position(3, 2)),
-      "Testpiece 1 not copied properly to new board.");
-    delete sourceBoard;
-    QVERIFY2(testPiece1_ == copyBoard.GetTopPiece(Position(3, 2)),
-      "Testpiece 1 not found after deleting sourceBoard.");
-}
+    const mocks::MockPileFactory mockPileFactory;
+    game::Board *sourceBoard = new game::Board(mockPileFactory);
+    std::shared_ptr<game::IGamepiece> mockPiecePtr(new mocks::MockGamepiece);
+    mocks::MockPile *mockPilePtr1 = new mocks::MockPile;
+    mocks::MockPile *mockPilePtr2 = new mocks::MockPile;
 
-void BoardTest::test_CopyConstructor()
-{
-    Board *sourceBoard = new Board;
-    sourceBoard->AddGamepiece(testPiece1_, Position(3, 2));
-    Board copyBoard(*sourceBoard);
-    QVERIFY2(testPiece1_ == copyBoard.GetTopPiece(Position(3, 2)),
-      "Testpiece 1 not copied properly to new board.");
-    delete sourceBoard;
-    QVERIFY2(testPiece1_ == copyBoard.GetTopPiece(Position(3, 2)),
-      "Testpiece 1 not found after deleting sourceBoard.");
-}
+    EXPECT_CALL(mockPileFactory, Create()).Times(1).WillOnce(Return(mockPilePtr1));
+    EXPECT_CALL(*mockPilePtr1, CreateCopy()).Times(1).WillOnce(Return(mockPilePtr2));
+    EXPECT_CALL(*mockPilePtr2, GetTopPiece()).Times(2).WillRepeatedly(Return(mockPiecePtr));
 
-*/
+    sourceBoard->AddGamepiece(mockPiecePtr, game::Position(-7, 5));
+
+    game::Board copyBoard(*sourceBoard);
+    ASSERT_EQ(mockPiecePtr, copyBoard.GetTopPiece(game::Position(-7, 5)));
+
+    delete sourceBoard;
+    ASSERT_EQ(mockPiecePtr, copyBoard.GetTopPiece(game::Position(-7, 5)));
+}

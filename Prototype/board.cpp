@@ -1,4 +1,4 @@
-/* Copyright (c) 2017,2018 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -108,10 +108,9 @@ void Board::RemovePile(const Position &clearPosition)
 
 void Board::CopyBoardMembers(const Board &sourceBoard)
 {
-    // TODO: change this to use the injected pileFactory
     for (auto loopPile : sourceBoard.pilesOnBoard_)
     {
-        Pile* pileCopy = new Pile(*loopPile.second);
+        Pile* pileCopy = loopPile.second->CreateCopy();
         pilesOnBoard_[loopPile.first] = pileCopy;
     }
 }

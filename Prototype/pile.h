@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -36,6 +36,7 @@ public:
     virtual void AddOnTop(const std::shared_ptr<IGamepiece> newPiece);
     virtual void AddPile(Pile* extraPile);
     void AddToBottom(const std::shared_ptr<IGamepiece> newPiece);
+    virtual Pile* CreateCopy() const;
     virtual void EmptyPile();
     std::vector<std::shared_ptr<IGamepiece>> GetPieceVector();
     int GetPilesize() const;

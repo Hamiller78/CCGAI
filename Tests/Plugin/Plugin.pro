@@ -31,7 +31,6 @@ SOURCES += \
     ../../Prototype/cardmaster.cpp \
     ../../Prototype/cardpool.cpp \
     ../../Prototype/exceptionplugin.cpp \
-    ../../Prototype/IGamepiece.cpp \
     ../../Prototype/plugin.cpp \
         tst_plugintest.cpp 
 

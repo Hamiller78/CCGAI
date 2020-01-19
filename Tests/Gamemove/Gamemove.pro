@@ -33,7 +33,6 @@ SOURCES += \
     ../../Prototype/cardmaster.cpp \
     ../../Prototype/cardpool.cpp \
     ../../Prototype/exceptionplugin.cpp \
-    ../../Prototype/IGamepiece.cpp \
     ../../Prototype/gamemove.cpp \
     ../../Prototype/gamemovemovepile.cpp \
     ../../Prototype/gamemovemovetop.cpp \

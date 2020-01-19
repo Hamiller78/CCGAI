@@ -27,7 +27,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     gamepiececard.cpp \
-    igamepiece.cpp \
     main.cpp \
     mainwindow.cpp \
     board.cpp \
