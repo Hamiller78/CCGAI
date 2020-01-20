@@ -31,7 +31,7 @@ std::shared_ptr<GameState> RulebookMock::SetupGame(const plugin::Deck &deck1,
     Q_UNUSED(deck1);
     Q_UNUSED(deck2);
 
-    std::shared_ptr<GameState> newState(new GameState());
+    std::shared_ptr<GameState> newState(new GameState(pileFactory_));
     return newState;
 }
 

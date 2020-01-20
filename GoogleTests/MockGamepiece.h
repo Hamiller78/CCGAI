@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,18 +15,22 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "card.h"
+#ifndef MOCKGAMEPIECE_H
+#define MOCKGAMEPIECE_H
 
-namespace game {
+#include "gmock/gmock.h"
+#include "../Prototype/igamepiece.h"
 
-Card::Card()
+namespace mocks {
+
+class MockGamepiece: public game::IGamepiece
 {
+public:
+    MockGamepiece() {}
+    ~MockGamepiece() override {}
+    // add MOCK_METHOD macros here once IGamepiece gets more methods
+};
 
-}
+} // namespace mocks
 
-Card::Card(const CardmasterPointer &myMaster)
-{
-    myMaster_ = myMaster;
-}
-
-} // namespace game
+#endif // MOCKGAMEPIECE_H

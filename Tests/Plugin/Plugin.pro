@@ -27,11 +27,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    ../../Prototype/card.cpp \
+    ../../Prototype/GamepieceCard.cpp \
     ../../Prototype/cardmaster.cpp \
     ../../Prototype/cardpool.cpp \
     ../../Prototype/exceptionplugin.cpp \
-    ../../Prototype/gamepiece.cpp \
     ../../Prototype/plugin.cpp \
         tst_plugintest.cpp 
 

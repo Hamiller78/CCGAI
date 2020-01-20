@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,13 +15,23 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "gamepiece.h"
+#ifndef MOCKOBJFACTORY_H
+#define MOCKOBJFACTORY_H
 
-namespace game {
+#include "gmock/gmock.h"
+#include "../Prototype/objfactory.h"
+#include "../Prototype/pile.h"
 
-Gamepiece::Gamepiece()
+namespace mocks {
+
+class MockPileFactory: public ObjFactory<game::Pile>
 {
+public:
+    MockPileFactory() {}
+    ~MockPileFactory() override {}
+    MOCK_METHOD(game::Pile*, Create, (), (const, override));
+};
 
-}
+} // namespace mocks
 
-} // namespace game
+#endif // MOCKOBJFACTORY_H

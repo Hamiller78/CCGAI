@@ -1,4 +1,4 @@
-/* Copyright (c) 2017,2018 Torben Kneesch
+/* Copyright (c) 2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,22 +15,12 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "gamemovespawnpiece.h"
+#include "tst_googletest.h"
 
-namespace game {
+#include <gtest/gtest.h>
 
-GamemoveSpawnPiece::GamemoveSpawnPiece(int cardNumber, const Position &spawnPosition)
+int main(int argc, char *argv[])
 {
-    cardNumber_ = cardNumber;
-    spawnPosition_ = spawnPosition;
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
-
-GameState GamemoveSpawnPiece::ApplyOnGamestate(const GameState &oldState) const
-{
-    GameState newState(oldState);
-    std::shared_ptr<IGamepiece> spawnPiece = plugin::Cardpool::GetInstance().MakeCard(cardNumber_);
-    newState.AddGamepiece(spawnPiece, spawnPosition_);
-    return newState;
-}
-
-} // namespace game

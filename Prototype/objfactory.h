@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,17 +15,16 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef GAMEPIECE_H
-#define GAMEPIECE_H
+#ifndef OBJFACTORY_H
+#define OBJFACTORY_H
 
-namespace game {
 
-class Gamepiece
+template <class T>
+class ObjFactory
 {
 public:
-    Gamepiece();
+    virtual ~ObjFactory() {}
+    virtual T* Create() const {return new T;}
 };
 
-} // namespace game
-
-#endif // GAMEPIECE_H
+#endif // OBJFACTORY_H

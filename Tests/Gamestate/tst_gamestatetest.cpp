@@ -16,6 +16,7 @@
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "../../Prototype/gamestate.h"
+#include "../../Prototype/objfactory.h"
 
 #include <QtTest>
 
@@ -28,7 +29,8 @@ class GameStateTest : public QObject
 public:
     GameStateTest();
     ~GameStateTest();
-
+private:
+    const ObjFactory<game::Pile> pileFactory_;
 private slots:
     void initTestCase();
     void cleanupTestCase();
@@ -37,6 +39,7 @@ private slots:
     void test_InstantiatedObjectsException();
     void test_CopyConstructor();
     void test_AssignmentOperator();
+
 };
 
 GameStateTest::GameStateTest()
@@ -71,7 +74,7 @@ void GameStateTest::test_SetNumberOfPointCounters()
 void GameStateTest::test_ManipulatePoints()
 {
     GameState::SetNumberOfPointCounters(4);
-    GameState *testState = new GameState();
+    GameState *testState = new GameState(pileFactory_);
     testState->SetPoints(3, 42);
     QVERIFY2(testState->GetPoints(3) == 42, "Points of index 3 not read correctly after setting.");
     testState->AlterPoints(3, 10);
@@ -86,7 +89,7 @@ void GameStateTest::test_ManipulatePoints()
 
 void GameStateTest::test_InstantiatedObjectsException()
 {
-    GameState *testState = new GameState();
+    GameState *testState = new GameState(pileFactory_);
     QVERIFY_EXCEPTION_THROWN(GameState::SetNumberOfPointCounters(4), std::runtime_error);
     GameState *copyState = new GameState(*testState);
     delete testState;
@@ -97,7 +100,7 @@ void GameStateTest::test_InstantiatedObjectsException()
 
 void GameStateTest::test_AssignmentOperator()
 {
-    GameState *sourceState = new GameState;
+    GameState *sourceState = new GameState(pileFactory_);
     sourceState->SetPoints(0, 42);
     GameState copyState = *sourceState;
     QVERIFY2(42 == copyState.GetPoints(0),
@@ -109,7 +112,7 @@ void GameStateTest::test_AssignmentOperator()
 
 void GameStateTest::test_CopyConstructor()
 {
-    GameState *sourceState = new GameState;
+    GameState *sourceState = new GameState(pileFactory_);
     sourceState->SetPoints(1, 4711);
     GameState copyState(*sourceState);
     QVERIFY2(4711 == copyState.GetPoints(1),

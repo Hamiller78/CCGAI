@@ -1,4 +1,4 @@
-/* Copyright (c) 2018 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,33 +15,18 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef RULEBOOKMOCK_H
-#define RULEBOOKMOCK_H
-
-#include "board.h"
-#include "deck.h"
-#include "gamemovemock.h"
-#include "gamestate.h"
-#include "objfactory.h"
-#include "rulebook.h"
-
-#include <memory>
-#include <stdexcept>
+#ifndef GAMEPIECE_H
+#define GAMEPIECE_H
 
 namespace game {
 
-class RulebookMock : public Rulebook
+class IGamepiece
 {
 public:
-    RulebookMock();
-    ~RulebookMock() override {}
-    std::shared_ptr<GameState> SetupGame(const plugin::Deck& deck1, const plugin::Deck& deck2) const override;
-    std::vector<std::shared_ptr<Gamemove>> GetPossibleMoves(const GameState& currentState) const override;
-    int HasSomeoneWon(const GameState& currentState) const override;
-private:
-    const ObjFactory<game::Pile> pileFactory_;
+    // TODO: Delete the destructor once all tests using this are rewritten to use a derived mock of this interface class
+    virtual ~IGamepiece() {}
 };
 
 } // namespace game
 
-#endif // RULEBOOKMOCK_H
+#endif // GAMEPIECE_H

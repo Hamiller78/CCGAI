@@ -57,7 +57,7 @@ void PluginTest::test_LoadPlugin()
 {
     testPlugin_->LoadPlugin("../../../CCGAI/Tests/testdata/plugins/duelgame");
     Cardpool &testPool = Cardpool::GetInstance();
-    std::shared_ptr<game::Card> testCard = testPool.MakeCard(0);
+    std::shared_ptr<game::GamepieceCard> testCard = testPool.MakeCard(0);
     QString cardName = testCard->GetTraitText("Name");
     QVERIFY2(cardName == QString("Rookie"), "Name of card with index 0 is wrong!");
     QString cardImage = testCard->GetTraitText("Imagefile");

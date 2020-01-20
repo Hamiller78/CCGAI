@@ -1,4 +1,4 @@
-/* Copyright (c) 2018 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,33 +15,28 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef RULEBOOKMOCK_H
-#define RULEBOOKMOCK_H
-
-#include "board.h"
-#include "deck.h"
-#include "gamemovemock.h"
-#include "gamestate.h"
-#include "objfactory.h"
-#include "rulebook.h"
+#ifndef CARD_H
+#define CARD_H
 
 #include <memory>
-#include <stdexcept>
+
+#include "cardmaster.h"
+#include "igamepiece.h"
 
 namespace game {
 
-class RulebookMock : public Rulebook
+using CardmasterPointer = std::shared_ptr<plugin::Cardmaster>;
+
+class GamepieceCard : public IGamepiece
 {
-public:
-    RulebookMock();
-    ~RulebookMock() override {}
-    std::shared_ptr<GameState> SetupGame(const plugin::Deck& deck1, const plugin::Deck& deck2) const override;
-    std::vector<std::shared_ptr<Gamemove>> GetPossibleMoves(const GameState& currentState) const override;
-    int HasSomeoneWon(const GameState& currentState) const override;
 private:
-    const ObjFactory<game::Pile> pileFactory_;
+    CardmasterPointer myMaster_;
+public:
+    GamepieceCard();
+    GamepieceCard(const CardmasterPointer &myMaster);
+    QString GetTraitText(QString trait){return myMaster_->GetTraitText((trait));}
 };
 
 } // namespace game
 
-#endif // RULEBOOKMOCK_H
+#endif // CARD_H

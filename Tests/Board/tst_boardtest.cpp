@@ -19,6 +19,7 @@
 #include <QtTest>
 
 #include "../../Prototype/board.h"
+#include "../../Prototype/objfactory.h"
 
 #include "memory"
 
@@ -30,8 +31,9 @@ class BoardTest : public QObject
 
 private:
     Board *testBoard_;
-    std::shared_ptr<Gamepiece> testPiece1_;
-    std::shared_ptr<Gamepiece> testPiece2_;
+    std::shared_ptr<IGamepiece> testPiece1_;
+    std::shared_ptr<IGamepiece> testPiece2_;
+    const ObjFactory<game::Pile> pileFactory_;
 
 public:
     BoardTest();
@@ -52,9 +54,9 @@ BoardTest::BoardTest()
 
 void BoardTest::initTestCase()
 {
-    testBoard_ = new Board;
-    testPiece1_ = std::shared_ptr<Gamepiece>(new Gamepiece);
-    testPiece2_ = std::shared_ptr<Gamepiece>(new Gamepiece);
+    testBoard_ = new Board(pileFactory_);
+    testPiece1_ = std::shared_ptr<IGamepiece>(new IGamepiece);
+    testPiece2_ = std::shared_ptr<IGamepiece>(new IGamepiece);
 }
 
 void BoardTest::cleanupTestCase()
@@ -99,7 +101,7 @@ void BoardTest::test_PileHandling()
 
 void BoardTest::test_AssignmentOperator()
 {
-    Board *sourceBoard = new Board;
+    Board *sourceBoard = new Board(pileFactory_);
     sourceBoard->AddGamepiece(testPiece1_, Position(3, 2));
     Board copyBoard = *sourceBoard;
     QVERIFY2(testPiece1_ == copyBoard.GetTopPiece(Position(3, 2)),
@@ -111,7 +113,7 @@ void BoardTest::test_AssignmentOperator()
 
 void BoardTest::test_CopyConstructor()
 {
-    Board *sourceBoard = new Board;
+    Board *sourceBoard = new Board(pileFactory_);
     sourceBoard->AddGamepiece(testPiece1_, Position(3, 2));
     Board copyBoard(*sourceBoard);
     QVERIFY2(testPiece1_ == copyBoard.GetTopPiece(Position(3, 2)),

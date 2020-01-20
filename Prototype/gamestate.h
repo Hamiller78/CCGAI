@@ -35,7 +35,7 @@ private:
     static unsigned int countInstances_;
     std::vector<int> *pointCounters_{nullptr};
 public:
-    GameState();
+    GameState(const ObjFactory<Pile>& pileFactory);
     GameState(const GameState& sourceState);
     ~GameState();
     GameState &operator=(const GameState& otherState);

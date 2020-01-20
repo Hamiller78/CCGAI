@@ -22,7 +22,7 @@ namespace game {
 unsigned int GameState::numberOfPointCounters_ = 2;
 unsigned int GameState::countInstances_ = 0;
 
-GameState::GameState()
+GameState::GameState(const ObjFactory<Pile>& pileFactory): Board(pileFactory)
 {
     pointCounters_ = new std::vector<int>(numberOfPointCounters_, 0);
     GameState::countInstances_++;

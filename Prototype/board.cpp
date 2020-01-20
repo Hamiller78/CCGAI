@@ -1,4 +1,4 @@
-/* Copyright (c) 2017,2018 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -19,12 +19,7 @@
 
 namespace game {
 
-Board::Board()
-{
-
-}
-
-Board::Board(const Board &sourceBoard)
+Board::Board(const Board &sourceBoard) : pileFactory_(sourceBoard.pileFactory_)
 {
     CopyBoardMembers(sourceBoard);
 }
@@ -46,18 +41,18 @@ Board &Board::operator=(const Board &otherBoard)
     return *this;
 }
 
-void Board::AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition)
+void Board::AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Position& spawnPosition)
 {
     Pile* addPile = pilesOnBoard_[spawnPosition];
     if (addPile == nullptr)
     {
-        addPile = new Pile;
+        addPile = pileFactory_.Create();
         pilesOnBoard_[spawnPosition] = addPile;
     }
     addPile->AddOnTop(newPiece);
 }
 
-std::shared_ptr<Gamepiece> Board::GetTopPiece(const Position &pilePosition) const
+std::shared_ptr<IGamepiece> Board::GetTopPiece(const Position &pilePosition) const
 {
     Pile* readPile = pilesOnBoard_.at(pilePosition);
     return readPile->GetTopPiece();
@@ -80,14 +75,15 @@ void Board::MovePile(const Position &startPosition, const Position &destinationP
     }
     else
     {
-        targetPile->AddPile(*movePile);
+        targetPile->AddPile(movePile);
+        delete movePile;
     }
 }
 
 void Board::MoveTopPiece(const Position &startPosition, const Position &destinationPosition)
 {
     Pile* readPile = pilesOnBoard_.at(startPosition);
-    std::shared_ptr<Gamepiece> pickedPiece = readPile->PickupTopPiece();
+    std::shared_ptr<IGamepiece> pickedPiece = readPile->PickupTopPiece();
     AddGamepiece(pickedPiece, destinationPosition);
     if (readPile->GetPilesize() == 0)
     {
@@ -114,7 +110,7 @@ void Board::CopyBoardMembers(const Board &sourceBoard)
 {
     for (auto loopPile : sourceBoard.pilesOnBoard_)
     {
-        Pile* pileCopy = new Pile(*loopPile.second);
+        Pile* pileCopy = loopPile.second->CreateCopy();
         pilesOnBoard_[loopPile.first] = pileCopy;
     }
 }

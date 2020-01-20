@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -24,7 +24,8 @@
 #include <memory>
 #include <utility>
 
-#include "gamepiece.h"
+#include "igamepiece.h"
+#include "objfactory.h"
 #include "pile.h"
 
 namespace game {
@@ -38,16 +39,17 @@ using Position = std::pair<int, int>;
 class Board
 {
 public:
-    Board();
+    Board(const ObjFactory<Pile>& pileFactory) : pileFactory_(pileFactory){}
     Board(const Board& sourceBoard);
     ~Board();
     Board &operator=(const Board& otherBoard);
-    void AddGamepiece(const std::shared_ptr<Gamepiece> newPiece, const Position& spawnPosition);
-    std::shared_ptr<Gamepiece> GetTopPiece(const Position& pilePosition) const;
+    void AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Position& spawnPosition);
+    std::shared_ptr<IGamepiece> GetTopPiece(const Position& pilePosition) const;
     void MovePile(const Position& startPosition, const Position& destinationPosition);
     void MoveTopPiece(const Position& startPosition, const Position& destinationPosition);
     void RemovePile(const Position& clearPosition);
 private:
+    const ObjFactory<Pile> &pileFactory_;
     std::map<Position, Pile*> pilesOnBoard_;
     void CopyBoardMembers(const Board& sourceBoard);
 };

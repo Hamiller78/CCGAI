@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,28 +15,18 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef CARD_H
-#define CARD_H
-
-#include <memory>
-
-#include "cardmaster.h"
-#include "gamepiece.h"
+#include "gamepiececard.h"
 
 namespace game {
 
-using CardmasterPointer = std::shared_ptr<plugin::Cardmaster>;
-
-class Card : public Gamepiece
+GamepieceCard::GamepieceCard()
 {
-private:
-    CardmasterPointer myMaster_;
-public:
-    Card();
-    Card(const CardmasterPointer &myMaster);
-    QString GetTraitText(QString trait){return myMaster_->GetTraitText((trait));}
-};
+
+}
+
+GamepieceCard::GamepieceCard(const CardmasterPointer &myMaster)
+{
+    myMaster_ = myMaster;
+}
 
 } // namespace game
-
-#endif // CARD_H
