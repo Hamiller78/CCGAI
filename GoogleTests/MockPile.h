@@ -27,7 +27,8 @@ class MockPile: public game::Pile
 {
 public:
     MockPile() {}
-    ~MockPile() override {}
+    virtual ~MockPile() override {Die();}
+    MOCK_METHOD(void, Die, ());
 
     MOCK_METHOD(void, AddOnTop, (const std::shared_ptr<game::IGamepiece>), (override));
     MOCK_METHOD(void, AddPile, (game::Pile*), (override));
@@ -35,8 +36,6 @@ public:
     MOCK_METHOD(void, EmptyPile, (), (override));
     MOCK_METHOD(std::shared_ptr<game::IGamepiece>, GetTopPiece, (), (const, override));
     MOCK_METHOD(std::shared_ptr<game::IGamepiece>, PickupTopPiece, (), (override));
-
-
 };
 
 } // namespace mocks
