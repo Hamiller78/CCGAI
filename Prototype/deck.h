@@ -35,11 +35,11 @@ public:
     const std::vector<QStringList>& GetDeckLists() const {return deckLists_;}
     const QStringList& GetDeckNames() const {return deckNames_;}
     void LoadDecklistFromTxt(const QString& deckFileName);
+    void ParseTxtTextstream(QTextStream &fileContent);
 private:
     void AddCards(const QString& txtLine);
     void AddSidedeck(const QString& sideDeckName);
     void ClearDeck();
-    void ParseTxtTextstream(QTextStream &fileContent);
 };
 
 } // namepace plugin

@@ -35,6 +35,24 @@ void Deck::LoadDecklistFromTxt(const QString &deckFileName)
     }
 }
 
+void Deck::ParseTxtTextstream(QTextStream &fileContent)
+{
+    AddSidedeck("Draw Deck");
+    QString deckLine = fileContent.readLine();
+    while (!deckLine.isNull())
+    {
+        if (deckLine.right(1) == ":")
+        {
+            AddSidedeck(deckLine.left(deckLine.length() - 1));
+        }
+        else
+        {
+            AddCards(deckLine);
+        }
+        deckLine = fileContent.readLine();
+    }
+}
+
 void Deck::AddCards(const QString &txtLine)
 {
     QStringList lineContent = txtLine.split("\t");
@@ -55,24 +73,6 @@ void Deck::ClearDeck()
 {
     deckNames_.clear();
     deckLists_.clear();
-}
-
-void Deck::ParseTxtTextstream(QTextStream &fileContent)
-{
-    AddSidedeck("Draw Deck");
-    QString deckLine = fileContent.readLine();
-    while (!deckLine.isNull())
-    {
-        if (deckLine.right(1) == ":")
-        {
-            AddSidedeck(deckLine.left(deckLine.length() - 1));
-        }
-        else
-        {
-            AddCards(deckLine);
-        }
-        deckLine = fileContent.readLine();
-    }
 }
 
 } // namespace plugin

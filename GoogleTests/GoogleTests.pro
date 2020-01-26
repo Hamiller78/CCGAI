@@ -4,7 +4,7 @@ TEMPLATE = app
 CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG += thread
-CONFIG -= qt
+# CONFIG -= qt
 
 HEADERS += \
     MockGamepiece.h \
@@ -15,8 +15,10 @@ HEADERS += \
 SOURCES += \
         main.cpp \
         tst_board.cpp \
+        tst_deck.cpp \
         tst_pile.cpp
 
 SOURCES += \
         ../Prototype/board.cpp \
+        ../Prototype/deck.cpp \
         ../Prototype/pile.cpp \
