@@ -1,4 +1,4 @@
-/* Copyright (c) 2017,2018 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -24,6 +24,7 @@ Plugin::Plugin()
 
 }
 
+// loads set lists, card data and card back from plugin directories and sets the card pool
 void Plugin::LoadPlugin(const QString &pluginDirName)
 {
     try
@@ -57,6 +58,7 @@ void Plugin::CheckFileExists(const QString &fileName) const
     }
 }
 
+// loads game structure file in ai folder, but currently doesn't do anything with it
 void Plugin::LoadGameStructure(const QString &dirName) const
 {
     QString fileName = QDir::cleanPath(dirName + "/ai/gamestructure.txt");
@@ -73,6 +75,7 @@ void Plugin::LoadGameStructure(const QString &dirName) const
     gamestructureFile.close();
 }
 
+// get file names of set lists (or carddata.txt if it has one list with all cards)
 QStringList Plugin::GetSetListFilenames(const QString &pluginDirName) const
 {
     QString fileName = QDir::cleanPath(pluginDirName + "/" + "setlist.txt");
@@ -102,11 +105,13 @@ QStringList Plugin::GetSetListFilenames(const QString &pluginDirName) const
     return setNames;
 }
 
+// TODO: Implement handling of card back images
 void Plugin::LoadCardBack(const QString &pluginDirName)
 {
 
 }
 
+// Loads the card data from the set list files
 QStringList Plugin::LoadCardData(const QString &pluginDirName, const QStringList &setListFilenames)
 {
     QStringList dataLines;

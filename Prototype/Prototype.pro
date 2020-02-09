@@ -26,6 +26,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    IoWrapper/ioexception.cpp \
+    IoWrapper/textfileloader.cpp \
     gamepiececard.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -54,6 +56,8 @@ SOURCES += \
     playeragentmock.cpp
 
 HEADERS += \
+    IoWrapper/ioexception.h \
+    IoWrapper/textfileloader.h \
     gamepiececard.h \
     igamepiece.h \
     mainwindow.h \
