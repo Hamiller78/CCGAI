@@ -19,11 +19,6 @@
 
 namespace plugin {
 
-Plugin::Plugin()
-{
-
-}
-
 // loads set lists, card data and card back from plugin directories and sets the card pool
 void Plugin::LoadPlugin(const QString &pluginDirName)
 {
@@ -50,58 +45,53 @@ void Plugin::CheckDirExists(const QString &dirName) const
     }
 }
 
-void Plugin::CheckFileExists(const QString &fileName) const
-{
-    if (!QFile::exists(fileName))
-    {
-        throw ExceptionPlugin("Plugin file not found: " + fileName.toStdString());
-    }
-}
-
-// loads game structure file in ai folder, but currently doesn't do anything with it
 void Plugin::LoadGameStructure(const QString &dirName) const
 {
     QString fileName = QDir::cleanPath(dirName + "/ai/gamestructure.txt");
-    CheckFileExists(fileName);
-    QFile gamestructureFile(fileName);
-    if (!gamestructureFile.open(QIODevice::ReadOnly))
+    try
     {
-        throw ExceptionPlugin("AI gamestructure file couldn't be opened: " + fileName.toStdString());
+        QStringList dataLines = fileLoader_.FromFilename(fileName);
     }
-    QTextStream fileContent(&gamestructureFile);
-    QString dataTable = fileContent.readAll();
-    QStringList dataLines;
-    dataLines.append(dataTable.split(QRegExp("[\r\n]"), QString::SkipEmptyParts));
-    gamestructureFile.close();
+    catch (iohelper::IoException& ex)
+    {
+        // TODO: this whole method is unfinished
+    }
+    // TODO: do something wit h data lines
 }
 
 // get file names of set lists (or carddata.txt if it has one list with all cards)
 QStringList Plugin::GetSetListFilenames(const QString &pluginDirName) const
 {
     QString fileName = QDir::cleanPath(pluginDirName + "/" + "setlist.txt");
-    CheckFileExists(fileName);
-    QFile setListFile(fileName);
-
     QStringList setNames;
-    if (setListFile.open(QIODevice::ReadWrite | QIODevice::Text))
+    try
     {
-    //read first lines from text file
-        QTextStream setListStream(&setListFile);
-        QString setLine = setListStream.readLine();
+        QStringList dataLines = fileLoader_.FromFilename(fileName);
+
+        QString setLine = dataLines(0);
+        // TODO: Where does this condition come from?
         if (setLine != "")
         {
             int setCount = setLine.toInt();
             for (int i = 1; i <= setCount; i++)
             {
-                setNames << setListStream.readLine();
+                setNames << dataLines(i);
             }
         }
-        setListFile.close();
+        else
+        {
+            setNames << QString("carddata.txt");
+        }
     }
-    else
+    catch (iohelper::IoException& ex)
     {
         setNames << QString("carddata.txt");
     }
+    catch (std::exception& ex)
+    {
+        // TODO: this is a real error
+    }
+
     return setNames;
 }
 
@@ -114,24 +104,23 @@ void Plugin::LoadCardBack(const QString &pluginDirName)
 // Loads the card data from the set list files
 QStringList Plugin::LoadCardData(const QString &pluginDirName, const QStringList &setListFilenames)
 {
+    QStringList overallList;
     QStringList dataLines;
+    try
+    {
     for (int i = 0; i < setListFilenames.size(); i++)
     {
         QString fileName
-          = QDir::cleanPath(pluginDirName + "/" + QString("sets") + "/" + setListFilenames[i]);
-        CheckFileExists(fileName);
-        QFile cardListFile(fileName);
-        if (!cardListFile.open(QIODevice::ReadOnly))
-        {
-            throw ExceptionPlugin("Carddata file couldn't be opened: " + fileName.toStdString());
-        }
-
-        QTextStream fileContent(&cardListFile);
-        QString dataTable = fileContent.readAll();
-        dataLines.append(dataTable.split(QRegExp("[\r\n]"), QString::SkipEmptyParts));
-        cardListFile.close();
+                = QDir::cleanPath(pluginDirName + "/" + QString("sets") + "/" + setListFilenames[i]);
+        dataLines = fileLoader_.FromFilename(fileName);
+        overallList << dataLines;
     }
-    return dataLines;
+    return overallList;
+    }
+    catch (iohelper::IoException& ex)
+    {
+        // TODO: re-throw or some plugin exception
+    }
 }
 
 } // namespace plugin

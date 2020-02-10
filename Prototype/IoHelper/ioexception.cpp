@@ -15,26 +15,13 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef TEXTFILELOADER_H
-#define TEXTFILELOADER_H
-
-
-#include <QDir>
-#include <QFile>
-#include <QString>
-#include <QTextStream>
-
 #include "ioexception.h"
 
-namespace iowrapper {
+namespace iohelper {
 
-class TextfileLoader
+const char *IoException::what() const noexcept
 {
-public:
-    TextfileLoader(){}
-    virtual static QStringList FromFilename(QString filePath);
-};
+    return this->errortext_.c_str();
+}
 
-} // namespace iowrapper
-
-#endif // TEXTFILELOADER_H
+} // namespace iohelper

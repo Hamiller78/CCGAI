@@ -20,7 +20,7 @@
 
 #include <string>
 
-namespace iowrapper {
+namespace iohelper {
 
 class IoException : public std::exception
 {
@@ -31,6 +31,6 @@ public:
     const char* what() const noexcept override;
 };
 
-} // namespace iowrapper
+} // namespace iohelper
 
 #endif // IOEXCEPTION_H

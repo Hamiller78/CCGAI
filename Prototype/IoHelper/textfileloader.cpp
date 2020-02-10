@@ -17,7 +17,7 @@
 
 #include "textfileloader.h"
 
-namespace iowrapper {
+namespace iohelper {
 
 QStringList TextfileLoader::FromFilename(QString filePath)
 {
@@ -39,4 +39,4 @@ QStringList TextfileLoader::FromFilename(QString filePath)
     return dataLines.append(dataTable.split(QRegExp("[\r\n]"), QString::SkipEmptyParts));
 }
 
-} // namespace iowrapper
+} // namespace iohelper

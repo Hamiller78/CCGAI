@@ -1,4 +1,4 @@
-/* Copyright (c) 2017,2018 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -27,6 +27,8 @@
 
 #include "cardpool.h"
 #include "exceptionplugin.h"
+#include "iohelper/ioexception.h"
+#include "iohelper/textfileloader.h"
 
 namespace plugin {
 
@@ -37,15 +39,16 @@ class Plugin
 private:
     QString pluginDirPath_;
 public:
-    Plugin();
+    Plugin(const iohelper::TextfileLoader& fileLoader) : fileLoader_(fileLoader){}
     void LoadPlugin(const QString& pluginDirName);
 private:
     void CheckDirExists(const QString& pluginDirName) const;
-    void CheckFileExists(const QString& fileName) const;
     void LoadGameStructure(const QString& dirName) const;
     QStringList GetSetListFilenames(const QString& dirName) const;
     void LoadCardBack(const QString& pluginDirName);
     QStringList LoadCardData(const QString& pluginDirName, const QStringList& setListFilenames);
+
+    const iohelper::TextfileLoader fileLoader_;
 };
 
 } // namespace plugin
