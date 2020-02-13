@@ -41,14 +41,11 @@ private:
     std::vector<std::shared_ptr<Cardmaster>> listOfCards_;
     QStringList namesOfColumns_;
 public:
-    Cardpool (Cardpool const&) = delete;
-    void operator=(Cardpool const&) = delete;
-    static Cardpool& GetInstance();
+    Cardpool(){}
     std::shared_ptr<game::GamepieceCard> MakeCard(int cardIndex);
     std::shared_ptr<game::GamepieceCard> MakeCard(QString cardTitle);
     void SetPool(const QStringList& lackeyCardData);
 private:
-    Cardpool(){}
     void IdentifyKeyColumns();
     void MakeCardmasters(const QStringList& lackeyCardData);
     void ParseHeader(const QString& headerLine);

@@ -38,8 +38,11 @@ class Plugin
 {
 private:
     QString pluginDirPath_;
+    Cardpool pluginCardpool_;
+    const iohelper::TextfileLoader fileLoader_;
 public:
-    Plugin(const iohelper::TextfileLoader& fileLoader) : fileLoader_(fileLoader){}
+    Plugin(Cardpool& emptyCardpool, const iohelper::TextfileLoader& fileLoader)
+        : pluginCardpool_(emptyCardpool), fileLoader_(fileLoader){}
     void LoadPlugin(const QString& pluginDirName);
 private:
     void CheckDirExists(const QString& pluginDirName) const;
@@ -47,8 +50,6 @@ private:
     QStringList GetSetListFilenames(const QString& dirName) const;
     void LoadCardBack(const QString& pluginDirName);
     QStringList LoadCardData(const QString& pluginDirName, const QStringList& setListFilenames);
-
-    const iohelper::TextfileLoader fileLoader_;
 };
 
 } // namespace plugin

@@ -19,12 +19,6 @@
 
 namespace plugin {
 
-Cardpool &Cardpool::GetInstance()
-{
-    static Cardpool instance;
-    return instance;
-}
-
 std::shared_ptr<game::GamepieceCard> Cardpool::MakeCard(int cardIndex)
 {
     std::shared_ptr<game::GamepieceCard> newCard(new game::GamepieceCard(listOfCards_[cardIndex]));

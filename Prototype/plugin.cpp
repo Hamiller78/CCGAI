@@ -28,7 +28,7 @@ void Plugin::LoadPlugin(const QString &pluginDirName)
         QStringList setListFilenames = GetSetListFilenames(pluginDirName);
         QStringList cardData = LoadCardData(pluginDirName, setListFilenames);
         LoadCardBack(pluginDirName);
-        Cardpool::GetInstance().SetPool(cardData);
+        pluginCardpool_.SetPool(cardData);
     }
     catch (ExceptionPlugin &e)
     {
@@ -56,7 +56,7 @@ void Plugin::LoadGameStructure(const QString &dirName) const
     {
         // TODO: this whole method is unfinished
     }
-    // TODO: do something wit h data lines
+    // TODO: do something with data lines
 }
 
 // get file names of set lists (or carddata.txt if it has one list with all cards)
