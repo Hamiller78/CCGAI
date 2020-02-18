@@ -29,7 +29,6 @@
 #include "exceptionplugin.h"
 
 // Class to manage and spawn all possible cards.
-// Implemented as singleton class.
 
 namespace plugin {
 
@@ -42,9 +41,10 @@ private:
     QStringList namesOfColumns_;
 public:
     Cardpool(){}
+    virtual ~Cardpool(){}
     std::shared_ptr<game::GamepieceCard> MakeCard(int cardIndex);
     std::shared_ptr<game::GamepieceCard> MakeCard(QString cardTitle);
-    void SetPool(const QStringList& lackeyCardData);
+    virtual void SetPool(const QStringList& lackeyCardData);
 private:
     void IdentifyKeyColumns();
     void MakeCardmasters(const QStringList& lackeyCardData);

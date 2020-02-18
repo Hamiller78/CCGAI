@@ -32,7 +32,8 @@ class TextfileLoader
 {
 public:
     TextfileLoader(){}
-    virtual QStringList FromFilename(QString filePath);
+    virtual QStringList FromFilename(const QString& filePath) const;
+    virtual void CheckDirExists(const QString& pluginDirName) const;
 };
 
 } // namespace iohelper

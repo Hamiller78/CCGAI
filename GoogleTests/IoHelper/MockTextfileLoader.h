@@ -1,4 +1,4 @@
-/* Copyright (c) 2017,2018 Torben Kneesch
+/* Copyright (c) 2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,22 +15,24 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "gamemovespawnpiece.h"
+#ifndef MOCKTEXTFILELOADER_H
+#define MOCKTEXTFILELOADER_H
 
-namespace game {
+#include "gmock/gmock.h"
+#include "../Prototype/IoHelper/textfileloader.h"
 
-GamemoveSpawnPiece::GamemoveSpawnPiece(int cardNumber, const Position &spawnPosition)
+namespace mocks {
+
+class MockTextfileLoader: public iohelper::TextfileLoader
 {
-    cardNumber_ = cardNumber;
-    spawnPosition_ = spawnPosition;
-}
+public:
+    MockTextfileLoader() {}
+//    ~MockTextfileLoader() override {}
 
-GameState GamemoveSpawnPiece::ApplyOnGamestate(const GameState &oldState) const
-{
-    GameState newState(oldState);
-/*    std::shared_ptr<IGamepiece> spawnPiece = plugin::Cardpool::GetInstance().MakeCard(cardNumber_);
-    newState.AddGamepiece(spawnPiece, spawnPosition_); */
-    return newState;
-}
+    MOCK_METHOD(QStringList, FromFilename, (const QString&), (override, const));
+    MOCK_METHOD(void, CheckDirExists, (const QString&), (override, const));
+};
 
-} // namespace game
+} // namespace mocks
+
+#endif // MOCKTEXTFILELOADER_H

@@ -19,15 +19,15 @@
 
 namespace iohelper {
 
-QStringList TextfileLoader::FromFilename(QString filePath)
+QStringList TextfileLoader::FromFilename(const QString& filePath) const
 {
     if (!QFile::exists(filePath))
     {
-        throw new IoException("File not found: " & filePath.toStdString());
+        throw new IoException("File not found: " + filePath.toStdString());
     }
 
     QFile textFile(filePath);
-    if (!testFile.open(QIODevice::ReadOnly))
+    if (!textFile.open(QIODevice::ReadOnly))
     {
         throw IoException("Text file couldn't be opened: " + filePath.toStdString());
     }
@@ -36,7 +36,16 @@ QStringList TextfileLoader::FromFilename(QString filePath)
     QString dataTable = fileContent.readAll();
     textFile.close();
 
-    return dataLines.append(dataTable.split(QRegExp("[\r\n]"), QString::SkipEmptyParts));
+    return dataTable.split(QRegExp("[\r\n]"), QString::SkipEmptyParts);
+}
+
+void TextfileLoader::CheckDirExists(const QString &dirName) const
+{
+    QDir pluginDir(dirName);
+    if (!pluginDir.exists())
+    {
+        throw IoException("Directory doesn't exist: " + dirName.toStdString());
+    }
 }
 
 } // namespace iohelper

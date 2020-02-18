@@ -24,7 +24,7 @@ void Plugin::LoadPlugin(const QString &pluginDirName)
 {
     try
     {
-        CheckDirExists(pluginDirName);
+        fileLoader_.CheckDirExists(pluginDirName);
         QStringList setListFilenames = GetSetListFilenames(pluginDirName);
         QStringList cardData = LoadCardData(pluginDirName, setListFilenames);
         LoadCardBack(pluginDirName);
@@ -34,14 +34,9 @@ void Plugin::LoadPlugin(const QString &pluginDirName)
     {
         throw;
     }
-}
-
-void Plugin::CheckDirExists(const QString &dirName) const
-{
-    QDir pluginDir(dirName);
-    if (!pluginDir.exists())
+    catch (iohelper::IoException &e)
     {
-        throw ExceptionPlugin("Plugin directory doesn't exist: " + dirName.toStdString());
+        throw;
     }
 }
 
@@ -68,14 +63,14 @@ QStringList Plugin::GetSetListFilenames(const QString &pluginDirName) const
     {
         QStringList dataLines = fileLoader_.FromFilename(fileName);
 
-        QString setLine = dataLines(0);
+        QString setLine = dataLines[0];
         // TODO: Where does this condition come from?
         if (setLine != "")
         {
             int setCount = setLine.toInt();
             for (int i = 1; i <= setCount; i++)
             {
-                setNames << dataLines(i);
+                setNames << dataLines[i];
             }
         }
         else

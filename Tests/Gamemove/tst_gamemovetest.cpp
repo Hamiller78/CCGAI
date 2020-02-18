@@ -66,10 +66,10 @@ void GamemoveTest::initTestCase()
     testPiece1_ = std::shared_ptr<IGamepiece>(new IGamepiece);
     testPiece2_ = std::shared_ptr<IGamepiece>(new IGamepiece);
 
-    plugin::Cardpool& testPool = plugin::Cardpool::GetInstance();
+/*    plugin::Cardpool& testPool = plugin::Cardpool::GetInstance();
     QStringList testPoolData;
     testPoolData << "Name\tImageFile" << "Rookie\tRookie.jpeg";
-    testPool.SetPool(testPoolData);
+    testPool.SetPool(testPoolData); */
 }
 
 void GamemoveTest::cleanupTestCase()

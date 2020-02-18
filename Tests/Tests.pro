@@ -2,7 +2,6 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     Gamemove \
-    Plugin \
     Cardpool \
     ScriptWrapper \
     MoveProvider \

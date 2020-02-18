@@ -38,14 +38,13 @@ class Plugin
 {
 private:
     QString pluginDirPath_;
-    Cardpool pluginCardpool_;
-    const iohelper::TextfileLoader fileLoader_;
+    Cardpool& pluginCardpool_;
+    const iohelper::TextfileLoader& fileLoader_;
 public:
     Plugin(Cardpool& emptyCardpool, const iohelper::TextfileLoader& fileLoader)
         : pluginCardpool_(emptyCardpool), fileLoader_(fileLoader){}
     void LoadPlugin(const QString& pluginDirName);
 private:
-    void CheckDirExists(const QString& pluginDirName) const;
     void LoadGameStructure(const QString& dirName) const;
     QStringList GetSetListFilenames(const QString& dirName) const;
     void LoadCardBack(const QString& pluginDirName);
