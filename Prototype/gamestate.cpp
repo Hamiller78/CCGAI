@@ -1,4 +1,4 @@
-/* Copyright (c) 2018 Torben Kneesch
+/* Copyright (c) 2018-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -19,10 +19,10 @@
 
 namespace game {
 
-unsigned int GameState::numberOfPointCounters_ = 2;
+static unsigned int numberOfPointCounters_ = 2;
 unsigned int GameState::countInstances_ = 0;
 
-GameState::GameState(const ObjFactory<Pile>& pileFactory): Board(pileFactory)
+GameState::GameState(Board& newBoard): board_(newBoard)
 {
     pointCounters_ = new std::vector<int>(numberOfPointCounters_, 0);
     GameState::countInstances_++;

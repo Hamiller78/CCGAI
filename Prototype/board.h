@@ -41,12 +41,12 @@ class Board
 public:
     Board(const ObjFactory<Pile>& pileFactory) : pileFactory_(pileFactory){}
     Board(const Board& sourceBoard);
-    ~Board();
+    virtual ~Board();
     Board &operator=(const Board& otherBoard);
     void AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Position& spawnPosition);
-    std::shared_ptr<IGamepiece> GetTopPiece(const Position& pilePosition) const;
-    void MovePile(const Position& startPosition, const Position& destinationPosition);
-    void MoveTopPiece(const Position& startPosition, const Position& destinationPosition);
+    virtual std::shared_ptr<IGamepiece> GetTopPiece(const Position& pilePosition) const;
+    virtual void MovePile(const Position& startPosition, const Position& destinationPosition);
+    virtual void MoveTopPiece(const Position& startPosition, const Position& destinationPosition);
     void RemovePile(const Position& clearPosition);
 private:
     const ObjFactory<Pile> &pileFactory_;

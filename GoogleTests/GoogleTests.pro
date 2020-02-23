@@ -8,6 +8,7 @@ CONFIG += thread
 
 HEADERS += \
     IoHelper/MockTextfileLoader.h \
+    MockBoard.h \
     MockCardpool.h \
     MockGamepiece.h \
     MockPile.h \
@@ -18,6 +19,7 @@ SOURCES += \
         main.cpp \
         tst_board.cpp \
         tst_deck.cpp \
+        tst_gamestate.cpp \
         tst_pile.cpp \
         tst_plugin.cpp
 

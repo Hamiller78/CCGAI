@@ -1,4 +1,4 @@
-/* Copyright (c) 2018 Torben Kneesch
+/* Copyright (c) 2018-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -28,17 +28,21 @@ namespace game {
 // Contains the complete description of the game
 // including board and later arrow/targets and external counters
 
-class GameState : public Board
+class GameState
 {
 private:
+    Board& board_;
     static unsigned int numberOfPointCounters_;
     static unsigned int countInstances_;
     std::vector<int> *pointCounters_{nullptr};
 public:
-    GameState(const ObjFactory<Pile>& pileFactory);
+    GameState(Board& newBoard);
     GameState(const GameState& sourceState);
     ~GameState();
     GameState &operator=(const GameState& otherState);
+
+    Board& GetBoard() {return board_;}
+    void SetBoard(Board& newBoard) {board_ = newBoard;}
 
     static unsigned int GetNumberOfPointCounters(){return numberOfPointCounters_;}
     // only allowed while no objects are instantiated
