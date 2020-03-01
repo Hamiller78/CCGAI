@@ -43,7 +43,6 @@ SOURCES += \
     cardmaster.cpp \
     deck.cpp \
     rulebook.cpp \
-    rulebookmock.cpp \
     gameloop.cpp \
     scriptwrapper.cpp \
     pythonextension.cpp \
@@ -74,7 +73,6 @@ HEADERS += \
     cardmaster.h \
     deck.h \
     rulebook.h \
-    rulebookmock.h \
     gameloop.h \
     scriptwrapper.h \
     pythonextension.h \

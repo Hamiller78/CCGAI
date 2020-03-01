@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -28,7 +28,7 @@ GamemoveMoveTop::GamemoveMoveTop(const Position &startPosition, const Position &
 GameState GamemoveMoveTop::ApplyOnGamestate(const GameState &oldState) const
 {
     GameState newState(oldState);
-    newState.MoveTopPiece(startPosition_, targetPosition_);
+    newState.GetBoard().MoveTopPiece(startPosition_, targetPosition_);
     return newState;
 }
 

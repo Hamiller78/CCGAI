@@ -19,7 +19,7 @@
 
 namespace game {
 
-static unsigned int numberOfPointCounters_ = 2;
+unsigned int GameState::numberOfPointCounters_ = 2;
 unsigned int GameState::countInstances_ = 0;
 
 GameState::GameState(Board& newBoard): board_(newBoard)
@@ -34,7 +34,7 @@ GameState::~GameState()
     delete pointCounters_;
 }
 
-GameState::GameState(const GameState &sourceState) : Board(sourceState)
+GameState::GameState(const GameState &sourceState) : board_(sourceState.board_)
 {
     CopyPointCounters(sourceState);
     GameState::countInstances_++;
@@ -44,7 +44,7 @@ GameState &GameState::operator=(const GameState &otherState)
 {
     if (this != &otherState)
     {
-        Board::operator=(otherState);
+        board_ = Board(otherState.board_);
         CopyPointCounters(otherState);
     }
     return *this;

@@ -1,4 +1,0 @@
-Name	Set	Imagefile	Type	Attack	Defense	Text
-Rookie	Basic	Rookie.jpeg	Minion	1	1	
-Veteran	Basic	Veteran.jpeg	Minion	2	2	
-Berserker	Basic	Berserker.jpeg	Minion	3	1	

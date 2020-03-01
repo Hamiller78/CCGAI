@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -28,7 +28,7 @@ GamemoveMovePile::GamemoveMovePile(const Position &startPosition, const Position
 GameState GamemoveMovePile::ApplyOnGamestate(const GameState &oldState) const
 {
     GameState newState(oldState);
-    newState.MovePile(startPosition_, targetPosition_);
+    newState.GetBoard().MovePile(startPosition_, targetPosition_);
     return newState;
 }
 
