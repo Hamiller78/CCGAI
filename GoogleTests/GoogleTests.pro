@@ -32,5 +32,6 @@ SOURCES += \
         ../Prototype/deck.cpp \
         ../Prototype/exceptionplugin.cpp \
         ../Prototype/gamepiececard.cpp \
+        ../Prototype/gamestate.cpp \
         ../Prototype/pile.cpp \
         ../Prototype/plugin.cpp

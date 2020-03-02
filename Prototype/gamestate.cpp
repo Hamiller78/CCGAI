@@ -36,6 +36,7 @@ GameState::~GameState()
 
 GameState::GameState(const GameState &sourceState) : board_(sourceState.board_)
 {
+    board_ = Board(board_);
     CopyPointCounters(sourceState);
     GameState::countInstances_++;
 }

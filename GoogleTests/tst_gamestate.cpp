@@ -18,4 +18,71 @@
 #include "tst_googletest.h"
 
 #include "MockBoard.h"
+#include "MockPileFactory.h"
 #include "../Prototype/gamestate.h"
+
+
+TEST(GameState, GetDefaultNumberOfPointCounters)
+{
+    ASSERT_EQ(2, game::GameState::GetNumberOfPointCounters());
+}
+
+TEST(GameState, SetNumberOfPointCounters)
+{
+    game::GameState::SetNumberOfPointCounters(7);
+    ASSERT_EQ(7, game::GameState::GetNumberOfPointCounters());
+}
+
+TEST(GameState, SetAndAlterPoints)
+{
+    game::GameState::SetNumberOfPointCounters(4);
+
+    const mocks::MockPileFactory mockPileFactory;
+    mocks::MockBoard boardMock(mockPileFactory);
+    game::GameState testState(boardMock);
+
+    testState.SetPoints(3, 42);
+    ASSERT_EQ(42, testState.GetPoints(3));
+
+    testState.AlterPoints(3, 10);
+    ASSERT_EQ(52, testState.GetPoints(3));
+
+    testState.AlterPoints(3, -18);
+    ASSERT_EQ(34, testState.GetPoints(3));
+}
+
+TEST(GameState, ExceptionWhenChangingNumberOfPointCounters)
+{
+    const mocks::MockPileFactory mockPileFactory;
+    mocks::MockBoard boardMock(mockPileFactory);
+    game::GameState testState(boardMock);
+
+    EXPECT_THROW(game::GameState::SetNumberOfPointCounters(3), std::runtime_error);
+}
+
+TEST(GameState, CopyByAssignmentOperator)
+{
+    const mocks::MockPileFactory mockPileFactory;
+    mocks::MockBoard boardMock(mockPileFactory);
+    game::GameState sourceState(boardMock);
+
+    sourceState.SetPoints(0, 42);
+
+    game::GameState copiedState = sourceState;
+    sourceState.SetPoints(0, 13);
+    ASSERT_EQ(42, copiedState.GetPoints(0));
+}
+
+/*
+void GameStateTest::test_AssignmentOperator()
+{
+    GameState *sourceState = new GameState(pileFactory_);
+    sourceState->SetPoints(0, 42);
+    GameState copyState = *sourceState;
+    QVERIFY2(42 == copyState.GetPoints(0),
+      "Value of point index 0 not copied properly to new GameState.");
+    delete sourceState;
+    QVERIFY2(42 == copyState.GetPoints(0),
+      "Point value not found after deleting sourceState.");
+}
+*/

@@ -31,6 +31,7 @@ namespace game {
 class GameState
 {
 private:
+    // TODO: board_ doesn't have to be a reference, each GameState has its own board
     Board& board_;
     static unsigned int numberOfPointCounters_;
     static unsigned int countInstances_;
