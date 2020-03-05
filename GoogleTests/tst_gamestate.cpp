@@ -37,8 +37,7 @@ TEST(GameState, SetAndAlterPoints)
 {
     game::GameState::SetNumberOfPointCounters(4);
 
-    const mocks::MockPileFactory mockPileFactory;
-    mocks::MockBoard boardMock(mockPileFactory);
+    mocks::MockBoard boardMock;
     game::GameState testState(boardMock);
 
     testState.SetPoints(3, 42);
@@ -53,8 +52,7 @@ TEST(GameState, SetAndAlterPoints)
 
 TEST(GameState, ExceptionWhenChangingNumberOfPointCounters)
 {
-    const mocks::MockPileFactory mockPileFactory;
-    mocks::MockBoard boardMock(mockPileFactory);
+    mocks::MockBoard boardMock;
     game::GameState testState(boardMock);
 
     EXPECT_THROW(game::GameState::SetNumberOfPointCounters(3), std::runtime_error);
@@ -62,8 +60,7 @@ TEST(GameState, ExceptionWhenChangingNumberOfPointCounters)
 
 TEST(GameState, CopyByAssignmentOperator)
 {
-    const mocks::MockPileFactory mockPileFactory;
-    mocks::MockBoard boardMock(mockPileFactory);
+    mocks::MockBoard boardMock;
     game::GameState sourceState(boardMock);
 
     sourceState.SetPoints(0, 42);

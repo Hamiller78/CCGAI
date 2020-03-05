@@ -19,6 +19,7 @@
 #define MOCKBOARD_H
 
 #include "gmock/gmock.h"
+#include "MockPileFactory.h"
 #include "../Prototype/board.h"
 
 namespace mocks {
@@ -26,7 +27,9 @@ namespace mocks {
 class MockBoard: public game::Board
 {
 public:
-    MockBoard(const ObjFactory<game::Pile>& pileFactory) : game::Board(pileFactory) {}
+    const MockPileFactory mockFactory;
+
+    MockBoard() : game::Board(mockFactory) {}
     ~MockBoard() override {}
 
     MOCK_METHOD(std::shared_ptr<game::IGamepiece>, GetTopPiece, (const game::Position&), (override, const));
