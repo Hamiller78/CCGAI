@@ -65,21 +65,24 @@ TEST(GameState, CopyByAssignmentOperator)
 
     sourceState.SetPoints(0, 42);
 
+    EXPECT_CALL(boardMock, CopyBoard(_))
+            .Times(1);
     game::GameState copiedState = sourceState;
+
     sourceState.SetPoints(0, 13);
+    ASSERT_EQ(13, sourceState.GetPoints(0));
     ASSERT_EQ(42, copiedState.GetPoints(0));
 }
 
-/*
-void GameStateTest::test_AssignmentOperator()
+TEST(GameState, CopyByCopyConstructor)
 {
-    GameState *sourceState = new GameState(pileFactory_);
-    sourceState->SetPoints(0, 42);
-    GameState copyState = *sourceState;
-    QVERIFY2(42 == copyState.GetPoints(0),
-      "Value of point index 0 not copied properly to new GameState.");
-    delete sourceState;
-    QVERIFY2(42 == copyState.GetPoints(0),
-      "Point value not found after deleting sourceState.");
+    mocks::MockBoard boardMock;
+    game::GameState sourceState(boardMock);
+
+    sourceState.SetPoints(0, 42);
+
+    game::GameState copiedState(sourceState);
+    sourceState.SetPoints(0, 13);
+    ASSERT_EQ(13, sourceState.GetPoints(0));
+    ASSERT_EQ(42, copiedState.GetPoints(0));
 }
-*/
