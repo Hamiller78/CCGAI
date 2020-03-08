@@ -146,3 +146,28 @@ TEST(Board, TestCopyConstructor)
     EXPECT_CALL(*mockPilePtr2, GetTopPiece()).Times(1).WillOnce(Return(mockPiecePtr));
     ASSERT_EQ(mockPiecePtr, copyBoard.GetTopPiece(game::Position(-7, 5)));
 }
+
+TEST(Board, CreateCopyAndCheckIndepence)
+{
+    const mocks::MockPileFactory mockPileFactory;
+    game::Board *sourceBoard = new game::Board(mockPileFactory);
+    std::shared_ptr<game::IGamepiece> mockPiecePtr(new mocks::MockGamepiece);
+    mocks::MockPile *mockPilePtr1 = new mocks::MockPile;
+    mocks::MockPile *mockPilePtr2 = new mocks::MockPile;
+
+    EXPECT_CALL(mockPileFactory, Create()).Times(1).WillOnce(Return(mockPilePtr1));
+    sourceBoard->AddGamepiece(mockPiecePtr, game::Position(-7, 5));
+
+    EXPECT_CALL(*mockPilePtr1, CreateCopy()).Times(1).WillOnce(Return(mockPilePtr2));
+    game::Board copyBoard = sourceBoard->CreateCopy();
+
+    EXPECT_CALL(*mockPilePtr2, GetTopPiece()).Times(1).WillOnce(Return(mockPiecePtr));
+    ASSERT_EQ(mockPiecePtr, copyBoard.GetTopPiece(game::Position(-7, 5)));
+
+    EXPECT_CALL(*mockPilePtr1, Die()).Times(1);
+    delete sourceBoard;
+
+    EXPECT_CALL(*mockPilePtr2, GetTopPiece()).Times(1).WillOnce(Return(mockPiecePtr));
+    ASSERT_EQ(mockPiecePtr, copyBoard.GetTopPiece(game::Position(-7, 5)));
+
+}

@@ -38,7 +38,7 @@ TEST(GameState, SetAndAlterPoints)
     game::GameState::SetNumberOfPointCounters(4);
 
     mocks::MockBoard boardMock;
-    game::GameState testState(boardMock);
+    game::GameState testState(std::move(boardMock));
 
     testState.SetPoints(3, 42);
     ASSERT_EQ(42, testState.GetPoints(3));
@@ -53,7 +53,7 @@ TEST(GameState, SetAndAlterPoints)
 TEST(GameState, ExceptionWhenChangingNumberOfPointCounters)
 {
     mocks::MockBoard boardMock;
-    game::GameState testState(boardMock);
+    game::GameState testState(std::move(boardMock));
 
     EXPECT_THROW(game::GameState::SetNumberOfPointCounters(3), std::runtime_error);
 }
@@ -61,11 +61,13 @@ TEST(GameState, ExceptionWhenChangingNumberOfPointCounters)
 TEST(GameState, CopyByAssignmentOperator)
 {
     mocks::MockBoard boardMock;
-    game::GameState sourceState(boardMock);
+    mocks::MockBoard boardMock2;
+    EXPECT_CALL(boardMock, CreateCopy()).Times(1).WillOnce(Return(boardMock2));
+    game::GameState sourceState(std::move(boardMock));
 
     sourceState.SetPoints(0, 42);
 
-    EXPECT_CALL(boardMock, CopyBoard(_))
+    EXPECT_CALL(boardMock2, CopyBoard(_))
             .Times(1);
     game::GameState copiedState = sourceState;
 
@@ -77,7 +79,7 @@ TEST(GameState, CopyByAssignmentOperator)
 TEST(GameState, CopyByCopyConstructor)
 {
     mocks::MockBoard boardMock;
-    game::GameState sourceState(boardMock);
+    game::GameState sourceState(std::move(boardMock));
 
     sourceState.SetPoints(0, 42);
 

@@ -31,16 +31,17 @@ namespace game {
 class GameState
 {
 private:
-    // TODO: board_ doesn't have to be a reference, each GameState has its own board
-    Board& board_;
+    Board board_;
     static unsigned int numberOfPointCounters_;
     static unsigned int countInstances_;
     std::vector<int> *pointCounters_{nullptr};
 public:
-    GameState(Board& newBoard);
-    GameState(const GameState& sourceState);
+    GameState(Board&& newBoard);
     ~GameState();
+    GameState(const GameState& sourceState);
+    GameState(GameState&& sourceState);
     GameState &operator=(const GameState& otherState);
+    GameState &operator=(GameState&& otherState);
 
     Board& GetBoard() {return board_;}
     void SetBoard(Board& newBoard) {board_ = newBoard;}

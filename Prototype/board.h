@@ -18,10 +18,12 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <QDebug>
+
 #include <algorithm>
-#include <stdexcept>
 #include <map>
 #include <memory>
+#include <stdexcept>
 #include <utility>
 
 #include "igamepiece.h"
@@ -40,9 +42,14 @@ class Board
 {
 public:
     Board(const ObjFactory<Pile>& pileFactory) : pileFactory_(pileFactory){}
-    Board(const Board& sourceBoard);
     virtual ~Board();
-    Board &operator=(const Board& otherBoard);
+
+    Board(const Board& sourceBoard);
+    Board(Board&& sourceBoard);
+    Board& operator=(const Board& otherBoard);
+    Board& operator=(Board&& otherBoard);
+    virtual Board CreateCopy() const;
+
     void AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Position& spawnPosition);
     virtual std::shared_ptr<IGamepiece> GetTopPiece(const Position& pilePosition) const;
     virtual void MovePile(const Position& startPosition, const Position& destinationPosition);

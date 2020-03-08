@@ -33,9 +33,12 @@ public:
     virtual ~MockBoard() override {}
 
     MockBoard(const MockBoard& sourceBoard) : game::Board(mockFactory) {CopyBoard(sourceBoard);}
+    MockBoard(MockBoard&& sourceBoard) : game::Board(mockFactory) {CopyBoard(sourceBoard);}
     MockBoard &operator=(const MockBoard& otherBoard) {CopyBoard(otherBoard);}
+    MockBoard &operator=(MockBoard&& otherBoard) {CopyBoard(otherBoard);}
     MOCK_METHOD(MockBoard, CopyBoard, (const MockBoard&));
 
+    MOCK_METHOD(Board, CreateCopy, (), (override, const));
     MOCK_METHOD(std::shared_ptr<game::IGamepiece>, GetTopPiece, (const game::Position&), (override, const));
     MOCK_METHOD(void, MovePile, (const game::Position&, const game::Position&),(override));
     MOCK_METHOD(void, MoveTopPiece, (const game::Position&, const game::Position&), (override));

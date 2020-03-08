@@ -19,17 +19,22 @@
 
 namespace game {
 
-Board::Board(const Board &sourceBoard) : pileFactory_(sourceBoard.pileFactory_)
-{
-    CopyBoardMembers(sourceBoard);
-}
-
 Board::~Board()
 {
     for (auto pileIterator : pilesOnBoard_)
     {
         delete pileIterator.second;
     }
+}
+
+Board::Board(const Board &sourceBoard) : pileFactory_(sourceBoard.pileFactory_)
+{
+    CopyBoardMembers(sourceBoard);
+}
+
+Board::Board(Board &&sourceBoard) : pileFactory_(sourceBoard.pileFactory_)
+{
+    pilesOnBoard_ = std::move(sourceBoard.pilesOnBoard_);
 }
 
 Board &Board::operator=(const Board &otherBoard)
@@ -40,6 +45,22 @@ Board &Board::operator=(const Board &otherBoard)
     }
     return *this;
 }
+
+Board &Board::operator=(Board &&otherBoard)
+{
+    if (this != &otherBoard)
+    {
+        pilesOnBoard_ = std::move(otherBoard.pilesOnBoard_);
+    }
+    return *this;
+}
+
+Board Board::CreateCopy() const
+{
+    Board boardCopy(*this);
+    return boardCopy;
+}
+
 
 void Board::AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Position& spawnPosition)
 {
@@ -105,6 +126,8 @@ void Board::RemovePile(const Position &clearPosition)
         throw std::logic_error("Attempted to remove a pile from an empty board tile!");
     }
 }
+
+// private methods
 
 void Board::CopyBoardMembers(const Board &sourceBoard)
 {

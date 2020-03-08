@@ -22,7 +22,7 @@ namespace game {
 unsigned int GameState::numberOfPointCounters_ = 2;
 unsigned int GameState::countInstances_ = 0;
 
-GameState::GameState(Board& newBoard): board_(newBoard)
+GameState::GameState(Board&& newBoard) : board_(newBoard.CreateCopy())
 {
     pointCounters_ = new std::vector<int>(numberOfPointCounters_, 0);
     GameState::countInstances_++;
@@ -34,9 +34,15 @@ GameState::~GameState()
     delete pointCounters_;
 }
 
-GameState::GameState(const GameState &sourceState) : board_(sourceState.board_)
+GameState::GameState(const GameState &sourceState) : board_(sourceState.board_.CreateCopy())
 {
     CopyPointCounters(sourceState);
+    GameState::countInstances_++;
+}
+
+GameState::GameState(GameState &&sourceState) : board_(std::move(sourceState.board_))
+{
+    pointCounters_ = std::move(sourceState.pointCounters_);
     GameState::countInstances_++;
 }
 
@@ -44,8 +50,18 @@ GameState &GameState::operator=(const GameState &otherState)
 {
     if (this != &otherState)
     {
-        board_ = Board(otherState.board_);
+        board_ = otherState.board_.CreateCopy();
         CopyPointCounters(otherState);
+    }
+    return *this;
+}
+
+GameState &GameState::operator=(GameState &&otherState)
+{
+    if (this != &otherState)
+    {
+        board_ = std::move(otherState.board_);
+        pointCounters_ = std::move(otherState.pointCounters_);
     }
     return *this;
 }
