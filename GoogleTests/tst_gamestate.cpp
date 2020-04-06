@@ -21,7 +21,6 @@
 #include "MockPileFactory.h"
 #include "../Prototype/gamestate.h"
 
-
 TEST(GameState, GetDefaultNumberOfPointCounters)
 {
     ASSERT_EQ(2, game::GameState::GetNumberOfPointCounters());
@@ -37,8 +36,8 @@ TEST(GameState, SetAndAlterPoints)
 {
     game::GameState::SetNumberOfPointCounters(4);
 
-    mocks::MockBoard boardMock;
-    game::GameState testState(std::move(boardMock));
+    std::unique_ptr<game::IBoard> mockBoardPtr(new mocks::MockBoard);
+    game::GameState testState(std::move(mockBoardPtr));
 
     testState.SetPoints(3, 42);
     ASSERT_EQ(42, testState.GetPoints(3));
@@ -52,39 +51,54 @@ TEST(GameState, SetAndAlterPoints)
 
 TEST(GameState, ExceptionWhenChangingNumberOfPointCounters)
 {
-    mocks::MockBoard boardMock;
-    game::GameState testState(std::move(boardMock));
+    std::unique_ptr<game::IBoard> mockBoardPtr = std::unique_ptr<game::IBoard>(new mocks::MockBoard);
+    game::GameState testState(std::move(mockBoardPtr));
 
     EXPECT_THROW(game::GameState::SetNumberOfPointCounters(3), std::runtime_error);
 }
 
 TEST(GameState, CopyByAssignmentOperator)
 {
-    mocks::MockBoard boardMock;
-    mocks::MockBoard boardMock2;
-    EXPECT_CALL(boardMock, CreateCopy()).Times(1).WillOnce(Return(boardMock2));
-    game::GameState sourceState(std::move(boardMock));
+    std::unique_ptr<mocks::MockBoard> boardMockPtr1(new mocks::MockBoard);
+    std::unique_ptr<mocks::MockBoard> boardMockPtr2(new mocks::MockBoard);
+    // we need to keep pointers to the mocks as raw pointers,
+    // since we will pass the unique_ptr to the Gamestate objects under test
+    mocks::MockBoard* boardMockRawPtr1 = boardMockPtr1.get();
+    mocks::MockBoard* boardMockRawPtr2 = boardMockPtr2.get();
 
+    game::GameState sourceState(std::move(boardMockPtr1));
     sourceState.SetPoints(0, 42);
 
-    EXPECT_CALL(boardMock2, CopyBoard(_))
-            .Times(1);
+    EXPECT_CALL(*boardMockRawPtr1, Clone())
+            .Times(1)
+            .WillOnce(Return(ByMove(std::move(boardMockPtr2))));
     game::GameState copiedState = sourceState;
 
     sourceState.SetPoints(0, 13);
     ASSERT_EQ(13, sourceState.GetPoints(0));
     ASSERT_EQ(42, copiedState.GetPoints(0));
+    ASSERT_EQ(boardMockRawPtr2, copiedState.GetBoard().get());
 }
 
 TEST(GameState, CopyByCopyConstructor)
 {
-    mocks::MockBoard boardMock;
-    game::GameState sourceState(std::move(boardMock));
+    std::unique_ptr<mocks::MockBoard> boardMockPtr1(new mocks::MockBoard);
+    std::unique_ptr<mocks::MockBoard> boardMockPtr2(new mocks::MockBoard);
+    // we need to keep pointers to the mocks as raw pointers,
+    // since we will pass the unique_ptr to the Gamestate objects under test
+    mocks::MockBoard* boardMockRawPtr1 = boardMockPtr1.get();
+    mocks::MockBoard* boardMockRawPtr2 = boardMockPtr2.get();
 
+    game::GameState sourceState(std::move(boardMockPtr1));
     sourceState.SetPoints(0, 42);
 
+    EXPECT_CALL(*boardMockRawPtr1, Clone())
+            .Times(1)
+            .WillOnce(Return(ByMove(std::move(boardMockPtr2))));
     game::GameState copiedState(sourceState);
+
     sourceState.SetPoints(0, 13);
     ASSERT_EQ(13, sourceState.GetPoints(0));
     ASSERT_EQ(42, copiedState.GetPoints(0));
+    ASSERT_EQ(boardMockRawPtr2, copiedState.GetBoard().get());
 }

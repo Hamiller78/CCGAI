@@ -28,7 +28,7 @@ GamemoveMoveTop::GamemoveMoveTop(const Position &startPosition, const Position &
 GameState GamemoveMoveTop::ApplyOnGamestate(const GameState &oldState) const
 {
     GameState newState(oldState);
-    newState.GetBoard().MoveTopPiece(startPosition_, targetPosition_);
+    newState.GetBoard()->MoveTopPiece(startPosition_, targetPosition_);
     return newState;
 }
 

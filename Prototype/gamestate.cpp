@@ -22,7 +22,7 @@ namespace game {
 unsigned int GameState::numberOfPointCounters_ = 2;
 unsigned int GameState::countInstances_ = 0;
 
-GameState::GameState(Board&& newBoard) : board_(newBoard.CreateCopy())
+GameState::GameState(std::unique_ptr<IBoard>&& newBoard) : board_(std::move(newBoard))
 {
     pointCounters_ = new std::vector<int>(numberOfPointCounters_, 0);
     GameState::countInstances_++;
@@ -34,7 +34,7 @@ GameState::~GameState()
     delete pointCounters_;
 }
 
-GameState::GameState(const GameState &sourceState) : board_(sourceState.board_.CreateCopy())
+GameState::GameState(const GameState &sourceState) : board_(sourceState.board_->Clone())
 {
     CopyPointCounters(sourceState);
     GameState::countInstances_++;
@@ -50,7 +50,7 @@ GameState &GameState::operator=(const GameState &otherState)
 {
     if (this != &otherState)
     {
-        board_ = otherState.board_.CreateCopy();
+        board_ = otherState.board_->Clone();
         CopyPointCounters(otherState);
     }
     return *this;

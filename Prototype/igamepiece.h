@@ -23,7 +23,6 @@ namespace game {
 class IGamepiece
 {
 public:
-    // TODO: Delete the destructor once all tests using this are rewritten to use a derived mock of this interface class
     virtual ~IGamepiece() {}
 };
 

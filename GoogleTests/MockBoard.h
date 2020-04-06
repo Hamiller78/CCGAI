@@ -20,28 +20,32 @@
 
 #include "gmock/gmock.h"
 #include "MockPileFactory.h"
-#include "../Prototype/board.h"
+#include "../Prototype/iboard.h"
 
 namespace mocks {
 
-class MockBoard: public game::Board
+class MockBoard: public game::IBoard
 {
 public:
     const MockPileFactory mockFactory;
 
-    MockBoard() : game::Board(mockFactory) {}
+    MockBoard() {}
     virtual ~MockBoard() override {}
 
-    MockBoard(const MockBoard& sourceBoard) : game::Board(mockFactory) {CopyBoard(sourceBoard);}
-    MockBoard(MockBoard&& sourceBoard) : game::Board(mockFactory) {CopyBoard(sourceBoard);}
-    MockBoard &operator=(const MockBoard& otherBoard) {CopyBoard(otherBoard);}
-    MockBoard &operator=(MockBoard&& otherBoard) {CopyBoard(otherBoard);}
-    MOCK_METHOD(MockBoard, CopyBoard, (const MockBoard&));
+//    MockBoard(const MockBoard& sourceBoard) {CopyBoard(sourceBoard);}
+//    MockBoard(MockBoard&& sourceBoard) {CopyBoard(sourceBoard);}
+//    MockBoard &operator=(const MockBoard& otherBoard) {CopyBoard(otherBoard);}
+//    MockBoard &operator=(MockBoard&& otherBoard) {CopyBoard(otherBoard);}
 
-    MOCK_METHOD(Board, CreateCopy, (), (override, const));
+    MOCK_METHOD(std::unique_ptr<game::IBoard>, Clone, (), (override, const));
+
+    //    MOCK_METHOD(MockBoard&&, CreateCopy, (), (const));
+
+    MOCK_METHOD(void, AddGamepiece, (const std::shared_ptr<game::IGamepiece>, const game::Position&), (override));
     MOCK_METHOD(std::shared_ptr<game::IGamepiece>, GetTopPiece, (const game::Position&), (override, const));
     MOCK_METHOD(void, MovePile, (const game::Position&, const game::Position&),(override));
     MOCK_METHOD(void, MoveTopPiece, (const game::Position&, const game::Position&), (override));
+    MOCK_METHOD(void, RemovePile, (const game::Position&), (override));
 };
 
 } // namespace mocks

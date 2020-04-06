@@ -26,6 +26,7 @@
 #include <stdexcept>
 #include <utility>
 
+#include "iboard.h"
 #include "igamepiece.h"
 #include "objfactory.h"
 #include "pile.h"
@@ -36,9 +37,7 @@ namespace game {
 // Should be light-weight and allow quick creation of boards after applying moves
 // objects of this class will be created a lot by AI calculation
 
-using Position = std::pair<int, int>;
-
-class Board
+class Board : IBoard
 {
 public:
     Board(const ObjFactory<Pile>& pileFactory) : pileFactory_(pileFactory){}
@@ -48,13 +47,13 @@ public:
     Board(Board&& sourceBoard);
     Board& operator=(const Board& otherBoard);
     Board& operator=(Board&& otherBoard);
-    virtual Board CreateCopy() const;
+    std::unique_ptr<IBoard> Clone() const override;
 
-    void AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Position& spawnPosition);
-    virtual std::shared_ptr<IGamepiece> GetTopPiece(const Position& pilePosition) const;
-    virtual void MovePile(const Position& startPosition, const Position& destinationPosition);
-    virtual void MoveTopPiece(const Position& startPosition, const Position& destinationPosition);
-    void RemovePile(const Position& clearPosition);
+    virtual void AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Position& spawnPosition) override;
+    virtual std::shared_ptr<IGamepiece> GetTopPiece(const Position& pilePosition) const override;
+    virtual void MovePile(const Position& startPosition, const Position& destinationPosition) override;
+    virtual void MoveTopPiece(const Position& startPosition, const Position& destinationPosition) override;
+    virtual void RemovePile(const Position& clearPosition) override;
 private:
     const ObjFactory<Pile> &pileFactory_;
     std::map<Position, Pile*> pilesOnBoard_;

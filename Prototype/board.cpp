@@ -55,12 +55,11 @@ Board &Board::operator=(Board &&otherBoard)
     return *this;
 }
 
-Board Board::CreateCopy() const
+std::unique_ptr<IBoard> Board::Clone() const
 {
-    Board boardCopy(*this);
-    return boardCopy;
+    std::unique_ptr<IBoard> boardCopyPtr(new Board(*this));
+    return boardCopyPtr;
 }
-
 
 void Board::AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Position& spawnPosition)
 {

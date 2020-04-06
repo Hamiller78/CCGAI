@@ -58,6 +58,7 @@ HEADERS += \
     IoHelper/ioexception.h \
     IoHelper/textfileloader.h \
     gamepiececard.h \
+    iboard.h \
     igamepiece.h \
     mainwindow.h \
     board.h \

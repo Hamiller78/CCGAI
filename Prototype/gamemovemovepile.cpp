@@ -28,7 +28,7 @@ GamemoveMovePile::GamemoveMovePile(const Position &startPosition, const Position
 GameState GamemoveMovePile::ApplyOnGamestate(const GameState &oldState) const
 {
     GameState newState(oldState);
-    newState.GetBoard().MovePile(startPosition_, targetPosition_);
+    newState.GetBoard()->MovePile(startPosition_, targetPosition_);
     return newState;
 }
 

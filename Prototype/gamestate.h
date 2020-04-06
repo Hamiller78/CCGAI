@@ -18,7 +18,7 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-#include "board.h"
+#include "iboard.h"
 
 #include <memory>
 #include <vector>
@@ -31,20 +31,19 @@ namespace game {
 class GameState
 {
 private:
-    Board board_;
+    std::unique_ptr<IBoard> board_;
     static unsigned int numberOfPointCounters_;
     static unsigned int countInstances_;
     std::vector<int> *pointCounters_{nullptr};
 public:
-    GameState(Board&& newBoard);
+    GameState(std::unique_ptr<IBoard>&& newBoard);
     ~GameState();
     GameState(const GameState& sourceState);
     GameState(GameState&& sourceState);
     GameState &operator=(const GameState& otherState);
     GameState &operator=(GameState&& otherState);
 
-    Board& GetBoard() {return board_;}
-    void SetBoard(Board& newBoard) {board_ = newBoard;}
+    std::unique_ptr<IBoard>& GetBoard() {return board_;}
 
     static unsigned int GetNumberOfPointCounters(){return numberOfPointCounters_;}
     // only allowed while no objects are instantiated
