@@ -11,6 +11,7 @@ HEADERS += \
     MockBoard.h \
     MockCardpool.h \
     MockGamepiece.h \
+    MockGamestate.h \
     MockPile.h \
     MockPileFactory.h \
     tst_googletest.h
@@ -19,6 +20,7 @@ SOURCES += \
         main.cpp \
         tst_board.cpp \
         tst_deck.cpp \
+        tst_gamemovespawnpiece.cpp \
         tst_gamestate.cpp \
         tst_pile.cpp \
         tst_plugin.cpp
@@ -31,6 +33,7 @@ SOURCES += \
         ../Prototype/cardpool.cpp \
         ../Prototype/deck.cpp \
         ../Prototype/exceptionplugin.cpp \
+        ../Prototype/gamemovespawnpiece.cpp \
         ../Prototype/gamepiececard.cpp \
         ../Prototype/gamestate.cpp \
         ../Prototype/pile.cpp \

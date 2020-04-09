@@ -66,6 +66,12 @@ GameState &GameState::operator=(GameState &&otherState)
     return *this;
 }
 
+std::unique_ptr<IGameState> GameState::Clone() const
+{
+    std::unique_ptr<IGameState> gameStateCopyPtr(new GameState(*this));
+    return gameStateCopyPtr;
+}
+
 void GameState::SetNumberOfPointCounters(unsigned int newNumber)
 {
     if (0 == GameState::countInstances_)

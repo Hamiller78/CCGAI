@@ -77,7 +77,7 @@ TEST(GameState, CopyByAssignmentOperator)
     sourceState.SetPoints(0, 13);
     ASSERT_EQ(13, sourceState.GetPoints(0));
     ASSERT_EQ(42, copiedState.GetPoints(0));
-    ASSERT_EQ(boardMockRawPtr2, copiedState.GetBoard().get());
+    ASSERT_EQ(boardMockRawPtr2, &copiedState.GetBoard());
 }
 
 TEST(GameState, CopyByCopyConstructor)
@@ -100,5 +100,5 @@ TEST(GameState, CopyByCopyConstructor)
     sourceState.SetPoints(0, 13);
     ASSERT_EQ(13, sourceState.GetPoints(0));
     ASSERT_EQ(42, copiedState.GetPoints(0));
-    ASSERT_EQ(boardMockRawPtr2, copiedState.GetBoard().get());
+    ASSERT_EQ(boardMockRawPtr2, &copiedState.GetBoard());
 }

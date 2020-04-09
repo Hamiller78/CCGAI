@@ -1,4 +1,4 @@
-/* Copyright (c) 2017,2018 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -34,21 +34,22 @@ namespace plugin {
 
 class Cardpool
 {
-private:
-    int indexOfTitle_{-1};
-    int indexOfImage_{-1};
-    std::vector<std::shared_ptr<Cardmaster>> listOfCards_;
-    QStringList namesOfColumns_;
+
 public:
     Cardpool(){}
     virtual ~Cardpool(){}
-    std::shared_ptr<game::GamepieceCard> MakeCard(int cardIndex);
-    std::shared_ptr<game::GamepieceCard> MakeCard(QString cardTitle);
+    virtual std::shared_ptr<game::IGamepiece> MakeCard(int cardIndex) const;
+    virtual std::shared_ptr<game::IGamepiece> MakeCard(const QString& cardTitle) const;
     virtual void SetPool(const QStringList& lackeyCardData);
 private:
     void IdentifyKeyColumns();
     void MakeCardmasters(const QStringList& lackeyCardData);
     void ParseHeader(const QString& headerLine);
+
+    int indexOfTitle_{-1};
+    int indexOfImage_{-1};
+    std::vector<std::shared_ptr<Cardmaster>> listOfCards_;
+    QStringList namesOfColumns_;
 };
 
 } // namespace plugin

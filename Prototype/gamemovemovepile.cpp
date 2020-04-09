@@ -25,10 +25,10 @@ GamemoveMovePile::GamemoveMovePile(const Position &startPosition, const Position
     targetPosition_ = targetPosition;
 }
 
-GameState GamemoveMovePile::ApplyOnGamestate(const GameState &oldState) const
+std::unique_ptr<IGameState> GamemoveMovePile::ApplyOnGamestate(const IGameState &oldState) const
 {
-    GameState newState(oldState);
-    newState.GetBoard()->MovePile(startPosition_, targetPosition_);
+    std::unique_ptr<IGameState> newState = oldState.Clone();
+    newState->GetBoard().MovePile(startPosition_, targetPosition_);
     return newState;
 }
 

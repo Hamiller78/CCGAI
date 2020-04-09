@@ -25,10 +25,10 @@ GamemoveMoveTop::GamemoveMoveTop(const Position &startPosition, const Position &
     targetPosition_ = targetPosition;
 }
 
-GameState GamemoveMoveTop::ApplyOnGamestate(const GameState &oldState) const
+std::unique_ptr<IGameState> GamemoveMoveTop::ApplyOnGamestate(const IGameState &oldState) const
 {
-    GameState newState(oldState);
-    newState.GetBoard()->MoveTopPiece(startPosition_, targetPosition_);
+    std::unique_ptr<IGameState> newState = oldState.Clone();
+    newState->GetBoard().MoveTopPiece(startPosition_, targetPosition_);
     return newState;
 }
 

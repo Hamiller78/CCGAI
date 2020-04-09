@@ -26,7 +26,7 @@ class GamemoveMoveTop : public Gamemove
 {
 public:
     GamemoveMoveTop(const Position& startPosition, const Position& targetPosition);
-    GameState ApplyOnGamestate(const GameState& oldState) const override;
+    std::unique_ptr<IGameState> ApplyOnGamestate(const IGameState& oldState) const override;
 private:
     Position startPosition_;
     Position targetPosition_;

@@ -32,11 +32,6 @@ public:
     MockBoard() {}
     virtual ~MockBoard() override {}
 
-//    MockBoard(const MockBoard& sourceBoard) {CopyBoard(sourceBoard);}
-//    MockBoard(MockBoard&& sourceBoard) {CopyBoard(sourceBoard);}
-//    MockBoard &operator=(const MockBoard& otherBoard) {CopyBoard(otherBoard);}
-//    MockBoard &operator=(MockBoard&& otherBoard) {CopyBoard(otherBoard);}
-
     MOCK_METHOD(std::unique_ptr<game::IBoard>, Clone, (), (override, const));
 
     //    MOCK_METHOD(MockBoard&&, CreateCopy, (), (const));

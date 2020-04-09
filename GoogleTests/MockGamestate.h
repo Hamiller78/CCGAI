@@ -1,4 +1,4 @@
-/* Copyright (c) 2018 Torben Kneesch
+/* Copyright (c) 2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,30 +15,24 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef GAMEMOVEMOCK_H
-#define GAMEMOVEMOCK_H
+#ifndef MOCKGAMESTATE_H
+#define MOCKGAMESTATE_H
 
-#include "gamemove.h"
-#include "gamestate.h"
+#include "gmock/gmock.h"
+#include "../Prototype/igamestate.h"
 
-#include <stdexcept>
+namespace mocks {
 
-namespace game {
-
-// Mock class for gamemoves.
-// Only uses an index number, which is good enough for the related mock classes.
-
-using Position = std::pair<int, int>;
-
-class GamemoveMock : public Gamemove
+class MockGameState: public game::IGameState
 {
 public:
-    GamemoveMock(int moveNumber){moveNumber_ = moveNumber;}
-    GameState ApplyOnGamestate(const GameState& oldState) const override;
-private:
-    int moveNumber_{0};
+    MockGameState() {}
+    virtual ~MockGameState() override {}
+
+    MOCK_METHOD(std::unique_ptr<game::IGameState>, Clone, (), (override, const));
+    MOCK_METHOD(game::IBoard&, GetBoard, (), (override));
 };
 
-} // namespace game
+} // namespace mocks
 
-#endif // GAMEMOVEMOCK_H
+#endif // MOCKGAMESTATE_H

@@ -19,13 +19,13 @@
 
 namespace plugin {
 
-std::shared_ptr<game::GamepieceCard> Cardpool::MakeCard(int cardIndex)
+std::shared_ptr<game::IGamepiece> Cardpool::MakeCard(int cardIndex) const
 {
-    std::shared_ptr<game::GamepieceCard> newCard(new game::GamepieceCard(listOfCards_[cardIndex]));
+    std::shared_ptr<game::IGamepiece> newCard(new game::GamepieceCard(listOfCards_[cardIndex]));
     return newCard;
 }
 
-std::shared_ptr<game::GamepieceCard> Cardpool::MakeCard(QString cardTitle)
+std::shared_ptr<game::IGamepiece> Cardpool::MakeCard(const QString& cardTitle) const
 {
     uint cardIndex;
     for (cardIndex = 0; cardIndex < listOfCards_.size(); cardIndex++)

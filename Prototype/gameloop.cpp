@@ -33,6 +33,7 @@ int Gameloop::RunGame(GameState &startState)
     // - TODO: Support more than one player
     // - TODO: Other player may do something when first player passes
 
+    /*
     int winner = 0;
     int currentPhase = 1;
     int activePlayer = 1;
@@ -64,7 +65,8 @@ int Gameloop::RunGame(GameState &startState)
 //        }
     }
     while (winner == 0);
-    return winner;
+    return winner; */
+    return 0;
 }
 
 std::vector<std::shared_ptr<Gamemove>> Gameloop::GetMoves(const GameState &startState)

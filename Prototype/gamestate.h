@@ -19,6 +19,7 @@
 #define GAMESTATE_H
 
 #include "iboard.h"
+#include "igamestate.h"
 
 #include <memory>
 #include <vector>
@@ -28,7 +29,7 @@ namespace game {
 // Contains the complete description of the game
 // including board and later arrow/targets and external counters
 
-class GameState
+class GameState : IGameState
 {
 private:
     std::unique_ptr<IBoard> board_;
@@ -37,13 +38,14 @@ private:
     std::vector<int> *pointCounters_{nullptr};
 public:
     GameState(std::unique_ptr<IBoard>&& newBoard);
-    ~GameState();
+    virtual ~GameState();
     GameState(const GameState& sourceState);
     GameState(GameState&& sourceState);
     GameState &operator=(const GameState& otherState);
     GameState &operator=(GameState&& otherState);
 
-    std::unique_ptr<IBoard>& GetBoard() {return board_;}
+    virtual IBoard& GetBoard() override {return *board_;}
+    virtual std::unique_ptr<IGameState> Clone() const override;
 
     static unsigned int GetNumberOfPointCounters(){return numberOfPointCounters_;}
     // only allowed while no objects are instantiated

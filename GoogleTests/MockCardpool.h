@@ -29,6 +29,8 @@ public:
     MockCardpool() {}
     ~MockCardpool() override {}
 
+    MOCK_METHOD(std::shared_ptr<game::IGamepiece>, MakeCard, (int), (override, const));
+    MOCK_METHOD(std::shared_ptr<game::IGamepiece>, MakeCard, (const QString&), (override, const));
     MOCK_METHOD(void, SetPool, (const QStringList&), (override));
 };
 

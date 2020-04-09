@@ -1,4 +1,4 @@
-/* Copyright (c) 2018 Torben Kneesch
+/* Copyright (c) 2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,15 +15,23 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "gamemovemock.h"
+#ifndef IGAMESTATE_H
+#define IGAMESTATE_H
+
+#include <memory>
 
 namespace game {
 
-GameState game::GamemoveMock::ApplyOnGamestate(const GameState &oldState) const
+class IGameState
 {
-    GameState newState(oldState);
-    newState.AlterPoints(0, moveNumber_);
-    return newState;
-}
+public:
+    virtual ~IGameState() {}
 
-} // namestate game
+    virtual IBoard& GetBoard() = 0;
+    virtual std::unique_ptr<IGameState> Clone() const = 0;
+};
+
+} // namespace game
+
+
+#endif // IGAMESTATE_H

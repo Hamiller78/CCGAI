@@ -33,7 +33,7 @@ class Gamemove
 public:
     Gamemove(){}
     virtual ~Gamemove(){}
-    virtual GameState ApplyOnGamestate(const GameState& oldState) const = 0;
+    virtual std::unique_ptr<IGameState> ApplyOnGamestate(const IGameState& oldState) const = 0;
 };
 
 } // namespace game

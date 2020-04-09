@@ -1,4 +1,4 @@
-/* Copyright (c) 2017,2018 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -29,12 +29,14 @@ namespace game {
 
 class GamemoveSpawnPiece : public Gamemove
 {
-public:
-    GamemoveSpawnPiece(int cardNumber, const Position& spawnPosition);
-    GameState ApplyOnGamestate(const GameState& oldState) const override;
 private:
     int cardNumber_;
     Position spawnPosition_;
+    static std::shared_ptr<plugin::Cardpool> cardpool_;
+public:
+    GamemoveSpawnPiece(int cardNumber, const Position& spawnPosition);
+    std::unique_ptr<IGameState> ApplyOnGamestate(const IGameState& oldState) const override;
+    static void SetCardpool(std::shared_ptr<plugin::Cardpool> cardpool) {cardpool_ = cardpool;}
 };
 
 } // namespace game

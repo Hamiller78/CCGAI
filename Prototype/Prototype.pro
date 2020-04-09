@@ -50,9 +50,7 @@ SOURCES += \
     moveprovider.cpp \
     exceptionscriptwrapper.cpp \
     gamestate.cpp \
-    gamemovemock.cpp \
-    playeragent.cpp \
-    playeragentmock.cpp
+    playeragent.cpp
 
 HEADERS += \
     IoHelper/ioexception.h \
@@ -60,6 +58,7 @@ HEADERS += \
     gamepiececard.h \
     iboard.h \
     igamepiece.h \
+    igamestate.h \
     mainwindow.h \
     board.h \
     gamemove.h \
@@ -81,9 +80,7 @@ HEADERS += \
     moveprovider.h \
     exceptionscriptwrapper.h \
     gamestate.h \
-    gamemovemock.h \
-    playeragent.h \
-    playeragentmock.h
+    playeragent.h
 
 FORMS += \
         mainwindow.ui

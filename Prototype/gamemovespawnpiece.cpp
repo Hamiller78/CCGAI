@@ -1,4 +1,4 @@
-/* Copyright (c) 2017,2018 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -19,17 +19,19 @@
 
 namespace game {
 
+std::shared_ptr<plugin::Cardpool> GamemoveSpawnPiece::cardpool_;
+
 GamemoveSpawnPiece::GamemoveSpawnPiece(int cardNumber, const Position &spawnPosition)
 {
     cardNumber_ = cardNumber;
     spawnPosition_ = spawnPosition;
 }
 
-GameState GamemoveSpawnPiece::ApplyOnGamestate(const GameState &oldState) const
+std::unique_ptr<IGameState> GamemoveSpawnPiece::ApplyOnGamestate(const IGameState &oldState) const
 {
-    GameState newState(oldState);
-/*    std::shared_ptr<IGamepiece> spawnPiece = plugin::Cardpool::GetInstance().MakeCard(cardNumber_);
-    newState.AddGamepiece(spawnPiece, spawnPosition_); */
+    std::unique_ptr<IGameState> newState = oldState.Clone();
+    std::shared_ptr<IGamepiece> spawnPiece = cardpool_->MakeCard(cardNumber_);
+    newState->GetBoard().AddGamepiece(spawnPiece, spawnPosition_);
     return newState;
 }
 
