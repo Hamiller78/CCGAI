@@ -21,6 +21,7 @@ SOURCES += \
         tst_board.cpp \
         tst_deck.cpp \
         tst_gamemovemovepile.cpp \
+        tst_gamemovemovetop.cpp \
         tst_gamemovespawnpiece.cpp \
         tst_gamestate.cpp \
         tst_pile.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
         ../Prototype/deck.cpp \
         ../Prototype/exceptionplugin.cpp \
         ../Prototype/gamemovemovepile.cpp \
+        ../Prototype/gamemovemovetop.cpp \
         ../Prototype/gamemovespawnpiece.cpp \
         ../Prototype/gamepiececard.cpp \
         ../Prototype/gamestate.cpp \
