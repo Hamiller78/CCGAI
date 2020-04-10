@@ -15,6 +15,7 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
+<<<<<<< HEAD:Prototype/IoHelper/ioexception.cpp
 #include "ioexception.h"
 
 namespace iohelper {
@@ -25,3 +26,14 @@ const char *IoException::what() const noexcept
 }
 
 } // namespace iohelper
+=======
+#include "tst_googletest.h"
+
+#include <gtest/gtest.h>
+
+int main(int argc, char *argv[])
+{
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+>>>>>>> f86e82a8dd36904683b5f886e16217e5f5fd74b6:GoogleTests/main.cpp
