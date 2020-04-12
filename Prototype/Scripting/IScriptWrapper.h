@@ -1,4 +1,4 @@
-/* Copyright (c) 2018 Torben Kneesch
+/* Copyright (c) 2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,36 +15,7 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef PYTHONSETUP_H
-#define PYTHONSETUP_H
+#ifndef ISCRIPTWRAPPER_H
+#define ISCRIPTWRAPPER_H
 
-#include <cmath>
-#include "Python.h"
-
-#include <exception>
-#include <iostream>
-#include <QString>
-
-#include "exceptionscriptwrapper.h"
-#include "pythonextension.h"
-
-namespace python {
-
-class PythonSetup
-{
-private:
-    QString pluginPath_{""};
-    bool pythonInitialized_{false};
-public:
-    PythonSetup (PythonSetup const&) = delete;
-    void operator=(PythonSetup const&) = delete;
-    static PythonSetup& GetInstance();
-    void ClosePython();
-    void OpenPython(const QString newPluginPath);
-private:
-    PythonSetup(){}
-};
-
-} // namespace python
-
-#endif // PYTHONSETUP_H
+#endif // ISCRIPTWRAPPER_H

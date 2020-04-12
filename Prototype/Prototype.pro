@@ -44,17 +44,13 @@ SOURCES += \
     deck.cpp \
     rulebook.cpp \
     gameloop.cpp \
-    scriptwrapper.cpp \
-    pythonextension.cpp \
-    pythonsetup.cpp \
-    moveprovider.cpp \
-    exceptionscriptwrapper.cpp \
     gamestate.cpp \
     playeragent.cpp
 
 HEADERS += \
     IoHelper/ioexception.h \
     IoHelper/textfileloader.h \
+    Scripting/IScriptWrapper.h \
     gamepiececard.h \
     iboard.h \
     igamepiece.h \
@@ -74,19 +70,8 @@ HEADERS += \
     deck.h \
     rulebook.h \
     gameloop.h \
-    scriptwrapper.h \
-    pythonextension.h \
-    pythonsetup.h \
-    moveprovider.h \
-    exceptionscriptwrapper.h \
     gamestate.h \
     playeragent.h
 
 FORMS += \
         mainwindow.ui
-
-win32:CONFIG(release, debug|release): LIBS += -L$$(PYTHONLIBS) -lpython36
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$(PYTHONLIBS) -lpython36_d
-
-INCLUDEPATH += $$(PYTHONINCLUDE)
-DEPENDPATH += $$(PYTHONINCLUDE)
