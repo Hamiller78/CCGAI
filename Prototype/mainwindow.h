@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -18,11 +18,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-// we get a conflict if we don't include cmath before python.h (for MSVC compiler)
 // TODO: unfortunately MSVC 2017 compiler can't build GoogleTest, so this might have to change once a new compiler is selected
-// TODO: This is also fixes with Python 3.7 and higher, this project is still on 3.6
-#include <cmath>
-#include "Python.h"
 
 #include <QMainWindow>
 
