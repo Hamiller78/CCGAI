@@ -5,6 +5,7 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG += thread
 # CONFIG -= qt
+QT += core qml
 
 HEADERS += \
     IoHelper/MockTextfileLoader.h \
@@ -24,12 +25,14 @@ SOURCES += \
         tst_gamemovemovetop.cpp \
         tst_gamemovespawnpiece.cpp \
         tst_gamestate.cpp \
+        tst_jsscriptwrapper.cpp \
         tst_pile.cpp \
         tst_plugin.cpp
 
 SOURCES += \
         ../Prototype/IoHelper/ioexception.cpp \
         ../Prototype/IoHelper/textfileloader.cpp \
+        ../Prototype/Scripting/jsscriptwrapper.cpp \
         ../Prototype/board.cpp \
         ../Prototype/cardmaster.cpp \
         ../Prototype/cardpool.cpp \

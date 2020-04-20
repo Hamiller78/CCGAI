@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui qml
 CONFIG += c++11
 CONFIG += no_keywords
 
@@ -28,6 +28,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     IoHelper/ioexception.cpp \
     IoHelper/textfileloader.cpp \
+    Scripting/jsscriptwrapper.cpp \
     gamepiececard.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -50,7 +51,8 @@ SOURCES += \
 HEADERS += \
     IoHelper/ioexception.h \
     IoHelper/textfileloader.h \
-    Scripting/IScriptWrapper.h \
+    Scripting/iscriptwrapper.h \
+    Scripting/jsscriptwrapper.h \
     gamepiececard.h \
     iboard.h \
     igamepiece.h \
