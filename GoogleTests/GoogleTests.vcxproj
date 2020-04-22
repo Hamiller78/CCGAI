@@ -78,7 +78,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;..\..\..\..\Documents\Qt-Projekte\GoogleTest\googletest\googletest;..\..\..\..\Documents\Qt-Projekte\GoogleTest\googletest\googletest\include;..\..\..\..\Documents\Qt-Projekte\GoogleTest\googletest\googlemock;..\..\..\..\Documents\Qt-Projekte\GoogleTest\googletest\googlemock\include;$(QTDIR)\include;release;/include;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(GOOGLETEST_DIR)\googletest;$(GOOGLETEST_DIR)\googletest\include;$(GOOGLETEST_DIR)\googlemock;$(GOOGLETEST_DIR)\googlemock\include;$(QTDIR)\include;release;/include;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -120,7 +120,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;..\..\..\..\Documents\Qt-Projekte\GoogleTest\googletest\googletest;..\..\..\..\Documents\Qt-Projekte\GoogleTest\googletest\googletest\include;..\..\..\..\Documents\Qt-Projekte\GoogleTest\googletest\googlemock;..\..\..\..\Documents\Qt-Projekte\GoogleTest\googletest\googlemock\include;$(QTDIR)\include;debug;/include;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(GOOGLETEST_DIR)\googletest;$(GOOGLETEST_DIR)\googletest\include;$(GOOGLETEST_DIR)\googlemock;$(GOOGLETEST_DIR)\googlemock\include;$(QTDIR)\include;debug;/include;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -170,8 +170,8 @@
     <ClCompile Include="..\Prototype\gamemovespawnpiece.cpp" />
     <ClCompile Include="..\Prototype\gamepiececard.cpp" />
     <ClCompile Include="..\Prototype\gamestate.cpp" />
-    <ClCompile Include="..\..\..\..\Documents\Qt-Projekte\GoogleTest\googletest\googlemock\src\gmock-all.cc" />
-    <ClCompile Include="..\..\..\..\Documents\Qt-Projekte\GoogleTest\googletest\googletest\src\gtest-all.cc" />
+    <ClCompile Include="$(GOOGLETEST_DIR)\googlemock\src\gmock-all.cc" />
+    <ClCompile Include="$(GOOGLETEST_DIR)\googletest\src\gtest-all.cc" />
     <ClCompile Include="..\Prototype\IoHelper\ioexception.cpp" />
     <ClCompile Include="..\Prototype\Scripting\jsscriptwrapper.cpp" />
     <ClCompile Include="main.cpp" />
@@ -224,9 +224,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GoogleTests.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
