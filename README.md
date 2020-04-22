@@ -36,12 +36,13 @@ variable named QTDIR is used by Visual Studio).
 
 The following extensions for Visual Studio should be installed:
 - QT Visual Studio Tools
+  - Add your downloaded QT libraries version in its settings
+  - Currently tested for the msvc2017_64
 - Test Adapter for Google Test
 - optionally License Header Manager, if you don't want to add license notes to new
   files manually
 				 
 After that the project should build.
-ns allowing Python scripts.
 
 The plugin format describing card games is taken from the freeware LackeyCCG, which
 allows online card games between human players.
