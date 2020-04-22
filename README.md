@@ -9,30 +9,39 @@ implemented in scripts.
 
 ## Installing / Getting started
 
-At the current early stage you can only run the unit tests of the project within the
-Qt creator.
+At the current early stage you can only run the unit tests of the project.
 
-The framework itself is written in C++11 within the QT framework. Development
-is done with the QT Creator 4.7.2 (using the Qt libraries 5.9.2) and the 
-MSVC2015 32Bit compiler.
+The framework itself is written in C++11 using the QT5 framework. Development
+was started with the QT Creator 4.7.2, but the project is now migrated
+to Visual Studio 2019.
 
-In addition Python 3.6 is used as the script language.
+The GoogleTest/GoogleMock framework is used for the unit tests.
+
+In addition JavaScript as supported by the Qt libraries is used as the script
+language.
 
 ## Developing
 
-Check out the project. You can open it using the Qt Creator.
+Check out the repository. You can open it using the Visual Studio.
 
-The project requires two environment variables to find the Python includes and libs:
-PYTHONINCLUDE - pointing to the directory with the Python include files
-PYTHONLIBS - pointing to the libs directory of Python
-After that the project should compile.
+Also checkout the GoogleTest project (link below).
+The project requires the following environment variable to find GoogleTest files:
+GOOGLETEST_DIR - pointing to the directory with the googletest and googlemock
+				 folders
 
-I refrain from setting the standard Python environment variables, since that
-caused trouble with other applications allowing Python scripts.
+Download the Qt libraries (currently tested with V5.12.6). You will have to add
+the bin directory to your path, or the unit tests will not run in the test explorer
+(only directly run as executable in debug mode in VS, since a temporary environment
+variable named QTDIR is used by Visual Studio).
 
-You will have to copy the content of the Libs directory from Python to the
-PythonLibs directory testdata/pythonlib to run the unit tests, or Python will fail
-to initialize.
+The following extensions for Visual Studio should be installed:
+- QT Visual Studio Tools
+- Test Adapter for Google Test
+- optionally License Header Manager, if you don't want to add license notes to new
+  files manually
+				 
+After that the project should build.
+ns allowing Python scripts.
 
 The plugin format describing card games is taken from the freeware LackeyCCG, which
 allows online card games between human players.
@@ -43,7 +52,7 @@ The goal of this project is to extend these plugin directories with AI functiona
 - Repository: https://www.github.com/Hamiller78/CCGAI/
 - Related projects:
   - Qt homepage: https://www.qt.io/
-  - Python homepage: https://www.python.org/
+  - GoogleTest repository: https://github.com/google/googletest
   - LackeyCCG  homepage: http://lackeyccg.com/
 
 

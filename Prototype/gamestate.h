@@ -22,6 +22,7 @@
 #include "igamestate.h"
 
 #include <memory>
+#include <stdexcept>
 #include <vector>
 
 namespace game {
