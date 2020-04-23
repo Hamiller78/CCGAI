@@ -19,15 +19,15 @@
 #define MOCKTEXTFILELOADER_H
 
 #include "gmock/gmock.h"
-#include "../Prototype/textfileloader.h"
+#include "../Prototype/itextfileloader.h"
 
 namespace mocks {
 
-class MockTextfileLoader: public iohelper::TextfileLoader
+class MockTextfileLoader: public iohelper::ITextfileLoader
 {
 public:
     MockTextfileLoader() {}
-//    ~MockTextfileLoader() override {}
+    virtual ~MockTextfileLoader() override {}
 
     MOCK_METHOD(QStringList, FromFilename, (const QString&), (override, const));
     MOCK_METHOD(void, CheckDirExists, (const QString&), (override, const));

@@ -101,18 +101,6 @@
     <ClCompile Include="..\Prototype\cardpool.cpp">
       <Filter>Source Files\AdditionalSources</Filter>
     </ClCompile>
-    <ClCompile Include="..\Prototype\exceptionplugin.cpp">
-      <Filter>Source Files\AdditionalSources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\gamepiececard.cpp">
-      <Filter>Source Files\AdditionalSources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\ioexception.cpp">
-      <Filter>Source Files\AdditionalSources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\textfileloader.cpp">
-      <Filter>Source Files\AdditionalSources</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MockBoard.h">
@@ -133,14 +121,14 @@
     <ClInclude Include="MockPileFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IoHelper\MockTextfileLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tst_googletest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MockTextfileLoader.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

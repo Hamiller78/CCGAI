@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -29,7 +29,7 @@ private:
     std::string errortext_;
 public:
     ExceptionPlugin(std::string errortext){errortext_ = errortext;}
-    const char* what() const noexcept override;
+    const char* what() const noexcept override {return this->errortext_.c_str();}
 };
 
 } // namespace plugin

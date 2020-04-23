@@ -24,15 +24,16 @@
 #include <QTextStream>
 
 #include "ioexception.h"
+#include "itextfileloader.h"
 
 namespace iohelper {
 
-class TextfileLoader
+class TextfileLoader : ITextfileLoader
 {
 public:
     TextfileLoader(){}
-    virtual QStringList FromFilename(const QString& filePath) const;
-    virtual void CheckDirExists(const QString& pluginDirName) const;
+    virtual QStringList FromFilename(const QString& filePath) const override;
+    virtual void CheckDirExists(const QString& pluginDirName) const override;
 };
 
 } // namespace iohelper

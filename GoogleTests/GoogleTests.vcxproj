@@ -164,17 +164,13 @@
     <ClCompile Include="..\Prototype\cardmaster.cpp" />
     <ClCompile Include="..\Prototype\cardpool.cpp" />
     <ClCompile Include="..\Prototype\deck.cpp" />
-    <ClCompile Include="..\Prototype\exceptionplugin.cpp" />
     <ClCompile Include="..\Prototype\gamemovemovepile.cpp" />
     <ClCompile Include="..\Prototype\gamemovemovetop.cpp" />
     <ClCompile Include="..\Prototype\gamemovespawnpiece.cpp" />
-    <ClCompile Include="..\Prototype\gamepiececard.cpp" />
     <ClCompile Include="..\Prototype\gamestate.cpp" />
     <ClCompile Include="$(GOOGLETEST_DIR)\googlemock\src\gmock-all.cc" />
     <ClCompile Include="$(GOOGLETEST_DIR)\googletest\src\gtest-all.cc" />
-    <ClCompile Include="..\Prototype\ioexception.cpp" />
     <ClCompile Include="..\Prototype\jsscriptwrapper.cpp" />
-    <ClCompile Include="..\Prototype\textfileloader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\Prototype\pile.cpp" />
     <ClCompile Include="..\Prototype\plugin.cpp" />
@@ -195,7 +191,7 @@
     <ClInclude Include="MockGamestate.h" />
     <ClInclude Include="MockPile.h" />
     <ClInclude Include="MockPileFactory.h" />
-    <ClInclude Include="IoHelper\MockTextfileLoader.h" />
+    <ClInclude Include="MockTextfileLoader.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="tst_googletest.h" />
   </ItemGroup>

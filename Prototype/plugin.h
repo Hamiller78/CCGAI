@@ -39,9 +39,9 @@ class Plugin
 private:
     QString pluginDirPath_;
     Cardpool& pluginCardpool_;
-    const iohelper::TextfileLoader& fileLoader_;
+    const iohelper::ITextfileLoader& fileLoader_;
 public:
-    Plugin(Cardpool& emptyCardpool, const iohelper::TextfileLoader& fileLoader)
+    Plugin(Cardpool& emptyCardpool, const iohelper::ITextfileLoader& fileLoader)
         : pluginCardpool_(emptyCardpool), fileLoader_(fileLoader){}
     void LoadPlugin(const QString& pluginDirName);
 private:

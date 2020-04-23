@@ -1,4 +1,4 @@
-/* Copyright (c) 2017-2020 Torben Kneesch
+/* Copyright (c) 2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -14,19 +14,22 @@
 
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
+#ifndef ITEXTFILELOADER_H
+#define ITEXTFILELOADER_H
 
-#include "gamepiececard.h"
+#include <QString>
 
-namespace game {
+namespace iohelper {
 
-GamepieceCard::GamepieceCard()
+class ITextfileLoader
 {
+public:
+	ITextfileLoader() {}
+    virtual ~ITextfileLoader() {}
+	virtual QStringList FromFilename(const QString& filePath) const = 0;
+	virtual void CheckDirExists(const QString& pluginDirName) const = 0;
+};
 
-}
+} // namespace iohelper
 
-GamepieceCard::GamepieceCard(const CardmasterPointer &myMaster)
-{
-    myMaster_ = myMaster;
-}
-
-} // namespace game
+#endif // ITEXTFILELOADER_H

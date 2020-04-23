@@ -190,15 +190,12 @@
     <ClCompile Include="cardmaster.cpp" />
     <ClCompile Include="cardpool.cpp" />
     <ClCompile Include="deck.cpp" />
-    <ClCompile Include="exceptionplugin.cpp" />
     <ClCompile Include="gameloop.cpp" />
     <ClCompile Include="gamemove.cpp" />
     <ClCompile Include="gamemovemovepile.cpp" />
     <ClCompile Include="gamemovemovetop.cpp" />
     <ClCompile Include="gamemovespawnpiece.cpp" />
-    <ClCompile Include="gamepiececard.cpp" />
     <ClCompile Include="gamestate.cpp" />
-    <ClCompile Include="ioexception.cpp" />
     <ClCompile Include="jsscriptwrapper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
@@ -224,6 +221,7 @@
     <ClInclude Include="iboard.h" />
     <ClInclude Include="igamepiece.h" />
     <ClInclude Include="igamestate.h" />
+    <ClInclude Include="itextfileloader.h" />
     <ClInclude Include="textfileloader.h" />
     <QtMoc Include="mainwindow.h">
     </QtMoc>

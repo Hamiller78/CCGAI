@@ -79,9 +79,6 @@
     <ClCompile Include="cardpool.cpp">
       <Filter>Source Files\Plugin</Filter>
     </ClCompile>
-    <ClCompile Include="exceptionplugin.cpp">
-      <Filter>Source Files\Plugin</Filter>
-    </ClCompile>
     <ClCompile Include="gameloop.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
@@ -97,16 +94,10 @@
     <ClCompile Include="gamemovespawnpiece.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="gamepiececard.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="gamestate.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="textfileloader.cpp">
-      <Filter>Source Files\IoHelper</Filter>
-    </ClCompile>
-    <ClCompile Include="ioexception.cpp">
       <Filter>Source Files\IoHelper</Filter>
     </ClCompile>
     <ClCompile Include="pile.cpp">
@@ -218,6 +209,9 @@
     </ClInclude>
     <ClInclude Include="rulebook.h">
       <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="itextfileloader.h">
+      <Filter>Header Files\IoHelper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -32,8 +32,8 @@ class GamepieceCard : public IGamepiece
 private:
     CardmasterPointer myMaster_;
 public:
-    GamepieceCard();
-    GamepieceCard(const CardmasterPointer &myMaster);
+    GamepieceCard() {}
+    GamepieceCard(const CardmasterPointer& myMaster) {myMaster_ = myMaster;}
     QString GetTraitText(QString trait){return myMaster_->GetTraitText((trait));}
 };
 
