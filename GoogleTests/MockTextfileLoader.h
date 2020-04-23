@@ -19,7 +19,7 @@
 #define MOCKTEXTFILELOADER_H
 
 #include "gmock/gmock.h"
-#include "../Prototype/IoHelper/textfileloader.h"
+#include "../Prototype/textfileloader.h"
 
 namespace mocks {
 

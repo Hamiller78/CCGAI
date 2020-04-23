@@ -14,7 +14,6 @@
 
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
-
 #include "ioexception.h"
 
 namespace iohelper {

@@ -17,7 +17,7 @@
 
 #include "tst_googletest.h"
 
-#include "../Prototype/scripting/jsscriptwrapper.h"
+#include "../Prototype/jsscriptwrapper.h"
 
 TEST(JsScriptWrapper, StringScript_SquareNumber_CorrectOutput)
 {

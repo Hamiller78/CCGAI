@@ -27,8 +27,8 @@
 
 #include "cardpool.h"
 #include "exceptionplugin.h"
-#include "iohelper/ioexception.h"
-#include "iohelper/textfileloader.h"
+#include "ioexception.h"
+#include "textfileloader.h"
 
 namespace plugin {
 

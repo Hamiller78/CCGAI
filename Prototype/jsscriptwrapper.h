@@ -14,23 +14,31 @@
 
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
+#ifndef JSSCRIPTWRAPPER_H
+#define JSSCRIPTWRAPPER_H
 
-#ifndef IOEXCEPTION_H
-#define IOEXCEPTION_H
+#include <QCoreApplication>
+#include <QJSEngine>
 
-#include <string>
+#include "iscriptwrapper.h"
 
-namespace iohelper {
+namespace scripting {
 
-class IoException : public std::exception
+class JSScriptWrapper : public IScriptWrapper
 {
-private:
-    std::string errortext_;
 public:
-    IoException(std::string errortext){errortext_ = errortext;}
-    const char* what() const noexcept override;
+    JSScriptWrapper(){}
+    ~JSScriptWrapper() override {};
+
+    static void Init() {jsEnginePtr_ = std::unique_ptr<QJSEngine>(new QJSEngine());}
+
+    virtual void LoadScriptFile(const QString& filePath) override;
+    virtual int ExecuteString(const QString& script) override;
+
+private:
+    static std::unique_ptr<QJSEngine> jsEnginePtr_;
 };
 
-} // namespace iohelper
+} // namespace scripting
 
-#endif // IOEXCEPTION_H
+#endif // JSSCRIPTWRAPPER_H

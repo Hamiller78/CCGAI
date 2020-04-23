@@ -14,31 +14,21 @@
 
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
-
-#ifndef JSSCRIPTWRAPPER_H
-#define JSSCRIPTWRAPPER_H
-
-#include <QCoreApplication>
-#include <QJSEngine>
-
-#include "iscriptwrapper.h"
+#include "jsscriptwrapper.h"
 
 namespace scripting {
 
-class JSScriptWrapper : public IScriptWrapper
+std::unique_ptr<QJSEngine> JSScriptWrapper::jsEnginePtr_(nullptr);
+
+void scripting::JSScriptWrapper::LoadScriptFile(const QString &filePath)
 {
-public:
-    JSScriptWrapper(){}
 
-    static void Init() {jsEnginePtr_ = std::unique_ptr<QJSEngine>(new QJSEngine());}
+}
 
-    virtual void LoadScriptFile(const QString& filePath) override;
-    virtual int ExecuteString(const QString& script) override;
-
-private:
-    static std::unique_ptr<QJSEngine> jsEnginePtr_;
-};
+int scripting::JSScriptWrapper::ExecuteString(const QString &script)
+{
+    QJSValue result = jsEnginePtr_->evaluate(script);
+    return result.toInt();
+}
 
 } // namespace scripting
-
-#endif // JSSCRIPTWRAPPER_H

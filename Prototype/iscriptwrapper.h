@@ -14,28 +14,24 @@
 
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
+#ifndef ISCRIPTWRAPPER_H
+#define ISCRIPTWRAPPER_H
 
-#ifndef TEXTFILELOADER_H
-#define TEXTFILELOADER_H
-
-
-#include <QDir>
-#include <QFile>
 #include <QString>
-#include <QTextStream>
 
-#include "ioexception.h"
 
-namespace iohelper {
+namespace scripting {
 
-class TextfileLoader
+class IScriptWrapper
 {
 public:
-    TextfileLoader(){}
-    virtual QStringList FromFilename(const QString& filePath) const;
-    virtual void CheckDirExists(const QString& pluginDirName) const;
+    IScriptWrapper() {}
+    virtual ~IScriptWrapper() {}
+
+    virtual void LoadScriptFile(const QString& filePath) = 0;
+    virtual int ExecuteString(const QString& script) = 0;
 };
 
-} // namespace iohelper
+} // namespace scripting
 
-#endif // TEXTFILELOADER_H
+#endif // ISCRIPTWRAPPER_H

@@ -25,85 +25,94 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Source Files\Tests">
+      <UniqueIdentifier>{c4240d3a-975c-4d90-9cae-5ce5bca53984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourcesUnderTest">
+      <UniqueIdentifier>{3e73a51c-fcb0-40b1-8009-aa37aa201147}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AdditionalSources">
+      <UniqueIdentifier>{2838f89c-5993-4bfc-a081-75484830e5c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Prototype\board.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\cardmaster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\cardpool.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\deck.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\exceptionplugin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\gamemovemovepile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\gamemovemovetop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\gamemovespawnpiece.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\gamepiececard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\gamestate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\IoHelper\ioexception.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\Scripting\jsscriptwrapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\pile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\plugin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\IoHelper\textfileloader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tst_board.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tst_gamemovemovepile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tst_gamemovemovetop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tst_gamemovespawnpiece.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tst_gamestate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tst_jsscriptwrapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tst_pile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tst_plugin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tst_deck.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="$(GOOGLETEST_DIR)\googlemock\src\gmock-all.cc" />
     <ClCompile Include="$(GOOGLETEST_DIR)\googletest\src\gtest-all.cc" />
+    <ClCompile Include="tst_board.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="tst_deck.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="tst_gamemovemovepile.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="tst_gamemovemovetop.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="tst_gamemovespawnpiece.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="tst_gamestate.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="tst_jsscriptwrapper.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="tst_pile.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="tst_plugin.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\deck.cpp">
+      <Filter>Source Files\SourcesUnderTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\gamemovemovepile.cpp">
+      <Filter>Source Files\SourcesUnderTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\gamemovemovetop.cpp">
+      <Filter>Source Files\SourcesUnderTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\gamemovespawnpiece.cpp">
+      <Filter>Source Files\SourcesUnderTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\gamestate.cpp">
+      <Filter>Source Files\SourcesUnderTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\pile.cpp">
+      <Filter>Source Files\SourcesUnderTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\plugin.cpp">
+      <Filter>Source Files\SourcesUnderTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\board.cpp">
+      <Filter>Source Files\SourcesUnderTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\jsscriptwrapper.cpp">
+      <Filter>Source Files\SourcesUnderTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\cardmaster.cpp">
+      <Filter>Source Files\AdditionalSources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\cardpool.cpp">
+      <Filter>Source Files\AdditionalSources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\exceptionplugin.cpp">
+      <Filter>Source Files\AdditionalSources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\gamepiececard.cpp">
+      <Filter>Source Files\AdditionalSources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\ioexception.cpp">
+      <Filter>Source Files\AdditionalSources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\textfileloader.cpp">
+      <Filter>Source Files\AdditionalSources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MockBoard.h">
@@ -144,8 +153,5 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GoogleTests.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="GoogleTests.licenseheader" />
   </ItemGroup>
 </Project>

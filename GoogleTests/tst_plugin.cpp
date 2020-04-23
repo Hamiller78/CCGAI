@@ -18,7 +18,7 @@
 #include "tst_googletest.h"
 
 #include "MockCardpool.h"
-#include "IoHelper/MockTextfileLoader.h"
+#include "MockTextfileLoader.h"
 #include "../Prototype/plugin.h"
 
 QStringList GetSetlistTxtContent();

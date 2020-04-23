@@ -14,22 +14,27 @@
 
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
+#ifndef TEXTFILELOADER_H
+#define TEXTFILELOADER_H
 
-#include "jsscriptwrapper.h"
 
-namespace scripting {
+#include <QDir>
+#include <QFile>
+#include <QString>
+#include <QTextStream>
 
-std::unique_ptr<QJSEngine> JSScriptWrapper::jsEnginePtr_(nullptr);
+#include "ioexception.h"
 
-void scripting::JSScriptWrapper::LoadScriptFile(const QString &filePath)
+namespace iohelper {
+
+class TextfileLoader
 {
+public:
+    TextfileLoader(){}
+    virtual QStringList FromFilename(const QString& filePath) const;
+    virtual void CheckDirExists(const QString& pluginDirName) const;
+};
 
-}
+} // namespace iohelper
 
-int scripting::JSScriptWrapper::ExecuteString(const QString &script)
-{
-    QJSValue result = jsEnginePtr_->evaluate(script);
-    return result.toInt();
-}
-
-} // namespace scripting
+#endif // TEXTFILELOADER_H

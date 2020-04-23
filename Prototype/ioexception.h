@@ -14,25 +14,22 @@
 
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
+#ifndef IOEXCEPTION_H
+#define IOEXCEPTION_H
 
-#ifndef ISCRIPTWRAPPER_H
-#define ISCRIPTWRAPPER_H
+#include <string>
 
-#include <QString>
+namespace iohelper {
 
-
-namespace scripting {
-
-class IScriptWrapper
+class IoException : public std::exception
 {
+private:
+    std::string errortext_;
 public:
-    IScriptWrapper() {}
-    virtual ~IScriptWrapper() {}
-
-    virtual void LoadScriptFile(const QString& filePath) = 0;
-    virtual int ExecuteString(const QString& script) = 0;
+    IoException(std::string errortext){errortext_ = errortext;}
+    const char* what() const noexcept override;
 };
 
-} // namespace scripting
+} // namespace iohelper
 
-#endif // ISCRIPTWRAPPER_H
+#endif // IOEXCEPTION_H

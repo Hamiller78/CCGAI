@@ -172,12 +172,12 @@
     <ClCompile Include="..\Prototype\gamestate.cpp" />
     <ClCompile Include="$(GOOGLETEST_DIR)\googlemock\src\gmock-all.cc" />
     <ClCompile Include="$(GOOGLETEST_DIR)\googletest\src\gtest-all.cc" />
-    <ClCompile Include="..\Prototype\IoHelper\ioexception.cpp" />
-    <ClCompile Include="..\Prototype\Scripting\jsscriptwrapper.cpp" />
+    <ClCompile Include="..\Prototype\ioexception.cpp" />
+    <ClCompile Include="..\Prototype\jsscriptwrapper.cpp" />
+    <ClCompile Include="..\Prototype\textfileloader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\Prototype\pile.cpp" />
     <ClCompile Include="..\Prototype\plugin.cpp" />
-    <ClCompile Include="..\Prototype\IoHelper\textfileloader.cpp" />
     <ClCompile Include="tst_board.cpp" />
     <ClCompile Include="tst_deck.cpp" />
     <ClCompile Include="tst_gamemovemovepile.cpp" />

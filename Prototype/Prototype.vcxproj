@@ -198,15 +198,15 @@
     <ClCompile Include="gamemovespawnpiece.cpp" />
     <ClCompile Include="gamepiececard.cpp" />
     <ClCompile Include="gamestate.cpp" />
-    <ClCompile Include="IoHelper\ioexception.cpp" />
-    <ClCompile Include="Scripting\jsscriptwrapper.cpp" />
+    <ClCompile Include="ioexception.cpp" />
+    <ClCompile Include="jsscriptwrapper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="pile.cpp" />
     <ClCompile Include="playeragent.cpp" />
     <ClCompile Include="plugin.cpp" />
     <ClCompile Include="rulebook.cpp" />
-    <ClCompile Include="IoHelper\textfileloader.cpp" />
+    <ClCompile Include="textfileloader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="board.h" />
@@ -224,17 +224,17 @@
     <ClInclude Include="iboard.h" />
     <ClInclude Include="igamepiece.h" />
     <ClInclude Include="igamestate.h" />
-    <ClInclude Include="IoHelper\ioexception.h" />
-    <ClInclude Include="Scripting\iscriptwrapper.h" />
-    <ClInclude Include="Scripting\jsscriptwrapper.h" />
+    <ClInclude Include="textfileloader.h" />
     <QtMoc Include="mainwindow.h">
     </QtMoc>
+    <ClInclude Include="ioexception.h" />
+    <ClInclude Include="iscriptwrapper.h" />
+    <ClInclude Include="jsscriptwrapper.h" />
     <ClInclude Include="objfactory.h" />
     <ClInclude Include="pile.h" />
     <ClInclude Include="playeragent.h" />
     <ClInclude Include="plugin.h" />
     <ClInclude Include="rulebook.h" />
-    <ClInclude Include="IoHelper\textfileloader.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
