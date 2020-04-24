@@ -161,8 +161,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Prototype\board.cpp" />
-    <ClCompile Include="..\Prototype\cardmaster.cpp" />
-    <ClCompile Include="..\Prototype\cardpool.cpp" />
     <ClCompile Include="..\Prototype\deck.cpp" />
     <ClCompile Include="..\Prototype\gamemovemovepile.cpp" />
     <ClCompile Include="..\Prototype\gamemovemovetop.cpp" />
@@ -220,6 +218,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GoogleTests.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GoogleTests.licenseheader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

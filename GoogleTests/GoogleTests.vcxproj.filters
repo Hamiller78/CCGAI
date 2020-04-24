@@ -31,8 +31,8 @@
     <Filter Include="Source Files\SourcesUnderTest">
       <UniqueIdentifier>{3e73a51c-fcb0-40b1-8009-aa37aa201147}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\AdditionalSources">
-      <UniqueIdentifier>{2838f89c-5993-4bfc-a081-75484830e5c8}</UniqueIdentifier>
+    <Filter Include="Header Files\Mocks">
+      <UniqueIdentifier>{735ab718-f9b7-4df6-8cd6-f7e95085b1fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -95,40 +95,34 @@
     <ClCompile Include="..\Prototype\jsscriptwrapper.cpp">
       <Filter>Source Files\SourcesUnderTest</Filter>
     </ClCompile>
-    <ClCompile Include="..\Prototype\cardmaster.cpp">
-      <Filter>Source Files\AdditionalSources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Prototype\cardpool.cpp">
-      <Filter>Source Files\AdditionalSources</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MockBoard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MockCardpool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MockGamepiece.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MockGamestate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MockPile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MockPileFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tst_googletest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="MockBoard.h">
+      <Filter>Header Files\Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="MockCardpool.h">
+      <Filter>Header Files\Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="MockGamepiece.h">
+      <Filter>Header Files\Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="MockGamestate.h">
+      <Filter>Header Files\Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="MockPile.h">
+      <Filter>Header Files\Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="MockPileFactory.h">
+      <Filter>Header Files\Mocks</Filter>
+    </ClInclude>
     <ClInclude Include="MockTextfileLoader.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Mocks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -141,5 +135,8 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GoogleTests.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GoogleTests.licenseheader" />
   </ItemGroup>
 </Project>
