@@ -14,25 +14,31 @@
 
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
+#ifndef ICARDPOOL_H
+#define ICARDPOOL_H
 
-#ifndef MOCKGAMESTATE_H
-#define MOCKGAMESTATE_H
+#include <memory>
 
-#include "gmock/gmock.h"
-#include "../Prototype/igamestate.h"
+#include <QString>
+#include <QStringList>
 
-namespace mocks {
+#include "igamepiece.h"
 
-class MockGameState : public game::IGameState
-{
-public:
-    MockGameState() {}
-    virtual ~MockGameState() override {}
+ // Interface for Cardpool class to manage and spawn all possible cards.
 
-    MOCK_METHOD(std::unique_ptr<game::IGameState>, Clone, (), (override, const));
-    MOCK_METHOD(game::IBoard&, GetBoard, (), (override));
-};
+namespace plugin {
 
-} // namespace mocks
+    class ICardpool
+    {
 
-#endif // MOCKGAMESTATE_H
+    public:
+        ICardpool() {}
+        virtual ~ICardpool() {}
+        virtual std::shared_ptr<game::IGamepiece> MakeCard(int cardIndex) const = 0;
+        virtual std::shared_ptr<game::IGamepiece> MakeCard(const QString& cardTitle) const = 0;
+        virtual void SetPool(const QStringList& lackeyCardData) = 0;
+    };
+
+} // namespace plugin
+
+#endif // ICARDPOOL_H

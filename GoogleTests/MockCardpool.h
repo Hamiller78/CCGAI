@@ -19,11 +19,11 @@
 #define MOCKCARDPOOL_H
 
 #include "gmock/gmock.h"
-#include "../Prototype/cardpool.h"
+#include "../Prototype/icardpool.h"
 
 namespace mocks {
 
-class MockCardpool: public plugin::Cardpool
+class MockCardpool : public plugin::ICardpool
 {
 public:
     MockCardpool() {}

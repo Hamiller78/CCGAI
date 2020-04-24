@@ -24,7 +24,7 @@
 
 namespace mocks {
 
-class MockBoard: public game::IBoard
+class MockBoard : public game::IBoard
 {
 public:
     const MockPileFactory mockFactory;
@@ -33,8 +33,6 @@ public:
     virtual ~MockBoard() override {}
 
     MOCK_METHOD(std::unique_ptr<game::IBoard>, Clone, (), (override, const));
-
-    //    MOCK_METHOD(MockBoard&&, CreateCopy, (), (const));
 
     MOCK_METHOD(void, AddGamepiece, (const std::shared_ptr<game::IGamepiece>, const game::Position&), (override));
     MOCK_METHOD(std::shared_ptr<game::IGamepiece>, GetTopPiece, (const game::Position&), (override, const));

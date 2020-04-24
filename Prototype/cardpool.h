@@ -24,22 +24,23 @@
 #include <QString>
 #include <QStringList>
 
-#include "gamepiececard.h"
 #include "cardmaster.h"
 #include "exceptionplugin.h"
+#include "gamepiececard.h"
+#include "icardpool.h"
 
 // Class to manage and spawn all possible cards.
 
 namespace plugin {
 
-class Cardpool
+class Cardpool : ICardpool
 {
 
 public:
     Cardpool(){}
     virtual ~Cardpool(){}
-    virtual std::shared_ptr<game::IGamepiece> MakeCard(int cardIndex) const;
-    virtual std::shared_ptr<game::IGamepiece> MakeCard(const QString& cardTitle) const;
+    virtual std::shared_ptr<game::IGamepiece> MakeCard(int cardIndex) const override;
+    virtual std::shared_ptr<game::IGamepiece> MakeCard(const QString& cardTitle) const override;
     virtual void SetPool(const QStringList& lackeyCardData);
 private:
     void IdentifyKeyColumns();

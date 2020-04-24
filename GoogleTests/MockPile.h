@@ -23,7 +23,7 @@
 
 namespace mocks {
 
-class MockPile: public game::Pile
+class MockPile : public game::Pile
 {
 public:
     MockPile() {}

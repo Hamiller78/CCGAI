@@ -19,7 +19,7 @@
 
 namespace game {
 
-std::shared_ptr<plugin::Cardpool> GamemoveSpawnPiece::cardpool_;
+std::shared_ptr<plugin::ICardpool> GamemoveSpawnPiece::cardpool_;
 
 GamemoveSpawnPiece::GamemoveSpawnPiece(int cardNumber, const Position &spawnPosition)
 {

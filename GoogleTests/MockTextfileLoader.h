@@ -23,7 +23,7 @@
 
 namespace mocks {
 
-class MockTextfileLoader: public iohelper::ITextfileLoader
+class MockTextfileLoader : public iohelper::ITextfileLoader
 {
 public:
     MockTextfileLoader() {}

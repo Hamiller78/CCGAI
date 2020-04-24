@@ -213,5 +213,8 @@
     <ClInclude Include="itextfileloader.h">
       <Filter>Header Files\IoHelper</Filter>
     </ClInclude>
+    <ClInclude Include="icardpool.h">
+      <Filter>Header Files\Plugin</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

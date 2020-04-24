@@ -23,7 +23,7 @@
 
 namespace mocks {
 
-class MockGamepiece: public game::IGamepiece
+class MockGamepiece : public game::IGamepiece
 {
 public:
     MockGamepiece() {}

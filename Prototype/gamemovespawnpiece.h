@@ -21,7 +21,7 @@
 #include <utility>
 
 #include "gamepiececard.h"
-#include "cardpool.h"
+#include "icardpool.h"
 #include "igamepiece.h"
 #include "gamemove.h"
 
@@ -32,11 +32,11 @@ class GamemoveSpawnPiece : public Gamemove
 private:
     int cardNumber_;
     Position spawnPosition_;
-    static std::shared_ptr<plugin::Cardpool> cardpool_;
+    static std::shared_ptr<plugin::ICardpool> cardpool_;
 public:
     GamemoveSpawnPiece(int cardNumber, const Position& spawnPosition);
     std::unique_ptr<IGameState> ApplyOnGamestate(const IGameState& oldState) const override;
-    static void SetCardpool(std::shared_ptr<plugin::Cardpool> cardpool) {cardpool_ = cardpool;}
+    static void SetCardpool(std::shared_ptr<plugin::ICardpool> cardpool) {cardpool_ = cardpool;}
 };
 
 } // namespace game

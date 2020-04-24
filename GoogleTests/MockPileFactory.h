@@ -24,7 +24,7 @@
 
 namespace mocks {
 
-class MockPileFactory: public ObjFactory<game::Pile>
+class MockPileFactory : public ObjFactory<game::Pile>
 {
 public:
     MockPileFactory() {}
