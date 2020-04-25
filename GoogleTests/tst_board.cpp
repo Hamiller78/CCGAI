@@ -29,7 +29,7 @@ TEST(Board, AddAndRemovePile)
     game::Board testBoard(mockPileFactory);
     std::shared_ptr<game::IGamepiece> mockPiecePtr(new mocks::MockGamepiece);
 
-    EXPECT_CALL(mockPileFactory, Create()).Times(1).WillOnce(Return(mockPilePtr));
+    EXPECT_CALL(mockPileFactory, CreatePtr()).Times(1).WillOnce(Return(mockPilePtr));
     EXPECT_CALL(*mockPilePtr, AddOnTop(mockPiecePtr)).Times(1);
     testBoard.AddGamepiece(mockPiecePtr, game::Position (0, 0));
 
@@ -64,7 +64,7 @@ TEST(Board, CombiningPilesWhenStackingGamepieces)
     std::shared_ptr<game::IGamepiece> mockPiecePtr1(new mocks::MockGamepiece);
     std::shared_ptr<game::IGamepiece> mockPiecePtr2(new mocks::MockGamepiece);
 
-    EXPECT_CALL(mockPileFactory, Create())
+    EXPECT_CALL(mockPileFactory, CreatePtr())
             .Times(2)
             .WillOnce(Return(mockPilePtr1))
             .WillOnce(Return(mockPilePtr2));
@@ -87,7 +87,7 @@ TEST(Board, AddNewPieceDirectlyOnPile)
     std::shared_ptr<game::IGamepiece> mockPiecePtr1(new mocks::MockGamepiece);
     std::shared_ptr<game::IGamepiece> mockPiecePtr2(new mocks::MockGamepiece);
 
-    EXPECT_CALL(mockPileFactory, Create())
+    EXPECT_CALL(mockPileFactory, CreatePtr())
             .Times(1)
             .WillOnce(Return(mockPilePtr));
     testBoard.AddGamepiece(mockPiecePtr1, game::Position(0, -1));
@@ -107,7 +107,7 @@ TEST(Board, TestAssignmentOperator)
     mocks::MockPile *mockPilePtr1 = new mocks::MockPile;
     mocks::MockPile *mockPilePtr2 = new mocks::MockPile;
 
-    EXPECT_CALL(mockPileFactory, Create()).Times(1).WillOnce(Return(mockPilePtr1));
+    EXPECT_CALL(mockPileFactory, CreatePtr()).Times(1).WillOnce(Return(mockPilePtr1));
     sourceBoard->AddGamepiece(mockPiecePtr, game::Position(3, 2));
 
     EXPECT_CALL(*mockPilePtr1, CreateCopy()).Times(1).WillOnce(Return(mockPilePtr2));
@@ -131,7 +131,7 @@ TEST(Board, TestCopyConstructor)
     mocks::MockPile *mockPilePtr1 = new mocks::MockPile;
     mocks::MockPile *mockPilePtr2 = new mocks::MockPile;
 
-    EXPECT_CALL(mockPileFactory, Create()).Times(1).WillOnce(Return(mockPilePtr1));
+    EXPECT_CALL(mockPileFactory, CreatePtr()).Times(1).WillOnce(Return(mockPilePtr1));
     sourceBoard->AddGamepiece(mockPiecePtr, game::Position(-7, 5));
 
     EXPECT_CALL(*mockPilePtr1, CreateCopy()).Times(1).WillOnce(Return(mockPilePtr2));
@@ -155,7 +155,7 @@ TEST(Board, CloneAndCheckIndepence)
     mocks::MockPile *mockPilePtr1 = new mocks::MockPile;
     mocks::MockPile *mockPilePtr2 = new mocks::MockPile;
 
-    EXPECT_CALL(mockPileFactory, Create()).Times(1).WillOnce(Return(mockPilePtr1));
+    EXPECT_CALL(mockPileFactory, CreatePtr()).Times(1).WillOnce(Return(mockPilePtr1));
     sourceBoard->AddGamepiece(mockPiecePtr, game::Position(-7, 5));
 
     EXPECT_CALL(*mockPilePtr1, CreateCopy()).Times(1).WillOnce(Return(mockPilePtr2));

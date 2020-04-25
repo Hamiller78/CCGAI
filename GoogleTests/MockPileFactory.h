@@ -29,7 +29,7 @@ class MockPileFactory : public ObjFactory<game::Pile>
 public:
     MockPileFactory() {}
     ~MockPileFactory() override {}
-    MOCK_METHOD(game::Pile*, Create, (), (const, override));
+    MOCK_METHOD(game::Pile*, CreatePtr, (), (const, override));
 };
 
 } // namespace mocks

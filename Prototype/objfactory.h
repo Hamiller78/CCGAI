@@ -19,12 +19,13 @@
 #define OBJFACTORY_H
 
 
-template <class T>
+template <class T, typename ... Args>
 class ObjFactory
 {
 public:
     virtual ~ObjFactory() {}
-    virtual T* Create() const {return new T;}
+    virtual T* CreatePtr(Args&& ... args) const {return new T(std::forward<Args>(args) ...);}
+//    virtual T Create(Args&& ... args) const {return T(std::forward<Args>(args) ...);}
 };
 
 #endif // OBJFACTORY_H

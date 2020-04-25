@@ -66,7 +66,7 @@ void Board::AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Posit
     Pile* addPile = pilesOnBoard_[spawnPosition];
     if (addPile == nullptr)
     {
-        addPile = pileFactory_.Create();
+        addPile = pileFactory_.CreatePtr();
         pilesOnBoard_[spawnPosition] = addPile;
     }
     addPile->AddOnTop(newPiece);
