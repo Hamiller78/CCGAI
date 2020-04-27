@@ -15,8 +15,13 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef GAMEPIECE_H
-#define GAMEPIECE_H
+#ifndef IGAMEPIECE_H
+#define IGAMEPIECE_H
+
+#include <memory>
+
+#include <QString>
+#include <QStringList>
 
 namespace game {
 
@@ -24,8 +29,13 @@ class IGamepiece
 {
 public:
     virtual ~IGamepiece() {}
+
+    virtual std::shared_ptr<IGamepiece> Clone() const = 0;
+
+    virtual void SetTraits(const QString& cardData, const QStringList& dataColumnTitles) = 0;
+    virtual QString GetTraitText(const QString& trait) const = 0;
 };
 
 } // namespace game
 
-#endif // GAMEPIECE_H
+#endif // IGAMEPIECE_H

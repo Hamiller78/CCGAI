@@ -187,7 +187,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="board.cpp" />
-    <ClCompile Include="cardmaster.cpp" />
     <ClCompile Include="cardpool.cpp" />
     <ClCompile Include="deck.cpp" />
     <ClCompile Include="gameloop.cpp" />
@@ -195,6 +194,7 @@
     <ClCompile Include="gamemovemovepile.cpp" />
     <ClCompile Include="gamemovemovetop.cpp" />
     <ClCompile Include="gamemovespawnpiece.cpp" />
+    <ClCompile Include="gamepiececard.cpp" />
     <ClCompile Include="gamestate.cpp" />
     <ClCompile Include="jsscriptwrapper.cpp" />
     <ClCompile Include="main.cpp" />
@@ -207,7 +207,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="board.h" />
-    <ClInclude Include="cardmaster.h" />
     <ClInclude Include="cardpool.h" />
     <ClInclude Include="deck.h" />
     <ClInclude Include="exceptionplugin.h" />

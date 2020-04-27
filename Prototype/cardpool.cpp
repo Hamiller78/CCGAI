@@ -1,4 +1,4 @@
-/* Copyright (c) 2017,2018 Torben Kneesch
+/* Copyright (c) 2017-2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -14,15 +14,14 @@
 
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
-
 #include "cardpool.h"
 
 namespace plugin {
 
 std::shared_ptr<game::IGamepiece> Cardpool::MakeCard(int cardIndex) const
 {
-    std::shared_ptr<game::IGamepiece> newCard(new game::GamepieceCard(listOfCards_[cardIndex]));
-    return newCard;
+    std::shared_ptr<game::IGamepiece> originalCard = listOfCards_[cardIndex];
+    return originalCard->Clone();
 }
 
 std::shared_ptr<game::IGamepiece> Cardpool::MakeCard(const QString& cardTitle) const
@@ -44,7 +43,7 @@ std::shared_ptr<game::IGamepiece> Cardpool::MakeCard(const QString& cardTitle) c
     return MakeCard(cardIndex);
 }
 
-void Cardpool::SetPool(const QStringList &lackeyCardData)
+void Cardpool::SetPool(const QStringList& lackeyCardData)
 {
     if (lackeyCardData.size() < 2)
     {
@@ -57,29 +56,30 @@ void Cardpool::SetPool(const QStringList &lackeyCardData)
 
 void Cardpool::IdentifyKeyColumns()
 {
-    indexOfImage_ = namesOfColumns_.indexOf(QRegExp("Name", Qt::CaseInsensitive));
-    indexOfTitle_ = namesOfColumns_.indexOf(QRegExp("ImageFile", Qt::CaseInsensitive));
-    if (indexOfImage_ == -1)
+    indexOfImageColumn_ = namesOfColumns_.indexOf(QRegExp("Name", Qt::CaseInsensitive));
+    indexOfTitleColumn_ = namesOfColumns_.indexOf(QRegExp("ImageFile", Qt::CaseInsensitive));
+    if (indexOfImageColumn_ == -1)
     {
         throw ExceptionPlugin("ImageFile column in carddata.txt not found!");
     }
-    if (indexOfTitle_ == -1)
+    if (indexOfTitleColumn_ == -1)
     {
         throw ExceptionPlugin("Name column in carddata.txt not found!");
     }
 }
 
-void Cardpool::MakeCardmasters(const QStringList &lackeyCardData)
+void Cardpool::MakeCardmasters(const QStringList& lackeyCardData)
 {
     listOfCards_.clear();
     for (int i = 1; i < lackeyCardData.size(); i++)
     {
-        std::shared_ptr<Cardmaster> newCardmaster(new Cardmaster(lackeyCardData[i], namesOfColumns_));
-        listOfCards_.push_back(newCardmaster);
+        std::shared_ptr<game::IGamepiece> newCard(cardFactory_.CreatePtr());
+        newCard->SetTraits(lackeyCardData[i], namesOfColumns_);
+        listOfCards_.push_back(newCard);
     }
 }
 
-void Cardpool::ParseHeader(const QString &headerLine)
+void Cardpool::ParseHeader(const QString& headerLine)
 {
     namesOfColumns_.clear();
     namesOfColumns_ = headerLine.split("\t");

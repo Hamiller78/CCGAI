@@ -32,8 +32,6 @@ class IBoard
 public:
     virtual ~IBoard() {}
 
-//    virtual IBoard(const IBoard& sourceBoard);
-//    virtual IBoard(IBoard&& sourceBoard);
     virtual std::unique_ptr<IBoard> Clone() const = 0;
 
     virtual void AddGamepiece(const std::shared_ptr<IGamepiece> newPiece, const Position& spawnPosition) = 0;

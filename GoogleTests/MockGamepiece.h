@@ -28,7 +28,11 @@ class MockGamepiece : public game::IGamepiece
 public:
     MockGamepiece() {}
     ~MockGamepiece() override {}
-    // add MOCK_METHOD macros here once IGamepiece gets more methods
+
+    MOCK_METHOD(std::shared_ptr<game::IGamepiece>, Clone, (), (override, const));
+
+    MOCK_METHOD(void, SetTraits, (const QString&, const QStringList&), (override));
+    MOCK_METHOD(QString, GetTraitText, (const QString&), (override, const));
 };
 
 } // namespace mocks

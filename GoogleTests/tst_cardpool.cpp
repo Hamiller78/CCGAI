@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Torben Kneesch
+/* Copyright (c) 2020 Torben Kneesch
 
  This file is part of the CCGAI Framework
 
@@ -15,28 +15,27 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef CARDMASTER_H
-#define CARDMASTER_H
+#include "tst_googletest.h"
 
-#include <algorithm>
-#include <map>
-#include <stdexcept>
+#include "../Prototype/cardpool.h"
 
-#include <QString>
-#include <QStringList>
+QStringList GetTestPoolData();
 
-namespace plugin {
-
-class Cardmaster
+TEST(Cardpool, SetPoolAndMakeCardByIndex)
 {
-private:
-    std::multimap<QString, QString> keywordMap_;
-public:
-    Cardmaster();
-    Cardmaster(const QString& cardData, const QStringList& columnHeaders);
-    QString GetTraitText(QString trait);
-};
+    plugin::Cardpool testPool();
 
-} // namespace plugin
 
-#endif // CARDMASTER_H
+
+}
+
+QStringList GetTestPoolData()
+{
+    QStringList cardStrings;
+    cardStrings << "Name\tSet\tImagefile\tType\tAttack\tDefense\tText";
+    cardStrings << "Rookie\tBasic\tRookie.jpeg\tMinion\t1\t1\t";
+    cardStrings << "Veteran\tBasic\tVeteran.jpeg\Minion\t2\t2\t";
+    cardStrings << "Berserker\tBasic\tBerserker.jpeg\tMinion\t3\t1\tCharge";
+
+    return cardStrings;
+}

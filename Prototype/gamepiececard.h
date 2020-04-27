@@ -15,28 +15,41 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef CARD_H
-#define CARD_H
+#ifndef GAMEPIECECARD_H
+#define GAMEPIECECARD_H
 
+#include <map>
 #include <memory>
 
-#include "cardmaster.h"
+#include <QString>
+#include <QStringList>
+
 #include "igamepiece.h"
 
 namespace game {
 
-using CardmasterPointer = std::shared_ptr<plugin::Cardmaster>;
+// Class to represent game cards.
+// New instances of cards in the game should be created by calling the Clone() method of the
+// respective instance of that card in the card pool.
 
 class GamepieceCard : public IGamepiece
 {
-private:
-    CardmasterPointer myMaster_;
 public:
     GamepieceCard() {}
-    GamepieceCard(const CardmasterPointer& myMaster) {myMaster_ = myMaster;}
-    QString GetTraitText(QString trait){return myMaster_->GetTraitText((trait));}
+
+    virtual std::shared_ptr<IGamepiece> Clone() const override;
+
+    void SetOriginalCard(const std::shared_ptr<GamepieceCard>& originalCard) { originalCard_ = originalCard; }
+    std::shared_ptr<GamepieceCard> GetOriginalCard() const { return originalCard_; }
+
+    virtual void SetTraits(const QString& cardData, const QStringList& dataColumnTitles) override;
+    virtual QString GetTraitText(const QString& trait) const override;
+
+private:
+    std::multimap<QString, QString> cardDataMap_;
+    std::shared_ptr<GamepieceCard> originalCard_;
 };
 
 } // namespace game
 
-#endif // CARD_H
+#endif // GAMEPIECECARD_H

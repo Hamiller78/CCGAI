@@ -95,6 +95,12 @@
     <ClCompile Include="..\Prototype\jsscriptwrapper.cpp">
       <Filter>Source Files\SourcesUnderTest</Filter>
     </ClCompile>
+    <ClCompile Include="tst_cardpool.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Prototype\cardpool.cpp">
+      <Filter>Source Files\SourcesUnderTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tst_googletest.h">

@@ -70,9 +70,6 @@
     <ClCompile Include="board.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="cardmaster.cpp">
-      <Filter>Source Files\Plugin</Filter>
-    </ClCompile>
     <ClCompile Include="deck.cpp">
       <Filter>Source Files\Plugin</Filter>
     </ClCompile>
@@ -115,6 +112,9 @@
     <ClCompile Include="rulebook.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="gamepiececard.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -125,9 +125,6 @@
     </ClInclude>
     <ClInclude Include="board.h">
       <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="cardmaster.h">
-      <Filter>Header Files\Plugin</Filter>
     </ClInclude>
     <ClInclude Include="deck.h">
       <Filter>Header Files\Plugin</Filter>

@@ -24,10 +24,10 @@
 #include <QString>
 #include <QStringList>
 
-#include "cardmaster.h"
 #include "exceptionplugin.h"
 #include "gamepiececard.h"
 #include "icardpool.h"
+#include "objfactory.h"
 
 // Class to manage and spawn all possible cards.
 
@@ -37,7 +37,8 @@ class Cardpool : ICardpool
 {
 
 public:
-    Cardpool(){}
+    Cardpool(ObjFactory<game::GamepieceCard> cardFactory) : cardFactory_(cardFactory) {}
+
     virtual ~Cardpool(){}
     virtual std::shared_ptr<game::IGamepiece> MakeCard(int cardIndex) const override;
     virtual std::shared_ptr<game::IGamepiece> MakeCard(const QString& cardTitle) const override;
@@ -47,9 +48,11 @@ private:
     void MakeCardmasters(const QStringList& lackeyCardData);
     void ParseHeader(const QString& headerLine);
 
-    int indexOfTitle_{-1};
-    int indexOfImage_{-1};
-    std::vector<std::shared_ptr<Cardmaster>> listOfCards_;
+    ObjFactory<game::GamepieceCard> cardFactory_;
+
+    int indexOfTitleColumn_{-1};
+    int indexOfImageColumn_{-1};
+    std::vector<std::shared_ptr<game::IGamepiece>> listOfCards_;
     QStringList namesOfColumns_;
 };
 

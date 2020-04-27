@@ -161,6 +161,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Prototype\board.cpp" />
+    <ClCompile Include="..\Prototype\cardpool.cpp" />
     <ClCompile Include="..\Prototype\deck.cpp" />
     <ClCompile Include="..\Prototype\gamemovemovepile.cpp" />
     <ClCompile Include="..\Prototype\gamemovemovetop.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="..\Prototype\pile.cpp" />
     <ClCompile Include="..\Prototype\plugin.cpp" />
     <ClCompile Include="tst_board.cpp" />
+    <ClCompile Include="tst_cardpool.cpp" />
     <ClCompile Include="tst_deck.cpp" />
     <ClCompile Include="tst_gamemovemovepile.cpp" />
     <ClCompile Include="tst_gamemovemovetop.cpp" />
