@@ -31,6 +31,9 @@ public:
 
     MOCK_METHOD(std::shared_ptr<game::IGamepiece>, Clone, (), (override, const));
 
+    MOCK_METHOD(void, SetOriginalCard, (const std::shared_ptr<GamepieceCard>&), (override));
+    MOCK_METHOD(std::shared_ptr<GamepieceCard>, GetOriginalCard, (), (override, const));
+
     MOCK_METHOD(void, SetTraits, (const QString&, const QStringList&), (override));
     MOCK_METHOD(QString, GetTraitText, (const QString&), (override, const));
 };

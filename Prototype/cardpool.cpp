@@ -29,7 +29,7 @@ std::shared_ptr<game::IGamepiece> Cardpool::MakeCard(const QString& cardTitle) c
     uint cardIndex;
     for (cardIndex = 0; cardIndex < listOfCards_.size(); cardIndex++)
     {
-        QString loopCardName = listOfCards_[cardIndex].get()->GetTraitText("Name");
+        QString loopCardName = listOfCards_[cardIndex]->GetTraitText("Name");
         if (cardTitle == loopCardName)
         {
             break;

@@ -39,8 +39,8 @@ public:
 
     virtual std::shared_ptr<IGamepiece> Clone() const override;
 
-    void SetOriginalCard(const std::shared_ptr<GamepieceCard>& originalCard) { originalCard_ = originalCard; }
-    std::shared_ptr<GamepieceCard> GetOriginalCard() const { return originalCard_; }
+    virtual void SetOriginalCard(const std::shared_ptr<GamepieceCard>& originalCard) { originalCard_ = originalCard; }
+    virtual std::shared_ptr<GamepieceCard> GetOriginalCard() const { return originalCard_; }
 
     virtual void SetTraits(const QString& cardData, const QStringList& dataColumnTitles) override;
     virtual QString GetTraitText(const QString& trait) const override;

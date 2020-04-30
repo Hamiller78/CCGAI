@@ -26,7 +26,7 @@ QStringList GetTestPoolData();
 
 QStringList GetColumnHeaders();
 QString GetCardTraits(int CardIndex);
-TEST(Cardpool, CreatePool)
+TEST(Cardpool, CreatePoolAndMakeCards)
 {
     const mocks::MockCardFactory mockCardFactory;
     plugin::Cardpool testPool = plugin::Cardpool(mockCardFactory);
@@ -43,6 +43,18 @@ TEST(Cardpool, CreatePool)
     EXPECT_CALL(*mockCardPtr2, SetTraits(GetCardTraits(1), GetColumnHeaders())).Times(1);
 
     testPool.CreatePool(GetTestPoolData());
+
+    std::shared_ptr<game::IGamepiece> mockPiecePtr4(new mocks::MockGamepieceCard);
+    EXPECT_CALL(*mockCardPtr1, GetTraitText(QString("Name"))).Times(1).WillOnce(Return("Rookie"));
+    EXPECT_CALL(*mockCardPtr2, GetTraitText(QString("Name"))).Times(1).WillOnce(Return("Veteran"));
+    EXPECT_CALL(*mockCardPtr2, Clone()).Times(1).WillOnce(Return(mockPiecePtr4));
+    std::shared_ptr<game::IGamepiece> clonedCardPtr = testPool.MakeCard("Veteran");
+    ASSERT_EQ(mockPiecePtr4, clonedCardPtr);
+
+    std::shared_ptr<game::IGamepiece> mockPiecePtr3(new mocks::MockGamepieceCard);
+    EXPECT_CALL(*mockCardPtr1, Clone()).Times(1).WillOnce(Return(mockPiecePtr3));
+    clonedCardPtr = testPool.MakeCard(0);
+    ASSERT_EQ(mockPiecePtr3, clonedCardPtr);
 }
 
 QStringList GetTestPoolData()
