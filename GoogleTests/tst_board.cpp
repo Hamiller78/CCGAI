@@ -17,7 +17,7 @@
 
 #include "tst_googletest.h"
 
-#include "MockGamepiece.h"
+#include "MockGamepieceCard.h"
 #include "MockPileFactory.h"
 #include "MockPile.h"
 #include "../Prototype/board.h"
@@ -25,9 +25,9 @@
 TEST(Board, AddAndRemovePile)
 {
     const mocks::MockPileFactory mockPileFactory;
-    mocks::MockPile *mockPilePtr = new mocks::MockPile;
+    mocks::MockPile* mockPilePtr = new mocks::MockPile;
     game::Board testBoard(mockPileFactory);
-    std::shared_ptr<game::IGamepiece> mockPiecePtr(new mocks::MockGamepiece);
+    std::shared_ptr<game::IGamepiece> mockPiecePtr(new mocks::MockGamepieceCard);
 
     EXPECT_CALL(mockPileFactory, CreatePtr()).Times(1).WillOnce(Return(mockPilePtr));
     EXPECT_CALL(*mockPilePtr, AddOnTop(mockPiecePtr)).Times(1);
@@ -58,11 +58,11 @@ TEST(Board, ExceptionThrownWhenRemovingEmptyPosition)
 TEST(Board, CombiningPilesWhenStackingGamepieces)
 {
     const mocks::MockPileFactory mockPileFactory;
-    mocks::MockPile *mockPilePtr1 = new mocks::MockPile;
-    mocks::MockPile *mockPilePtr2 = new mocks::MockPile;
+    mocks::MockPile* mockPilePtr1 = new mocks::MockPile;
+    mocks::MockPile* mockPilePtr2 = new mocks::MockPile;
     game::Board testBoard(mockPileFactory);
-    std::shared_ptr<game::IGamepiece> mockPiecePtr1(new mocks::MockGamepiece);
-    std::shared_ptr<game::IGamepiece> mockPiecePtr2(new mocks::MockGamepiece);
+    std::shared_ptr<game::IGamepiece> mockPiecePtr1(new mocks::MockGamepieceCard);
+    std::shared_ptr<game::IGamepiece> mockPiecePtr2(new mocks::MockGamepieceCard);
 
     EXPECT_CALL(mockPileFactory, CreatePtr())
             .Times(2)
@@ -84,8 +84,8 @@ TEST(Board, AddNewPieceDirectlyOnPile)
     const mocks::MockPileFactory mockPileFactory;
     mocks::MockPile *mockPilePtr = new mocks::MockPile;
     game::Board testBoard(mockPileFactory);
-    std::shared_ptr<game::IGamepiece> mockPiecePtr1(new mocks::MockGamepiece);
-    std::shared_ptr<game::IGamepiece> mockPiecePtr2(new mocks::MockGamepiece);
+    std::shared_ptr<game::IGamepiece> mockPiecePtr1(new mocks::MockGamepieceCard);
+    std::shared_ptr<game::IGamepiece> mockPiecePtr2(new mocks::MockGamepieceCard);
 
     EXPECT_CALL(mockPileFactory, CreatePtr())
             .Times(1)
@@ -102,10 +102,10 @@ TEST(Board, AddNewPieceDirectlyOnPile)
 TEST(Board, TestAssignmentOperator)
 {
     const mocks::MockPileFactory mockPileFactory;
-    game::Board *sourceBoard = new game::Board(mockPileFactory);
-    std::shared_ptr<game::IGamepiece> mockPiecePtr(new mocks::MockGamepiece);
-    mocks::MockPile *mockPilePtr1 = new mocks::MockPile;
-    mocks::MockPile *mockPilePtr2 = new mocks::MockPile;
+    game::Board* sourceBoard = new game::Board(mockPileFactory);
+    std::shared_ptr<game::IGamepiece> mockPiecePtr(new mocks::MockGamepieceCard);
+    mocks::MockPile* mockPilePtr1 = new mocks::MockPile;
+    mocks::MockPile* mockPilePtr2 = new mocks::MockPile;
 
     EXPECT_CALL(mockPileFactory, CreatePtr()).Times(1).WillOnce(Return(mockPilePtr1));
     sourceBoard->AddGamepiece(mockPiecePtr, game::Position(3, 2));
@@ -126,10 +126,10 @@ TEST(Board, TestAssignmentOperator)
 TEST(Board, TestCopyConstructor)
 {
     const mocks::MockPileFactory mockPileFactory;
-    game::Board *sourceBoard = new game::Board(mockPileFactory);
-    std::shared_ptr<game::IGamepiece> mockPiecePtr(new mocks::MockGamepiece);
-    mocks::MockPile *mockPilePtr1 = new mocks::MockPile;
-    mocks::MockPile *mockPilePtr2 = new mocks::MockPile;
+    game::Board* sourceBoard = new game::Board(mockPileFactory);
+    std::shared_ptr<game::IGamepiece> mockPiecePtr(new mocks::MockGamepieceCard);
+    mocks::MockPile* mockPilePtr1 = new mocks::MockPile;
+    mocks::MockPile* mockPilePtr2 = new mocks::MockPile;
 
     EXPECT_CALL(mockPileFactory, CreatePtr()).Times(1).WillOnce(Return(mockPilePtr1));
     sourceBoard->AddGamepiece(mockPiecePtr, game::Position(-7, 5));
@@ -150,10 +150,10 @@ TEST(Board, TestCopyConstructor)
 TEST(Board, CloneAndCheckIndepence)
 {
     const mocks::MockPileFactory mockPileFactory;
-    game::Board *sourceBoard = new game::Board(mockPileFactory);
-    std::shared_ptr<game::IGamepiece> mockPiecePtr(new mocks::MockGamepiece);
-    mocks::MockPile *mockPilePtr1 = new mocks::MockPile;
-    mocks::MockPile *mockPilePtr2 = new mocks::MockPile;
+    game::Board* sourceBoard = new game::Board(mockPileFactory);
+    std::shared_ptr<game::IGamepiece> mockPiecePtr(new mocks::MockGamepieceCard);
+    mocks::MockPile* mockPilePtr1 = new mocks::MockPile;
+    mocks::MockPile* mockPilePtr2 = new mocks::MockPile;
 
     EXPECT_CALL(mockPileFactory, CreatePtr()).Times(1).WillOnce(Return(mockPilePtr1));
     sourceBoard->AddGamepiece(mockPiecePtr, game::Position(-7, 5));

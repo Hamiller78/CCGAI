@@ -18,7 +18,7 @@
 #include "tst_googletest.h"
 
 #include "MockBoard.h"
-#include "MockGamepiece.h"
+#include "MockGamepieceCard.h"
 #include "MockGamestate.h"
 #include "../Prototype/gamemovemovepile.h"
 

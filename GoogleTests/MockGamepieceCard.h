@@ -19,15 +19,15 @@
 #define MOCKGAMEPIECE_H
 
 #include "gmock/gmock.h"
-#include "../Prototype/igamepiece.h"
+#include "../Prototype/gamepiececard.h"
 
 namespace mocks {
 
-class MockGamepiece : public game::IGamepiece
+class MockGamepieceCard : public game::GamepieceCard
 {
 public:
-    MockGamepiece() {}
-    ~MockGamepiece() override {}
+    MockGamepieceCard() {}
+    ~MockGamepieceCard() override {}
 
     MOCK_METHOD(std::shared_ptr<game::IGamepiece>, Clone, (), (override, const));
 

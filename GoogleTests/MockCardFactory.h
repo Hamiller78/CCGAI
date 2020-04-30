@@ -15,23 +15,23 @@
  You should have received a copy of the GNU General Public License
  along with CCGAI Framework.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef MOCKPILEFACTORY_H
-#define MOCKPILEFACTORY_H
+#ifndef MOCKCARD_H
+#define MOCKCARD_H
 
 #include "gmock/gmock.h"
 #include "../Prototype/objfactory.h"
-#include "../Prototype/pile.h"
+#include "../Prototype/gamepiececard.h"
 
 namespace mocks {
 
-class MockPileFactory : public ObjFactory<game::Pile>
-{
-public:
-    MockPileFactory() {}
-    ~MockPileFactory() override {}
-    MOCK_METHOD(game::Pile*, CreatePtr, (), (const, override));
-};
+    class MockCardFactory : public ObjFactory<game::GamepieceCard>
+    {
+    public:
+        MockCardFactory() {}
+        ~MockCardFactory() override {}
+        MOCK_METHOD(game::GamepieceCard*, CreatePtr, (), (const, override));
+    };
 
 } // namespace mocks
 
-#endif // MOCKPILEFACTORY_H
+#endif // MOCKCARD_H

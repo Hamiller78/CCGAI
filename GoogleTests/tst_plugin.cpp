@@ -35,7 +35,7 @@ TEST(Plugin, LoadPlugin)
     EXPECT_CALL(mockLoader, FromFilename(QString("testdir/setlist.txt"))).Times(1).WillOnce(Return(GetSetlistTxtContent()));
     EXPECT_CALL(mockLoader, FromFilename(QString("testdir/sets/carddata.txt"))).Times(1).WillOnce(Return(GetCarddataTxtContent()));
 
-    EXPECT_CALL(mockPool, SetPool(GetExpectedSetCardpoolPar()));
+    EXPECT_CALL(mockPool, CreatePool(GetExpectedSetCardpoolPar()));
 
     testPlugin.LoadPlugin("testdir");
 }

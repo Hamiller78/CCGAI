@@ -37,18 +37,18 @@ class Cardpool : ICardpool
 {
 
 public:
-    Cardpool(ObjFactory<game::GamepieceCard> cardFactory) : cardFactory_(cardFactory) {}
+    Cardpool(const ObjFactory<game::GamepieceCard>& cardFactory) : cardFactory_(cardFactory) {}
 
     virtual ~Cardpool(){}
     virtual std::shared_ptr<game::IGamepiece> MakeCard(int cardIndex) const override;
     virtual std::shared_ptr<game::IGamepiece> MakeCard(const QString& cardTitle) const override;
-    virtual void SetPool(const QStringList& lackeyCardData);
+    virtual void CreatePool(const QStringList& lackeyCardData);
 private:
     void IdentifyKeyColumns();
     void MakeCardmasters(const QStringList& lackeyCardData);
     void ParseHeader(const QString& headerLine);
 
-    ObjFactory<game::GamepieceCard> cardFactory_;
+    const ObjFactory<game::GamepieceCard>& cardFactory_;
 
     int indexOfTitleColumn_{-1};
     int indexOfImageColumn_{-1};

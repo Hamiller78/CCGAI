@@ -43,7 +43,7 @@ std::shared_ptr<game::IGamepiece> Cardpool::MakeCard(const QString& cardTitle) c
     return MakeCard(cardIndex);
 }
 
-void Cardpool::SetPool(const QStringList& lackeyCardData)
+void Cardpool::CreatePool(const QStringList& lackeyCardData)
 {
     if (lackeyCardData.size() < 2)
     {

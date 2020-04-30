@@ -166,6 +166,7 @@
     <ClCompile Include="..\Prototype\gamemovemovepile.cpp" />
     <ClCompile Include="..\Prototype\gamemovemovetop.cpp" />
     <ClCompile Include="..\Prototype\gamemovespawnpiece.cpp" />
+    <ClCompile Include="..\Prototype\gamepiececard.cpp" />
     <ClCompile Include="..\Prototype\gamestate.cpp" />
     <ClCompile Include="$(GOOGLETEST_DIR)\googlemock\src\gmock-all.cc" />
     <ClCompile Include="$(GOOGLETEST_DIR)\googletest\src\gtest-all.cc" />
@@ -186,8 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MockBoard.h" />
+    <ClInclude Include="MockCardFactory.h" />
     <ClInclude Include="MockCardpool.h" />
-    <ClInclude Include="MockGamepiece.h" />
+    <ClInclude Include="MockGamepieceCard.h" />
     <ClInclude Include="MockGamestate.h" />
     <ClInclude Include="MockPile.h" />
     <ClInclude Include="MockPileFactory.h" />

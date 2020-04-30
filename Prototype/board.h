@@ -55,7 +55,7 @@ public:
     virtual void MoveTopPiece(const Position& startPosition, const Position& destinationPosition) override;
     virtual void RemovePile(const Position& clearPosition) override;
 private:
-    const ObjFactory<Pile> &pileFactory_;
+    const ObjFactory<Pile>& pileFactory_;
     std::map<Position, Pile*> pilesOnBoard_;
     void CopyBoardMembers(const Board& sourceBoard);
 };

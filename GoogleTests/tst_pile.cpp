@@ -17,15 +17,15 @@
 
 #include "tst_googletest.h"
 
-#include "MockGamepiece.h"
+#include "MockGamepieceCard.h"
 #include "../Prototype/pile.h"
 
 TEST(Pile, AddGamepieces)
 {
     game::Pile testPile1;
-    std::shared_ptr<game::IGamepiece> testPiecePtr1(new mocks::MockGamepiece);
-    std::shared_ptr<game::IGamepiece> testPiecePtr2(new mocks::MockGamepiece);
-    std::shared_ptr<game::IGamepiece> testPiecePtr3(new mocks::MockGamepiece);
+    std::shared_ptr<game::IGamepiece> testPiecePtr1(new mocks::MockGamepieceCard);
+    std::shared_ptr<game::IGamepiece> testPiecePtr2(new mocks::MockGamepieceCard);
+    std::shared_ptr<game::IGamepiece> testPiecePtr3(new mocks::MockGamepieceCard);
 
     testPile1.AddOnTop(testPiecePtr1);
     ASSERT_EQ(testPiecePtr1, testPile1.GetTopPiece());
@@ -40,10 +40,10 @@ TEST(Pile, AddPile)
 {
     game::Pile testPile1;
     game::Pile testPile2;
-    std::shared_ptr<game::IGamepiece> testPiecePtr1(new mocks::MockGamepiece);
-    std::shared_ptr<game::IGamepiece> testPiecePtr2(new mocks::MockGamepiece);
-    std::shared_ptr<game::IGamepiece> testPiecePtr3(new mocks::MockGamepiece);
-    std::shared_ptr<game::IGamepiece> testPiecePtr4(new mocks::MockGamepiece);
+    std::shared_ptr<game::IGamepiece> testPiecePtr1(new mocks::MockGamepieceCard);
+    std::shared_ptr<game::IGamepiece> testPiecePtr2(new mocks::MockGamepieceCard);
+    std::shared_ptr<game::IGamepiece> testPiecePtr3(new mocks::MockGamepieceCard);
+    std::shared_ptr<game::IGamepiece> testPiecePtr4(new mocks::MockGamepieceCard);
 
     testPile1.AddOnTop(testPiecePtr1);
     testPile1.AddOnTop(testPiecePtr2);
@@ -59,9 +59,9 @@ TEST(Pile, AddPile)
 TEST(Pile, PickupTopPiece)
 {
     game::Pile testPile1;
-    std::shared_ptr<game::IGamepiece> testPiecePtr1(new mocks::MockGamepiece);
-    std::shared_ptr<game::IGamepiece> testPiecePtr2(new mocks::MockGamepiece);
-    std::shared_ptr<game::IGamepiece> testPiecePtr3(new mocks::MockGamepiece);
+    std::shared_ptr<game::IGamepiece> testPiecePtr1(new mocks::MockGamepieceCard);
+    std::shared_ptr<game::IGamepiece> testPiecePtr2(new mocks::MockGamepieceCard);
+    std::shared_ptr<game::IGamepiece> testPiecePtr3(new mocks::MockGamepieceCard);
 
     testPile1.AddOnTop(testPiecePtr1);
     testPile1.AddOnTop(testPiecePtr2);
@@ -75,10 +75,10 @@ TEST(Pile, PickupTopPiece)
 TEST(Pile, AddToTopAndBottomAndGetVector)
 {
     game::Pile testPile1;
-    std::shared_ptr<game::IGamepiece> testPiecePtr1(new mocks::MockGamepiece);
-    std::shared_ptr<game::IGamepiece> testPiecePtr2(new mocks::MockGamepiece);
-    std::shared_ptr<game::IGamepiece> testPiecePtr3(new mocks::MockGamepiece);
-    std::shared_ptr<game::IGamepiece> testPiecePtr4(new mocks::MockGamepiece);
+    std::shared_ptr<game::IGamepiece> testPiecePtr1(new mocks::MockGamepieceCard);
+    std::shared_ptr<game::IGamepiece> testPiecePtr2(new mocks::MockGamepieceCard);
+    std::shared_ptr<game::IGamepiece> testPiecePtr3(new mocks::MockGamepieceCard);
+    std::shared_ptr<game::IGamepiece> testPiecePtr4(new mocks::MockGamepieceCard);
 
     testPile1.AddOnTop(testPiecePtr1);
     testPile1.AddToBottom(testPiecePtr2);

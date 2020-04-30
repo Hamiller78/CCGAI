@@ -17,25 +17,69 @@
 
 #include "tst_googletest.h"
 
+#include "MockCardFactory.h"
+#include "MockGamepieceCard.h"
+
 #include "../Prototype/cardpool.h"
 
 QStringList GetTestPoolData();
 
-TEST(Cardpool, SetPoolAndMakeCardByIndex)
+QStringList GetColumnHeaders();
+QString GetCardTraits(int CardIndex);
+TEST(Cardpool, CreatePool)
 {
-    plugin::Cardpool testPool();
+    const mocks::MockCardFactory mockCardFactory;
+    plugin::Cardpool testPool = plugin::Cardpool(mockCardFactory);
 
+    mocks::MockGamepieceCard* mockCardPtr1 = new mocks::MockGamepieceCard;
+    mocks::MockGamepieceCard* mockCardPtr2 = new mocks::MockGamepieceCard;
 
+    EXPECT_CALL(mockCardFactory, CreatePtr())
+        .Times(2)
+        .WillOnce(Return(mockCardPtr1))
+        .WillOnce(Return(mockCardPtr2));
 
+    EXPECT_CALL(*mockCardPtr1, SetTraits(GetCardTraits(0), GetColumnHeaders())).Times(1);
+    EXPECT_CALL(*mockCardPtr2, SetTraits(GetCardTraits(1), GetColumnHeaders())).Times(1);
+
+    testPool.CreatePool(GetTestPoolData());
 }
 
 QStringList GetTestPoolData()
 {
     QStringList cardStrings;
-    cardStrings << "Name\tSet\tImagefile\tType\tAttack\tDefense\tText";
-    cardStrings << "Rookie\tBasic\tRookie.jpeg\tMinion\t1\t1\t";
-    cardStrings << "Veteran\tBasic\tVeteran.jpeg\Minion\t2\t2\t";
-    cardStrings << "Berserker\tBasic\tBerserker.jpeg\tMinion\t3\t1\tCharge";
+    cardStrings.append(QString("Name\tSet\tImagefile\tType\tAttack\tDefense\tText"));
+    cardStrings.append(QString("Rookie\tBasic\tRookie.jpeg\tMinion\t1\t1\t"));
+    cardStrings.append(QString("Veteran\tBasic\tVeteran.jpeg\tMinion\t2\t2\t"));
 
     return cardStrings;
+}
+
+QStringList GetColumnHeaders()
+{
+    QStringList columnHeaders;
+    columnHeaders << "Name";
+    columnHeaders << "Set";
+    columnHeaders << "Imagefile";
+    columnHeaders << "Type";
+    columnHeaders << "Attack";
+    columnHeaders << "Defense";
+    columnHeaders << "Text";
+
+    return columnHeaders;
+}
+
+QString GetCardTraits(int cardIndex)
+{
+    QString cardTraits;
+    if (cardIndex == 0)
+    {
+        cardTraits = QString("Rookie\tBasic\tRookie.jpeg\tMinion\t1\t1\t");
+    }
+    else if (cardIndex == 1)
+    {
+        cardTraits = QString("Veteran\tBasic\tVeteran.jpeg\tMinion\t2\t2\t");
+    }
+
+    return cardTraits;
 }

@@ -36,7 +36,7 @@ namespace plugin {
         virtual ~ICardpool() {}
         virtual std::shared_ptr<game::IGamepiece> MakeCard(int cardIndex) const = 0;
         virtual std::shared_ptr<game::IGamepiece> MakeCard(const QString& cardTitle) const = 0;
-        virtual void SetPool(const QStringList& lackeyCardData) = 0;
+        virtual void CreatePool(const QStringList& lackeyCardData) = 0;
     };
 
 } // namespace plugin

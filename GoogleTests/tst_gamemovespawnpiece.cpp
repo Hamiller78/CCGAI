@@ -19,14 +19,14 @@
 
 #include "MockBoard.h"
 #include "MockCardpool.h"
-#include "MockGamepiece.h"
+#include "MockGamepieceCard.h"
 #include "MockGamestate.h"
 #include "../Prototype/gamemovespawnpiece.h"
 
 TEST(GamemoveSpawnPiece, ApplyMoveToBoard)
 {
     mocks::MockBoard mockBoard;
-    std::shared_ptr<game::IGamepiece> mockCardPtr(new mocks::MockGamepiece);
+    std::shared_ptr<game::IGamepiece> mockCardPtr(new mocks::MockGamepieceCard);
     mocks::MockGameState mockGameState1;
     std::unique_ptr<mocks::MockGameState> mockGameState2(new mocks::MockGameState);
     mocks::MockGameState* mockGameStateRawPtr2 = mockGameState2.get();
